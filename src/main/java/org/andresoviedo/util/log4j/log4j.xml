@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true"
+	xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="fileAppender"
+		class="org.andresoviedo.util.log4j.MultipleLayoutRedirectAppender$MultipleLayoutRollingFileAppender">
+		<param name="append" value="true" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="MaxBackupIndex" value="1" />
+		<param name="file" value="${user.home}/Escritorio/GENERALI-ARQ-SDK-Setup.log" />
+	</appender>
+
+	<appender name="REDIRECTLOGGER-fileAppender-1"
+		class="org.andresoviedo.util.log4j.MultipleLayoutRedirectAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%-10t] [%-20C{1}] [%-5p] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="REDIRECTLOGGER-fileAppender-2"
+		class="org.andresoviedo.util.log4j.MultipleLayoutRedirectAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m" />
+		</layout>
+	</appender>
+
+	<logger name="REDIRECTLOGGER">
+		<appender-ref ref="fileAppender" />
+	</logger>
+
+	<logger name="org.andresoviedo.util.io.IOHelper$StreamGobbler"
+		additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="REDIRECTLOGGER-fileAppender-2" />
+	</logger>
+
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="REDIRECTLOGGER-fileAppender-1" />
+	</root>
+
+</log4j:configuration>
