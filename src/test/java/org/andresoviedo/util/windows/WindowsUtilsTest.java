@@ -7,23 +7,22 @@ public class WindowsUtilsTest {
 	@Test
 	public void testInstallStartMenuItem() throws Exception {
 		WindowsUtils.installStartMenuItem(WindowsUtils.SPECIALFOLDER_Programs,
-				"java-utilities-test", "explorer.exe", "http://www.google.es",
+				"my_start_menu", "explorer.exe", "http://www.google.es",
 				"Acceso director a google");
 
 		WindowsUtils.uninstallStartMenuItem(
-				WindowsUtils.SPECIALFOLDER_Programs, "java-utilities-test");
+				WindowsUtils.SPECIALFOLDER_Programs, "my_start_menu");
 	}
 
 	@Test
 	public void testInstallStartMenuItemForAllUsers() throws Exception {
 		WindowsUtils.installStartMenuItem(
-				WindowsUtils.SPECIALFOLDER_AllUsersPrograms,
-				"java-utilities-test", "explorer.exe", "http://www.google.es",
+				WindowsUtils.SPECIALFOLDER_AllUsersPrograms, "my_start_menu",
+				"explorer.exe", "http://www.google.es",
 				"Acceso director a google");
 
 		WindowsUtils.uninstallStartMenuItem(
-				WindowsUtils.SPECIALFOLDER_AllUsersPrograms,
-				"java-utilities-test");
+				WindowsUtils.SPECIALFOLDER_AllUsersPrograms, "my_start_menu");
 	}
 
 }
