@@ -48,7 +48,7 @@ public final class RunHelper {
 		Process pr = rt.exec(cmdArray);
 
 		StreamGobbler stdOutReader = new StreamGobbler(pr.getInputStream(),
-				"STDOUT");
+				"STDOUT", output);
 		StreamGobbler stdErrReader = new StreamGobbler(pr.getErrorStream(),
 				"STDERR");
 

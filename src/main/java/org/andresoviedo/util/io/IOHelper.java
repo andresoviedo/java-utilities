@@ -77,6 +77,22 @@ public final class IOHelper {
 		return tempFile;
 	}
 
+	public static File filterFile(File sourceFile,
+			Dictionary<String, String> dictionary) throws IOException {
+		String content = FileUtils.readFileToString(sourceFile);
+		File tempFile = File.createTempFile(
+				"arq-sdk-" + System.currentTimeMillis(), ".tmp");
+
+		for (Enumeration<String> e = dictionary.keys(); e.hasMoreElements();) {
+			String key = e.nextElement();
+			String value = dictionary.get(key);
+			content = content.replaceAll(key, Matcher.quoteReplacement(value));
+		}
+
+		FileUtils.writeStringToFile(tempFile, content);
+		return tempFile;
+	}
+
 	// IMPLEMENTACIÓN X FILTROS
 	//
 	// private static List<File> getFileParts2(final File sourceFile)
@@ -105,10 +121,16 @@ public final class IOHelper {
 
 		InputStream is;
 		String type;
+		Appendable output;
 
 		public StreamGobbler(InputStream is, String type) {
+			this(is, type, null);
+		}
+
+		public StreamGobbler(InputStream is, String type, Appendable output) {
 			this.is = is;
 			this.type = type;
+			this.output = output;
 		}
 
 		// public void run() {
@@ -131,12 +153,36 @@ public final class IOHelper {
 				// while ((line = br.readLine()) != null)
 				// logger.debug("<" + type + "> " + line);
 				char[] charBuffer = new char[1];
-				while (br.read(charBuffer, 0, 1) != -1)
+				while (br.read(charBuffer, 0, 1) != -1) {
 					// logger.debug("<" + type + "> " + line);
+					if (output != null) {
+						output.append(new String(charBuffer));
+					}
 					logger.debug(new String(charBuffer));
+				}
 			} catch (IOException ex) {
 				logger.fatal("Exception while reading stream.", ex);
 			}
 		}
+	}
+
+	public static File copyResourceToTempFile(String resourcePath)
+			throws IOException {
+		int extension = resourcePath.lastIndexOf(".");
+		return copyResourceToTempFile(resourcePath,
+				extension != -1 ? resourcePath.substring(extension) : null);
+	}
+
+	public static File copyResourceToTempFile(String resourcePath, String suffix)
+			throws IOException {
+		int resourceName = resourcePath.lastIndexOf("/");
+		File tempFile = File.createTempFile(
+				"org.andresoviedo.util."
+						+ (resourceName != -1 ? resourcePath
+								.substring(resourceName + 1) : "") + ".",
+				suffix);
+		FileUtils.copyInputStreamToFile(
+				IOHelper.class.getResourceAsStream(resourcePath), tempFile);
+		return tempFile;
 	}
 }
