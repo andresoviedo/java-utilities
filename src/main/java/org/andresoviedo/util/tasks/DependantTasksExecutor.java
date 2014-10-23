@@ -21,7 +21,7 @@ import org.apache.commons.logging.LogFactory;
  * <li>Task can get results of dependant tasks
  * </ul>
  * 
- * @author varqsoz
+ * @author andresoviedo
  * 
  */
 public class DependantTasksExecutor extends ThreadPoolExecutor {
