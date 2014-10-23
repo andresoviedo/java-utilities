@@ -12,21 +12,38 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BeanUtils {
+/**
+ * Esta clase ha sido creada para que la arquitectura no dependenda del commons-beanutils.
+ * 
+ * Básicamente permite hacer "set" de properties de un bean.
+ * 
+ * Las properties pueden ser anidadas.
+ * 
+ * La lectura de properties se puede hacer indizada, si se trata un Map<?,?> o una List<?>
+ * 
+ * @author andresoviedo
+ */
+public final class BeanUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(BeanUtils.class);
 
+	private static final Pattern INDEXED_PROPERTY_REGEXP = Pattern.compile("^(.*)\\[(.+)\\]$");
+	
 	public static String includedClass = "org.andresoviedo";
 	/**
 	 * Conjunto de clases wrapper de tipos primitivos de JAVA y el BigDecimal (ver clase AbsisCustomNumberEditor)
@@ -202,56 +219,96 @@ public class BeanUtils {
 		if (bean == null || StringUtils.isBlank(propertyName)) {
 			throw new IllegalArgumentException("Bean  or property can't be null");
 		}
-		// Process possible nested beans
-		if (propertyName.contains(".")) {
 
+		try {
+			// current bean is associated to each property part. Ej. "bean1.bean2.bean3.property".
 			Object currentBean = bean;
-			String[] propertyPath = propertyName.split("\\.");
-			for (int k = 0; k < propertyPath.length - 1; k++) {
+			String currentProperty = null;
+			String currentPropertyIndex = null;
 
-				String propertyPart = propertyPath[k];
-				PropertyDescriptor pd = getPropertyDescriptorSimple(currentBean.getClass(), propertyPart);
-				if (pd == null) {
-					throw new IllegalArgumentException("Property path '" + propertyName + "' cant be binded for bean '" + bean + "' ("
-							+ bean.getClass() + "). Property '" + propertyPart + "' doesn't exist for bean " + currentBean + " ("
-							+ currentBean.getClass() + ")");
+			String[] propertyParts = propertyName.split("\\.");
+			for (int k = 0; k < propertyParts.length; k++) {
+
+				if (currentBean == null) {
+					String msg = "Property '" + propertyName + "' couldn't be retrieved for bean '" + bean + "' (" + bean.getClass() + ")."
+							+ (currentProperty != null ? " Property '" + currentProperty + "' returned null" : "");
+					logger.error(msg);
+					throw new IllegalArgumentException(msg);
 				}
 
-				try {
-					Object nestedBean = pd.getReadMethod().invoke(currentBean);
-					if (nestedBean == null) {
-						if (logger.isTraceEnabled()) {
-							logger.trace("Property path '" + propertyName + "' couldn't be retrieved for bean '" + bean + "' ("
-									+ bean.getClass() + "). Property '" + propertyPart + "' is null for bean " + currentBean + " ("
-									+ currentBean.getClass() + ")");
-						}
-						return null;
+				currentProperty = propertyParts[k];
+				currentPropertyIndex = null;
+
+				if (StringUtils.isBlank(currentProperty)) {
+					String msg = "Property '" + propertyName + "' couldn't be retrieved for bean '" + bean + "' (" + bean.getClass()
+							+ "). Property '" + currentProperty + "' is invalid";
+					logger.error(msg);
+					throw new IllegalArgumentException(msg);
+				}
+
+				// INFO: Revisar si se traza de una propiedad indizada
+				final Matcher matcher = INDEXED_PROPERTY_REGEXP.matcher(currentProperty);
+				if (matcher.matches()) {
+					currentProperty = matcher.group(1);
+					currentPropertyIndex = matcher.group(2);
+				}
+
+				Object nestedBean = null;
+				if (StringUtils.EMPTY.equals(currentProperty) && StringUtils.isNotEmpty(currentPropertyIndex)) {
+					// INFO: se trata del acceso a una lista
+					nestedBean = currentBean;
+				} else {
+					PropertyDescriptor pd = getPropertyDescriptorSimple(currentBean.getClass(), currentProperty);
+					if (pd == null || pd.getReadMethod() == null) {
+						throw new IllegalArgumentException("Can't read property '" + propertyName + "' for bean '" + bean + "' ("
+								+ bean.getClass() + "). Property '" + currentProperty + "' doesn't exist or it has no getter for bean "
+								+ currentBean + " (" + currentBean.getClass() + ")");
 					}
-					currentBean = nestedBean;
-				} catch (Exception ex) {
-					throw new RuntimeException("Exception binding property '" + propertyName + "' for bean '" + bean + "' ("
-							+ bean.getClass() + ")", ex);
+					nestedBean = pd.getReadMethod().invoke(currentBean);
 				}
+
+				if (currentPropertyIndex == null) {
+					currentBean = nestedBean;
+					continue;
+				}
+
+				if (nestedBean == null) {
+					String msg = "Property '" + propertyName + "' couldn't be retrieved for bean '" + bean + "' (" + bean.getClass()
+							+ "). Property '" + currentProperty + "' returned null";
+					logger.error(msg);
+					throw new IllegalArgumentException(msg);
+				}
+
+				if (nestedBean instanceof Map) {
+					currentBean = ((Map<?, ?>) nestedBean).get(currentPropertyIndex);
+					continue;
+				}
+				if (nestedBean instanceof List) {
+					if (!NumberUtils.isNumber(currentPropertyIndex)) {
+						final String msg = "Index '" + currentPropertyIndex + "' for property '" + currentProperty + "' is not a number";
+						logger.error(msg);
+						throw new IllegalArgumentException(msg);
+					}
+					currentBean = ((List<?>) nestedBean).get(Integer.parseInt(currentPropertyIndex));
+					continue;
+				}
+				final String msg = "Invalid property '" + currentProperty + "[" + currentPropertyIndex + "]' for bean '" + nestedBean
+						+ "' (" + nestedBean.getClass() + ")";
+				logger.error(msg);
+				throw new IllegalArgumentException(msg);
+
 			}
 
-			bean = currentBean;
-			propertyName = propertyPath[propertyPath.length - 1];
-		}
+			return currentBean;
 
-		PropertyDescriptor pd = getPropertyDescriptor(bean.getClass(), propertyName);
-		if (pd == null) {
-			throw new IllegalArgumentException("Property '" + propertyName + "' not found for bean '" + bean + "'");
-		}
-		if (logger.isTraceEnabled()) {
-			logger.trace("Getting property '" + propertyName + "' for bean with class '" + bean.getClass());
-		}
-		try {
-			return pd.getReadMethod().invoke(bean);
+		} catch (IllegalArgumentException ex) {
+			// pass through
+			throw ex;
 		} catch (Exception ex) {
-			throw new RuntimeException(
-					"Exception getting property '" + pd.getName() + "' for bean '" + bean + " (" + bean.getClass() + ")", ex);
+			// unexpected exception
+			throw new RuntimeException("Exception getting property '" + propertyName + "' for bean '" + bean + "' (" + bean.getClass()
+					+ ")", ex);
 		}
-
 	}
 
 	/**
@@ -287,6 +344,13 @@ public class BeanUtils {
 				}
 
 				try {
+					if (pd.getReadMethod() == null || pd.getWriteMethod() == null) {
+						String msg = "Property path '" + propertyName + "' couldn't be retrieved for bean '" + bean + "' ("
+								+ bean.getClass() + "). Property descriptor for reading property '" + propertyPart + "' is null for bean "
+								+ currentBean + " (" + currentBean.getClass() + ")";
+						logger.error(msg);
+						throw new IllegalArgumentException(msg);
+					}
 					Object nestedBean = pd.getReadMethod().invoke(currentBean);
 					Class<?> pt = pd.getPropertyType();
 					if (nestedBean == null && !ClassUtils.isPrimitiveOrWrapper(pt)) {
@@ -294,6 +358,9 @@ public class BeanUtils {
 						pd.getWriteMethod().invoke(currentBean, nestedBean);
 					}
 					currentBean = nestedBean;
+				} catch (IllegalArgumentException ex) {
+					// pass through
+					throw ex;
 				} catch (Exception ex) {
 					String msg = "Exception binding property '" + propertyName + "' for bean '" + bean + "' (" + bean.getClass() + ")";
 					throw new RuntimeException(msg, ex);
@@ -305,8 +372,9 @@ public class BeanUtils {
 		}
 
 		PropertyDescriptor pd = getPropertyDescriptor(bean.getClass(), propertyName);
-		if (pd == null) {
-			throw new IllegalArgumentException("Property '" + propertyName + "' not found for bean '" + bean + "'");
+		if (pd == null || pd.getWriteMethod() == null) {
+			throw new IllegalArgumentException("Property descriptor for writing property '" + propertyName + "' not found for bean '"
+					+ bean + "' (" + bean.getClass() + ")");
 		}
 		if (logger.isTraceEnabled()) {
 			logger.trace("Setting property '" + propertyName + "' for bean with class '" + bean.getClass()
@@ -355,7 +423,7 @@ public class BeanUtils {
 			BeanInfo beanInfo = Introspector.getBeanInfo(clazz);
 			PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();
 			for (int i = 0; i < pds.length; i++) {
-				if (pds[i].getName().equals(propertyName) && pds[i].getWriteMethod() != null) {
+				if (pds[i].getName().equals(propertyName)) {
 					// Method writeMethod = pds[i].getWriteMethod();
 					// if (writeMethod != null && writeMethod.getName().equals(propertyName))
 					return pds[i];
@@ -378,6 +446,9 @@ public class BeanUtils {
 	 */
 	public static Object convert(Object value, Class<?> requiredType) {
 		Object convertImpl = convertImpl(value, requiredType);
+		if (value != null && convertImpl == null) {
+			logger.warn("Could not bind '" + value + "' to required class '" + requiredType + "'");
+		}
 		if (logger.isTraceEnabled()) {
 			logger.trace("Value '" + value + "'" + (value != null ? " (" + value.getClass() + ")" : "") + " converted to '" + convertImpl
 					+ "'" + (convertImpl != null ? " (" + convertImpl.getClass() + ")" : ""));
@@ -417,15 +488,34 @@ public class BeanUtils {
 		if (requiredType == Boolean.class || requiredType == Boolean.TYPE) {
 			if (value instanceof String) {
 				return Boolean.valueOf(String.valueOf(value));
-			} else if (value instanceof Integer || requiredType == Integer.TYPE) {
-				return (Integer) value == 1;
+			} else if (value instanceof Number) {
+				return ((Number) value).intValue() == 1;
 			} else {
 				logger.warn("Value must be of type String or Integer, not '" + value.getClass() + "'");
 			}
 		}
 
 		if (requiredType.isEnum()) {
-			return Enum.valueOf((Class<Enum>) requiredType, StringUtils.trim(String.valueOf(value)));
+			try {
+				return Enum.valueOf((Class<Enum>) requiredType, StringUtils.trim(String.valueOf(value)));
+			} catch (Exception ex) {
+				if (StringUtils.isNumeric(String.valueOf(value))) {
+					int i = 0;
+					for (Object e : EnumSet.allOf((Class<Enum>) requiredType)) {
+						if (i++ == Integer.parseInt(String.valueOf(value))) {
+							return e;
+						}
+					}
+				} else {
+					try {
+						Method m = requiredType.getMethod("getValueOf", String.class);
+						Enum e = (Enum) m.invoke(null, String.valueOf(value));
+						return e;
+					} catch (Exception e) {
+					}
+				}
+				logger.warn("Could not bind enum type '" + requiredType + "' for value '" + value + "'");
+			}
 		}
 
 		return null;
