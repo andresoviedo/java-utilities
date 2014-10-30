@@ -112,7 +112,6 @@ public final class IOHelper {
 	/**
 	 * Thread de lectura del inputstream
 	 * 
-	 * @author generali
 	 * @see http://www.javaworld.com/jw-12-2000/jw-1229-traps.html?page=4
 	 */
 	public static class StreamGobbler extends Thread {

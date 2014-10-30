@@ -8,7 +8,7 @@
 		<param name="append" value="true" />
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="1" />
-		<param name="file" value="${user.home}/Escritorio/GENERALI-ARQ-SDK-Setup.log" />
+		<param name="file" value="${user.home}/Escritorio/ARQ-SDK-Setup.log" />
 	</appender>
 
 	<appender name="REDIRECTLOGGER-fileAppender-1"
