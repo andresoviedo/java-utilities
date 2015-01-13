@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true"
+	xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="fileAppender1"
+		class="org.andresoviedo.util.log4j.LazyRollingFileAppenderTest">
+		<param name="append" value="true" />
+		<param name="MaxFileSize" value="1MB" />
+		<param name="MaxBackupIndex" value="1" />
+		<param name="file" value="${user.home}/lazyfileappender1.log" />
+	</appender>
+
+	<appender name="fileAppender2"
+		class="org.andresoviedo.util.log4j.LazyRollingFileAppenderTest">
+		<param name="append" value="true" />
+		<param name="MaxFileSize" value="1MB" />
+		<param name="MaxBackupIndex" value="1" />
+		<param name="file" value="${user.home}/lazyfileappender2.log" />
+	</appender>
+
+	<logger name="org.andresoviedo.util.log4j.LazyRollingFileAppenderTest.1"
+		additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="fileAppender1" />
+	</logger>
+
+	<logger name="org.andresoviedo.util.log4j.LazyRollingFileAppenderTest.2"
+		additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="fileAppender2" />
+	</logger>
+
+	<root>
+		<level value="DEBUG" />
+	</root>
+
+</log4j:configuration>
