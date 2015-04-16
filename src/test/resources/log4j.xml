@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration debug="true"
-	xmlns:log4j='http://jakarta.apache.org/log4j/'>
+<log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
 
 	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.PatternLayout">
@@ -15,10 +14,13 @@
 		</layout>
 	</appender>
 
-	<logger name="org.andresoviedo.util.io.IOHelper$StreamGobbler"
-		additivity="false">
+	<logger name="org.andresoviedo.util.io.IOHelper$StreamGobbler" additivity="false">
 		<level value="DEBUG" />
 		<appender-ref ref="consoleAppender2" />
+	</logger>
+
+	<logger name="org.apache.http">
+		<level value="INFO" />
 	</logger>
 
 	<root>
