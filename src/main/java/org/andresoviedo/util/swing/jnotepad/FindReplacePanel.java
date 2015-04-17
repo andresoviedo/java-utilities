@@ -338,28 +338,24 @@ public class FindReplacePanel extends JPanel implements FindReplaceOptions, Acti
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextOptionsProvider#getDirection()
 	 */
 	public int getDirection() {
 		return rbForward.isSelected() ? FindReplaceOptions.DIRECTION_FORWARD : FindReplaceOptions.DIRECTION_BACKWARD;
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextOptions#getReplaceText()
 	 */
 	public String getReplaceText() {
 		return (cboReplace.getSelectedItem() == null) ? "" : cboReplace.getSelectedItem().toString();
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextOptions#getScope()
 	 */
 	public int getScope() {
 		return rbAll.isSelected() ? FindReplaceOptions.SCOPE_ALL : FindReplaceOptions.SCOPE_SELECTED_LINES;
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextOptions#setScope(int)
 	 */
 	public void setScope(int scope) {
 		if (scope == FindReplaceOptions.SCOPE_SELECTED_LINES) {
@@ -370,35 +366,30 @@ public class FindReplacePanel extends JPanel implements FindReplaceOptions, Acti
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextOptions#getText()
 	 */
 	public String getText() {
 		return (cboText.getSelectedItem() == null) ? "" : cboText.getSelectedItem().toString();
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextOptions#isCaseSensitive()
 	 */
 	public boolean isCaseSensitive() {
 		return cbCaseSensitive.isSelected();
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextOptions#isMatchWholeWord()
 	 */
 	public boolean isMatchWholeWord() {
 		return cbMatchWholeWord.isSelected();
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextOptions#isUseRegex()
 	 */
 	public boolean isUseRegex() {
 		return cbUseRegex.isSelected();
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextOptions#disableReplace()
 	 */
 	public void disableReplace() {
 		btnReplace.setEnabled(false);

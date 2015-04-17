@@ -90,7 +90,6 @@ public class DefaultCheckListModel extends AbstractCheckListModel {
 	}
 
 	/*
-	 * @see ttm.platform.kernel.gui.jchecklist.CheckListModel#isChecked(int)
 	 */
 	public boolean isChecked(int index) {
 		return states[index];
@@ -129,7 +128,6 @@ public class DefaultCheckListModel extends AbstractCheckListModel {
 	}
 
 	/*
-	 * @see ttm.platform.kernel.gui.jchecklist.CheckListModel#setChecked(int, boolean)
 	 */
 	public void setChecked(int index, boolean checked) {
 		if (checked) {
