@@ -25,7 +25,6 @@ public class FindReplaceBasicCommandExecutor implements FindReplaceCommandExecut
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextCommandExecutor#find()
 	 */
 	public boolean find() {
 		// Indicates if the search has to be performed forward.
@@ -82,7 +81,6 @@ public class FindReplaceBasicCommandExecutor implements FindReplaceCommandExecut
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextCommandExecutor#replace()
 	 */
 	public void replace() {
 		int start = textComponent.getSelectionStart();
@@ -98,7 +96,6 @@ public class FindReplaceBasicCommandExecutor implements FindReplaceCommandExecut
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextCommandExecutor#replaceAll()
 	 */
 	public int replaceAll() {
 		int result = 0;
@@ -126,7 +123,6 @@ public class FindReplaceBasicCommandExecutor implements FindReplaceCommandExecut
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextCommandExecutor#replaceFind()
 	 */
 	public boolean replaceFind() {
 		replace();
@@ -134,7 +130,6 @@ public class FindReplaceBasicCommandExecutor implements FindReplaceCommandExecut
 	}
 
 	/*
-	 * @see ttm.tools.bootstraploader.gui.textsearch.FindTextCommandExecutor#scopeChanged()
 	 */
 	// public void scopeChanged() {
 	// if (options.getScope() == FindTextOptions.SCOPE_SELECTED_LINES) {
