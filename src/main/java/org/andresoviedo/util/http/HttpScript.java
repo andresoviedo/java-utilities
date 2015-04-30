@@ -14,6 +14,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.andresoviedo.util.tree.TreeNode;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
@@ -67,14 +68,14 @@ public class HttpScript {
 
 	private final Map<String, Object> executionVariables = new HashMap<String, Object>();
 
-	private final List<Node<Step>> steps = new ArrayList<Node<Step>>();
+	private final List<TreeNode<Step>> steps = new ArrayList<TreeNode<Step>>();
 
 	public void addConfig(Object config) {
 		configs.put(config.getClass().getSimpleName(), config);
 	}
 
-	public Node<Step> addRequest(Step request) {
-		Node<Step> ret = new Node<Step>(request);
+	public TreeNode<Step> addRequest(Step request) {
+		TreeNode<Step> ret = new TreeNode<Step>(request);
 		steps.add(ret);
 		return ret;
 	}
@@ -97,14 +98,14 @@ public class HttpScript {
 		((HttpClient) configs.get(HttpClient.class.getSimpleName())).clearCookies();
 
 		Map<String, Object> results = new HashMap<String, Object>();
-		for (Node<Step> step : steps) {
+		for (TreeNode<Step> step : steps) {
 			try {
 				Map<String, Object> execute_impl = execute_impl(step, null);
-				System.out.println("Putting " + step.getData().getName() + ", value: " + execute_impl);
-				results.put(step.getData().getName(), execute_impl);
+				System.out.println("Putting " + step.getObject().getName() + ", value: " + execute_impl);
+				results.put(step.getObject().getName(), execute_impl);
 			} catch (Exception ex) {
 				LOG.error(ex.getMessage(), ex);
-				results.put(step.getData().getName(), ex);
+				results.put(step.getObject().getName(), ex);
 				break;
 			}
 		}
@@ -120,29 +121,29 @@ public class HttpScript {
 		return systemProps;
 	}
 
-	private Map<String, Object> execute_impl(Node<Step> stepNode, Map<String, Object> parentResults) {
+	private Map<String, Object> execute_impl(TreeNode<Step> stepNode, Map<String, Object> parentResults) {
 
 		Map<String, Object> results = new HashMap<String, Object>();
-		if (stepNode.getData() instanceof ForEach) {
+		if (stepNode.getObject() instanceof ForEach) {
 			try {
-				while (stepNode.getData().execute(parentResults) != null) {
-					for (Node<Step> child : stepNode.getChildren()) {
-						results.put(child.getData().getName(), execute_impl(child, parentResults));
+				while (stepNode.getObject().execute(parentResults) != null) {
+					for (TreeNode<Step> child : stepNode.getChildren()) {
+						results.put(child.getObject().getName(), execute_impl(child, parentResults));
 					}
 				}
 			} catch (Exception ex) {
-				throw new RuntimeException("Exeption executing for '" + stepNode.getData().getName() + "'", ex);
+				throw new RuntimeException("Exeption executing for '" + stepNode.getObject().getName() + "'", ex);
 			}
 			return results;
-		} else if (stepNode.getData() instanceof While) {
+		} else if (stepNode.getObject() instanceof While) {
 			try {
-				while ((Boolean) stepNode.getData().execute(parentResults).get("result")) {
-					for (Node<Step> child : stepNode.getChildren()) {
-						results.put(child.getData().getName(), execute_impl(child, parentResults));
+				while ((Boolean) stepNode.getObject().execute(parentResults).get("result")) {
+					for (TreeNode<Step> child : stepNode.getChildren()) {
+						results.put(child.getObject().getName(), execute_impl(child, parentResults));
 					}
 				}
 			} catch (Exception ex) {
-				throw new RuntimeException("Exeption executing while '" + stepNode.getData().getName() + "'. "
+				throw new RuntimeException("Exeption executing while '" + stepNode.getObject().getName() + "'. "
 						+ ex.getMessage(), ex);
 			}
 			return results;
@@ -150,20 +151,20 @@ public class HttpScript {
 
 		Map<String, Object> result;
 		try {
-			result = stepNode.getData().execute(parentResults);
+			result = stepNode.getObject().execute(parentResults);
 		} catch (Exception ex) {
-			LOG.fatal("Exception executing '" + stepNode.getData().getName() + "'", ex);
-			throw new RuntimeException("Exeption executing '" + stepNode.getData().getName() + "'", ex);
+			LOG.fatal("Exception executing '" + stepNode.getObject().getName() + "'", ex);
+			throw new RuntimeException("Exeption executing '" + stepNode.getObject().getName() + "'", ex);
 		}
 
-		result.put("class", stepNode.getData().getClass().getSimpleName());
+		result.put("class", stepNode.getObject().getClass().getSimpleName());
 		if (stepNode.isLeaf()) {
 			return result;
 		}
 
 		results.put(null, result);
-		for (Node<Step> child : stepNode.getChildren()) {
-			results.put(child.getData().getName(), execute_impl(child, result));
+		for (TreeNode<Step> child : stepNode.getChildren()) {
+			results.put(child.getObject().getName(), execute_impl(child, result));
 		}
 
 		return results;
@@ -841,70 +842,6 @@ public class HttpScript {
 				return false;
 			}
 			return false;
-		}
-	}
-
-	public static final class Node<T> {
-
-		private List<Node<T>> children = new ArrayList<Node<T>>();
-		private Node<T> parent = null;
-		private T data = null;
-
-		public Node(T data) {
-			this.data = data;
-		}
-
-		public Node(T data, Node<T> parent) {
-			this.data = data;
-			this.parent = parent;
-		}
-
-		public List<Node<T>> getChildren() {
-			return children;
-		}
-
-		public Node<T> getParent() {
-			return parent;
-		}
-
-		public void setParent(Node<T> parent) {
-			this.parent = parent;
-			parent.children.add(this);
-		}
-
-		public Node<T> addChild(T data) {
-			Node<T> child = new Node<T>(data);
-			child.parent = this;
-			this.children.add(child);
-			return child;
-		}
-
-		public void addChild(Node<T> child) {
-			child.parent = this;
-			this.children.add(child);
-		}
-
-		public T getData() {
-			return this.data;
-		}
-
-		public void setData(T data) {
-			this.data = data;
-		}
-
-		public boolean isRoot() {
-			return (this.parent == null);
-		}
-
-		public boolean isLeaf() {
-			if (this.children.size() == 0)
-				return true;
-			else
-				return false;
-		}
-
-		public void removeParent() {
-			this.parent = null;
 		}
 	}
 }
