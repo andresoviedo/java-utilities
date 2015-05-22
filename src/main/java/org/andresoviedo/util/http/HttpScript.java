@@ -441,7 +441,7 @@ public class HttpScript {
 				if (contentTypeHeader != null) {
 					Matcher m = CONTENT_TYPE_REGEX.matcher(contentTypeHeader);
 					if (m.find()) {
-						contentType = m.group(1);
+						contentType = getNonNullGroup(m);
 						contentTypeHeader = m.group(2);
 					}
 				}
@@ -454,15 +454,16 @@ public class HttpScript {
 					if (m.find()) {
 						// always add default result
 						if (j == 0) {
-							ret.put(varName, m.group(1)); // TODO: review this. I need this now tu support ForEach.
+							ret.put(varName, getNonNullGroup(m)); // TODO: review this. I need this now to support
+																	// ForEach.
 						}
-						ret.put(varName + "_" + j++, m.group(1)); // TODO: review this. I need this now to
-																	// support ForEach.
+						ret.put(varName + "_" + j++, getNonNullGroup(m)); // TODO: review this. I need this now to
+						// support ForEach.
 						// ret.put(varName + (m.groupCount() == 1 ? "" : "_" + i), m.group(1));
 						while (m.find()) {
 							// TODO: inform user that we only support 1 group capture in case multiple capturing
 							// groups were specified
-							ret.put(varName + "_" + j++, m.group(1));
+							ret.put(varName + "_" + j++, getNonNullGroup(m));
 						}
 					}
 				}
@@ -506,7 +507,7 @@ public class HttpScript {
 					// TODO: inform user we only support looking regex in header values (not keys)
 					Matcher m = regex.matcher(header);
 					while (m.find()) {
-						captures.add(m.group(1));
+						captures.add(getNonNullGroup(m));
 					}
 				}
 				if (captures.size() == 1) {
@@ -539,6 +540,15 @@ public class HttpScript {
 
 			return ret;
 
+		}
+
+		private String getNonNullGroup(Matcher m) {
+			for (int i = 1; i <= m.groupCount(); i++) {
+				if (m.group(i) != null) {
+					return m.group(i);
+				}
+			}
+			return null;
 		}
 
 		public String getName() {
@@ -678,8 +688,9 @@ public class HttpScript {
 				}
 				if (body != null) {
 					if (body instanceof String) {
-						((HttpPut) httpMethod).setEntity(new StringEntity((replaceVariables(body.toString(),
-								executionVariables))));
+						String msgBody = replaceVariables(body.toString(), executionVariables);
+						LOG.debug("[http-" + getName() + "] message body '" + msgBody + "'");
+						((HttpPut) httpMethod).setEntity(new StringEntity(msgBody));
 					}
 				}
 				break;

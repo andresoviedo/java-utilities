@@ -219,7 +219,7 @@ public class TwitterHttpScript {
 				TreeNode<Step> node = twitterHttpScript.addRequest(twitterHttpScript.new HttpRequest("twitter_home",
 						"https://twitter.com", 443, HttpScript.Method.GET, null, null));
 				node.addChildren(twitterHttpScript.new RegexExtractor("authenticity_token", "authenticity_token",
-						"<input type=\"hidden\" name=\"authenticity_token\" value=\"(.+)\">", ResponseField.BODY,
+						"<input .*?(?:name=\"authenticity_token\".*?value=\"(.+?)\"|value=\"(.+?)\".*?name=\"authenticity_token\").*?/?>", ResponseField.BODY,
 						Lookup.MAIN, 0));
 			}
 
