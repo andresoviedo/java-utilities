@@ -1290,7 +1290,6 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 
 	public static void main(String[] args) {
 		JNotepad notepad = new JNotepad();
-		// notepad.openFile(new File("C:\\Documents and Settings\\jlagunilla\\Mis documentos\\POLLING.txt"));
 
 		JFrame f = new JFrame("Test");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
