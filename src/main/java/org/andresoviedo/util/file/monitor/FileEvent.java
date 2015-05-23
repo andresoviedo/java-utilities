@@ -10,6 +10,11 @@ import java.util.EventObject;
  */
 public class FileEvent extends EventObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 866866690099374843L;
+
 	public static final int FILE_NEW = 1001;
 
 	public static final int FILE_DELETE = 1002;

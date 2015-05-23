@@ -1,11 +1,11 @@
-package org.andresoviedo.util.data.structure;
+package org.andresoviedo.util.bean;
 
 /**
  * A couple object encapsulates 2 objects, possibly being related.
  * 
 
  */
-public class Couple {
+public class CoupleBean {
 
 	/**
 	 * The first member.
@@ -25,7 +25,7 @@ public class Couple {
 	 * @param member2
 	 *          the second member.
 	 */
-	public Couple(Object member1, Object member2) {
+	public CoupleBean(Object member1, Object member2) {
 		this.member1 = member1;
 		this.member2 = member2;
 	}

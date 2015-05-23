@@ -14,7 +14,7 @@ public class PersistedListFactory {
 	private PersistedListFactory() {
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes" })
 	public static PersistedList<?> getObjectStorage(File targetFile, int type) {
 		PersistedList<?> ret = null;
 		switch (type) {
@@ -31,7 +31,7 @@ public class PersistedListFactory {
 		return ret;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static <T> PersistedList<T> getObjectStorage(Class<T> clazz, File targetFile, int type) {
 		PersistedList<T> ret = null;
 		switch (type) {

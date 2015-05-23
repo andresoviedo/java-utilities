@@ -2,28 +2,33 @@ package org.andresoviedo.util.data;
 
 import java.util.AbstractList;
 import java.util.Collections;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
 /**
  * <p>
- * This class acts as a hashtable but provides a <code>java.util.List</code> interface for getting elements by their index position.
+ * This class acts as a hashtable but provides a <code>java.util.List</code>
+ * interface for getting elements by their index position.
  * </p>
  * <p>
- * To get the <code>List</code> interface call the <code>getListInterface()</code> method. The first item in the returned list if no index
- * is specified when adding it to this <code>HashList</code> is the first item added by the <code>put(Object, Object)</code> method.
+ * To get the <code>List</code> interface call the
+ * <code>getListInterface()</code> method. The first item in the returned list
+ * if no index is specified when adding it to this <code>HashList</code> is the
+ * first item added by the <code>put(Object, Object)</code> method.
  * </p>
  * <p>
- * An item can be added at a specified position by calling <code>put(Object, Object, int)</code> method. This <code>List</code>
+ * An item can be added at a specified position by calling
+ * <code>put(Object, Object, int)</code> method. This <code>List</code>
  * implementation does not support adding items.
  * 
-
  */
-public class HashList extends Hashtable {
+public class HashList<K, V> extends HashMap<K, V> {
 
-	protected Vector data = new Vector();
+	private static final long serialVersionUID = -3907761576605203693L;
+
+	protected Vector<V> data = new Vector<V>();
 
 	protected ListInterface listInterface = new ListInterface();
 
@@ -35,9 +40,10 @@ public class HashList extends Hashtable {
 	}
 
 	/**
-	 * Construtcs a new <code>HashList</code> and initializes it with the specified map.
+	 * Construtcs a new <code>HashList</code> and initializes it with the
+	 * specified map.
 	 */
-	public HashList(Map t, Vector data) {
+	public HashList(Map<K, V> t, Vector<V> data) {
 		super(t);
 		this.data = data;
 	}
@@ -45,16 +51,15 @@ public class HashList extends Hashtable {
 	/*
 	 * @see java.util.Hashtable#clear()
 	 */
+	@Override
 	public void clear() {
 		super.clear();
 		data.clear();
 	}
 
-	/*
-	 * @see java.util.Hashtable#put(java.lang.Object, java.lang.Object)
-	 */
-	public Object put(Object key, Object value) {
-		Object obj = super.put(key, value);
+	@Override
+	public V put(K key, V value) {
+		V obj = super.put(key, value);
 		if (obj != null) {
 			data.remove(obj);
 		}
@@ -63,23 +68,29 @@ public class HashList extends Hashtable {
 	}
 
 	/**
-	 * Maps the specified <code>key</code> to the specified <code>value</code> at the specified <code>index</code> in this HashList.<br>
-	 * Neither the key nor the value can be <code>null</code>. The value can be retrieved by calling the <code>get</code><br>
-	 * method with a key that is equal to the original key or by calling the <code>elementAt(int)</code> method<br>
+	 * Maps the specified <code>key</code> to the specified <code>value</code>
+	 * at the specified <code>index</code> in this HashList.<br>
+	 * Neither the key nor the value can be <code>null</code>. The value can be
+	 * retrieved by calling the <code>get</code><br>
+	 * method with a key that is equal to the original key or by calling the
+	 * <code>elementAt(int)</code> method<br>
 	 * of the List interface.
 	 * 
 	 * @param key
-	 *          the hashtable key.
+	 *            the hashtable key.
 	 * @param value
-	 *          the value.
-	 * @return the previous value of the specified key in this hashtable, or <code>null</code> if it did not have one.
+	 *            the value.
+	 * @return the previous value of the specified key in this hashtable, or
+	 *         <code>null</code> if it did not have one.
 	 * @exception NullPointerException
-	 *              if the key or value is <code>null</code>.
+	 *                if the key or value is <code>null</code>.
 	 * @exception ArrayIndexOutOfBoundsException
-	 *              if <code>index</code> is out of range (<code>index &lt; 0</code> || <code>index &gt; size()</code>).
+	 *                if <code>index</code> is out of range (
+	 *                <code>index &lt; 0</code> ||
+	 *                <code>index &gt; size()</code>).
 	 */
-	public Object put(Object key, Object value, int index) {
-		Object ret = super.put(key, value);
+	public V put(K key, V value, int index) {
+		V ret = super.put(key, value);
 		if (ret != null) {
 			data.remove(ret);
 		}
@@ -90,8 +101,9 @@ public class HashList extends Hashtable {
 	/*
 	 * @see java.util.Hashtable#remove(java.lang.Object)
 	 */
-	public Object remove(Object key) {
-		Object ret = super.remove(key);
+	@Override
+	public V remove(Object key) {
+		V ret = super.remove(key);
 		if (ret != null) {
 			data.remove(ret);
 		}
@@ -102,10 +114,10 @@ public class HashList extends Hashtable {
 	 * Returns the value at the specified index.
 	 * 
 	 * @param index
-	 *          the index of the value to be returned.
+	 *            the index of the value to be returned.
 	 * @return the value at the specified index.
 	 */
-	public Object elementAt(int index) {
+	public V elementAt(int index) {
 		return data.elementAt(index);
 	}
 
@@ -117,25 +129,26 @@ public class HashList extends Hashtable {
 	}
 
 	/**
-	 * Returns a {@link List} of the components of this HashList. The first item in the returned <tt>List</tt> is the item at index <tt>0</tt>
-	 * ,<br>
-	 * then the item at index <tt>1</tt>, and so on. The first item, if no index is specified when adding it to this <tt>HashList</tt>, it's
-	 * the first<br>
-	 * item added by the {@link #put(Object, Object)} method. This <tt>List</tt> implementation does not support adding items.
+	 * Returns a {@link List} of the components of this HashList. The first item
+	 * in the returned <tt>List</tt> is the item at index <tt>0</tt> ,<br>
+	 * then the item at index <tt>1</tt>, and so on. The first item, if no index
+	 * is specified when adding it to this <tt>HashList</tt>, it's the first<br>
+	 * item added by the {@link #put(Object, Object)} method. This <tt>List</tt>
+	 * implementation does not support adding items.
 	 * 
 	 * @return a List of the components of this HashList.
 	 * @see List
 	 */
-	public List getListInterface() {
+	public List<V> getListInterface() {
 		return listInterface;
 	}
 
-	class ListInterface extends AbstractList {
+	class ListInterface extends AbstractList<V> {
 
 		/*
 		 * @see java.util.AbstractList#get(int)
 		 */
-		public Object get(int index) {
+		public V get(int index) {
 			return data.elementAt(index);
 		}
 

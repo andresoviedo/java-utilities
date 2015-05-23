@@ -25,7 +25,7 @@ public class JarUtils {
 	/**
 	 * Files to HashSet of String classes.
 	 */
-	private static Hashtable cache = new Hashtable();
+	private static Hashtable<File, HashSet<String>> cache = new Hashtable<File, HashSet<String>>();
 
 	/**
 	 * Don't let anyone insstantiate this class.
@@ -56,12 +56,12 @@ public class JarUtils {
 	}
 
 	private static void scanDirectory(File directory) {
-		HashSet classEntries = readDirectoryClassEntries(directory, "");
+		HashSet<String> classEntries = readDirectoryClassEntries(directory, "");
 		cache.put(directory, classEntries);
 	}
 
 	private static void scanJarFile(File f) throws IOException, FileNotFoundException {
-		HashSet classEntries = readJarClassEntries(f);
+		HashSet<String> classEntries = readJarClassEntries(f);
 		cache.put(f, classEntries);
 	}
 
@@ -76,9 +76,9 @@ public class JarUtils {
 	 * @throws IOException
 	 *           if an error occurs while accessing the file.
 	 */
-	public static HashSet getClassEntries(File file) throws FileNotFoundException, IOException {
+	public static HashSet<String> getClassEntries(File file) throws FileNotFoundException, IOException {
 		if (cache.containsKey(file)) {
-			return (HashSet) cache.get(file);
+			return (HashSet<String>) cache.get(file);
 		} else {
 			return readClassEntries(file);
 		}
@@ -93,27 +93,27 @@ public class JarUtils {
 	 *          the regular expression to match.
 	 * @return a list of entries whose name match the given regular expresion.
 	 */
-	public static HashSet getClassEntries(File file, String regex) throws FileNotFoundException, IOException, PatternSyntaxException {
-		HashSet entries = null;
+	public static HashSet<String> getClassEntries(File file, String regex) throws FileNotFoundException, IOException, PatternSyntaxException {
+		HashSet<String> entries = null;
 		if (cache.containsKey(file)) {
-			entries = (HashSet) cache.get(file);
+			entries = (HashSet<String>) cache.get(file);
 		} else {
-			entries = (HashSet) readClassEntries(file);
+			entries = (HashSet<String>) readClassEntries(file);
 		}
 		return filter(entries, regex);
 	}
 
-	private static HashSet readClassEntries(File file) throws IOException, FileNotFoundException {
+	private static HashSet<String> readClassEntries(File file) throws IOException, FileNotFoundException {
 		if (file.isDirectory()) {
 			return readDirectoryClassEntries(file, "");
 		} else if (file.isFile() && file.getName().endsWith(".jar")) {
 			return readJarClassEntries(file);
 		}
-		return new HashSet();
+		return new HashSet<String>();
 	}
 
-	private static HashSet readDirectoryClassEntries(File directory, String prefix) {
-		HashSet allClasses = new HashSet();
+	private static HashSet<String> readDirectoryClassEntries(File directory, String prefix) {
+		HashSet<String> allClasses = new HashSet<String>();
 		File[] files = directory.listFiles();
 		for (int i = 0; i < files.length; i++) {
 			File f = files[i];
@@ -123,16 +123,16 @@ public class JarUtils {
 				allClasses.add(className);
 			} else if (f.isDirectory()) {
 				String newPrefix = prefix + f.getName() + ".";
-				HashSet directoryClasses = readDirectoryClassEntries(f, newPrefix);
+				HashSet<String> directoryClasses = readDirectoryClassEntries(f, newPrefix);
 				allClasses.addAll(directoryClasses);
 			}
 		}
 		return allClasses;
 	}
 
-	private static HashSet filter(HashSet entries, String pattern) {
-		HashSet result = new HashSet();
-		for (Iterator i = entries.iterator(); i.hasNext();) {
+	private static HashSet<String> filter(HashSet<String> entries, String pattern) {
+		HashSet<String> result = new HashSet<String>();
+		for (Iterator<String> i = entries.iterator(); i.hasNext();) {
 			String entry = (String) i.next();
 			if (entry.matches(pattern)) {
 				result.add(entry);
@@ -141,24 +141,28 @@ public class JarUtils {
 		return result;
 	}
 
-	private static HashSet readJarClassEntries(File file) throws FileNotFoundException, IOException, PatternSyntaxException {
-		HashSet set = new HashSet();
+	private static HashSet<String> readJarClassEntries(File file) throws FileNotFoundException, IOException, PatternSyntaxException {
+		HashSet<String> set = new HashSet<String>();
 		FileInputStream fis = new FileInputStream(file);
 		BufferedInputStream bis = new BufferedInputStream(fis);
 		JarInputStream is = new JarInputStream(bis);
-		boolean end = false;
-		while (!end) {
-			JarEntry entry = is.getNextJarEntry();
-			if (entry != null) {
-				// Filter only class files
-				String entryName = entry.toString();
-				if (entryName.endsWith(".class")) {
-					String className = translateClassEntry(entryName);
-					set.add(className);
+		try {
+			boolean end = false;
+			while (!end) {
+				JarEntry entry = is.getNextJarEntry();
+				if (entry != null) {
+					// Filter only class files
+					String entryName = entry.toString();
+					if (entryName.endsWith(".class")) {
+						String className = translateClassEntry(entryName);
+						set.add(className);
+					}
+				} else {
+					end = true;
 				}
-			} else {
-				end = true;
 			}
+		} finally{
+			is.close();
 		}
 		return set;
 	}
@@ -172,8 +176,8 @@ public class JarUtils {
 	 *          the regular expression to match.
 	 * @return any class entry from a group of files.
 	 */
-	public static Vector getClassEntries(File[] files, String regex) {
-		Vector allEntries = new Vector();
+	public static Vector<String> getClassEntries(File[] files, String regex) {
+		Vector<String> allEntries = new Vector<String>();
 		for (int i = 0; i < files.length; i++) {
 			File f = files[i];
 			try {
@@ -224,6 +228,7 @@ public class JarUtils {
 						}
 					}
 				}
+				jar.close();
 			} catch (IOException ioex) {
 			}
 		}
@@ -255,7 +260,7 @@ public class JarUtils {
 
 	public static File[] getClassPathMatching(String pattern) {
 		File[] allFiles = getClassPath();
-		Vector matchingFiles = new Vector();
+		Vector<File> matchingFiles = new Vector<File>();
 		for (int i = 0; i < allFiles.length; i++) {
 			File f = allFiles[i];
 			if (f.getName().matches(pattern)) {

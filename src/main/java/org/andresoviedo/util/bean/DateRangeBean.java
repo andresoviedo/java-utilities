@@ -1,4 +1,4 @@
-package org.andresoviedo.util.data.structure;
+package org.andresoviedo.util.bean;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -10,7 +10,7 @@ import org.andresoviedo.util.date.DateUtils;
  * 
 
  */
-public class DateRange {
+public class DateRangeBean {
 
 	/**
 	 * The start date (in milliseconds). This field is immutable.
@@ -32,7 +32,7 @@ public class DateRange {
 	 * @throws IllegalArgumentException
 	 *           if either the start date or the end date are <code>null</code>, or if the start date is after the end date.
 	 */
-	public DateRange(Date start, Date end) {
+	public DateRangeBean(Date start, Date end) {
 		if (start == null) {
 			throw new IllegalArgumentException("The start date is null.");
 		}

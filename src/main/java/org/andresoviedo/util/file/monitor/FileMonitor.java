@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import javax.swing.event.EventListenerList;
 
+
 /**
  * <p>
  * This class monitors a file or a directory and notifies any change from this moment on. It has an internal thread which will poll the
@@ -52,7 +53,7 @@ public class FileMonitor implements Runnable {
 	/**
 	 * The Buffer of files to be checked. The buffer holds information about all files.
 	 */
-	private Hashtable _vectorFileInfo = new Hashtable();
+	private Hashtable<File, FileInfo> _vectorFileInfo = new Hashtable<File, FileInfo>();
 
 	/**
 	 * The event listener list to hold file listeners.
@@ -163,7 +164,7 @@ public class FileMonitor implements Runnable {
 	 * Recursively reads the underlying file system. For the first call forces recurse to true to include at least the first level of files
 	 * contained in a directory.
 	 */
-	private void load(File file, Hashtable v, boolean recurse) {
+	private void load(File file, Hashtable<File, FileInfo> v, boolean recurse) {
 		if (file != null) {
 			FileInfo fi = getFileInfo(file);
 			v.put(fi._source, fi);
@@ -219,8 +220,8 @@ public class FileMonitor implements Runnable {
 		}
 	}
 
-	private void check(Hashtable reference, Hashtable newReference) {
-		for (Iterator it = reference.keySet().iterator(); it.hasNext();) {
+	private void check(Hashtable<File, FileInfo> reference, Hashtable<File, FileInfo> newReference) {
+		for (Iterator<File> it = reference.keySet().iterator(); it.hasNext();) {
 			File refFile = (File) it.next();
 			if (!newReference.containsKey(refFile)) {
 				// Deleted
@@ -238,7 +239,7 @@ public class FileMonitor implements Runnable {
 			}
 		}
 		// Check for new files.
-		for (Iterator it = newReference.keySet().iterator(); it.hasNext();) {
+		for (Iterator<File> it = newReference.keySet().iterator(); it.hasNext();) {
 			File file = (File) it.next();
 			if (!reference.containsKey(file)) {
 				// The file is new, notify.
@@ -259,7 +260,7 @@ public class FileMonitor implements Runnable {
 				// SystemLog.debug(this, "run", "Initial load took " + (t1 - t0) + " ms.", null);
 				initialLoad = true;
 			} else {
-				Hashtable newFileInfo = new Hashtable();
+				Hashtable<File, FileInfo> newFileInfo = new Hashtable<File, FileInfo>();
 				// long t0 = System.currentTimeMillis();
 				load(root, newFileInfo, true);
 				// long t1 = System.currentTimeMillis();

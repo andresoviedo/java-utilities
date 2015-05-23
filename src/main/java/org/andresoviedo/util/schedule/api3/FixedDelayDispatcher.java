@@ -1,4 +1,4 @@
-package org.andresoviedo.util.timer;
+package org.andresoviedo.util.schedule.api3;
 
 import java.util.Date;
 import java.util.Iterator;

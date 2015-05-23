@@ -37,7 +37,7 @@ public class ServerMessengerConfiguration extends BasicConfiguration {
 	public static final String SYSTEM_PROPERTY_PERSISTENCE_DIRECTORY = "messaging.persistenceDirectory";
 
 	/**
-	 * Service system property prefix.
+	 * HttpXMLTT system property prefix.
 	 */
 	public static final String SYSTEM_PROPERTY_PREFIX_SERVICE = "messaging.server.service";
 
@@ -57,7 +57,7 @@ public class ServerMessengerConfiguration extends BasicConfiguration {
 	private static final String PROPERTY_PERSISTENCE_DIRECTORY = "messaging.persistenceDirectory";
 
 	/**
-	 * Service configuration file property prefix.
+	 * HttpXMLTT configuration file property prefix.
 	 */
 	private static final String PROPERTY_PREFIX_SERVICE = "service";
 
