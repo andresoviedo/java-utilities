@@ -75,7 +75,7 @@ public final class BeanUtils {
 		return sb1.equals(sb2);
 	}
 
-	// Devuelve los campos de una clase de LaCaixa. Si esta clase hereda de una
+	// Devuelve los campos de una clase de org.andresoviedo. Si esta clase hereda de una
 	// que clase no básica de Jaba, obtiene
 	// un String con la impresión de dicha clase
 	private static List<Field> getFields(Object obj, StringBuilder classString) {
@@ -83,7 +83,7 @@ public final class BeanUtils {
 		Class<?> currentClass = obj.getClass();
 		String ObjectClassName = new Object().getClass().getName();
 		do {
-			// Si la clase deriva de una clase que no es de LaCaixa ni de
+			// Si la clase deriva de una clase que no es de org.andresoviedo ni de
 			// Object, entonces imprimimos la clase
 			// con el método tradicional toString
 			// JAC: Fix para WS de tipo castor
@@ -152,7 +152,7 @@ public final class BeanUtils {
 				}
 			}
 
-			// Si el tipus de la classe es de laCaixa hem d'obtenir els seus
+			// Si el tipus de la classe es de org.andresoviedo hem d'obtenir els seus
 			// camps primer, abans de printar els elements
 			// que pugui heredar (collections, arrays, hashmaps, ...)
 			if (Iterable.class.isAssignableFrom(objClass)) {
@@ -165,7 +165,7 @@ public final class BeanUtils {
 					Object arrayElementValue = Array.get(obj, i);
 					reflectionToString_impl(sb, set, fieldName + "[" + i + "]", arrayElementValue, level + 2, multiline, null);
 				}
-			} else if (objClass.getName().startsWith("es.lacaixa.")) {
+			} else if (objClass.getName().startsWith("org.andresoviedo.")) {
 				StringBuilder sb3 = new StringBuilder();
 				for (Field objField : getFields(obj, sb3)) {
 					if (Modifier.isFinal(objField.getModifiers())) {
