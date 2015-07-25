@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<binding>
+
+	<format type="java.lang.Number"
+		serializer="org.andresoviedo.util.jibx.NumberJibx.serializeNumber"
+		deserializer="org.andresoviedo.util.jibx.NumberJibx.deserializeNumber" />
+
+	<!-- <mapping name="appInfoData" class="org.andresoviedo.util.jibx.AppInfoData">
+		<structure name="appId">
+			<value style="text" field="appId" usage="optional" />
+			<value style="attribute" name="xsi:type" constant="xsd:string" />
+		</structure>
+		<structure name="appType">
+			<value style="text" field="appType" usage="optional" />
+			<value style="attribute" name="xsi:type" constant="xsd:string" />
+		</structure>
+		<structure name="appVersion">
+			<value style="text" field="appVersion" usage="optional" />
+			<value style="attribute" name="xsi:type" constant="xsd:string" />
+		</structure>
+	</mapping> -->
+
+</binding>

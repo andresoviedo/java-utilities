@@ -3,28 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.andresoviedo</groupId>
 	<artifactId>java-utilities</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Java Common Utilities</name>
 
-
 	<properties>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 		<org.springframework.version>3.2.8.RELEASE</org.springframework.version>
+		<jibx.version>1.1.6a</jibx.version>
+		<!-- <binding_test_file>binding-test.xml</binding_test_file> -->
 	</properties>
-
-	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
 
 	<dependencies>
 		<dependency>
@@ -58,7 +45,13 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.1.7.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- MediaUtils -->
 		<dependency>
 			<groupId>javax.media</groupId>
@@ -66,7 +59,7 @@
 			<version>2.1.1e</version>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<!-- ModemUtils -->
 		<dependency>
 			<groupId>javax.comm</groupId>
@@ -90,14 +83,43 @@
 			<version>1.9.13</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.jibx</groupId>
+			<artifactId>jibx-run</artifactId>
+			<version>${jibx.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jibx</groupId>
+			<artifactId>jibx-bind</artifactId>
+			<version>${jibx.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jibx</groupId>
+			<artifactId>jibx-extras</artifactId>
+			<version>${jibx.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.ws.commons.axiom</groupId>
+			<artifactId>axiom</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+
 		<!-- Spring framework -->
-		<!-- Core utilities used by other modules. Define this if you use Spring Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
+		<!-- Core utilities used by other modules. Define this if you use Spring 
+			Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
-		<!-- Bean Factory and JavaBeans utilities (depends on spring-core) Define this if you use Spring Bean APIs (org.springframework.beans.*) -->
+		<!-- Bean Factory and JavaBeans utilities (depends on spring-core) Define 
+			this if you use Spring Bean APIs (org.springframework.beans.*) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
@@ -108,12 +130,27 @@
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
-		<!-- JDBC Data Access Library (depends on spring-core, spring-beans, spring-context, spring-tx) Define this if you use Spring's JdbcTemplate 
-			API (org.springframework.jdbc.*) -->
+		<!-- JDBC Data Access Library (depends on spring-core, spring-beans, spring-context, 
+			spring-tx) Define this if you use Spring's JdbcTemplate API (org.springframework.jdbc.*) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework.version}</version>
+			<optional>true</optional>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.springframework.version}</version>
+			<optional>true</optional>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>${org.springframework.version}</version>
+			<optional>true</optional>
 		</dependency>
 
 		<!-- http -->
@@ -124,11 +161,8 @@
 		</dependency>
 
 		<!-- ftp -->
-<!-- 		<dependency>
-			<groupId>com.sleepycat</groupId>
-			<artifactId>je</artifactId>
-			<version>3.3.75</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.sleepycat</groupId> <artifactId>je</artifactId> 
+			<version>3.3.75</version> </dependency> -->
 
 		<!-- ftp server (test) -->
 		<dependency>
@@ -138,5 +172,96 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- spring optional -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>4.1.7.RELEASE</version>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- <plugin> <groupId>org.jibx</groupId> <artifactId>jibx-maven-plugin</artifactId> 
+					<version>1.2.3</version> <dependencies> <dependency> <groupId>org.jibx</groupId> 
+					<artifactId>jibx-bind</artifactId> <version>${jibx.version}</version> </dependency> 
+					<dependency> <groupId>org.jibx</groupId> <artifactId>jibx-run</artifactId> 
+					<version>${jibx.version}</version> </dependency> <dependency> <groupId>bcel</groupId> 
+					<artifactId>bcel</artifactId> <version>5.1</version> </dependency> </dependencies> 
+					</plugin> -->
+			</plugins>
+
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.jibx</groupId> <artifactId>jibx-maven-plugin</artifactId> 
+				<configuration> <includeSchemaBindings> <includeSchemaBinding>binding.xml</includeSchemaBinding> 
+				<includeSchemaBinding>${binding_test_file}</includeSchemaBinding> </includeSchemaBindings> 
+				</configuration> <executions> <execution> <id>bind-main</id> <phase>process-classes</phase> 
+				<goals> <goal>bind</goal> </goals> </execution> <execution> <id>bind-test</id> 
+				<phase>process-test-classes</phase> <goals> <goal>test-bind</goal> </goals> 
+				</execution> </executions> </plugin> -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Version>${project.version}</Implementation-Version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<version>2.5.5</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/jar-with-dependencies.xml</descriptor>
+					</descriptors>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Version>${project.version}</Implementation-Version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- <profiles> <profile> La ñapa esta porque cuando se desactivan los test 
+		por maven, el goal de jibx test-bind se ejecuta todavía <id>jibx_test</id> 
+		<activation> <property> <name>maven.test.skip</name> <value>true</value> 
+		</property> </activation> <properties> <binding_test_file>no-existo.xml</binding_test_file> 
+		</properties> </profile> </profiles> -->
+
 </project>
