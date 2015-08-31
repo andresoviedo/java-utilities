@@ -27,7 +27,7 @@ public class Resources {
 	 * Returns the image icon loaded from the specified file.
 	 * 
 	 * @param filename
-	 *          the image filename.
+	 *            the image filename.
 	 * @return the image icon loaded from the specified file.
 	 */
 	public static ImageIcon getIcon(String filename) {
@@ -42,7 +42,7 @@ public class Resources {
 	 * Gets a string for the given key.
 	 * 
 	 * @param key
-	 *          the key for the desired string.
+	 *            the key for the desired string.
 	 * @return the string for the given key.
 	 */
 	public static String getString(String key) {

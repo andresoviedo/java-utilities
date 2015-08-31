@@ -6,7 +6,6 @@ import java.io.FileFilter;
 /**
  * A file filter that accepts only files with the specified extensions.
  * 
-
  */
 public class ExtensionFileFilter implements FileFilter {
 
@@ -19,7 +18,7 @@ public class ExtensionFileFilter implements FileFilter {
 	 * Creates a new extension file filter with the specified set of accepted extensions.
 	 * 
 	 * @param extensions
-	 *          the set of accepted extensions. If the array is <code>null</code> or empty, all files will be accepted.
+	 *            the set of accepted extensions. If the array is <code>null</code> or empty, all files will be accepted.
 	 */
 	public ExtensionFileFilter(String[] extensions) {
 		this.extensions = extensions;

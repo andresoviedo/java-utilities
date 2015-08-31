@@ -14,12 +14,10 @@ public class WindowsUtilsTest {
 			LOG.warn("Not in Widnows. Ignoring test...");
 			return;
 		}
-		WindowsUtils.installStartMenuItem(WindowsUtils.SPECIALFOLDER_Programs,
-				"my_start_menu", "explorer.exe", "http://www.google.es",
+		WindowsUtils.installStartMenuItem(WindowsUtils.SPECIALFOLDER_Programs, "my_start_menu", "explorer.exe", "http://www.google.es",
 				"Acceso director a google");
 
-		WindowsUtils.uninstallStartMenuItem(
-				WindowsUtils.SPECIALFOLDER_Programs, "my_start_menu");
+		WindowsUtils.uninstallStartMenuItem(WindowsUtils.SPECIALFOLDER_Programs, "my_start_menu");
 	}
 
 	@Test
@@ -28,13 +26,10 @@ public class WindowsUtilsTest {
 			LOG.warn("Not in Widnows. Ignoring test...");
 			return;
 		}
-		WindowsUtils.installStartMenuItem(
-				WindowsUtils.SPECIALFOLDER_AllUsersPrograms, "my_start_menu",
-				"explorer.exe", "http://www.google.es",
-				"Acceso director a google");
+		WindowsUtils.installStartMenuItem(WindowsUtils.SPECIALFOLDER_AllUsersPrograms, "my_start_menu", "explorer.exe",
+				"http://www.google.es", "Acceso director a google");
 
-		WindowsUtils.uninstallStartMenuItem(
-				WindowsUtils.SPECIALFOLDER_AllUsersPrograms, "my_start_menu");
+		WindowsUtils.uninstallStartMenuItem(WindowsUtils.SPECIALFOLDER_AllUsersPrograms, "my_start_menu");
 	}
 
 }

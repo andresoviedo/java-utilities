@@ -3,7 +3,6 @@ package org.andresoviedo.util.swing.jdesktop;
 /**
  * A set of frame preferences.
  * 
-
  */
 public class BasicFramePreferences {
 
@@ -60,7 +59,7 @@ public class BasicFramePreferences {
 	 * Sets the frame height.
 	 * 
 	 * @param height
-	 *          the new height.
+	 *            the new height.
 	 */
 	public void setHeight(int height) {
 		this.height = height;
@@ -79,7 +78,7 @@ public class BasicFramePreferences {
 	 * Sets frame's name.
 	 * 
 	 * @param name
-	 *          the new name.
+	 *            the new name.
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -98,7 +97,7 @@ public class BasicFramePreferences {
 	 * Sets the frame width.
 	 * 
 	 * @param width
-	 *          the frame width.
+	 *            the frame width.
 	 */
 	public void setWidth(int width) {
 		this.width = width;
@@ -117,7 +116,7 @@ public class BasicFramePreferences {
 	 * Sets the top-left corner X coordinate.
 	 * 
 	 * @param x
-	 *          the new X coordinate.
+	 *            the new X coordinate.
 	 */
 	public void setX(int x) {
 		this.x = x;
@@ -136,7 +135,7 @@ public class BasicFramePreferences {
 	 * Sets the top-left corner Y coordinate.
 	 * 
 	 * @param y
-	 *          the new Y coordinate.
+	 *            the new Y coordinate.
 	 */
 	public void setY(int y) {
 		this.y = y;
@@ -155,7 +154,7 @@ public class BasicFramePreferences {
 	 * Sets whether the frame is visible or not.
 	 * 
 	 * @param visible
-	 *          <code>true</code> if the frame is visible, <code>false</code> otherwise.
+	 *            <code>true</code> if the frame is visible, <code>false</code> otherwise.
 	 */
 	public void setVisible(boolean visible) {
 		this.visible = visible;
@@ -174,7 +173,7 @@ public class BasicFramePreferences {
 	 * Sets whether the frame is iconified or not.
 	 * 
 	 * @param iconified
-	 *          <code>true</code> if the frame is iconified, <code>false</code> otherwise.
+	 *            <code>true</code> if the frame is iconified, <code>false</code> otherwise.
 	 */
 	public void setIconified(boolean iconified) {
 		this.iconified = iconified;
@@ -193,7 +192,7 @@ public class BasicFramePreferences {
 	 * Sets whether the frame is maximized or not.
 	 * 
 	 * @param maximized
-	 *          <code>true</code> if the frame is maximized, <code>false</code> otherwise.
+	 *            <code>true</code> if the frame is maximized, <code>false</code> otherwise.
 	 */
 	public void setMaximized(boolean maximized) {
 		this.maximized = maximized;

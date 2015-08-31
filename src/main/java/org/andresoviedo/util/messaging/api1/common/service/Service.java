@@ -6,7 +6,7 @@ import org.andresoviedo.util.messaging.api1.common.data.Message;
 /**
  * The base class for a service.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public abstract class Service implements ServiceListener {
 
@@ -19,7 +19,7 @@ public abstract class Service implements ServiceListener {
 	 * Constructs a new service.
 	 * 
 	 * @param messenger
-	 *          the associated messenger.
+	 *            the associated messenger.
 	 */
 	public Service(Messenger messenger) {
 		if (messenger == null) {
@@ -45,7 +45,9 @@ public abstract class Service implements ServiceListener {
 	public abstract String getServiceId();
 
 	/*
-	 * @see org.andresoviedo.util.messaging.api1.common.service.ServiceListener#processMessage(org.andresoviedo.util.messaging.api1.common.data.Message)
+	 * @see
+	 * org.andresoviedo.util.messaging.api1.common.service.ServiceListener#processMessage(org.andresoviedo.util.messaging.api1.common.data
+	 * .Message)
 	 */
 	public abstract void processMessage(Message message);
 

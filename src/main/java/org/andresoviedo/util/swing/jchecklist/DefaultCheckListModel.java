@@ -5,7 +5,6 @@ import java.util.Arrays;
 /**
  * The default model for a <code>JCheckList</code>.
  * 
-
  */
 public class DefaultCheckListModel extends AbstractCheckListModel {
 
@@ -35,7 +34,7 @@ public class DefaultCheckListModel extends AbstractCheckListModel {
 	 * Creates a new empty model with the specified check mode.
 	 * 
 	 * @param checkMode
-	 *          the check mode.
+	 *            the check mode.
 	 */
 	public DefaultCheckListModel(CheckMode checkMode) {
 		this.checkMode = (checkMode == null) ? CheckMode.MULTIPLE : checkMode;
@@ -45,9 +44,9 @@ public class DefaultCheckListModel extends AbstractCheckListModel {
 	 * Creates a new model with the given state of checkboxes and the given values.
 	 * 
 	 * @param state
-	 *          state of the checkboxes. A copy of this array will NOT be created.
+	 *            state of the checkboxes. A copy of this array will NOT be created.
 	 * @param values
-	 *          values. A copy of this array will NOT be created.
+	 *            values. A copy of this array will NOT be created.
 	 */
 	public DefaultCheckListModel(boolean[] state, Object[] values) {
 		this(state, values, CheckMode.MULTIPLE);
@@ -57,9 +56,9 @@ public class DefaultCheckListModel extends AbstractCheckListModel {
 	 * Creates a new model with the given state of checkboxes and the given values.
 	 * 
 	 * @param state
-	 *          state of the checkboxes. A copy of this array will NOT be created.
+	 *            state of the checkboxes. A copy of this array will NOT be created.
 	 * @param values
-	 *          values. A copy of this array will NOT be created.
+	 *            values. A copy of this array will NOT be created.
 	 */
 	public DefaultCheckListModel(boolean[] state, Object[] values, CheckMode checkMode) {
 		if (state.length != values.length) {
@@ -99,7 +98,7 @@ public class DefaultCheckListModel extends AbstractCheckListModel {
 	 * Moves the item at the specified index down.
 	 * 
 	 * @param index
-	 *          the index of the item to move.
+	 *            the index of the item to move.
 	 */
 	public void itemDown(int index) {
 		boolean state = states[index + 1];
@@ -115,7 +114,7 @@ public class DefaultCheckListModel extends AbstractCheckListModel {
 	 * Moves the item at the specified index up.
 	 * 
 	 * @param index
-	 *          the index of the item to move.
+	 *            the index of the item to move.
 	 */
 	public void itemUp(int index) {
 		boolean state = states[index - 1];
@@ -146,9 +145,9 @@ public class DefaultCheckListModel extends AbstractCheckListModel {
 	 * Checks or unchecks the first item with the specified value.
 	 * 
 	 * @param value
-	 *          the value to look for.
+	 *            the value to look for.
 	 * @param checked
-	 *          <code>true</code> checks the item, <code>false</code> unchecks it.
+	 *            <code>true</code> checks the item, <code>false</code> unchecks it.
 	 */
 	public void setChecked(Object value, boolean checked) {
 		if (value == null) {
@@ -167,11 +166,11 @@ public class DefaultCheckListModel extends AbstractCheckListModel {
 	 * Checks or unchecks the specified interval of items.
 	 * 
 	 * @param fromIndex
-	 *          the index of the first item (inclusive).
+	 *            the index of the first item (inclusive).
 	 * @param toIndex
-	 *          the index of the last item (inclusive).
+	 *            the index of the last item (inclusive).
 	 * @param checked
-	 *          <code>true</code> checks the items, <code>false</code> unchecks them.
+	 *            <code>true</code> checks the items, <code>false</code> unchecks them.
 	 */
 	public void setChecked(int fromIndex, int toIndex, boolean checked) {
 		if (!checked || (checkMode == CheckMode.MULTIPLE)) {

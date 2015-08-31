@@ -3,7 +3,6 @@ package org.andresoviedo.util.bean;
 /**
  * A couple object encapsulates 2 objects, possibly being related.
  * 
-
  */
 public class CoupleBean {
 
@@ -21,9 +20,9 @@ public class CoupleBean {
 	 * Creates a new couple.
 	 * 
 	 * @param member1
-	 *          the first member.
+	 *            the first member.
 	 * @param member2
-	 *          the second member.
+	 *            the second member.
 	 */
 	public CoupleBean(Object member1, Object member2) {
 		this.member1 = member1;
@@ -43,7 +42,7 @@ public class CoupleBean {
 	 * Sets the first member.
 	 * 
 	 * @param member1
-	 *          the first member.
+	 *            the first member.
 	 */
 	public void setMember1(Object member1) {
 		this.member1 = member1;
@@ -62,7 +61,7 @@ public class CoupleBean {
 	 * Sets the second member.
 	 * 
 	 * @param member2
-	 *          the second member.
+	 *            the second member.
 	 */
 	public void setMember2(Object member2) {
 		this.member2 = member2;

@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 /**
  * FTP client to put files and receive files based on a regexp.
  * 
- * @author aoviedo
+ * @author andresoviedo
  *
  */
 public class EasyFTPsClient {
@@ -107,8 +107,8 @@ public class EasyFTPsClient {
 			filenameRegex = filePathAndNameRegex.substring(lastIndexOfSlash + 1);
 		}
 
-		LOG.info("[GET] Connecting to ftp server: " + host + "[" + user + "/" + pass + "]... dir [" + dir
-				+ "] filename [" + filenameRegex + "]");
+		LOG.info("[GET] Connecting to ftp server: " + host + "[" + user + "/" + pass + "]... dir [" + dir + "] filename [" + filenameRegex
+				+ "]");
 		FTPSClient ftpClient = new FTPSClient(false);
 
 		try {

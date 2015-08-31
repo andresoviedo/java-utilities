@@ -7,7 +7,6 @@ import java.util.Iterator;
 
 import javax.swing.event.EventListenerList;
 
-
 /**
  * <p>
  * This class monitors a file or a directory and notifies any change from this moment on. It has an internal thread which will poll the
@@ -21,7 +20,6 @@ import javax.swing.event.EventListenerList;
  * File monitor can also scan over subdirectories when it is requested to do so.
  * </p>
  * 
-
  */
 public class FileMonitor implements Runnable {
 
@@ -79,9 +77,9 @@ public class FileMonitor implements Runnable {
 	 * Constructs a new file monitor.
 	 * 
 	 * @param root
-	 *          the file or directory to monitor.
+	 *            the file or directory to monitor.
 	 * @param includeSubdirectories
-	 *          indicates whether subdirectories have to be also monitored or not.
+	 *            indicates whether subdirectories have to be also monitored or not.
 	 */
 	public FileMonitor(File root, boolean includeSubdirectories) {
 		this(root, DEFAULT_PERIOD, includeSubdirectories, null);
@@ -91,11 +89,11 @@ public class FileMonitor implements Runnable {
 	 * Constructs a new file monitor.
 	 * 
 	 * @param root
-	 *          the file or directory to monitor.
+	 *            the file or directory to monitor.
 	 * @param period
-	 *          the check period (in milliseconds).
+	 *            the check period (in milliseconds).
 	 * @param includeSubdirectories
-	 *          indicates whether subdirectories have to be also monitored or not.
+	 *            indicates whether subdirectories have to be also monitored or not.
 	 */
 	public FileMonitor(File root, long period, boolean includeSubdirectories) {
 		this(root, period, includeSubdirectories, null);
@@ -105,15 +103,15 @@ public class FileMonitor implements Runnable {
 	 * Constructs a new file monitor.
 	 * 
 	 * @param root
-	 *          the file or directory to monitor.
+	 *            the file or directory to monitor.
 	 * @param period
-	 *          the check period (in milliseconds). The absolute value is taken.
+	 *            the check period (in milliseconds). The absolute value is taken.
 	 * @param includeSubdirectories
-	 *          indicates whether subdirectories have to be also monitored or not.
+	 *            indicates whether subdirectories have to be also monitored or not.
 	 * @param filter
-	 *          a file filter used to restrict the files that have to be monitored.
+	 *            a file filter used to restrict the files that have to be monitored.
 	 * @throws IllegalArgumentException
-	 *           if <code>root</code> is <code>null</code>.
+	 *             if <code>root</code> is <code>null</code>.
 	 */
 	public FileMonitor(File root, long period, boolean includeSubdirectories, FileFilter filter) {
 		if (root == null) {
@@ -129,7 +127,7 @@ public class FileMonitor implements Runnable {
 	 * Adds a file listener to the list. If <code>null</code>, this method does nothing.
 	 * 
 	 * @param l
-	 *          the listener to add.
+	 *            the listener to add.
 	 */
 	public void addFileListener(FileListener l) {
 		listenerList.add(FileListener.class, l);
@@ -139,7 +137,7 @@ public class FileMonitor implements Runnable {
 	 * Removes the file listener from the list.
 	 * 
 	 * @param l
-	 *          the listener to remove.
+	 *            the listener to remove.
 	 */
 	public void removeFileListener(FileListener l) {
 		listenerList.remove(FileListener.class, l);
@@ -149,7 +147,7 @@ public class FileMonitor implements Runnable {
 	 * Fires the specified event to all registered listeners.
 	 * 
 	 * @param event
-	 *          the event to fire.
+	 *            the event to fire.
 	 */
 	private void notifyListeners(FileEvent event) {
 		Object[] listeners = listenerList.getListenerList();
@@ -183,7 +181,7 @@ public class FileMonitor implements Runnable {
 	 * Creates an object that stores useful monitoring information about a file.
 	 * 
 	 * @param file
-	 *          the file.
+	 *            the file.
 	 * @return an object that stores useful monitoring information about a file.
 	 */
 	private FileInfo getFileInfo(File file) {

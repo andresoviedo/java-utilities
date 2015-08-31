@@ -9,7 +9,6 @@ import org.andresoviedo.util.date.DateUtils;
 /**
  * Calendar date label decorator.
  * 
-
  */
 public class CalendarDateLabelDecorator {
 
@@ -77,7 +76,7 @@ public class CalendarDateLabelDecorator {
 	 * Sets the background used by the cell renderer when painting the cell.
 	 * 
 	 * @param background
-	 *          an arbitrary color.
+	 *            an arbitrary color.
 	 */
 	public void setBackground(Color background) {
 		this.background = background;
@@ -96,7 +95,7 @@ public class CalendarDateLabelDecorator {
 	 * Sets the description used by the cell renderer as the tooltip.
 	 * 
 	 * @param description
-	 *          the new description.
+	 *            the new description.
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -115,7 +114,7 @@ public class CalendarDateLabelDecorator {
 	 * Sets the foreground used by the cell renderer when painting the cell.
 	 * 
 	 * @param foreground
-	 *          an arbitrary color.
+	 *            an arbitrary color.
 	 */
 	public void setForeground(Color foreground) {
 		this.foreground = foreground;
@@ -134,7 +133,7 @@ public class CalendarDateLabelDecorator {
 	 * Sets whether this decorator is enabled or not.
 	 * 
 	 * @param enabled
-	 *          <code>true</code>if this decorator is enabled, <code>false</code> otherwise.
+	 *            <code>true</code>if this decorator is enabled, <code>false</code> otherwise.
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
@@ -153,9 +152,9 @@ public class CalendarDateLabelDecorator {
 	 * Sets the number of days to repeat.
 	 * 
 	 * @param numberOfDays
-	 *          the number of days to repeat.
+	 *            the number of days to repeat.
 	 * @throws IllegalArgumentException
-	 *           if the number of days is less than 1.
+	 *             if the number of days is less than 1.
 	 */
 	public void setNumberOfDays(int numberOfDays) {
 		if (numberOfDays < 1) {
@@ -212,9 +211,9 @@ public class CalendarDateLabelDecorator {
 	 * Sets the repetition pattern.
 	 * 
 	 * @param repetitionPattern
-	 *          the repetition pattern.
+	 *            the repetition pattern.
 	 * @throws IllegalArgumentException
-	 *           if the repetition pattern is invalid.
+	 *             if the repetition pattern is invalid.
 	 */
 	public void setRepetitionPattern(int repetitionPattern) {
 		if ((repetitionPattern != REPEAT_NONE) && (repetitionPattern != REPEAT_DAILY) && (repetitionPattern != REPEAT_WEEKLY)

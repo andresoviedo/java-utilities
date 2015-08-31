@@ -16,8 +16,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Extension to the Java Executor to allow executing dependants task. Feautures:
  * <ul>
- * <li>Task are identified by id. Tasks can depend on the finalization of
- * dependant tasks.</li>
+ * <li>Task are identified by id. Tasks can depend on the finalization of dependant tasks.</li>
  * <li>Task can get results of dependant tasks
  * </ul>
  * 
@@ -29,8 +28,7 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 	/**
 	 * Logger
 	 */
-	private static final Log logger = LogFactory
-			.getLog(DependantTasksExecutor.class);
+	private static final Log logger = LogFactory.getLog(DependantTasksExecutor.class);
 	/**
 	 * Task list identifiable by some string
 	 */
@@ -41,17 +39,14 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 	public static final ThreadLocal<Object[]> results = new ThreadLocal<Object[]>();
 
 	public DependantTasksExecutor(int nThreads) {
-		super(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS,
-				new LinkedBlockingQueue<Runnable>());
+		super(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
 	}
 
-	public <T> Future<T> submit(final Callable<T> task, final String taskId,
-			final String[] dependantTasksId) {
+	public <T> Future<T> submit(final Callable<T> task, final String taskId, final String[] dependantTasksId) {
 		// TODO: tasks should not dependent on inexistent tasks neither
 		// dependeing on itself
 
-		Callable<T> wrappedTask = new DependantCallable<T>(taskId, task,
-				dependantTasksId);
+		Callable<T> wrappedTask = new DependantCallable<T>(taskId, task, dependantTasksId);
 
 		Future<T> ret = super.submit(wrappedTask);
 		synchronized (tasks) {
@@ -61,19 +56,17 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 		return ret;
 	}
 
-	public void submit(final Runnable task, final String taskId,
-			final String[] dependantTasksId) {
+	public void submit(final Runnable task, final String taskId, final String[] dependantTasksId) {
 
 		Runnable wrappedTask = new Runnable() {
 			@Override
 			public void run() {
-				Callable<Void> c = new DependantCallable<Void>(taskId,
-						new Callable<Void>() {
-							public Void call() {
-								task.run();
-								return null;
-							}
-						}, dependantTasksId);
+				Callable<Void> c = new DependantCallable<Void>(taskId, new Callable<Void>() {
+					public Void call() {
+						task.run();
+						return null;
+					}
+				}, dependantTasksId);
 			}
 		};
 
@@ -89,8 +82,7 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 		final Callable<T> originalTask;
 		final String[] dependantTasksId;
 
-		public DependantCallable(String taskId, Callable<T> originalTask,
-				String... dependantTasksId) {
+		public DependantCallable(String taskId, Callable<T> originalTask, String... dependantTasksId) {
 			super();
 			this.taskId = taskId;
 			this.originalTask = originalTask;
@@ -105,14 +97,10 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 				dependantResults = new Object[dependantTasksId.length];
 				synchronized (tasks) {
 					for (int i = 0; i < dependantTasksId.length;) {
-						logger.trace("Waiting for dependant task number '"
-								+ dependantTasksId[i] + "'...");
-						Future<?> dependantTask = tasks
-								.get(dependantTasksId[i]);
+						logger.trace("Waiting for dependant task number '" + dependantTasksId[i] + "'...");
+						Future<?> dependantTask = tasks.get(dependantTasksId[i]);
 						if (!dependantTask.isDone()) {
-							logger.trace("Dependant task with number '"
-									+ dependantTasksId[i]
-									+ "' has not yet finalized. Waiting...");
+							logger.trace("Dependant task with number '" + dependantTasksId[i] + "' has not yet finalized. Waiting...");
 							i = 0;
 							tasks.wait(1000);
 						} else {
@@ -130,16 +118,14 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 			try {
 				// Pasamos el resultado de las tareas dependientes
 				results.set(dependantResults);
-				logger.trace("Executing task '" + taskId
-						+ "' after all it's dependencies has been satisfied...");
+				logger.trace("Executing task '" + taskId + "' after all it's dependencies has been satisfied...");
 				result = originalTask.call();
 			} finally {
 				// Limpieza de memoria
 				results.set(null);
 			}
 			synchronized (tasks) {
-				logger.trace("Task '" + taskId
-						+ "' finalized. Notifying any dependant task...");
+				logger.trace("Task '" + taskId + "' finalized. Notifying any dependant task...");
 				tasks.notifyAll();
 			}
 			logger.trace("Task '" + taskId + "' finalized!");
@@ -162,9 +148,7 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 			@Override
 			public Integer call() throws Exception {
 				System.out.println("<< 22222");
-				System.out.println("<< 22222 ["
-						+ Arrays.toString((Object[]) DependantTasksExecutor.results
-								.get()));
+				System.out.println("<< 22222 [" + Arrays.toString((Object[]) DependantTasksExecutor.results.get()));
 				Thread.sleep((long) ((Math.random() * 5000)));
 				System.out.println(">> 22222");
 				return 2;
@@ -174,9 +158,7 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 			@Override
 			public Integer call() throws Exception {
 				System.out.println("<< 33333");
-				System.out.println("<< 33333 ["
-						+ Arrays.toString((Object[]) DependantTasksExecutor.results
-								.get()));
+				System.out.println("<< 33333 [" + Arrays.toString((Object[]) DependantTasksExecutor.results.get()));
 				Thread.sleep((long) ((Math.random() * 5000)));
 				System.out.println(">> 33333");
 				if (true) {
@@ -189,9 +171,7 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 			@Override
 			public Integer call() throws Exception {
 				System.out.println("<< 44444");
-				System.out.println("<< 44444 ["
-						+ Arrays.toString((Object[]) DependantTasksExecutor.results
-								.get()));
+				System.out.println("<< 44444 [" + Arrays.toString((Object[]) DependantTasksExecutor.results.get()));
 				Thread.sleep((long) ((Math.random() * 5000)));
 				System.out.println(">> 44444");
 				return 4;
@@ -202,9 +182,7 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 			@Override
 			public Integer call() throws Exception {
 				System.out.println("<< 55555");
-				System.out.println("<< 55555 ["
-						+ Arrays.toString((Object[]) DependantTasksExecutor.results
-								.get()));
+				System.out.println("<< 55555 [" + Arrays.toString((Object[]) DependantTasksExecutor.results.get()));
 				Thread.sleep((long) ((Math.random() * 5000)));
 				System.out.println(">> 55555");
 				return 5;
@@ -215,9 +193,7 @@ public class DependantTasksExecutor extends ThreadPoolExecutor {
 			@Override
 			public Integer call() throws Exception {
 				System.out.println("<< 66666");
-				System.out.println("<< 66666 ["
-						+ Arrays.toString((Object[]) DependantTasksExecutor.results
-								.get()));
+				System.out.println("<< 66666 [" + Arrays.toString((Object[]) DependantTasksExecutor.results.get()));
 				Thread.sleep((long) ((Math.random() * 5000)));
 				System.out.println(">> 66666");
 				return 6;

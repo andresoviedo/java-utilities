@@ -11,7 +11,6 @@ import javax.swing.JViewport;
 /**
  * A custom scrollpane to hold a basic desktop pane.
  * 
-
  */
 public class BasicDesktopScrollPane extends JScrollPane {
 
@@ -24,7 +23,7 @@ public class BasicDesktopScrollPane extends JScrollPane {
 	 * Creates a new desktop scroll pane, using the specified desktop pane as the view.
 	 * 
 	 * @param desktopPane
-	 *          the desktop pane.
+	 *            the desktop pane.
 	 */
 	public BasicDesktopScrollPane(BasicDesktopPane desktopPane) {
 		this.desktopPane = desktopPane;
@@ -91,7 +90,8 @@ public class BasicDesktopScrollPane extends JScrollPane {
 				f = frames[i];
 				f.setLocation(f.getX() - minX, f.getY() - minY);
 				/*
-				 * if (f.isIcon()) { JInternalFrame.JDesktopIcon di = f.getDesktopIcon(); di.setLocation(di.getX() - minX, di.getY() - minY); }
+				 * if (f.isIcon()) { JInternalFrame.JDesktopIcon di = f.getDesktopIcon(); di.setLocation(di.getX() - minX, di.getY() -
+				 * minY); }
 				 */
 			}
 
@@ -111,7 +111,7 @@ public class BasicDesktopScrollPane extends JScrollPane {
 	 * Sets the preferred size of the desktop pane.
 	 * 
 	 * @param dim
-	 *          the new size of the desktop pane.
+	 *            the new size of the desktop pane.
 	 */
 	public void setDesktopSize(Dimension dim) {
 		desktopPane.setPreferredSize(dim);

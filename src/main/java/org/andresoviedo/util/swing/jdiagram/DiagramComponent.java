@@ -16,7 +16,6 @@ import javax.swing.event.ChangeListener;
 
 import org.andresoviedo.util.swing.jdiagram.ui.DiagramComponentUI;
 
-
 public class DiagramComponent extends JComponent implements ItemSelectable, ItemListener, ChangeListener {
 
 	private static final String uiClassID = "DiagramComponentUI";
@@ -67,9 +66,9 @@ public class DiagramComponent extends JComponent implements ItemSelectable, Item
 	 * Creates a new diagram component with the specified header text and icon.
 	 * 
 	 * @param headerText
-	 *          the header text.
+	 *            the header text.
 	 * @param icon
-	 *          the icon.
+	 *            the icon.
 	 */
 	public DiagramComponent(String headerText, Icon icon) {
 		model = new DiagramComponentModel();
@@ -96,7 +95,7 @@ public class DiagramComponent extends JComponent implements ItemSelectable, Item
 	 * Sets the L&F object that renders this component.
 	 * 
 	 * @param ui
-	 *          the DiagramComponentUI L&F object
+	 *            the DiagramComponentUI L&F object
 	 */
 	public void setUI(DiagramComponentUI ui) {
 		super.setUI(ui);
@@ -120,7 +119,7 @@ public class DiagramComponent extends JComponent implements ItemSelectable, Item
 	 * Adds a <code>ChangeListener</code> to the component.
 	 * 
 	 * @param l
-	 *          the listener to be added.
+	 *            the listener to be added.
 	 */
 	public void addChangeListener(ChangeListener l) {
 		listenerList.add(ChangeListener.class, l);
@@ -130,7 +129,7 @@ public class DiagramComponent extends JComponent implements ItemSelectable, Item
 	 * Removes a ChangeListener from the component.
 	 * 
 	 * @param l
-	 *          the listener to be removed.
+	 *            the listener to be removed.
 	 */
 	public void removeChangeListener(ChangeListener l) {
 		listenerList.remove(ChangeListener.class, l);
@@ -158,7 +157,7 @@ public class DiagramComponent extends JComponent implements ItemSelectable, Item
 	 * Adds an <code>ItemListener</code> to the component.
 	 * 
 	 * @param l
-	 *          the <code>ItemListener</code> to be added
+	 *            the <code>ItemListener</code> to be added
 	 */
 	public void addItemListener(ItemListener l) {
 		listenerList.add(ItemListener.class, l);
@@ -168,7 +167,7 @@ public class DiagramComponent extends JComponent implements ItemSelectable, Item
 	 * Removes an <code>ItemListener</code> from the component.
 	 * 
 	 * @param l
-	 *          the listener to be removed.
+	 *            the listener to be removed.
 	 */
 	public void removeItemListener(ItemListener l) {
 		listenerList.remove(ItemListener.class, l);
@@ -222,7 +221,7 @@ public class DiagramComponent extends JComponent implements ItemSelectable, Item
 	 * Sets a new header text for this component.
 	 * 
 	 * @param headerText
-	 *          the new header text.
+	 *            the new header text.
 	 */
 	public void setHeaderText(String headerText) {
 		String oldValue = this.headerText;
@@ -250,7 +249,7 @@ public class DiagramComponent extends JComponent implements ItemSelectable, Item
 	 * Sets a new icon to display.
 	 * 
 	 * @param icon
-	 *          the new icon to display.
+	 *            the new icon to display.
 	 */
 	public void setIcon(Icon icon) {
 		Icon oldValue = this.icon;
@@ -281,7 +280,7 @@ public class DiagramComponent extends JComponent implements ItemSelectable, Item
 	 * Sets a custom disabled icon for this diagram component.
 	 * 
 	 * @param disabledIcon
-	 *          the disabled icon.
+	 *            the disabled icon.
 	 */
 	public void setDisabledIcon(Icon disabledIcon) {
 		this.disabledIcon = disabledIcon;

@@ -3,7 +3,7 @@ package org.andresoviedo.util.messaging.api1;
 /**
  * Exceptions thrown by the messenger class.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class MessengerException extends Exception {
 

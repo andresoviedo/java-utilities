@@ -88,8 +88,8 @@ public class HttpScript {
 		// Init user variables
 		executionVariables.clear();
 		if (configs.containsKey(HashMap.class.getSimpleName())) {
-			executionVariables.putAll(replaceVariables(
-					(Map<String, Object>) configs.get(HashMap.class.getSimpleName()), getSystemAndEnvPropertiesMap()));
+			executionVariables.putAll(replaceVariables((Map<String, Object>) configs.get(HashMap.class.getSimpleName()),
+					getSystemAndEnvPropertiesMap()));
 		}
 		executionVariables.putAll(replaceVariables(userVariables, executionVariables, getSystemAndEnvPropertiesMap()));
 		LOG.debug("Execution variables: " + executionVariables);
@@ -143,8 +143,7 @@ public class HttpScript {
 					}
 				}
 			} catch (Exception ex) {
-				throw new RuntimeException("Exeption executing while '" + stepNode.getObject().getName() + "'. "
-						+ ex.getMessage(), ex);
+				throw new RuntimeException("Exeption executing while '" + stepNode.getObject().getName() + "'. " + ex.getMessage(), ex);
 			}
 			return results;
 		}
@@ -181,8 +180,7 @@ public class HttpScript {
 		Map<String, T> ret = new HashMap<String, T>();
 		for (Map.Entry<String, T> entry : parameters.entrySet()) {
 			if (entry.getValue() instanceof String) {
-				ret.put(replaceVariables((String) entry.getKey(), variables),
-						((T) replaceVariables((String) entry.getValue(), variables)));
+				ret.put(replaceVariables((String) entry.getKey(), variables), ((T) replaceVariables((String) entry.getValue(), variables)));
 			} else {
 				ret.put(entry.getKey(), entry.getValue());
 			}
@@ -242,8 +240,7 @@ public class HttpScript {
 				String function = m3.group(2);
 				Object[] functionArgs = new Integer[] { new Integer(m3.group(3)), new Integer(m3.group(4)) };
 				if ("substring".equals(function)) {
-					ret = ret.replaceFirst(Pattern.quote(match),
-							funcValue.substring((Integer) functionArgs[0], (Integer) functionArgs[1]));
+					ret = ret.replaceFirst(Pattern.quote(match), funcValue.substring((Integer) functionArgs[0], (Integer) functionArgs[1]));
 				} else {
 					throw new IllegalArgumentException("Function '" + function + "' not supported");
 				}
@@ -282,8 +279,7 @@ public class HttpScript {
 			return Collections.emptyMap();
 		}
 		if (params != null && params.length % 2 != 0) {
-			throw new IllegalArgumentException(
-					"Parameters should be multiple of 2. Ex: '<param1>,<value1>,<param2>,<value2>,...'");
+			throw new IllegalArgumentException("Parameters should be multiple of 2. Ex: '<param1>,<value1>,<param2>,<value2>,...'");
 		}
 		Map<String, String> ret = new HashMap<String, String>();
 		for (int i = 0; i < params.length; i += 2) {
@@ -317,8 +313,7 @@ public class HttpScript {
 			cookieStore = new BasicCookieStore();
 			// HttpClientContext context = HttpClientContext.create();
 			// context.setCookieStore(cookieStore);
-			client = HttpClients.custom().setDefaultRequestConfig(globalConfig).setDefaultCookieStore(cookieStore)
-					.build();
+			client = HttpClients.custom().setDefaultRequestConfig(globalConfig).setDefaultCookieStore(cookieStore).build();
 			// client = HttpClients.createDefault();
 		}
 
@@ -365,13 +360,12 @@ public class HttpScript {
 			this(name, varName, regex, responseField, lookup, 0, true);
 		}
 
-		public RegexExtractor(String name, String varName, String regex, ResponseField responseField, Lookup lookup,
-				int matchNr) {
+		public RegexExtractor(String name, String varName, String regex, ResponseField responseField, Lookup lookup, int matchNr) {
 			this(name, varName, regex, responseField, lookup, matchNr, true);
 		}
 
-		public RegexExtractor(String name, String varName, String regex, ResponseField responseField, Lookup lookup,
-				int matchNr, boolean failIfNotFound) {
+		public RegexExtractor(String name, String varName, String regex, ResponseField responseField, Lookup lookup, int matchNr,
+				boolean failIfNotFound) {
 			super();
 			this.varName = varName;
 			this.regex = Pattern.compile(regex);
@@ -417,14 +411,13 @@ public class HttpScript {
 					break;
 				case SUBSAMPLES:
 					if (!parentResults.containsKey("subsample")) {
-						throw new IllegalArgumentException("No subsamples to extract regex. parentResults '"
-								+ parentResults + "'");
+						throw new IllegalArgumentException("No subsamples to extract regex. parentResults '" + parentResults + "'");
 					}
 					Map<String, Object> currentSubSample = (Map<String, Object>) parentResults.get("subsample");
 					do {
 						if (!currentSubSample.containsKey("responseBody")) {
-							throw new IllegalArgumentException("No body (in subsample) to extract regexp. subsample '"
-									+ currentSubSample + "'");
+							throw new IllegalArgumentException("No body (in subsample) to extract regexp. subsample '" + currentSubSample
+									+ "'");
 						}
 						responseBodies.add((byte[]) currentSubSample.get("responseBody"));
 						currentSubSample = (Map<String, Object>) currentSubSample.get("subsample");
@@ -484,8 +477,7 @@ public class HttpScript {
 					break;
 				case SUBSAMPLES:
 					if (!parentResults.containsKey("subsample")) {
-						throw new IllegalArgumentException("No subsamples to extract regex. parentResults '"
-								+ parentResults + "'");
+						throw new IllegalArgumentException("No subsamples to extract regex. parentResults '" + parentResults + "'");
 					}
 					Map<String, Object> currentSubSample = (Map<String, Object>) parentResults.get("subsample");
 					do {
@@ -587,8 +579,7 @@ public class HttpScript {
 			this(name, url, portNumber, method, params, Collections.<String, String> emptyMap());
 		}
 
-		public HttpRequest(String name, String url, int portNumber, Method method, Map<String, String> params,
-				Map<String, String> headers) {
+		public HttpRequest(String name, String url, int portNumber, Method method, Map<String, String> params, Map<String, String> headers) {
 			this.url = url;
 			this.portNumber = portNumber;
 			this.method = method;
@@ -598,8 +589,7 @@ public class HttpScript {
 			this.headers = headers != null ? Collections.unmodifiableMap(headers) : null;
 		}
 
-		public HttpRequest(String name, String url, int portNumber, Method method, Object body,
-				Map<String, String> headers) {
+		public HttpRequest(String name, String url, int portNumber, Method method, Object body, Map<String, String> headers) {
 			this.url = url;
 			this.portNumber = portNumber;
 			this.method = method;
@@ -637,8 +627,8 @@ public class HttpScript {
 		@SuppressWarnings("unchecked")
 		public Map<String, Object> execute(Map<String, Object> parentResults) throws HttpException, IOException {
 
-			LOG.debug("[http-" + getName() + "] Executing... url '" + this.url + "', headers '" + headers
-					+ "', executionVariables '" + executionVariables + "'");
+			LOG.debug("[http-" + getName() + "] Executing... url '" + this.url + "', headers '" + headers + "', executionVariables '"
+					+ executionVariables + "'");
 
 			Map<String, Object> ret = new HashMap<String, Object>();
 
@@ -710,22 +700,19 @@ public class HttpScript {
 			}
 
 			// INFO: Some web servers fails if it detects we are a robot.
-			httpMethod
-					.addHeader("User-Agent",
-							"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36");
+			httpMethod.addHeader("User-Agent",
+					"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36");
 			if (headers != null && !headers.isEmpty()) {
 				for (Map.Entry<String, String> entry : headers.entrySet()) {
 					httpMethod.addHeader(entry.getKey(), replaceVariables(entry.getValue(), executionVariables));
 				}
 			}
 
-			HttpResponse response = ((HttpClient) configs.get(HttpClient.class.getSimpleName())).getClient().execute(
-					httpMethod);
+			HttpResponse response = ((HttpClient) configs.get(HttpClient.class.getSimpleName())).getClient().execute(httpMethod);
 			int statusCode = response.getStatusLine().getStatusCode();
 			String reasonPhrase = response.getStatusLine().getReasonPhrase();
 
-			LOG.debug("[http-" + getName() + "] Response: statusCode '" + statusCode + "', responseMsg '"
-					+ reasonPhrase + "'");
+			LOG.debug("[http-" + getName() + "] Response: statusCode '" + statusCode + "', responseMsg '" + reasonPhrase + "'");
 
 			ret.put("statusCode", statusCode);
 			ret.put("statusLine", reasonPhrase);
@@ -748,8 +735,7 @@ public class HttpScript {
 						&& response.getHeaders("Location").length >= 0 && followRedirects) {
 					String location = response.getHeaders("Location")[0].getValue();
 					LOG.debug("[http-" + getName() + "] Redirecting to '" + location + "'");
-					HttpRequest httpRedirect = new HttpRequest(getName() + "-redirect", location, portNumber,
-							Method.GET);
+					HttpRequest httpRedirect = new HttpRequest(getName() + "-redirect", location, portNumber, Method.GET);
 					ret.put("subsample", httpRedirect.execute(ret));
 				}
 			}

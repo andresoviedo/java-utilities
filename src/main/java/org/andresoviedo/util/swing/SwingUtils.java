@@ -34,7 +34,6 @@ import javax.swing.tree.TreePath;
 /**
  * A set of useful methods related to Swing.
  * 
-
  */
 public class SwingUtils {
 
@@ -50,9 +49,9 @@ public class SwingUtils {
 	 * Sets the maximum text length in a text component, using a custom document filter.
 	 * 
 	 * @param component
-	 *          the text component.
+	 *            the text component.
 	 * @param maxSize
-	 *          the maximum text length.
+	 *            the maximum text length.
 	 */
 	public static void applyFixedSizeFilter(JTextComponent component, int maxSize) {
 		if (component != null) {
@@ -66,9 +65,9 @@ public class SwingUtils {
 	 * properties.
 	 * 
 	 * @param component
-	 *          the component.
+	 *            the component.
 	 * @param action
-	 *          the action to bind.
+	 *            the action to bind.
 	 */
 	public static void bindAction(JComponent component, Action action) {
 		component.getInputMap().put((KeyStroke) action.getValue(Action.ACCELERATOR_KEY), action.getValue(Action.ACTION_COMMAND_KEY));
@@ -79,7 +78,7 @@ public class SwingUtils {
 	 * Binds an action to the dialog so when the user presses the ESCAPE key, the dialog is hidden.
 	 * 
 	 * @param dialog
-	 *          the dialog to bind the action to.
+	 *            the dialog to bind the action to.
 	 */
 	public static void bindEscapeAction(final JDialog dialog) {
 		InputMap iMap = dialog.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -97,7 +96,7 @@ public class SwingUtils {
 	 * Configures a button as if it was an hyperlink.
 	 * 
 	 * @param button
-	 *          the button to configure.
+	 *            the button to configure.
 	 */
 	public static void configureButtonAsHyperlink(JButton button) {
 		if (button == null) {
@@ -121,7 +120,7 @@ public class SwingUtils {
 	 * Configures a label as if it was an hyperlink.
 	 * 
 	 * @param label
-	 *          the label to configure.
+	 *            the label to configure.
 	 */
 	public static void configureLabelAsHyperlink(JLabel label) {
 		if (label == null) {
@@ -141,9 +140,9 @@ public class SwingUtils {
 	 * Enables or disables all components in the hierarchy of <code>c</code>.
 	 * 
 	 * @param c
-	 *          the component.
+	 *            the component.
 	 * @param flag
-	 *          <code>true</code> if the component hierarchy has to be enabled, <code>false</code> otherwise.
+	 *            <code>true</code> if the component hierarchy has to be enabled, <code>false</code> otherwise.
 	 */
 	public static void enableComponentsRecursively(Component c, boolean flag) {
 		c.setEnabled(flag);
@@ -160,9 +159,9 @@ public class SwingUtils {
 	 * Get the font metrics for the given font.
 	 * 
 	 * @param f
-	 *          font for which the metrics is being retrieved.
+	 *            font for which the metrics is being retrieved.
 	 * @param c
-	 *          component that is used to retrieve the metrics in case it's not yet in the cache.
+	 *            component that is used to retrieve the metrics in case it's not yet in the cache.
 	 */
 	public static FontMetrics getFontMetrics(Font f, Component c) {
 		synchronized (font2FM) {
@@ -179,9 +178,9 @@ public class SwingUtils {
 	 * Get the font metrics for the given font.
 	 * 
 	 * @param f
-	 *          font for which the metrics is being retrieved.
+	 *            font for which the metrics is being retrieved.
 	 * @param g
-	 *          graphics that is used to retrieve the metrics in case it's not yet in the cache.
+	 *            graphics that is used to retrieve the metrics in case it's not yet in the cache.
 	 */
 	public static FontMetrics getFontMetrics(Font f, Graphics g) {
 		synchronized (font2FM) {
@@ -198,7 +197,7 @@ public class SwingUtils {
 	 * Gets the internal frame which is the top level container of <code>component</code>.
 	 * 
 	 * @param component
-	 *          an arbitrary component.
+	 *            an arbitrary component.
 	 * @return the internal frame which is the top level container of <code>component</code>.
 	 */
 	public static JInternalFrame getInternalFrameForComponent(Component component) {
@@ -215,7 +214,7 @@ public class SwingUtils {
 	 * Expands all nodes of a <code>JTree</code> component.
 	 * 
 	 * @param tree
-	 *          the <code>JTree</code> component.
+	 *            the <code>JTree</code> component.
 	 */
 	public static void expandAll(JTree tree) {
 		expandAll(tree, new TreePath(tree.getModel().getRoot()), true);
@@ -225,7 +224,7 @@ public class SwingUtils {
 	 * Collapses all nodes of a <code>JTree</code> component.
 	 * 
 	 * @param tree
-	 *          the <code>JTree</code> component.
+	 *            the <code>JTree</code> component.
 	 */
 	public static void collapseAll(JTree tree) {
 		expandAll(tree, new TreePath(tree.getModel().getRoot()), false);
@@ -235,9 +234,9 @@ public class SwingUtils {
 	 * Shows an information message dialog.
 	 * 
 	 * @param c
-	 *          determines the Frame in which the dialog is displayed.
+	 *            determines the Frame in which the dialog is displayed.
 	 * @param msg
-	 *          the message to display.
+	 *            the message to display.
 	 */
 	public static void showInformationDialog(Component c, String msg) {
 		JOptionPane.showMessageDialog(JOptionPane.getFrameForComponent(c), msg, UIManager.getString("OptionPane.informationDialogTitle"),
@@ -248,9 +247,9 @@ public class SwingUtils {
 	 * Shows a warning message dialog.
 	 * 
 	 * @param c
-	 *          determines the Frame in which the dialog is displayed.
+	 *            determines the Frame in which the dialog is displayed.
 	 * @param msg
-	 *          the message to display.
+	 *            the message to display.
 	 */
 	public static void showWarningDialog(Component c, String msg) {
 		JOptionPane.showMessageDialog(JOptionPane.getFrameForComponent(c), msg, UIManager.getString("OptionPane.warningDialogTitle"),
@@ -261,9 +260,9 @@ public class SwingUtils {
 	 * Shows an error message dialog.
 	 * 
 	 * @param c
-	 *          determines the Frame in which the dialog is displayed.
+	 *            determines the Frame in which the dialog is displayed.
 	 * @param msg
-	 *          the message to display.
+	 *            the message to display.
 	 */
 	public static void showErrorDialog(Component c, String msg) {
 		JOptionPane.showMessageDialog(JOptionPane.getFrameForComponent(c), msg, UIManager.getString("OptionPane.errorDialogTitle"),
@@ -274,9 +273,9 @@ public class SwingUtils {
 	 * Shows a confirm dialog.
 	 * 
 	 * @param c
-	 *          the parent component.
+	 *            the parent component.
 	 * @param msg
-	 *          the message to display.
+	 *            the message to display.
 	 * @return an int indicating the option selected by the user.
 	 */
 	public static int showConfirmDialog(Component c, String msg) {
@@ -287,25 +286,25 @@ public class SwingUtils {
 	 * Shows a confirm dialog.
 	 * 
 	 * @param c
-	 *          the parent component.
+	 *            the parent component.
 	 * @param msg
-	 *          the message to display.
+	 *            the message to display.
 	 * @param messageType
-	 *          the type of message to display.
+	 *            the type of message to display.
 	 * @return an int indicating the option selected by the user.
 	 */
 	public static int showConfirmDialog(Component c, String msg, int messageType) {
-		return JOptionPane.showConfirmDialog(JOptionPane.getFrameForComponent(c), msg, UIManager.getString("OptionPane.confirmDialogTitle"),
-				JOptionPane.YES_NO_OPTION, messageType);
+		return JOptionPane.showConfirmDialog(JOptionPane.getFrameForComponent(c), msg,
+				UIManager.getString("OptionPane.confirmDialogTitle"), JOptionPane.YES_NO_OPTION, messageType);
 	}
 
 	/**
 	 * Shows an input dialog.
 	 * 
 	 * @param c
-	 *          the parent component.
+	 *            the parent component.
 	 * @param msg
-	 *          the message to display.
+	 *            the message to display.
 	 * @return the string typed by the user, or <code>null</code> if the user cancels the option pane.
 	 */
 	public static String showInputDialog(Component c, String msg) {
@@ -316,11 +315,11 @@ public class SwingUtils {
 	 * Expands or collapses the specified tree path and all its children.
 	 * 
 	 * @param tree
-	 *          the tree component.
+	 *            the tree component.
 	 * @param parent
-	 *          the tree path to expand.
+	 *            the tree path to expand.
 	 * @param expand
-	 *          <code>true</code> to expand, <code>false</code> to collapse.
+	 *            <code>true</code> to expand, <code>false</code> to collapse.
 	 */
 	private static void expandAll(JTree tree, TreePath parent, boolean expand) {
 		// Traverse children.
@@ -353,7 +352,7 @@ public class SwingUtils {
 		 * Creates a new fixed-sized filter.
 		 * 
 		 * @param maxSize
-		 *          the maximum text length.
+		 *            the maximum text length.
 		 */
 		public FixedSizeFilter(int maxSize) {
 			this.maxSize = maxSize;
@@ -375,7 +374,8 @@ public class SwingUtils {
 		 * @see javax.swing.text.DocumentFilter#replace(javax.swing.text.DocumentFilter.FilterBypass, int, int, java.lang.String,
 		 *      javax.swing.text.AttributeSet)
 		 */
-		public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String str, AttributeSet attrs) throws BadLocationException {
+		public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String str, AttributeSet attrs)
+				throws BadLocationException {
 			int newLength = fb.getDocument().getLength() - length + str.length();
 			if (newLength <= maxSize) {
 				fb.replace(offset, length, str, attrs);

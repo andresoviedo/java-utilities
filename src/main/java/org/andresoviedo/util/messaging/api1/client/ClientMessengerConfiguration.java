@@ -10,19 +10,17 @@ import java.util.logging.Logger;
 import org.andresoviedo.util.messaging.api1.MessengerProperties;
 import org.andresoviedo.util.messaging.api1.common.configuration.BasicConfiguration;
 
-
 /**
  * An object holding client messenger configuration parameters.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class ClientMessengerConfiguration extends BasicConfiguration {
 
 	/**
 	 * A static reference to the logger object.
 	 */
-	private static Logger logger = Logger
-			.getLogger(MessengerProperties.LOGGER_NAME);
+	private static Logger logger = Logger.getLogger(MessengerProperties.LOGGER_NAME);
 
 	/**
 	 * Secondary remote host system property name.
@@ -67,10 +65,8 @@ public class ClientMessengerConfiguration extends BasicConfiguration {
 	/**
 	 * The default list of addresses to connect to.
 	 */
-	private static final InetSocketAddress[] DEFAULT_ADDRESSES = {
-			new InetSocketAddress("localhost", 41982),
-			new InetSocketAddress("127.0.0.1", 41982),
-			new InetSocketAddress("127.0.0.2", 41982) };
+	private static final InetSocketAddress[] DEFAULT_ADDRESSES = { new InetSocketAddress("localhost", 41982),
+			new InetSocketAddress("127.0.0.1", 41982), new InetSocketAddress("127.0.0.2", 41982) };
 
 	/**
 	 * The default persistence directory.
@@ -88,8 +84,7 @@ public class ClientMessengerConfiguration extends BasicConfiguration {
 	private InetSocketAddress[] addresses;
 
 	/**
-	 * The time to wait before trying to reconnect after a failed connection
-	 * attempt.
+	 * The time to wait before trying to reconnect after a failed connection attempt.
 	 */
 	private int reconnectionDelay;
 
@@ -108,27 +103,21 @@ public class ClientMessengerConfiguration extends BasicConfiguration {
 	 */
 	public ClientMessengerConfiguration(String configFile) {
 		// Try to load properties from a file.
-		super.load(SYSTEM_PROPERTY_CONFIGURATION_FILE,
-				configFile != null ? configFile : DEFAULT_CONFIGURATION_FILE);
+		super.load(SYSTEM_PROPERTY_CONFIGURATION_FILE, configFile != null ? configFile : DEFAULT_CONFIGURATION_FILE);
 
-		this.clientId = getProperty(
-				MessengerProperties.SYSTEM_PROPERTY_NODE_ID, UUID
-						.randomUUID().toString());
+		this.clientId = getProperty(MessengerProperties.SYSTEM_PROPERTY_NODE_ID, UUID.randomUUID().toString());
 
 		// Get the addresses to connect to.
 		int i = 1;
 		String address;
 		String[] tokens;
 		List<InetSocketAddress> temp = new Vector<InetSocketAddress>();
-		while ((address = getProperty(PROPERTY_ADDRESS + i,
-				SYSTEM_PROPERTY_ADDRESS + i, null)) != null) {
+		while ((address = getProperty(PROPERTY_ADDRESS + i, SYSTEM_PROPERTY_ADDRESS + i, null)) != null) {
 			tokens = address.split("@");
 			try {
-				temp.add(new InetSocketAddress(tokens[0], Integer
-						.parseInt(tokens[1])));
+				temp.add(new InetSocketAddress(tokens[0], Integer.parseInt(tokens[1])));
 			} catch (Exception e) {
-				logger.warning("Invalid address specified: " + address + " ("
-						+ e.getMessage() + ")");
+				logger.warning("Invalid address specified: " + address + " (" + e.getMessage() + ")");
 			}
 			i++;
 		}
@@ -138,23 +127,18 @@ public class ClientMessengerConfiguration extends BasicConfiguration {
 			logger.info("No addresses specified, using default ones...");
 			this.addresses = DEFAULT_ADDRESSES;
 		} else {
-			this.addresses = (InetSocketAddress[]) temp
-					.toArray(new InetSocketAddress[temp.size()]);
+			this.addresses = (InetSocketAddress[]) temp.toArray(new InetSocketAddress[temp.size()]);
 		}
 
 		// Set the reconnection delay.
 		try {
-			reconnectionDelay = Integer.parseInt(getProperty(
-					PROPERTY_RECONNECTION_DELAY,
-					SYSTEM_PROPERTY_RECONNECTION_DELAY,
+			reconnectionDelay = Integer.parseInt(getProperty(PROPERTY_RECONNECTION_DELAY, SYSTEM_PROPERTY_RECONNECTION_DELAY,
 					String.valueOf(DEFAULT_RECONNECTION_DELAY)));
 		} catch (NumberFormatException e) {
 			reconnectionDelay = DEFAULT_RECONNECTION_DELAY;
 		}
 		// Set the persistence direetory.
-		persistenceDirectory = new File(getProperty(
-				PROPERTY_PERSISTENCE_DIRECTORY,
-				SYSTEM_PROPERTY_PERSISTENCE_DIRECTORY,
+		persistenceDirectory = new File(getProperty(PROPERTY_PERSISTENCE_DIRECTORY, SYSTEM_PROPERTY_PERSISTENCE_DIRECTORY,
 				DEFAULT_PERSISTENCE_DIRECTORY));
 	}
 

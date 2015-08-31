@@ -75,7 +75,7 @@ public class BasicDiagramComponentUI extends DiagramComponentUI implements Focus
 	 * Initialize diagram component properties.
 	 * 
 	 * @param c
-	 *          the diagram component.
+	 *            the diagram component.
 	 */
 	protected void installDefaults(DiagramComponent c) {
 		LookAndFeel.installBorder(c, "DiagramComponent.border");
@@ -107,7 +107,7 @@ public class BasicDiagramComponentUI extends DiagramComponentUI implements Focus
 	 * if its current value is not a UIResource.
 	 * 
 	 * @param c
-	 *          the diagram component.
+	 *            the diagram component.
 	 */
 	protected void uninstallDefauls(DiagramComponent c) {
 		LookAndFeel.uninstallBorder(c);
@@ -172,16 +172,16 @@ public class BasicDiagramComponentUI extends DiagramComponentUI implements Focus
 	 * Paints the header of the diagram component.
 	 * 
 	 * @param g
-	 *          the graphics context.
+	 *            the graphics context.
 	 * @param c
-	 *          the diagram component.
+	 *            the diagram component.
 	 */
 	protected void paintHeader(Graphics g, DiagramComponent c) {
 		Dimension dim = c.getSize();
 
 		// Draw header's background.
-		Color color = c.isSelected() ? c.getHeaderSelectionBackground().darker() : (c.isHighlighted() ? c.getHeaderSelectionBackground() : c
-				.getHeaderBackground());
+		Color color = c.isSelected() ? c.getHeaderSelectionBackground().darker() : (c.isHighlighted() ? c.getHeaderSelectionBackground()
+				: c.getHeaderBackground());
 
 		if (!c.isEnabled()) {
 			color = Color.lightGray;
@@ -216,9 +216,9 @@ public class BasicDiagramComponentUI extends DiagramComponentUI implements Focus
 	 * Paints the icon of the diagram component.
 	 * 
 	 * @param g
-	 *          the graphics context.
+	 *            the graphics context.
 	 * @param c
-	 *          the diagram component.
+	 *            the diagram component.
 	 */
 	protected void paintIcon(Graphics g, DiagramComponent c) {
 		Icon icon = c.isEnabled() ? c.getIcon() : c.getDisabledIcon();
@@ -236,7 +236,7 @@ public class BasicDiagramComponentUI extends DiagramComponentUI implements Focus
 	 * Paints the focus of the diagram component.
 	 * 
 	 * @param g
-	 *          the graphics component.
+	 *            the graphics component.
 	 */
 	protected void paintFocus(Graphics g, DiagramComponent c) {
 		Rectangle r = computeContentBounds(c);
@@ -262,11 +262,11 @@ public class BasicDiagramComponentUI extends DiagramComponentUI implements Focus
 	 * Computes a clipped version of the specified text depending on the font metrics and the available width.
 	 * 
 	 * @param fm
-	 *          the font metrics.
+	 *            the font metrics.
 	 * @param text
-	 *          the text.
+	 *            the text.
 	 * @param availableWidth
-	 *          the available width.
+	 *            the available width.
 	 * @return a clipped version of the text.
 	 */
 	private String getClippedText(FontMetrics fm, String text, int availableWidth) {

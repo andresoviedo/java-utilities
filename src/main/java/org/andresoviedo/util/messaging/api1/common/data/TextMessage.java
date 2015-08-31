@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * A message holding a text as its body.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class TextMessage extends ObjectMessage {
 
@@ -21,7 +21,7 @@ public class TextMessage extends ObjectMessage {
 	 * Creates a new <code>TextMessage</code> with the associated text.
 	 * 
 	 * @param text
-	 *          the associated text.
+	 *            the associated text.
 	 */
 	TextMessage(String text) {
 		super(text);
@@ -50,7 +50,7 @@ public class TextMessage extends ObjectMessage {
 	 * Sets the associated text (<code>null</code> permitted).
 	 * 
 	 * @param text
-	 *          the new associated text.
+	 *            the new associated text.
 	 */
 	public void setText(String text) {
 		setObject(text);

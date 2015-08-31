@@ -12,7 +12,6 @@ import javax.swing.SwingUtilities;
  * the task consumer thread is started if it hasn't been started yet and the task manager dialog is displayed. Whether the dialog is
  * displayed as modal depends on the current task being performed.
  * 
-
  */
 public class TaskManager implements Runnable {
 
@@ -45,7 +44,7 @@ public class TaskManager implements Runnable {
 	 * Sets the owner frame.
 	 * 
 	 * @param owner
-	 *          the owner frame.
+	 *            the owner frame.
 	 */
 	public static void setOwnerFrame(Frame owner) {
 		TaskManager.ownerFrame = owner;
@@ -83,7 +82,7 @@ public class TaskManager implements Runnable {
 	 * Adds a task to the list. After adding it, the task manager will start its task consumer thread, if it's not running.
 	 * 
 	 * @param task
-	 *          the task to be added.
+	 *            the task to be added.
 	 */
 	public void addTask(Task task) {
 		if (task == null) {
@@ -178,8 +177,8 @@ public class TaskManager implements Runnable {
 	}
 
 	/**
-	 * Stops the task manager. Task consuming process will be stopped. The task in progress will run until completion, and the following won't
-	 * be executed.
+	 * Stops the task manager. Task consuming process will be stopped. The task in progress will run until completion, and the following
+	 * won't be executed.
 	 */
 	public synchronized void stop() {
 		if (thread != null) {

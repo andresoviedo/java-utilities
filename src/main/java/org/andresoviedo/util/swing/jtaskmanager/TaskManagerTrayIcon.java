@@ -7,12 +7,10 @@ import javax.swing.JLabel;
 
 import org.andresoviedo.util.swing.jtaskmanager.resources.Resources;
 
-
 /**
  * This class is a shortcut to the task manager dialog. It's label with a small gear icon: when the user clicks it, the task manager dialog
  * shows up.
  * 
-
  */
 public class TaskManagerTrayIcon extends JLabel implements MouseListener {
 

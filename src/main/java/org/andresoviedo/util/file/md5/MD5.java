@@ -83,8 +83,8 @@ public class MD5 {
 	/**
 	 * Padding for Final()
 	 */
-	static byte padding[] = { (byte) 0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	static byte padding[] = { (byte) 0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 	private static boolean native_lib_loaded = false;
 
@@ -111,7 +111,7 @@ public class MD5 {
 	 * Initialize class, and update hash with ob.toString()
 	 * 
 	 * @param ob
-	 *          Object, ob.toString() is used to update hash after initialization
+	 *            Object, ob.toString() is used to update hash after initialization
 	 */
 	public MD5(Object ob) {
 		this();
@@ -120,31 +120,31 @@ public class MD5 {
 
 	private void Decode(byte buffer[], int shift, int[] out) {
 		/*
-		 * len += shift; for (int i = 0; shift < len; i++, shift += 4) { out[i] = ((int) (buffer[shift] & 0xff)) | (((int) (buffer[shift + 1] &
-		 * 0xff)) << 8) | (((int) (buffer[shift + 2] & 0xff)) << 16) | (((int) buffer[shift + 3]) << 24); }
+		 * len += shift; for (int i = 0; shift < len; i++, shift += 4) { out[i] = ((int) (buffer[shift] & 0xff)) | (((int) (buffer[shift +
+		 * 1] & 0xff)) << 8) | (((int) (buffer[shift + 2] & 0xff)) << 16) | (((int) buffer[shift + 3]) << 24); }
 		 */
 
 		// unrolled loop (original loop shown above)
 		out[0] = ((int) (buffer[shift] & 0xff)) | (((int) (buffer[shift + 1] & 0xff)) << 8) | (((int) (buffer[shift + 2] & 0xff)) << 16)
 				| (((int) buffer[shift + 3]) << 24);
-		out[1] = ((int) (buffer[shift + 4] & 0xff)) | (((int) (buffer[shift + 5] & 0xff)) << 8) | (((int) (buffer[shift + 6] & 0xff)) << 16)
-				| (((int) buffer[shift + 7]) << 24);
-		out[2] = ((int) (buffer[shift + 8] & 0xff)) | (((int) (buffer[shift + 9] & 0xff)) << 8) | (((int) (buffer[shift + 10] & 0xff)) << 16)
-				| (((int) buffer[shift + 11]) << 24);
-		out[3] = ((int) (buffer[shift + 12] & 0xff)) | (((int) (buffer[shift + 13] & 0xff)) << 8) | (((int) (buffer[shift + 14] & 0xff)) << 16)
-				| (((int) buffer[shift + 15]) << 24);
-		out[4] = ((int) (buffer[shift + 16] & 0xff)) | (((int) (buffer[shift + 17] & 0xff)) << 8) | (((int) (buffer[shift + 18] & 0xff)) << 16)
-				| (((int) buffer[shift + 19]) << 24);
-		out[5] = ((int) (buffer[shift + 20] & 0xff)) | (((int) (buffer[shift + 21] & 0xff)) << 8) | (((int) (buffer[shift + 22] & 0xff)) << 16)
-				| (((int) buffer[shift + 23]) << 24);
-		out[6] = ((int) (buffer[shift + 24] & 0xff)) | (((int) (buffer[shift + 25] & 0xff)) << 8) | (((int) (buffer[shift + 26] & 0xff)) << 16)
-				| (((int) buffer[shift + 27]) << 24);
-		out[7] = ((int) (buffer[shift + 28] & 0xff)) | (((int) (buffer[shift + 29] & 0xff)) << 8) | (((int) (buffer[shift + 30] & 0xff)) << 16)
-				| (((int) buffer[shift + 31]) << 24);
-		out[8] = ((int) (buffer[shift + 32] & 0xff)) | (((int) (buffer[shift + 33] & 0xff)) << 8) | (((int) (buffer[shift + 34] & 0xff)) << 16)
-				| (((int) buffer[shift + 35]) << 24);
-		out[9] = ((int) (buffer[shift + 36] & 0xff)) | (((int) (buffer[shift + 37] & 0xff)) << 8) | (((int) (buffer[shift + 38] & 0xff)) << 16)
-				| (((int) buffer[shift + 39]) << 24);
+		out[1] = ((int) (buffer[shift + 4] & 0xff)) | (((int) (buffer[shift + 5] & 0xff)) << 8)
+				| (((int) (buffer[shift + 6] & 0xff)) << 16) | (((int) buffer[shift + 7]) << 24);
+		out[2] = ((int) (buffer[shift + 8] & 0xff)) | (((int) (buffer[shift + 9] & 0xff)) << 8)
+				| (((int) (buffer[shift + 10] & 0xff)) << 16) | (((int) buffer[shift + 11]) << 24);
+		out[3] = ((int) (buffer[shift + 12] & 0xff)) | (((int) (buffer[shift + 13] & 0xff)) << 8)
+				| (((int) (buffer[shift + 14] & 0xff)) << 16) | (((int) buffer[shift + 15]) << 24);
+		out[4] = ((int) (buffer[shift + 16] & 0xff)) | (((int) (buffer[shift + 17] & 0xff)) << 8)
+				| (((int) (buffer[shift + 18] & 0xff)) << 16) | (((int) buffer[shift + 19]) << 24);
+		out[5] = ((int) (buffer[shift + 20] & 0xff)) | (((int) (buffer[shift + 21] & 0xff)) << 8)
+				| (((int) (buffer[shift + 22] & 0xff)) << 16) | (((int) buffer[shift + 23]) << 24);
+		out[6] = ((int) (buffer[shift + 24] & 0xff)) | (((int) (buffer[shift + 25] & 0xff)) << 8)
+				| (((int) (buffer[shift + 26] & 0xff)) << 16) | (((int) buffer[shift + 27]) << 24);
+		out[7] = ((int) (buffer[shift + 28] & 0xff)) | (((int) (buffer[shift + 29] & 0xff)) << 8)
+				| (((int) (buffer[shift + 30] & 0xff)) << 16) | (((int) buffer[shift + 31]) << 24);
+		out[8] = ((int) (buffer[shift + 32] & 0xff)) | (((int) (buffer[shift + 33] & 0xff)) << 8)
+				| (((int) (buffer[shift + 34] & 0xff)) << 16) | (((int) buffer[shift + 35]) << 24);
+		out[9] = ((int) (buffer[shift + 36] & 0xff)) | (((int) (buffer[shift + 37] & 0xff)) << 8)
+				| (((int) (buffer[shift + 38] & 0xff)) << 16) | (((int) buffer[shift + 39]) << 24);
 		out[10] = ((int) (buffer[shift + 40] & 0xff)) | (((int) (buffer[shift + 41] & 0xff)) << 8)
 				| (((int) (buffer[shift + 42] & 0xff)) << 16) | (((int) buffer[shift + 43]) << 24);
 		out[11] = ((int) (buffer[shift + 44] & 0xff)) | (((int) (buffer[shift + 45] & 0xff)) << 8)
@@ -324,13 +324,13 @@ public class MD5 {
 	 * Updates hash with the bytebuffer given (using at maximum length bytes from that buffer)
 	 * 
 	 * @param stat
-	 *          Which state is updated
+	 *            Which state is updated
 	 * @param buffer
-	 *          Array of bytes to be hashed
+	 *            Array of bytes to be hashed
 	 * @param offset
-	 *          Offset to buffer array
+	 *            Offset to buffer array
 	 * @param length
-	 *          Use at maximum `length' bytes (absolute maximum is buffer.length)
+	 *            Use at maximum `length' bytes (absolute maximum is buffer.length)
 	 */
 	public void Update(MD5State stat, byte buffer[], int offset, int length) {
 		int index, partlen, i, start;
@@ -410,7 +410,7 @@ public class MD5 {
 	 * Updates hash with given array of bytes
 	 * 
 	 * @param buffer
-	 *          Array of bytes to use for updating the hash
+	 *            Array of bytes to use for updating the hash
 	 */
 	public void Update(byte buffer[]) {
 		Update(buffer, 0, buffer.length);
@@ -420,7 +420,7 @@ public class MD5 {
 	 * Updates hash with a single byte
 	 * 
 	 * @param b
-	 *          Single byte to update the hash
+	 *            Single byte to update the hash
 	 */
 	public void Update(byte b) {
 		byte buffer[] = new byte[1];
@@ -431,13 +431,13 @@ public class MD5 {
 
 	/**
 	 * Update buffer with given string. Note that because the version of the s.getBytes() method without parameters is used to convert the
-	 * string to a byte array, the results of this method may be different on different platforms. The s.getBytes() method converts the string
-	 * into a byte array using the current platform's default character set and may therefore have different results on platforms with
-	 * different default character sets. If a version that works consistently across platforms with different default character sets is
+	 * string to a byte array, the results of this method may be different on different platforms. The s.getBytes() method converts the
+	 * string into a byte array using the current platform's default character set and may therefore have different results on platforms
+	 * with different default character sets. If a version that works consistently across platforms with different default character sets is
 	 * desired, use the overloaded version of the Update() method which takes a string and a character encoding.
 	 * 
 	 * @param s
-	 *          String to be update to hash (is used as s.getBytes())
+	 *            String to be update to hash (is used as s.getBytes())
 	 */
 	public void Update(String s) {
 		byte chars[] = s.getBytes();
@@ -448,11 +448,11 @@ public class MD5 {
 	 * Update buffer with given string using the given encoding. If the given encoding is null, the encoding "ISO8859_1" is used.
 	 * 
 	 * @param s
-	 *          String to be update to hash (is used as s.getBytes(charset_name))
+	 *            String to be update to hash (is used as s.getBytes(charset_name))
 	 * @param charset_name
-	 *          The character set to use to convert s to a byte array, or null if the "ISO8859_1" character set is desired.
+	 *            The character set to use to convert s to a byte array, or null if the "ISO8859_1" character set is desired.
 	 * @exception java.io.UnsupportedEncodingException
-	 *              If the named charset is not supported.
+	 *                If the named charset is not supported.
 	 */
 	public void Update(String s, String charset_name) throws java.io.UnsupportedEncodingException {
 		if (charset_name == null)
@@ -465,7 +465,7 @@ public class MD5 {
 	 * Update buffer with a single integer (only & 0xff part is used, as a byte)
 	 * 
 	 * @param i
-	 *          Integer value, which is then converted to byte as i & 0xff
+	 *            Integer value, which is then converted to byte as i & 0xff
 	 */
 
 	public void Update(int i) {
@@ -524,7 +524,7 @@ public class MD5 {
 	 * Turns array of bytes into string representing each byte as unsigned hex number.
 	 * 
 	 * @param hash
-	 *          Array of bytes to convert to hex-string
+	 *            Array of bytes to convert to hex-string
 	 * @return Generated hex string
 	 */
 	public static String asHex(byte hash[]) {
@@ -601,14 +601,16 @@ public class MD5 {
 			// fill in settings for Linux on x86
 
 			if (os_name.equals("linux")
-					&& (os_arch.equals("x86") || os_arch.equals("i386") || os_arch.equals("i486") || os_arch.equals("i586") || os_arch.equals("i686"))) {
+					&& (os_arch.equals("x86") || os_arch.equals("i386") || os_arch.equals("i486") || os_arch.equals("i586") || os_arch
+							.equals("i686"))) {
 				arch_lib_path = new File(new File(new File("lib"), "arch"), "linux_x86");
 				arch_libfile_suffix = ".so";
 
 				// fill in settings for Windows on x86
 
 			} else if (os_name.startsWith("windows ")
-					&& (os_arch.equals("x86") || os_arch.equals("i386") || os_arch.equals("i486") || os_arch.equals("i586") || os_arch.equals("i686"))) {
+					&& (os_arch.equals("x86") || os_arch.equals("i386") || os_arch.equals("i486") || os_arch.equals("i586") || os_arch
+							.equals("i686"))) {
 				arch_lib_path = new File(new File(new File("lib"), "arch"), "win32_x86");
 				arch_libfile_suffix = ".dll";
 
@@ -695,8 +697,8 @@ public class MD5 {
 	}
 
 	/**
-	 * @return true iff the first 16 bytes of both hash1 and hash2 are equal; both hash1 and hash2 are null; or either hash array is less than
-	 *         16 bytes in length and their lengths and all of their bytes are equal.
+	 * @return true iff the first 16 bytes of both hash1 and hash2 are equal; both hash1 and hash2 are null; or either hash array is less
+	 *         than 16 bytes in length and their lengths and all of their bytes are equal.
 	 */
 	public static boolean hashesEqual(byte[] hash1, byte[] hash2) {
 		if (hash1 == null)

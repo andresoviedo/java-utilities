@@ -13,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 /**
  * The default renderer for <code>JCheckList</code>.
  * 
-
  */
 public class DefaultCheckListCellRenderer extends JCheckBox implements ListCellRenderer {
 
@@ -58,7 +57,7 @@ public class DefaultCheckListCellRenderer extends JCheckBox implements ListCellR
 	 * Sets the <code>String</code> object for the cell being rendered to <code>value</code>.
 	 * 
 	 * @param value
-	 *          the value.
+	 *            the value.
 	 */
 	public void setValue(Object value) {
 		setText((value == null) ? "" : value.toString());

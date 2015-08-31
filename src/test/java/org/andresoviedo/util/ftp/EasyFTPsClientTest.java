@@ -54,20 +54,14 @@ public class EasyFTPsClientTest {
 		File responseDir = new File(bankFolder, EntityConstants.RESPONSE_FOLDER);
 		responseDir.mkdirs();
 
-		File confirmation1 = new File(confirmationDir, generateFilename(EntityConstants.FileType.CONFIRMATION,
-				constantDate));
-		FileUtils.copyFile(new File(
-				"src/test/resources/org/andresoviedo/util/serialization/api2/C_EEEEAAAAMMDDHHMM.txt"), confirmation1);
-		File confirmation2 = new File(confirmationDir, generateFilename(EntityConstants.FileType.CONFIRMATION,
-				constantDate2));
-		FileUtils.copyFile(new File(
-				"src/test/resources/org/andresoviedo/util/serialization/api2/C_EEEEAAAAMMDDHHMM.txt"), confirmation2);
+		File confirmation1 = new File(confirmationDir, generateFilename(EntityConstants.FileType.CONFIRMATION, constantDate));
+		FileUtils.copyFile(new File("src/test/resources/org/andresoviedo/util/serialization/api2/C_EEEEAAAAMMDDHHMM.txt"), confirmation1);
+		File confirmation2 = new File(confirmationDir, generateFilename(EntityConstants.FileType.CONFIRMATION, constantDate2));
+		FileUtils.copyFile(new File("src/test/resources/org/andresoviedo/util/serialization/api2/C_EEEEAAAAMMDDHHMM.txt"), confirmation2);
 		File response1 = new File(responseDir, generateFilename(EntityConstants.FileType.RESPONSE, constantDate));
-		FileUtils.copyFile(new File(
-				"src/test/resources/org/andresoviedo/util/serialization/api2/R_EEEEAAAAMMDDHHMM.txt"), response1);
+		FileUtils.copyFile(new File("src/test/resources/org/andresoviedo/util/serialization/api2/R_EEEEAAAAMMDDHHMM.txt"), response1);
 		File response2 = new File(responseDir, generateFilename(EntityConstants.FileType.RESPONSE, constantDate2));
-		FileUtils.copyFile(new File(
-				"src/test/resources/org/andresoviedo/util/serialization/api2/R_EEEEAAAAMMDDHHMM.txt"), response2);
+		FileUtils.copyFile(new File("src/test/resources/org/andresoviedo/util/serialization/api2/R_EEEEAAAAMMDDHHMM.txt"), response2);
 
 		// configure the server
 		FtpServerFactory serverFactory = new FtpServerFactory();
@@ -131,17 +125,13 @@ public class EasyFTPsClientTest {
 
 		File[] f = sut.get(outputFolder, EntityConstants.ABSOLUTE_CONFIRMATION_FILES_PATTERN.pattern());
 		Assert.assertEquals("Expected to read 2 files", 2, f.length);
-		Assert.assertEquals(new File(outputFolder,
-				generateFilename(EntityConstants.FileType.CONFIRMATION, constantDate)), f[0]);
-		Assert.assertEquals(
-				new File(outputFolder, generateFilename(EntityConstants.FileType.CONFIRMATION, constantDate2)), f[1]);
+		Assert.assertEquals(new File(outputFolder, generateFilename(EntityConstants.FileType.CONFIRMATION, constantDate)), f[0]);
+		Assert.assertEquals(new File(outputFolder, generateFilename(EntityConstants.FileType.CONFIRMATION, constantDate2)), f[1]);
 
 		f = sut.get(outputFolder, EntityConstants.ABSOLUTE_RESPONSE_FILES_PATTERN.pattern());
 		Assert.assertEquals("Expected to read 2 files", 2, f.length);
-		Assert.assertEquals(new File(outputFolder, generateFilename(EntityConstants.FileType.RESPONSE, constantDate)),
-				f[0]);
-		Assert.assertEquals(new File(outputFolder, generateFilename(EntityConstants.FileType.RESPONSE, constantDate2)),
-				f[1]);
+		Assert.assertEquals(new File(outputFolder, generateFilename(EntityConstants.FileType.RESPONSE, constantDate)), f[0]);
+		Assert.assertEquals(new File(outputFolder, generateFilename(EntityConstants.FileType.RESPONSE, constantDate2)), f[1]);
 	}
 
 	public static final String generateFilename(EntityConstants.FileType fileType, Date date) {

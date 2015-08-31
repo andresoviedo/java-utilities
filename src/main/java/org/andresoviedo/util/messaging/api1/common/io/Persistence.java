@@ -24,11 +24,10 @@ import java.util.logging.Logger;
 import org.andresoviedo.util.messaging.api1.MessengerProperties;
 import org.andresoviedo.util.messaging.api1.common.data.Message;
 
-
 /**
  * The persistence class allows saving and getting messages from disk.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class Persistence {
 
@@ -76,9 +75,9 @@ public class Persistence {
 		 * Constructs a new iterator.
 		 * 
 		 * @param files
-		 *          the list of files.
+		 *            the list of files.
 		 * @param delete
-		 *          indicates whether files should be deleted after the message is deserialized.
+		 *            indicates whether files should be deleted after the message is deserialized.
 		 */
 		public Itr(File[] files, boolean delete) {
 			this.files = files;
@@ -160,7 +159,7 @@ public class Persistence {
 	 * Creates a new persistence object which will use the specified directory to store and retrieve message.
 	 * 
 	 * @param directory
-	 *          the directory to use.
+	 *            the directory to use.
 	 */
 	public Persistence(File directory) {
 		this.directory = directory;
@@ -176,9 +175,9 @@ public class Persistence {
 	 * Saves the specified message to disk. If the message has already been saved, this method does nothing.
 	 * 
 	 * @param message
-	 *          the message to add.
+	 *            the message to add.
 	 * @throws PersistenceException
-	 *           if an error occurs while performing the operation.
+	 *             if an error occurs while performing the operation.
 	 */
 	public synchronized void add(Message message) throws PersistenceException {
 		Exception throwable = null;
@@ -224,7 +223,7 @@ public class Persistence {
 	 * Deletes the specified file from the persistence mechanism.
 	 * 
 	 * @param message
-	 *          the message to be deleted.
+	 *            the message to be deleted.
 	 * @return <code>true</code> if the message was successfully deleted, <code>false</code> if the message wasn't stored in the persistence
 	 *         mechanism or an error occured while performing the operation.
 	 */
@@ -236,7 +235,7 @@ public class Persistence {
 	 * Deletes the referred message from the persistence mechanism.
 	 * 
 	 * @param messageId
-	 *          the global identifier of the message.
+	 *            the global identifier of the message.
 	 * @return <code>true</code> if the message was successfully deleted, <code>false</code> if the message wasn't stored in the persistence
 	 *         mechanism or an error occured while performing the operation.
 	 */
@@ -269,7 +268,7 @@ public class Persistence {
 	 * Returns a list with all saved messages. Notice that expired messages won't be included.
 	 * 
 	 * @param delete
-	 *          indicates whether files have to be deleted after the objects have been read.
+	 *            indicates whether files have to be deleted after the objects have been read.
 	 * @return a list with all saved messages.
 	 */
 	public synchronized List<Message> get(boolean delete) {
@@ -300,12 +299,12 @@ public class Persistence {
 	 * <code>true</code>.
 	 * 
 	 * @param file
-	 *          the file to read the message from.
+	 *            the file to read the message from.
 	 * @param delete
-	 *          indicates whether the file has to be deleted after the object has been read from it.
+	 *            indicates whether the file has to be deleted after the object has been read from it.
 	 * @return the message.
 	 * @throws Exception
-	 *           if an error occurs while performing the operation.
+	 *             if an error occurs while performing the operation.
 	 */
 	private Message get(File file, boolean delete) throws Exception {
 		Message result = null;
@@ -353,18 +352,19 @@ public class Persistence {
 	 * Gets the filename based on message information. The filename is constructed using message's id and client id separated by '.'.
 	 * 
 	 * @param message
-	 *          the message.
+	 *            the message.
 	 * @return the filename.
 	 */
 	public String get(Message message) {
-		return getFilename((message.getTargetClientId() != null) ? message.getTargetClientId() : message.getClientId(), message.getMessageId());
+		return getFilename((message.getTargetClientId() != null) ? message.getTargetClientId() : message.getClientId(),
+				message.getMessageId());
 	}
 
 	/**
 	 * Returns the list of persisted messages for a given client id. Notice that expired messages won't be included.
 	 * 
 	 * @param clientId
-	 *          the client id.
+	 *            the client id.
 	 * @return the list of persisted messages for the specified client id.
 	 */
 	public synchronized List<Message> get(String clientId) {
@@ -375,9 +375,9 @@ public class Persistence {
 	 * Returns the list of persisted messages for a given client id. Notice that expired messages won't be included.
 	 * 
 	 * @param clientId
-	 *          the client id.
+	 *            the client id.
 	 * @param delete
-	 *          indicates whether files have to be deleted after the objects have been read.
+	 *            indicates whether files have to be deleted after the objects have been read.
 	 * @return the list of persisted messages for the specified client id.
 	 */
 	public synchronized List<Message> get(String clientId, boolean delete) {
@@ -408,9 +408,9 @@ public class Persistence {
 	 * Returns the message with the specified id stored in the underlying persistence mechanism.
 	 * 
 	 * @param clientId
-	 *          the client id.
+	 *            the client id.
 	 * @param messageId
-	 *          the id of the message to be retrieved.
+	 *            the id of the message to be retrieved.
 	 * @return the message with the specified id stored in the underlying persistence mechanism, or <code>null</code> if not found.
 	 */
 	@SuppressWarnings("unused")
@@ -426,11 +426,11 @@ public class Persistence {
 	 * Returns the message with the specified id stored in the underlying persistence mechanism.
 	 * 
 	 * @param clientId
-	 *          the client id.
+	 *            the client id.
 	 * @param messageId
-	 *          the id of the message to be retrieved.
+	 *            the id of the message to be retrieved.
 	 * @param delete
-	 *          indicates whether the file have to be deleted after the object have been read.
+	 *            indicates whether the file have to be deleted after the object have been read.
 	 * @return the message with the specified id stored in the underlying persistence mechanism, or <code>null</code> if not found.
 	 */
 	public synchronized Message get(String clientId, String messageId, boolean delete) throws Exception {
@@ -446,7 +446,7 @@ public class Persistence {
 	 * Gets the filename based on message information. The filename is constructed using message's id and client id separated by '.'.
 	 * 
 	 * @param message
-	 *          the message.
+	 *            the message.
 	 * @return the filename.
 	 */
 	public String getFilename(Message message) {
@@ -457,9 +457,9 @@ public class Persistence {
 	 * Returns the message with the specified id stored in the underlying persistence mechanism.
 	 * 
 	 * @param clientId
-	 *          the client id.
+	 *            the client id.
 	 * @param messageId
-	 *          the id of the message to be retrieved.
+	 *            the id of the message to be retrieved.
 	 * @return the message with the specified id stored in the underlying persistence mechanism, or <code>null</code> if not found.
 	 */
 	private String getFilename(String clientId, String messageId) {
@@ -474,12 +474,12 @@ public class Persistence {
 	 * Returns the list of persisted messages for a given client id. Notice that expired messages won't be included.
 	 * 
 	 * @param messageId
-	 *          the global message id
+	 *            the global message id
 	 * @param delete
-	 *          indicates whether the file have to be deleted after the object have been read
+	 *            indicates whether the file have to be deleted after the object have been read
 	 * @return the Message identified by id or <code>null</code> if message doesn't exists or it's not a File.
 	 * @throws Exception
-	 *           if there is a problem reading the message
+	 *             if there is a problem reading the message
 	 */
 	public synchronized Message getMessage(String messageId, boolean delete) throws Exception {
 		File messageFile = new File(directory, messageId);
@@ -494,7 +494,7 @@ public class Persistence {
 	 * Returns the global message id of the given message.
 	 * 
 	 * @param message
-	 *          the message.
+	 *            the message.
 	 * @return the global message id.
 	 */
 	public String getPersistedMessageId(Message message) {
@@ -509,7 +509,7 @@ public class Persistence {
 	 * expired.
 	 * 
 	 * @param delete
-	 *          indicates whether files have to be deleted after the objects have been read.
+	 *            indicates whether files have to be deleted after the objects have been read.
 	 * @return an iterator to iterate through all persisted messages.
 	 * @since 2.0.5
 	 */
@@ -521,14 +521,14 @@ public class Persistence {
 	}
 
 	/**
-	 * Returns an iterator to iterate through persisted messages for a given client id. Notice that expired messages won't be included. Calls
-	 * to <code>next()</code> may return <code>null</code> if problems are encountered when deserializing the message or if the message has
-	 * expired.
+	 * Returns an iterator to iterate through persisted messages for a given client id. Notice that expired messages won't be included.
+	 * Calls to <code>next()</code> may return <code>null</code> if problems are encountered when deserializing the message or if the
+	 * message has expired.
 	 * 
 	 * @param clientId
-	 *          the client id.
+	 *            the client id.
 	 * @param delete
-	 *          indicates whether files have to be deleted after the objects have been read.
+	 *            indicates whether files have to be deleted after the objects have been read.
 	 * @return an iterator to iterate through persisted messages for a given client id.
 	 * @since 2.0.5
 	 */

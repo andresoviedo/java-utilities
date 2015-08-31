@@ -30,8 +30,8 @@ public final class StructuredStringSerializer<T> {
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	/**
-	 * Pattern to extend actual java Pattern <code>%[argument_index$][flags][width][.precision]conversion</code> with a
-	 * flag that is the padding char.
+	 * Pattern to extend actual java Pattern <code>%[argument_index$][flags][width][.precision]conversion</code> with a flag that is the
+	 * padding char.
 	 */
 	private static final Pattern formatPattern = Pattern.compile("%(\\d+\\$)?('.')?(?:[-#+ ,(])?(\\d+)[sSd]");
 
@@ -124,8 +124,8 @@ public final class StructuredStringSerializer<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void deserializeImpl(Object currentObj, Collection<SerializableField> fields,
-			Map<String, SerializableField> unorderedRecords, StringBuilder sb, int pos) {
+	public void deserializeImpl(Object currentObj, Collection<SerializableField> fields, Map<String, SerializableField> unorderedRecords,
+			StringBuilder sb, int pos) {
 
 		while (sb.indexOf("\n") == 0 || sb.indexOf("\r") == 0) {
 			sb.deleteCharAt(0);
@@ -146,8 +146,8 @@ public final class StructuredStringSerializer<T> {
 							Object actualObject = ue.getValue().getValue(currentObj);
 							if (ue.getValue().recordRegex.matcher(sb.toString()).find()) {
 								tryToDeserialize = true;
-								LOG.info("Instantiating new (unordered) item  with type '" + ue.getValue().listType
-										+ "' for field '" + ue.getValue().field.getName() + "'...");
+								LOG.info("Instantiating new (unordered) item  with type '" + ue.getValue().listType + "' for field '"
+										+ ue.getValue().field.getName() + "'...");
 								if (ue.getValue().isList) {
 									Object newItem = ue.getValue().newListItemInstance();
 									((List<Object>) actualObject).add(newItem);
@@ -171,8 +171,7 @@ public final class StructuredStringSerializer<T> {
 
 					while ((!f.isList && first) || (f.isList && f.recordRegex.matcher(sb.toString()).find())) {
 						if (f.isList) {
-							LOG.info("Instantiating new item  with type '" + f.listType + "' for field '"
-									+ f.field.getName() + "'...");
+							LOG.info("Instantiating new item  with type '" + f.listType + "' for field '" + f.field.getName() + "'...");
 							Object newItem = f.newListItemInstance();
 							actualList.add(newItem);
 							actualObject = newItem;
@@ -191,17 +190,15 @@ public final class StructuredStringSerializer<T> {
 				String value = sb.substring(0, end);
 				if (!f.isConstant) {
 					f.setValue(currentObj, value);
-					LOG.info("-" + currentObj.getClass().getSimpleName() + "#" + f.field.getName() + " [" + fs + "]='"
-							+ value + "'");
+					LOG.info("-" + currentObj.getClass().getSimpleName() + "#" + f.field.getName() + " [" + fs + "]='" + value + "'");
 				} else {
-					LOG.info("-" + currentObj.getClass().getSimpleName() + "#" + f.field.getName() + " [" + fs + "]='"
-							+ value + "'");
+					LOG.info("-" + currentObj.getClass().getSimpleName() + "#" + f.field.getName() + " [" + fs + "]='" + value + "'");
 				}
 				sb.delete(0, end);
 				pos += end;
 			} catch (Exception ex) {
-				String errorMsg = "Exception deserializing field '" + currentObj.getClass().getSimpleName() + "#"
-						+ f.field.getName() + "' at pos '" + pos + "' in '" + sb + "'";
+				String errorMsg = "Exception deserializing field '" + currentObj.getClass().getSimpleName() + "#" + f.field.getName()
+						+ "' at pos '" + pos + "' in '" + sb + "'";
 				LOG.fatal(errorMsg, ex);
 				throw new RuntimeException(errorMsg, ex);
 			}
@@ -254,8 +251,7 @@ public final class StructuredStringSerializer<T> {
 				listType = (Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
 				this.classAnnotation = listType.getAnnotation(StringField.class);
 				if (classAnnotation == null || "".equals(classAnnotation.id())) {
-					LOG.warn("The class is an item list '" + listType + "' but the @'"
-							+ StringField.class.getSimpleName()
+					LOG.warn("The class is an item list '" + listType + "' but the @'" + StringField.class.getSimpleName()
 							+ "' annotation is missing or the attribute #id was not set. "
 							+ "You won't be able to deserialize this type of variable length records");
 					listItemId = null;
@@ -263,8 +259,8 @@ public final class StructuredStringSerializer<T> {
 				} else {
 					listItemId = classAnnotation.id();
 					recordRegex = Pattern.compile("(?s)^[\\r\\n]*" + listItemId + ".*");
-					LOG.info("Found List for field '" + field.getName() + "' with type '" + listType
-							+ "' and item id '" + listItemId + "'...");
+					LOG.info("Found List for field '" + field.getName() + "' with type '" + listType + "' and item id '" + listItemId
+							+ "'...");
 				}
 			} else {
 				this.classAnnotation = clazz.getAnnotation(StringField.class);
@@ -278,8 +274,7 @@ public final class StructuredStringSerializer<T> {
 				if (!isList) {
 					tempChilds = build(field.getType());
 				} else {
-					Class<?> genericType = (Class<?>) ((ParameterizedType) field.getGenericType())
-							.getActualTypeArguments()[0];
+					Class<?> genericType = (Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
 					LOG.info("Found List for field '" + field.getName() + "' with type '" + genericType + "'...");
 					tempChilds = build(genericType);
 				}
@@ -303,12 +298,11 @@ public final class StructuredStringSerializer<T> {
 						value = formatValue(field.get(null));
 						LOG.debug("Found constant value for '" + field.getName() + "'='" + value + "'");
 					} catch (Exception ex) {
-						throw new IllegalStateException("Couldn't get constant value from '" + field.getName() + "'",
-								ex);
+						throw new IllegalStateException("Couldn't get constant value from '" + field.getName() + "'", ex);
 					}
 				} else {
-					throw new UnsupportedOperationException("Found constant value for '" + field.getName()
-							+ "', but type (" + field.getType() + ") is not supported yet");
+					throw new UnsupportedOperationException("Found constant value for '" + field.getName() + "', but type ("
+							+ field.getType() + ") is not supported yet");
 				}
 			} else {
 				value = null;
@@ -361,8 +355,7 @@ public final class StructuredStringSerializer<T> {
 				return formatValue(field.get(runtimeObj));
 
 			} catch (Exception ex) {
-				throw new IllegalArgumentException("Exception getting field '" + field.getName() + "' from '"
-						+ runtimeObj + "'", ex);
+				throw new IllegalArgumentException("Exception getting field '" + field.getName() + "' from '" + runtimeObj + "'", ex);
 			}
 		}
 
@@ -385,8 +378,7 @@ public final class StructuredStringSerializer<T> {
 
 				if (runtimeValue instanceof Integer || Integer.TYPE.isInstance(runtimeValue)) {
 					String ret = String.format(annotation.format(), runtimeValue);
-					LOG.debug("Formated integer value '" + runtimeValue + "' with '" + annotation.format() + "'='"
-							+ ret + "'");
+					LOG.debug("Formated integer value '" + runtimeValue + "' with '" + annotation.format() + "'='" + ret + "'");
 					return ret;
 				}
 
@@ -416,8 +408,7 @@ public final class StructuredStringSerializer<T> {
 					throw new UnsupportedOperationException("Unsupported type '" + field.getType() + "'");
 				}
 			} catch (Exception ex) {
-				throw new RuntimeException("Exception populating field '" + field.getName() + "' with value '" + value
-						+ "'", ex);
+				throw new RuntimeException("Exception populating field '" + field.getName() + "' with value '" + value + "'", ex);
 			}
 		}
 
@@ -432,15 +423,15 @@ public final class StructuredStringSerializer<T> {
 
 			Matcher m = formatPattern.matcher(annotation.format());
 			if (!m.find()) {
-				throw new IllegalArgumentException("Couldn't guess field size for '" + field.getName()
-						+ "' with format '" + annotation.format() + "'");
+				throw new IllegalArgumentException("Couldn't guess field size for '" + field.getName() + "' with format '"
+						+ annotation.format() + "'");
 			}
 			return Integer.parseInt(m.group(3));
 		}
 
 		/**
-		 * This is an extension to the {@link String#format(String, Object...)} method to support padding with any
-		 * character (not only space).
+		 * This is an extension to the {@link String#format(String, Object...)} method to support padding with any character (not only
+		 * space).
 		 * 
 		 * @param runtimeValue
 		 * @param format
@@ -453,8 +444,7 @@ public final class StructuredStringSerializer<T> {
 				char padChar = m.group(2).charAt(1);
 				StringBuilder newFormat = new StringBuilder(format);
 				newFormat.delete(m.start(2), m.end(2));
-				LOG.debug("Formatting '" + runtimeValue + "' with new format '" + newFormat + "' with pad char '"
-						+ padChar + "'...");
+				LOG.debug("Formatting '" + runtimeValue + "' with new format '" + newFormat + "' with pad char '" + padChar + "'...");
 				String newValue = String.format(newFormat.toString(), runtimeValue);
 				StringBuilder tempRet = new StringBuilder(newValue);
 				LOG.debug("Replacing pad char for '" + tempRet + "'");
@@ -508,9 +498,8 @@ public final class StructuredStringSerializer<T> {
 
 		@Override
 		public String toString() {
-			return "SerializableField [class=" + enclosingClass + ", id="
-					+ (classAnnotation != null ? classAnnotation.id() : "<null>") + ",field=" + field.getName()
-					+ ", childs=" + childs + "]";
+			return "SerializableField [class=" + enclosingClass + ", id=" + (classAnnotation != null ? classAnnotation.id() : "<null>")
+					+ ",field=" + field.getName() + ", childs=" + childs + "]";
 		}
 
 	}

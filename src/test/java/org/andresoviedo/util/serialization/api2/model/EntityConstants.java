@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 /**
  * Interface for implementations of entities.
  * 
- * @author andres
+ * @author andresoviedo
  *
  */
 public interface EntityConstants {
@@ -61,8 +61,7 @@ public interface EntityConstants {
 	/**
 	 * Pattern to get confirmation files
 	 */
-	Pattern ABSOLUTE_CONFIRMATION_FILES_PATTERN = Pattern.compile(ABSOLUTE_CONFIRMATION_FOLDER + "/"
-			+ CONFIRMATION_FILE_PATTERN.pattern());
+	Pattern ABSOLUTE_CONFIRMATION_FILES_PATTERN = Pattern.compile(ABSOLUTE_CONFIRMATION_FOLDER + "/" + CONFIRMATION_FILE_PATTERN.pattern());
 	/**
 	 * Pattern of response filename
 	 */
@@ -70,8 +69,7 @@ public interface EntityConstants {
 	/**
 	 * Pattern to get response files
 	 */
-	Pattern ABSOLUTE_RESPONSE_FILES_PATTERN = Pattern.compile(ABSOLUTE_RESPONSE_FOLDER + "/"
-			+ RESPONSE_FILE_PATTERN.pattern());
+	Pattern ABSOLUTE_RESPONSE_FILES_PATTERN = Pattern.compile(ABSOLUTE_RESPONSE_FOLDER + "/" + RESPONSE_FILE_PATTERN.pattern());
 	/**
 	 * File encoding for requests, confirmation and response
 	 */
@@ -80,7 +78,7 @@ public interface EntityConstants {
 	/**
 	 * Type of file
 	 * 
-	 * @author andres
+	 * @author andresoviedo
 	 *
 	 */
 	enum FileType {

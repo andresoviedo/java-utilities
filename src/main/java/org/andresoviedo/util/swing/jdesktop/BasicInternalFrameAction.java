@@ -15,7 +15,6 @@ import javax.swing.JMenuItem;
 /**
  * An action that shows or hides the frame depending on user selection.
  * 
-
  */
 class BasicInternalFrameAction extends AbstractAction implements PropertyChangeListener {
 
@@ -28,7 +27,7 @@ class BasicInternalFrameAction extends AbstractAction implements PropertyChangeL
 	 * Constructs a new action with the specified frame associated.
 	 * 
 	 * @param f
-	 *          the associated frame.
+	 *            the associated frame.
 	 */
 	public BasicInternalFrameAction(BasicInternalFrame f) {
 		this.f = f;
@@ -63,7 +62,7 @@ class BasicInternalFrameAction extends AbstractAction implements PropertyChangeL
 	 * Sets the frame visible and selects it.
 	 * 
 	 * @param deiconify
-	 *          specifies whether the frame has to be deiconified (if it's iconified) or not.
+	 *            specifies whether the frame has to be deiconified (if it's iconified) or not.
 	 */
 	protected void showAndSelectFrame(boolean deiconify) {
 		if (f.isIcon() && deiconify) {

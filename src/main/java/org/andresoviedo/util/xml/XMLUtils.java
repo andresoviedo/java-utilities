@@ -39,13 +39,10 @@ public class XMLUtils {
 		}
 	}
 
-	public static void removeXMLEntities(File source, File target,
-			String encoding) {
+	public static void removeXMLEntities(File source, File target, String encoding) {
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					new FileInputStream(source), encoding));
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(target), encoding));
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(source), encoding));
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(target), encoding));
 
 			String readed = null;
 			while ((readed = br.readLine()) != null) {
@@ -61,9 +58,8 @@ public class XMLUtils {
 	}
 
 	/**
-	 * Returns the text value of the specified node. The returned value is the
-	 * node value of the first child of <code>node</code> which type is
-	 * <code>Document.TEXT_NODE</code>.
+	 * Returns the text value of the specified node. The returned value is the node value of the first child of <code>node</code> which type
+	 * is <code>Document.TEXT_NODE</code>.
 	 * 
 	 * @param node
 	 *            the node which text value has to be retrieved.
@@ -80,8 +76,7 @@ public class XMLUtils {
 	}
 
 	/**
-	 * Returns the content of the first CDATA section node found under the
-	 * specified node.
+	 * Returns the content of the first CDATA section node found under the specified node.
 	 * 
 	 * @param node
 	 *            the node.

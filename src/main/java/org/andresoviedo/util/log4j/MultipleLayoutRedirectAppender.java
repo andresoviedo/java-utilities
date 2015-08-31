@@ -29,14 +29,11 @@ public final class MultipleLayoutRedirectAppender extends AppenderSkeleton {
 					"El formato del logger es 'X-Y-ZZZZ'; donde 'X' es el nombre del logger con el 'Y' appender asociado. 'Z' es el identificador de este appender");
 		Log targetLogger = LogFactory.getLog(params[0]);
 		if (targetLogger == null) {
-			throw new IllegalArgumentException("El logger '" + params[0]
-					+ "' no existe");
+			throw new IllegalArgumentException("El logger '" + params[0] + "' no existe");
 		}
-		appender = (MultipleLayoutRollingFileAppender) Logger.getLogger(
-				params[0]).getAppender(params[1]);
+		appender = (MultipleLayoutRollingFileAppender) Logger.getLogger(params[0]).getAppender(params[1]);
 		if (appender == null) {
-			throw new IllegalArgumentException("El logger '" + params[0]
-					+ "' no tiene el appender '" + appender + "'");
+			throw new IllegalArgumentException("El logger '" + params[0] + "' no tiene el appender '" + appender + "'");
 		}
 	}
 
@@ -70,38 +67,32 @@ public final class MultipleLayoutRedirectAppender extends AppenderSkeleton {
 		private long nextRollover = 0;
 
 		/**
-		 * The default constructor simply calls its
-		 * {@link FileAppender#FileAppender parents constructor}.
+		 * The default constructor simply calls its {@link FileAppender#FileAppender parents constructor}.
 		 */
 		public MultipleLayoutRollingFileAppender() {
 			super();
 		}
 
 		/**
-		 * Instantiate a RollingFileAppender and open the file designated by
-		 * <code>filename</code>. The opened filename will become the ouput
-		 * destination for this appender.
+		 * Instantiate a RollingFileAppender and open the file designated by <code>filename</code>. The opened filename will become the
+		 * ouput destination for this appender.
 		 * 
 		 * <p>
-		 * If the <code>append</code> parameter is true, the file will be
-		 * appended to. Otherwise, the file desginated by <code>filename</code>
-		 * will be truncated before being opened.
+		 * If the <code>append</code> parameter is true, the file will be appended to. Otherwise, the file desginated by
+		 * <code>filename</code> will be truncated before being opened.
 		 */
-		public MultipleLayoutRollingFileAppender(Layout layout,
-				String filename, boolean append) throws IOException {
+		public MultipleLayoutRollingFileAppender(Layout layout, String filename, boolean append) throws IOException {
 			super(layout, filename, append);
 		}
 
 		/**
-		 * Instantiate a FileAppender and open the file designated by
-		 * <code>filename</code>. The opened filename will become the output
+		 * Instantiate a FileAppender and open the file designated by <code>filename</code>. The opened filename will become the output
 		 * destination for this appender.
 		 * 
 		 * <p>
 		 * The file will be appended to.
 		 */
-		public MultipleLayoutRollingFileAppender(Layout layout, String filename)
-				throws IOException {
+		public MultipleLayoutRollingFileAppender(Layout layout, String filename) throws IOException {
 			super(layout, filename);
 		}
 
@@ -113,8 +104,7 @@ public final class MultipleLayoutRedirectAppender extends AppenderSkeleton {
 		}
 
 		/**
-		 * Get the maximum size that the output file is allowed to reach before
-		 * being rolled over to backup files.
+		 * Get the maximum size that the output file is allowed to reach before being rolled over to backup files.
 		 * 
 		 * @since 1.1
 		 */
@@ -126,16 +116,12 @@ public final class MultipleLayoutRedirectAppender extends AppenderSkeleton {
 		 * Implements the usual roll over behaviour.
 		 * 
 		 * <p>
-		 * If <code>MaxBackupIndex</code> is positive, then files {
-		 * <code>File.1</code>, ..., <code>File.MaxBackupIndex -1</code> are
-		 * renamed to {<code>File.2</code>, ...,
-		 * <code>File.MaxBackupIndex</code> . Moreover, <code>File</code> is
-		 * renamed <code>File.1</code> and closed. A new <code>File</code> is
-		 * created to receive further log output.
+		 * If <code>MaxBackupIndex</code> is positive, then files { <code>File.1</code>, ..., <code>File.MaxBackupIndex -1</code> are
+		 * renamed to {<code>File.2</code>, ..., <code>File.MaxBackupIndex</code> . Moreover, <code>File</code> is renamed
+		 * <code>File.1</code> and closed. A new <code>File</code> is created to receive further log output.
 		 * 
 		 * <p>
-		 * If <code>MaxBackupIndex</code> is equal to zero, then the
-		 * <code>File</code> is truncated with no backup files created.
+		 * If <code>MaxBackupIndex</code> is equal to zero, then the <code>File</code> is truncated with no backup files created.
 		 */
 		public// synchronization not necessary since doAppend is alreasy synched
 		void rollOver() {
@@ -190,8 +176,7 @@ public final class MultipleLayoutRedirectAppender extends AppenderSkeleton {
 							if (e instanceof InterruptedIOException) {
 								Thread.currentThread().interrupt();
 							}
-							LogLog.error("setFile(" + fileName
-									+ ", true) call failed.", e);
+							LogLog.error("setFile(" + fileName + ", true) call failed.", e);
 						}
 					}
 				}
@@ -210,14 +195,12 @@ public final class MultipleLayoutRedirectAppender extends AppenderSkeleton {
 					if (e instanceof InterruptedIOException) {
 						Thread.currentThread().interrupt();
 					}
-					LogLog.error("setFile(" + fileName
-							+ ", false) call failed.", e);
+					LogLog.error("setFile(" + fileName + ", false) call failed.", e);
 				}
 			}
 		}
 
-		public synchronized void setFile(String fileName, boolean append,
-				boolean bufferedIO, int bufferSize) throws IOException {
+		public synchronized void setFile(String fileName, boolean append, boolean bufferedIO, int bufferSize) throws IOException {
 			super.setFile(fileName, append, this.bufferedIO, this.bufferSize);
 			if (append) {
 				File f = new File(fileName);
@@ -229,10 +212,8 @@ public final class MultipleLayoutRedirectAppender extends AppenderSkeleton {
 		 * Set the maximum number of backup files to keep around.
 		 * 
 		 * <p>
-		 * The <b>MaxBackupIndex</b> option determines how many backup files are
-		 * kept before the oldest is erased. This option takes a positive
-		 * integer value. If set to zero, then there will be no backup files and
-		 * the log file will be truncated when it reaches
+		 * The <b>MaxBackupIndex</b> option determines how many backup files are kept before the oldest is erased. This option takes a
+		 * positive integer value. If set to zero, then there will be no backup files and the log file will be truncated when it reaches
 		 * <code>MaxFileSize</code>.
 		 */
 		public void setMaxBackupIndex(int maxBackups) {
@@ -240,14 +221,12 @@ public final class MultipleLayoutRedirectAppender extends AppenderSkeleton {
 		}
 
 		/**
-		 * Set the maximum size that the output file is allowed to reach before
-		 * being rolled over to backup files.
+		 * Set the maximum size that the output file is allowed to reach before being rolled over to backup files.
 		 * 
 		 * <p>
-		 * This method is equivalent to {@link #setMaxFileSize} except that it
-		 * is required for differentiating the setter taking a <code>long</code>
-		 * argument from the setter taking a <code>String</code> argument by the
-		 * JavaBeans {@link java.beans.Introspector Introspector}.
+		 * This method is equivalent to {@link #setMaxFileSize} except that it is required for differentiating the setter taking a
+		 * <code>long</code> argument from the setter taking a <code>String</code> argument by the JavaBeans {@link java.beans.Introspector
+		 * Introspector}.
 		 * 
 		 * @see #setMaxFileSize(String)
 		 */
@@ -256,15 +235,12 @@ public final class MultipleLayoutRedirectAppender extends AppenderSkeleton {
 		}
 
 		/**
-		 * Set the maximum size that the output file is allowed to reach before
-		 * being rolled over to backup files.
+		 * Set the maximum size that the output file is allowed to reach before being rolled over to backup files.
 		 * 
 		 * <p>
-		 * In configuration files, the <b>MaxFileSize</b> option takes an long
-		 * integer in the range 0 - 2^63. You can specify the value with the
-		 * suffixes "KB", "MB" or "GB" so that the integer is interpreted being
-		 * expressed respectively in kilobytes, megabytes or gigabytes. For
-		 * example, the value "10KB" will be interpreted as 10240.
+		 * In configuration files, the <b>MaxFileSize</b> option takes an long integer in the range 0 - 2^63. You can specify the value with
+		 * the suffixes "KB", "MB" or "GB" so that the integer is interpreted being expressed respectively in kilobytes, megabytes or
+		 * gigabytes. For example, the value "10KB" will be interpreted as 10240.
 		 */
 		public void setMaxFileSize(String value) {
 			maxFileSize = OptionConverter.toFileSize(value, maxFileSize + 1);

@@ -24,20 +24,17 @@ import org.andresoviedo.util.messaging.api1.common.data.Command;
 import org.andresoviedo.util.messaging.api1.common.data.Message;
 import org.andresoviedo.util.messaging.api1.common.data.PingRequest;
 
-
 /**
- * A socket session used to connect to a remote server and exchange message
- * objects.
+ * A socket session used to connect to a remote server and exchange message objects.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class SocketSession {
 
 	/**
 	 * A static reference to the logger object.
 	 */
-	private static Logger logger = Logger
-			.getLogger(MessengerProperties.LOGGER_NAME);
+	private static Logger logger = Logger.getLogger(MessengerProperties.LOGGER_NAME);
 
 	/**
 	 * The default connection timeout.
@@ -55,8 +52,7 @@ public class SocketSession {
 	private static final int DEFAULT_RECONNECTION_DELAY = 30000;
 
 	/**
-	 * The time to wait until the object input serialization stream header is
-	 * read.
+	 * The time to wait until the object input serialization stream header is read.
 	 */
 	private static final int INITIAL_RECEIVE_TIMEOUT = 10000;
 
@@ -116,8 +112,7 @@ public class SocketSession {
 	private ConnectionTester tester;
 
 	/**
-	 * The list of socket addresses to connect to. Will be <code>null</code> if
-	 * the socket constructor is used.
+	 * The list of socket addresses to connect to. Will be <code>null</code> if the socket constructor is used.
 	 */
 	private InetSocketAddress[] addresses;
 
@@ -132,8 +127,7 @@ public class SocketSession {
 	private boolean closed = true;
 
 	/**
-	 * Counter used to reset the object output stream every
-	 * <code>RESET_FREQUENCY</code> write calls.
+	 * Counter used to reset the object output stream every <code>RESET_FREQUENCY</code> write calls.
 	 */
 	private int counter = 0;
 
@@ -157,11 +151,9 @@ public class SocketSession {
 	 * @param controller
 	 *            the controller whishing to receive session events.
 	 * @throws IllegalArgumentException
-	 *             if either <code>address</code> or <code>controller</code> are
-	 *             <code>null</code>, or the port is not valid.
+	 *             if either <code>address</code> or <code>controller</code> are <code>null</code>, or the port is not valid.
 	 */
-	public SocketSession(String clientId, InetAddress address, int port,
-			SocketSessionController controller) {
+	public SocketSession(String clientId, InetAddress address, int port, SocketSessionController controller) {
 		this.clientId = clientId;
 		if (address == null) {
 			throw new IllegalArgumentException("Address is null.");
@@ -187,11 +179,9 @@ public class SocketSession {
 	 * @param controller
 	 *            the controller whishing to receive session events.
 	 * @throws IllegalArgumentException
-	 *             if <code>controller</code> is <code>null</code> or
-	 *             <code>host</code> is null, or the port is not valid.
+	 *             if <code>controller</code> is <code>null</code> or <code>host</code> is null, or the port is not valid.
 	 */
-	public SocketSession(String clientId, String host, int port,
-			SocketSessionController controller) {
+	public SocketSession(String clientId, String host, int port, SocketSessionController controller) {
 		this.clientId = clientId;
 		if (controller == null) {
 			throw new IllegalArgumentException("Controller is null.");
@@ -215,12 +205,10 @@ public class SocketSession {
 	 * @param controller
 	 *            the controller whishing to receive session events.
 	 * @throws IllegalArgumentException
-	 *             if <code>addresses</code> is <code>null</code>, no addresses
-	 *             are specified, the addresses array contains nulls, or
+	 *             if <code>addresses</code> is <code>null</code>, no addresses are specified, the addresses array contains nulls, or
 	 *             <code>controller</code> is null.
 	 */
-	public SocketSession(String clientId, InetSocketAddress[] addresses,
-			SocketSessionController controller) {
+	public SocketSession(String clientId, InetSocketAddress[] addresses, SocketSessionController controller) {
 		this.clientId = clientId;
 		if (addresses == null) {
 			throw new IllegalArgumentException("The list of addresses is null.");
@@ -230,8 +218,7 @@ public class SocketSession {
 		}
 		for (int i = 0; i < addresses.length; i++) {
 			if (addresses[i] == null) {
-				throw new IllegalArgumentException(
-						"No null addresses allowed in the addresses array.");
+				throw new IllegalArgumentException("No null addresses allowed in the addresses array.");
 			}
 		}
 		if (controller == null) {
@@ -251,11 +238,9 @@ public class SocketSession {
 	 * @param controller
 	 *            the controller whishing to receive session events.
 	 * @throws IllegalArgumentException
-	 *             if either <code>socket</code> or <code>controller</code> are
-	 *             <code>null</code>.
+	 *             if either <code>socket</code> or <code>controller</code> are <code>null</code>.
 	 */
-	public SocketSession(String clientId, Socket socket,
-			SocketSessionController controller) {
+	public SocketSession(String clientId, Socket socket, SocketSessionController controller) {
 		this.clientId = clientId;
 		if (socket == null) {
 			throw new IllegalArgumentException("Socket is null.");
@@ -272,16 +257,14 @@ public class SocketSession {
 	/**
 	 * Returns whether this session is opened or not.
 	 * 
-	 * @return <code>true</code> if the session is opened, <code>false</code>
-	 *         otherwise.
+	 * @return <code>true</code> if the session is opened, <code>false</code> otherwise.
 	 */
 	public synchronized boolean isOpened() {
 		return !closed;
 	}
 
 	/**
-	 * Opens this session. This method does nothing if the session is already
-	 * opened.
+	 * Opens this session. This method does nothing if the session is already opened.
 	 */
 	public synchronized void open() throws SocketSessionException {
 		if (!closed) {
@@ -294,17 +277,14 @@ public class SocketSession {
 				Socket tempSocket = null;
 				// Loop through all possible addresses.
 				for (int i = 0; i < addresses.length; i++) {
-					logger.info("Opening session [" + i + "]: "
-							+ addresses[i].getHostName() + "@"
-							+ addresses[i].getPort());
+					logger.info("Opening session [" + i + "]: " + addresses[i].getHostName() + "@" + addresses[i].getPort());
 					try {
 						// Create an unbound socket.
 						tempSocket = new Socket();
 						// This method won't block more than
 						// DEFAULT_CONNECTION_TIMEOUT milliseconds.
 						logger.fine("Invoking socket's connect() method...");
-						tempSocket.connect(addresses[i],
-								DEFAULT_CONNECTION_TIMEOUT);
+						tempSocket.connect(addresses[i], DEFAULT_CONNECTION_TIMEOUT);
 						logger.fine("Connected.");
 						// Keep a reference to the socket.
 						synchronized (socketLock) {
@@ -316,8 +296,7 @@ public class SocketSession {
 						logger.warning("Connect exception: " + e.getMessage());
 						if (i == (addresses.length - 1)) {
 							// We've tried all possible addresses.
-							throw new IOException(
-									"unable to connect to any of the supplied addresses.");
+							throw new IOException("unable to connect to any of the supplied addresses.");
 						}
 					}
 				}
@@ -337,21 +316,16 @@ public class SocketSession {
 			// to read the serialization stream header.
 			this.socket.setSoTimeout(INITIAL_RECEIVE_TIMEOUT);
 			logger.fine("Opening input stream...");
-			ois = new ObjectInputStream(new BufferedInputStream(
-					socket.getInputStream())) {
+			ois = new ObjectInputStream(new BufferedInputStream(socket.getInputStream())) {
 				/*
-				 * @see
-				 * java.io.ObjectInputStream#resolveClass(java.io.ObjectStreamClass
-				 * )
+				 * @see java.io.ObjectInputStream#resolveClass(java.io.ObjectStreamClass )
 				 */
-				protected Class<?> resolveClass(ObjectStreamClass desc)
-						throws IOException, ClassNotFoundException {
+				protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {
 					String name = desc.getName();
 					try {
 						return super.resolveClass(desc);
 					} catch (ClassNotFoundException e) {
-						Class<?> clazz = (Class<?>) Messenger
-								.getRegisteredClass(name);
+						Class<?> clazz = (Class<?>) Messenger.getRegisteredClass(name);
 						if (clazz != null) {
 							return clazz;
 						} else {
@@ -363,8 +337,7 @@ public class SocketSession {
 			logger.fine("Input stream opened.");
 			// Clear the timeout so further read() calls will block forever.
 			this.socket.setSoTimeout(0);
-			logger.info("Session opened: " + getRemoteHostName() + "@"
-					+ getRemotePort());
+			logger.info("Session opened: " + getRemoteHostName() + "@" + getRemotePort());
 		} catch (IOException e) {
 			logger.warning("Couldn't open the session: " + e.getMessage());
 			// Close the streams, just in case.
@@ -413,20 +386,17 @@ public class SocketSession {
 	}
 
 	/**
-	 * Closes this session. This method does nothing if the session is already
-	 * closed.
+	 * Closes this session. This method does nothing if the session is already closed.
 	 */
 	public synchronized void close() {
 		close(true);
 	}
 
 	/**
-	 * Closes this session. This method does nothing if the session is already
-	 * closed.
+	 * Closes this session. This method does nothing if the session is already closed.
 	 * 
 	 * @param forced
-	 *            indicates whether the session has been closed by explicitly
-	 *            calling <code>close()</code> from the outside.
+	 *            indicates whether the session has been closed by explicitly calling <code>close()</code> from the outside.
 	 */
 	private synchronized void close(boolean forced) {
 		if (this.closed) {
@@ -434,8 +404,7 @@ public class SocketSession {
 			// getRemotePort() + " was already closed.");
 			return;
 		}
-		logger.info("Closing session " + getRemoteHostName() + "@"
-				+ getRemotePort() + "...");
+		logger.info("Closing session " + getRemoteHostName() + "@" + getRemotePort() + "...");
 
 		// Stop the tester thread.
 		if (tester != null) {
@@ -487,11 +456,9 @@ public class SocketSession {
 	 * @param command
 	 *            the command to send.
 	 * @throws SocketSessionException
-	 *             if the session hasn't been opened yet, or the session is
-	 *             closed.
+	 *             if the session hasn't been opened yet, or the session is closed.
 	 */
-	public synchronized void send(Command command)
-			throws SocketSessionException {
+	public synchronized void send(Command command) throws SocketSessionException {
 		if (closed) {
 			throw new SocketSessionException("This session is closed.");
 		}
@@ -543,8 +510,7 @@ public class SocketSession {
 	}
 
 	/**
-	 * Returns the properties map. No modifications should be made to the
-	 * returned map.
+	 * Returns the properties map. No modifications should be made to the returned map.
 	 * 
 	 * @return the properties map.
 	 */
@@ -553,21 +519,18 @@ public class SocketSession {
 	}
 
 	/**
-	 * Returns <code>true</code> if the properties map contains a property
-	 * stored with the specified key.
+	 * Returns <code>true</code> if the properties map contains a property stored with the specified key.
 	 * 
 	 * @param key
 	 *            the key to check.
-	 * @return <code>true</code> if the properties map contains a property
-	 *         stored with the specified key, <code>false</code> otherwise.
+	 * @return <code>true</code> if the properties map contains a property stored with the specified key, <code>false</code> otherwise.
 	 */
 	public boolean containsProperty(Object key) {
 		return properties.containsKey(key);
 	}
 
 	/**
-	 * Removes the specified property and returns its old value. If it does not
-	 * exist, returns <code>null</code>.
+	 * Removes the specified property and returns its old value. If it does not exist, returns <code>null</code>.
 	 * 
 	 * @param key
 	 *            the property key (<code>null</code> permitted).
@@ -577,45 +540,38 @@ public class SocketSession {
 	}
 
 	/**
-	 * Returns the date when this session was successfully opened for the last
-	 * time.
+	 * Returns the date when this session was successfully opened for the last time.
 	 * 
-	 * @return the date when this session was successfully opened for the last
-	 *         time.
+	 * @return the date when this session was successfully opened for the last time.
 	 */
 	public long getLastConnection() {
 		return lastConnection;
 	}
 
 	/**
-	 * Returns the local address to which this session is bound, or
-	 * <code>null</code> if this session is not bound yet.
+	 * Returns the local address to which this session is bound, or <code>null</code> if this session is not bound yet.
 	 * 
 	 * @return the local address to which this session is bound.
 	 */
 	public String getLocalHostAddress() {
 		synchronized (socketLock) {
-			return (socket != null) ? socket.getLocalAddress().getHostAddress()
-					: null;
+			return (socket != null) ? socket.getLocalAddress().getHostAddress() : null;
 		}
 	}
 
 	/**
-	 * Gets the local host name to which this session is bound, or
-	 * <code>null</code> if this session is not bound yet.
+	 * Gets the local host name to which this session is bound, or <code>null</code> if this session is not bound yet.
 	 * 
 	 * @return the local host name.
 	 */
 	public String getLocalHostName() {
 		synchronized (socketLock) {
-			return (socket != null) ? socket.getLocalAddress().getHostName()
-					: null;
+			return (socket != null) ? socket.getLocalAddress().getHostName() : null;
 		}
 	}
 
 	/**
-	 * Returns the local port to which this session is bound, or -1 if this
-	 * session is not bound yet.
+	 * Returns the local port to which this session is bound, or -1 if this session is not bound yet.
 	 * 
 	 * @return the local port to which this session is bound.
 	 */
@@ -626,8 +582,7 @@ public class SocketSession {
 	}
 
 	/**
-	 * Returns the remote address to which this session is connected, or
-	 * <code>null</code> if the session is not connected.
+	 * Returns the remote address to which this session is connected, or <code>null</code> if the session is not connected.
 	 * 
 	 * @return the remote address to which this session is bound.
 	 */
@@ -642,8 +597,7 @@ public class SocketSession {
 	}
 
 	/**
-	 * Returns the remote host name, or <code>null</code> if the session is not
-	 * connected..
+	 * Returns the remote host name, or <code>null</code> if the session is not connected..
 	 * 
 	 * @return the remote host name.
 	 */
@@ -678,10 +632,8 @@ public class SocketSession {
 	}
 
 	/**
-	 * Sets the reconnection delay, a positive integer representing the number
-	 * of milliseconds to wait between each failed connection attempt. The
-	 * default value is 30 seconds. Setting this value to 0 or a negative
-	 * integer turns off reconnection capability.
+	 * Sets the reconnection delay, a positive integer representing the number of milliseconds to wait between each failed connection
+	 * attempt. The default value is 30 seconds. Setting this value to 0 or a negative integer turns off reconnection capability.
 	 * 
 	 * @param reconnectionDelay
 	 *            the new reconnection delay.
@@ -746,8 +698,7 @@ public class SocketSession {
 					try {
 						open();
 					} catch (SocketSessionException e) {
-						logger.warning("Couldn't open the session: "
-								+ e.getMessage());
+						logger.warning("Couldn't open the session: " + e.getMessage());
 					}
 				} catch (Exception e) {
 					// We've been interrupted.
@@ -788,8 +739,7 @@ public class SocketSession {
 		 * @see java.lang.Thread#run()
 		 */
 		public void run() {
-			logger.fine("Thread '" + Thread.currentThread().getName()
-					+ "' starts.");
+			logger.fine("Thread '" + Thread.currentThread().getName() + "' starts.");
 			try {
 				// Set the initial timeout.
 				while (started) {
@@ -802,24 +752,19 @@ public class SocketSession {
 					controller.commandReceived(SocketSession.this, command);
 				}
 			} catch (ClassNotFoundException e) {
-				logger.severe("ClassNotFoundException caught: "
-						+ e.getMessage());
+				logger.severe("ClassNotFoundException caught: " + e.getMessage());
 			} catch (InvalidClassException e) {
-				logger.warning("InvalidClassException caught: "
-						+ e.getMessage());
+				logger.warning("InvalidClassException caught: " + e.getMessage());
 			} catch (StreamCorruptedException e) {
-				logger.warning("StreamCorruptedException caught: "
-						+ e.getMessage());
+				logger.warning("StreamCorruptedException caught: " + e.getMessage());
 			} catch (OptionalDataException e) {
-				logger.warning("OptionalDataException caught: "
-						+ e.getMessage());
+				logger.warning("OptionalDataException caught: " + e.getMessage());
 			} catch (IOException e) {
 				logger.warning("IOException caught: " + e.getMessage());
 			}
 			// Close the session, just in case.
 			close(false);
-			logger.fine("Thread '" + Thread.currentThread().getName()
-					+ "' dies.");
+			logger.fine("Thread '" + Thread.currentThread().getName() + "' dies.");
 		}
 
 	}
@@ -868,8 +813,7 @@ public class SocketSession {
 		 * @see java.lang.Thread#run()
 		 */
 		public void run() {
-			logger.fine("Thread '" + Thread.currentThread().getName()
-					+ "' starts.");
+			logger.fine("Thread '" + Thread.currentThread().getName() + "' starts.");
 
 			try {
 				while (true) {
@@ -896,8 +840,7 @@ public class SocketSession {
 					}
 				}
 			} catch (InterruptedException e) {
-				logger.fine("Thread '" + Thread.currentThread().getName()
-						+ "' interrupted.");
+				logger.fine("Thread '" + Thread.currentThread().getName() + "' interrupted.");
 			} catch (IOException e) {
 				logger.warning("IOException caught: " + e);
 			} catch (Exception e) {
@@ -905,15 +848,13 @@ public class SocketSession {
 			}
 			// Close the session, just in case.
 			close(false);
-			logger.fine("Thread '" + Thread.currentThread().getName()
-					+ "' dies.");
+			logger.fine("Thread '" + Thread.currentThread().getName() + "' dies.");
 		}
 
 	}
 
 	/**
-	 * A thread used to test the connection. To test it, it sends an enquire
-	 * link request every 5 seconds.
+	 * A thread used to test the connection. To test it, it sends an enquire link request every 5 seconds.
 	 */
 	private class ConnectionTester extends Thread {
 
@@ -929,8 +870,7 @@ public class SocketSession {
 		 * @see java.lang.Thread#run()
 		 */
 		public void run() {
-			logger.fine("Thread '" + Thread.currentThread().getName()
-					+ "' starts.");
+			logger.fine("Thread '" + Thread.currentThread().getName() + "' starts.");
 			try {
 				while (true) {
 					// Sleep for a while before sending an enquire link command.
@@ -943,8 +883,7 @@ public class SocketSession {
 				}
 			} catch (InterruptedException e) {
 			}
-			logger.fine("Thread '" + Thread.currentThread().getName()
-					+ "' dies.");
+			logger.fine("Thread '" + Thread.currentThread().getName() + "' dies.");
 		}
 
 	}

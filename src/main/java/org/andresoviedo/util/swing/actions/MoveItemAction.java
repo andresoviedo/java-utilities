@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
  * action will work only if list model is an instance of <code>javax.swing.DefaultListModel</code> (add() mehods needed) and table model is
  * an instance of <code>javax.swing.table.DefaultTableModel</code> (moveRow() method needed).
  * 
-
  */
 public class MoveItemAction extends AbstractAction {
 
@@ -40,11 +39,11 @@ public class MoveItemAction extends AbstractAction {
 	 * Creates a new action with the associated list component. Notice that the action is not added to list's action map.
 	 * 
 	 * @param list
-	 *          the list component.
+	 *            the list component.
 	 * @param direction
-	 *          the direction (one of <code>UP</code> or <code>DOWN</code>).
+	 *            the direction (one of <code>UP</code> or <code>DOWN</code>).
 	 * @throws IllegalArgumentException
-	 *           if <code>list</code> is <code>null</code> or <code>direction</code> is not a valid direction.
+	 *             if <code>list</code> is <code>null</code> or <code>direction</code> is not a valid direction.
 	 */
 	public MoveItemAction(JList list, int direction) {
 		if (list == null) {
@@ -60,11 +59,11 @@ public class MoveItemAction extends AbstractAction {
 	 * Creates a new action with the associated table component. Notice that the action is not added to table's action map.
 	 * 
 	 * @param table
-	 *          the table component.
+	 *            the table component.
 	 * @param direction
-	 *          the direction (one of <code>UP</code> or <code>DOWN</code>).
+	 *            the direction (one of <code>UP</code> or <code>DOWN</code>).
 	 * @throws IllegalArgumentException
-	 *           if <code>table</code> is <code>null</code> or <code>direction</code> is not a valid direction.
+	 *             if <code>table</code> is <code>null</code> or <code>direction</code> is not a valid direction.
 	 */
 	public MoveItemAction(JTable table, int direction) {
 		if (table == null) {
@@ -84,7 +83,8 @@ public class MoveItemAction extends AbstractAction {
 
 	private void initialize() {
 		putValue(Action.ACTION_COMMAND_KEY, (direction == UP) ? "move-selected-item-up" : "move-selected-item-down");
-		putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke((direction == UP) ? KeyEvent.VK_UP : KeyEvent.VK_DOWN, KeyEvent.CTRL_DOWN_MASK));
+		putValue(Action.ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke((direction == UP) ? KeyEvent.VK_UP : KeyEvent.VK_DOWN, KeyEvent.CTRL_DOWN_MASK));
 	}
 
 	/*

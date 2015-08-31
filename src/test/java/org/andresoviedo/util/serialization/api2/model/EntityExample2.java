@@ -9,7 +9,7 @@ import org.andresoviedo.util.serialization.api2.StringField;
 /**
  * This class represents a confirmation receipt from service for a previously sent request.
  * 
- * @author aoviedo
+ * @author andresoviedo
  *
  */
 public final class EntityExample2 implements Serializable {
@@ -184,9 +184,9 @@ public final class EntityExample2 implements Serializable {
 
 	@Override
 	public String toString() {
-		return "EntityExample2 [fileDate=" + getRealDate() + ", issuerEntityCode=" + issuerEntityCode
-				+ ", entityNBRE=" + entityNBRE + ", queueSize=" + queueSize + ", numberOfRequests=" + numberOfRequests
-				+ ", responseCode=" + responseCode + ", freeString1=" + freeString1 + "]";
+		return "EntityExample2 [fileDate=" + getRealDate() + ", issuerEntityCode=" + issuerEntityCode + ", entityNBRE=" + entityNBRE
+				+ ", queueSize=" + queueSize + ", numberOfRequests=" + numberOfRequests + ", responseCode=" + responseCode
+				+ ", freeString1=" + freeString1 + "]";
 	}
 
 }

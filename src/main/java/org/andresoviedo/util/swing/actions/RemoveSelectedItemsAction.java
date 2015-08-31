@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
  * this action will work only if list model is an instance of <code>javax.swing.DefaultListModel</code> (remove() mehod needed) and table
  * model is an instance of <code>javax.swing.table.DefaultTableModel</code> (removeRow() method needed).
  * 
-
  */
 public class RemoveSelectedItemsAction extends AbstractAction {
 
@@ -28,9 +27,9 @@ public class RemoveSelectedItemsAction extends AbstractAction {
 	 * Creates a new action with the associated list component. Notice that the action is not added to list's action map.
 	 * 
 	 * @param list
-	 *          the list component.
+	 *            the list component.
 	 * @throws IllegalArgumentException
-	 *           if <code>list</code> is <code>null</code>.
+	 *             if <code>list</code> is <code>null</code>.
 	 */
 	public RemoveSelectedItemsAction(JList list) {
 		if (list == null) {
@@ -44,9 +43,9 @@ public class RemoveSelectedItemsAction extends AbstractAction {
 	 * Creates a new action with the associated table component. Notice that the action is not added to table's action map.
 	 * 
 	 * @param table
-	 *          the table component.
+	 *            the table component.
 	 * @throws IllegalArgumentException
-	 *           if <code>table</code> is <code>null</code>.
+	 *             if <code>table</code> is <code>null</code>.
 	 */
 	public RemoveSelectedItemsAction(JTable table) {
 		if (table == null) {

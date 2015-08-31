@@ -20,7 +20,7 @@ import java.util.Vector;
  * 
  * El orden de entrega será obj1 (a 1 segundo), obj3 (a 3 segundos), obj2 (a 5 segundos).
  * 
- * @author aoviedo
+ * @author andresoviedo
  * @version 1.0
  */
 public class FixedDateDispatcher<T> extends ObjectDispatcher<T> implements Runnable {

@@ -15,7 +15,6 @@ import javax.swing.SwingUtilities;
 /**
  * JSplitableTabbedPane.
  * 
-
  */
 public class JSplitableTabbedPane extends JPanel {
 
@@ -59,12 +58,13 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Notice that the split pane won't work if the layout policy is JTabbedPane.SCROLL_TAB_LAYOUT and a JVM version below 1.5 is used.
 	 * 
 	 * @param defaultTabPlacement
-	 *          the default tab placement. Tab placement may be either: JTabbedPane.TOP, JTabbedPane.BOTTOM, JTabbedPane.LEFT, or
-	 *          JTabbedPane.RIGHT.
+	 *            the default tab placement. Tab placement may be either: JTabbedPane.TOP, JTabbedPane.BOTTOM, JTabbedPane.LEFT, or
+	 *            JTabbedPane.RIGHT.
 	 * @param defaultTabLayoutPolicy
-	 *          the default tab layout policy. Tab layout policy may be either: JTabbedPane.WRAP_TAB_LAYOUT or JTabbedPane.SCROLL_TAB_LAYOUT.
+	 *            the default tab layout policy. Tab layout policy may be either: JTabbedPane.WRAP_TAB_LAYOUT or
+	 *            JTabbedPane.SCROLL_TAB_LAYOUT.
 	 * @param useSplitPanes
-	 *          indicates if split panes have to be used when splitting tabbed panes.
+	 *            indicates if split panes have to be used when splitting tabbed panes.
 	 */
 	public JSplitableTabbedPane(int defaultTabPlacement, int defaultTabLayoutPolicy, boolean useSplitPanes) {
 		this.defaultTabPlacement = defaultTabPlacement;
@@ -86,11 +86,11 @@ public class JSplitableTabbedPane extends JPanel {
 	}
 
 	/**
-	 * Sets the default tab layout policy (one of JTabbedPane.WRAP_TAB_LAYOUT or JTabbedPane.SCROLL_TAB_LAYOUT). This method will affect newly
-	 * created tabbed panes, not the existing ones.
+	 * Sets the default tab layout policy (one of JTabbedPane.WRAP_TAB_LAYOUT or JTabbedPane.SCROLL_TAB_LAYOUT). This method will affect
+	 * newly created tabbed panes, not the existing ones.
 	 * 
 	 * @param defaultTabLayoutPolicy
-	 *          The new default tab layout policy.
+	 *            The new default tab layout policy.
 	 */
 	public void setDefaultTabLayoutPolicy(int defaultTabLayoutPolicy) {
 		this.defaultTabLayoutPolicy = defaultTabLayoutPolicy;
@@ -110,7 +110,7 @@ public class JSplitableTabbedPane extends JPanel {
 	 * affect newly created tabbed panes, not the existing ones.
 	 * 
 	 * @param defaultTabPlacement
-	 *          The new default tab placement.
+	 *            The new default tab placement.
 	 */
 	public void setDefaultTabPlacement(int defaultTabPlacement) {
 		this.defaultTabPlacement = defaultTabPlacement;
@@ -138,7 +138,7 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Sets whether the tab popup menu has to be shown when the user right clicks on a tab.
 	 * 
 	 * @param showTabPopupMenu
-	 *          <code>true</code> if the popup has to be shown, <code>false</code> otherwise.
+	 *            <code>true</code> if the popup has to be shown, <code>false</code> otherwise.
 	 */
 	public void setShowTabPopupMenu(boolean showTabPopupMenu) {
 		this.showTabPopupMenu = showTabPopupMenu;
@@ -148,9 +148,9 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Adds a new tab to the first available tabbed pane. If no tabbed pane has already been created, a new one will be.
 	 * 
 	 * @param title
-	 *          the title to be displayed in this tab
+	 *            the title to be displayed in this tab
 	 * @param component
-	 *          the component to be displayed when this tab is clicked
+	 *            the component to be displayed when this tab is clicked
 	 */
 	public void addTab(String title, Component component) {
 		addTab(title, null, component, null);
@@ -160,11 +160,11 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Adds a new tab to the first available tabbed pane. If no tabbed pane has already been created, a new one will be.
 	 * 
 	 * @param title
-	 *          the title to be displayed in this tab
+	 *            the title to be displayed in this tab
 	 * @param icon
-	 *          the icon to be displayed in this tab
+	 *            the icon to be displayed in this tab
 	 * @param component
-	 *          the component to be displayed when this tab is clicked
+	 *            the component to be displayed when this tab is clicked
 	 */
 	public void addTab(String title, Icon icon, Component component) {
 		addTab(title, icon, component, null);
@@ -174,13 +174,13 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Adds a new tab to the first available tabbed pane. If no tabbed pane has already been created, a new one will be.
 	 * 
 	 * @param title
-	 *          the title to be displayed in this tab
+	 *            the title to be displayed in this tab
 	 * @param icon
-	 *          the icon to be displayed in this tab
+	 *            the icon to be displayed in this tab
 	 * @param component
-	 *          the component to be displayed when this tab is clicked
+	 *            the component to be displayed when this tab is clicked
 	 * @param tip
-	 *          the tooltip to be displayed for this tab
+	 *            the tooltip to be displayed for this tab
 	 */
 	public void addTab(String title, Icon icon, Component component, String tip) {
 		JTabbedPane tabbedPane = getFirstAvailableTabbedPane(this);
@@ -198,11 +198,11 @@ public class JSplitableTabbedPane extends JPanel {
 	 * be. Notice that if the specified index is not valid, the new tab will be inserted at the end.
 	 * 
 	 * @param title
-	 *          the title to be displayed in this tab
+	 *            the title to be displayed in this tab
 	 * @param component
-	 *          the component to be displayed when this tab is clicked
+	 *            the component to be displayed when this tab is clicked
 	 * @param index
-	 *          the position to insert this new tab (0-based).
+	 *            the position to insert this new tab (0-based).
 	 */
 	public void insertTab(String title, Component component, int index) {
 		insertTab(title, null, component, null, index);
@@ -213,13 +213,13 @@ public class JSplitableTabbedPane extends JPanel {
 	 * be. Notice that if the specified index is not valid, the new tab will be inserted at the end.
 	 * 
 	 * @param title
-	 *          the title to be displayed in this tab
+	 *            the title to be displayed in this tab
 	 * @param icon
-	 *          the icon to be displayed in this tab
+	 *            the icon to be displayed in this tab
 	 * @param component
-	 *          the component to be displayed when this tab is clicked
+	 *            the component to be displayed when this tab is clicked
 	 * @param index
-	 *          the position to insert this new tab (0-based).
+	 *            the position to insert this new tab (0-based).
 	 */
 	public void insertTab(String title, Icon icon, Component component, int index) {
 		insertTab(title, icon, component, null, index);
@@ -230,15 +230,15 @@ public class JSplitableTabbedPane extends JPanel {
 	 * be. Notice that if the specified index is not valid, the new tab will be inserted at the end.
 	 * 
 	 * @param title
-	 *          the title to be displayed in this tab
+	 *            the title to be displayed in this tab
 	 * @param icon
-	 *          the icon to be displayed in this tab
+	 *            the icon to be displayed in this tab
 	 * @param component
-	 *          the component to be displayed when this tab is clicked
+	 *            the component to be displayed when this tab is clicked
 	 * @param tip
-	 *          the tooltip to be displayed for this tab
+	 *            the tooltip to be displayed for this tab
 	 * @param index
-	 *          the position to insert this new tab (0-based).
+	 *            the position to insert this new tab (0-based).
 	 */
 	public void insertTab(String title, Icon icon, Component component, String tip, int index) {
 		JTabbedPane tabbedPane = getFirstAvailableTabbedPane(this);
@@ -257,11 +257,11 @@ public class JSplitableTabbedPane extends JPanel {
 	}
 
 	/**
-	 * Returns the tabbed parent which is the ancestor of the component. If the component is not in the hierarchy, an IllegalArgumentException
-	 * is thrown.
+	 * Returns the tabbed parent which is the ancestor of the component. If the component is not in the hierarchy, an
+	 * IllegalArgumentException is thrown.
 	 * 
 	 * @param c
-	 *          the component.
+	 *            the component.
 	 * 
 	 * @return the tabbed parent which is the ancestor of the component.
 	 */
@@ -279,7 +279,7 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Returns the tab index of the specified component. The component should have a JTabbedPane as an ancestor, the depth doesn't matter.
 	 * 
 	 * @param c
-	 *          the component.
+	 *            the component.
 	 * @return the tab index of the specified component.
 	 */
 	public static int getTabIndexForComponent(Component c) {
@@ -300,7 +300,7 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Select the tab holding the specified component.
 	 * 
 	 * @param c
-	 *          the component.
+	 *            the component.
 	 */
 	public static void selectComponentTab(Component c) {
 		JTabbedPane tp = getTabbedPaneForComponent(c);
@@ -341,9 +341,9 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Creates a new tabbed pane and adds a tab at index 'index' in the source tabbed pane.
 	 * 
 	 * @param tabbedPane
-	 *          the source tabbed pane to get the component from.
+	 *            the source tabbed pane to get the component from.
 	 * @param index
-	 *          the index of the tab to be moved.
+	 *            the index of the tab to be moved.
 	 * 
 	 * @return the new tabbed pane.
 	 */
@@ -402,13 +402,13 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Moves a tab from one tabbed pane to another.
 	 * 
 	 * @param tp1
-	 *          the source tabbed pane.
+	 *            the source tabbed pane.
 	 * @param tp2
-	 *          the destination tabbed pane.
+	 *            the destination tabbed pane.
 	 * @param index1
-	 *          the source index.
+	 *            the source index.
 	 * @param index2
-	 *          the destination index.
+	 *            the destination index.
 	 * @return <code>true</code> if the move has been performed, <code>false</code> otherwise.
 	 */
 	boolean moveTab(JTabbedPane tp1, JTabbedPane tp2, int index1, int index2) {
@@ -478,13 +478,13 @@ public class JSplitableTabbedPane extends JPanel {
 	 * layout manager. The new panel replaces tp2 inside its parent.
 	 * 
 	 * @param tp1
-	 *          the source tabbed pane.
+	 *            the source tabbed pane.
 	 * @param tp2
-	 *          the destination tabbed pane.
+	 *            the destination tabbed pane.
 	 * @param tabIndex
-	 *          the index of the tab to be moved.
+	 *            the index of the tab to be moved.
 	 * @param position
-	 *          the position of the new tab inside the destination tabbed pane (LEFT, RIGHT, TOP, BOTTOM).
+	 *            the position of the new tab inside the destination tabbed pane (LEFT, RIGHT, TOP, BOTTOM).
 	 * @return <code>true</code> if the move has been performed, <code>false</code> otherwise.
 	 */
 	boolean splitTab(JTabbedPane tp1, JTabbedPane tp2, int tabIndex, int position) {
@@ -596,7 +596,7 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Checks if a tabbed pane stills have tabs in it. If not, it's removed from its parent.
 	 * 
 	 * @param tabbedPane
-	 *          the tabbed pane to check.
+	 *            the tabbed pane to check.
 	 */
 	void checkTabbedPaneHasTabs(JTabbedPane tabbedPane) {
 		if (tabbedPane.getTabCount() == 0) {
@@ -610,7 +610,7 @@ public class JSplitableTabbedPane extends JPanel {
 					checkParentIsNecessaryPanel(parent);
 				}
 			}
-			
+
 			// Revalidate.
 			revalidate();
 			repaint();
@@ -641,7 +641,7 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Checks if the component stills have subcomponents. If not, it gets removed from its parent. This method is recursive.
 	 * 
 	 * @param c
-	 *          the component to check.
+	 *            the component to check.
 	 */
 	private void checkParentIsNecessaryPanel(Container c) {
 		if (c == null) {
@@ -659,7 +659,7 @@ public class JSplitableTabbedPane extends JPanel {
 	 * Returns the index of the component inside its parent. Returns -1 if the component has no parent.
 	 * 
 	 * @param c
-	 *          the component which index has to be searched.
+	 *            the component which index has to be searched.
 	 * 
 	 * @return the index of the component inside its parent.
 	 */

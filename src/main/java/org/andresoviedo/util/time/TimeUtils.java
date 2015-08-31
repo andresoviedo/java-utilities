@@ -11,7 +11,7 @@ import org.andresoviedo.util.bean.PeriodBean.WeeklyPeriod;
 /**
  * This class encapsules util methods to operate with times.
  * 
- * @author aoviedo
+ * @author andresoviedo
  * 
  */
 public class TimeUtils {
@@ -26,15 +26,15 @@ public class TimeUtils {
 	 * This method calculates, taking a reference time, the next start-end time of a period starting and ending at specified hours.
 	 * 
 	 * @param timeStart
-	 *          the period start hour
+	 *            the period start hour
 	 * @param timeEnd
-	 *          the period end hour
+	 *            the period end hour
 	 * @param refTime
-	 *          the reference time (current time for example)
+	 *            the reference time (current time for example)
 	 * @param outStartTime
-	 *          the calculated period start time.
+	 *            the calculated period start time.
 	 * @param outEndTime
-	 *          the calculated period end time
+	 *            the calculated period end time
 	 */
 	public static void calculateSchedule(Time timeStart, Time timeEnd, Calendar refTime, Calendar outStartTime, Calendar outEndTime) {
 		Calendar startTime = Calendar.getInstance();
@@ -79,9 +79,9 @@ public class TimeUtils {
 	 * Updates the calendar with the time information specified, that is, HOUR_OF_DAY, MINUTE and SECOND.
 	 * 
 	 * @param calendar
-	 *          the calendar to update
+	 *            the calendar to update
 	 * @param time
-	 *          the time to set to the calendar
+	 *            the time to set to the calendar
 	 */
 	public static void prepareCalendarForTime(Calendar calendar, Time time) {
 		Calendar temp = Calendar.getInstance();
@@ -96,7 +96,7 @@ public class TimeUtils {
 	 * Calculate and return the next execution time based on the specified period.
 	 * 
 	 * @param period
-	 *          the period to execute
+	 *            the period to execute
 	 * @return the next execution time based on the specified period
 	 */
 	public static Date calculateNextExecutionDate(PeriodBean period) {

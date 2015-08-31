@@ -34,8 +34,7 @@ public class HttpXMLTT {
 	private DocumentBuilder _docBuilder = null;
 	private Transformer _xformer = null;
 
-	public HttpXMLTT(String getURL, String postURLs, String xslFileName,
-			String pollingTime, String pollingTimeout) {
+	public HttpXMLTT(String getURL, String postURLs, String xslFileName, String pollingTime, String pollingTimeout) {
 		try {
 			logger.logp(Level.INFO, "HttpXMLTT", "constructor", "Constructing...");
 			_getURL = new URL(getURL);
@@ -51,8 +50,7 @@ public class HttpXMLTT {
 			_pollingTimeout = Long.parseLong(pollingTimeout);
 			init();
 		} catch (Exception ex) {
-			logger.logp(Level.SEVERE, "HttpXMLTT", "constructor",
-					ex.getMessage(), ex);
+			logger.logp(Level.SEVERE, "HttpXMLTT", "constructor", ex.getMessage(), ex);
 		}
 	}
 
@@ -66,8 +64,7 @@ public class HttpXMLTT {
 		logger.logp(Level.INFO, "HttpXMLTT", "init", "Initializing...");
 		_docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		if (_xslFileName != null && !_xslFileName.equals("")) {
-			StreamSource xslSrc = new StreamSource(new FileInputStream(
-					_xslFileName));
+			StreamSource xslSrc = new StreamSource(new FileInputStream(_xslFileName));
 			_xformer = TransformerFactory.newInstance().newTransformer(xslSrc);
 		} else {
 			_xformer = TransformerFactory.newInstance().newTransformer();
@@ -84,8 +81,7 @@ public class HttpXMLTT {
 
 		void start() {
 			if (!started) {
-				logger.logp(Level.INFO, "ThreadHungWatcher", "start",
-						"Starting thread...");
+				logger.logp(Level.INFO, "ThreadHungWatcher", "start", "Starting thread...");
 				started = true;
 				thread = new Thread(this, "ThreadHungWatcher");
 				thread.start();
@@ -94,8 +90,7 @@ public class HttpXMLTT {
 
 		void stop() {
 			if (started) {
-				logger.logp(Level.INFO, "ThreadHungWatcher", "stop",
-						"Stopping thread...");
+				logger.logp(Level.INFO, "ThreadHungWatcher", "stop", "Stopping thread...");
 				started = false;
 				thread.interrupt();
 				try {
@@ -106,24 +101,21 @@ public class HttpXMLTT {
 		}
 
 		public void run() {
-			logger.logp(Level.INFO, "ThreadHungWatcher", "run",
-					"Thread running...");
+			logger.logp(Level.INFO, "ThreadHungWatcher", "run", "Thread running...");
 			try {
 				while (started) {
 					Thread.sleep(_pollingTimeout);
 					if (_postTask.nextPost != -1 && // test wheter thread it's
 													// started
 							System.currentTimeMillis() - _postTask.nextPost >= _pollingTimeout) {
-						logger.logp(Level.INFO, "ThreadHungWatcher", "run",
-								"Restarting postTask thread...");
+						logger.logp(Level.INFO, "ThreadHungWatcher", "run", "Restarting postTask thread...");
 						_postTask.stop();
 						_postTask = new HttpPostThread();
 						_postTask.start();
 					}
 				}
 			} catch (InterruptedException ex) {
-				logger.logp(Level.INFO, "ThreadHungWatcher", "run",
-						ex.getMessage());
+				logger.logp(Level.INFO, "ThreadHungWatcher", "run", ex.getMessage());
 			}
 			logger.logp(Level.INFO, "ThreadHungWatcher", "run", "Dying...");
 		}
@@ -137,8 +129,7 @@ public class HttpXMLTT {
 
 		void start() {
 			if (!_started) {
-				logger.logp(Level.INFO, "HttpPostThread", "start",
-						"Starting thread...");
+				logger.logp(Level.INFO, "HttpPostThread", "start", "Starting thread...");
 				_started = true;
 				_thread = new Thread(this);
 				_thread.start();
@@ -147,34 +138,29 @@ public class HttpXMLTT {
 
 		void stop() {
 			if (_started) {
-				logger.logp(Level.INFO, "HttpPostThread", "stop",
-						"Stopping thread...");
+				logger.logp(Level.INFO, "HttpPostThread", "stop", "Stopping thread...");
 				_started = false;
 				_thread.interrupt();
 			}
 		}
 
 		public void run() {
-			logger.logp(Level.INFO, "HttpPostThread", "run",
-					"Thread running...");
+			logger.logp(Level.INFO, "HttpPostThread", "run", "Thread running...");
 			while (_started) {
 				try {
 					nextPost = System.currentTimeMillis();
 					post();
 					nextPost = System.currentTimeMillis() + _pollingTime;
 				} catch (IOException ex) {
-					logger.logp(Level.WARNING, "HttpPostThread", "run",
-							ex.getMessage());
+					logger.logp(Level.WARNING, "HttpPostThread", "run", ex.getMessage());
 				} catch (Exception ex) {
-					logger.logp(Level.SEVERE, "HttpPostThread", "run",
-							ex.getMessage(), ex);
+					logger.logp(Level.SEVERE, "HttpPostThread", "run", ex.getMessage(), ex);
 				}
 				// Sleep for a while
 				try {
 					Thread.sleep(_pollingTime);
 				} catch (InterruptedException ex) {
-					logger.logp(Level.INFO, "HttpPostThread", "run",
-							ex.getMessage());
+					logger.logp(Level.INFO, "HttpPostThread", "run", ex.getMessage());
 				}
 			}
 			logger.logp(Level.INFO, "HttpPostThread", "run", "Thread dying...");
@@ -182,16 +168,13 @@ public class HttpXMLTT {
 
 		public void post() throws Exception {
 			// log process
-			if (lastLog == -1
-					|| (System.currentTimeMillis() - lastLog) > 1000 * 60 * 5) {
-				logger.logp(Level.INFO, "HttpPostThread", "post",
-						"Posting msgs...");
+			if (lastLog == -1 || (System.currentTimeMillis() - lastLog) > 1000 * 60 * 5) {
+				logger.logp(Level.INFO, "HttpPostThread", "post", "Posting msgs...");
 				lastLog = System.currentTimeMillis();
 			}
 
 			// Get document
-			HttpURLConnection urlConn = (HttpURLConnection) _getURL
-					.openConnection();
+			HttpURLConnection urlConn = (HttpURLConnection) _getURL.openConnection();
 			int responseCode = urlConn.getResponseCode();
 			if (responseCode == HttpURLConnection.HTTP_OK) {
 				InputStream in = urlConn.getInputStream();
@@ -207,38 +190,27 @@ public class HttpXMLTT {
 						urlConn.setRequestMethod("POST");
 						urlConn.setDoOutput(true);
 						OutputStream out = urlConn.getOutputStream();
-						_xformer.transform(new DOMSource(doc),
-								new StreamResult(out));
+						_xformer.transform(new DOMSource(doc), new StreamResult(out));
 
 						// process post response
 						responseCode = urlConn.getResponseCode();
-						if (responseCode != HttpURLConnection.HTTP_OK
-								&& responseCode != HttpURLConnection.HTTP_ACCEPTED
-								&& responseCode != HttpURLConnection.HTTP_CREATED
-								&& responseCode != HttpURLConnection.HTTP_NO_CONTENT) {
-							String responseMsg = ((HttpURLConnection) urlConn)
-									.getResponseMessage();
-							logger.logp(Level.WARNING, "HttpPostThread",
-									"post", "from post url: " + "responseCode["
-											+ responseCode + "]"
-											+ "responseMsg[" + responseMsg
-											+ "]");
+						if (responseCode != HttpURLConnection.HTTP_OK && responseCode != HttpURLConnection.HTTP_ACCEPTED
+								&& responseCode != HttpURLConnection.HTTP_CREATED && responseCode != HttpURLConnection.HTTP_NO_CONTENT) {
+							String responseMsg = ((HttpURLConnection) urlConn).getResponseMessage();
+							logger.logp(Level.WARNING, "HttpPostThread", "post", "from post url: " + "responseCode[" + responseCode + "]"
+									+ "responseMsg[" + responseMsg + "]");
 						}
 						out.close();
 					} catch (IOException ex) {
-						logger.logp(Level.WARNING, "HttpPostThread", "post",
-								ex.getMessage());
+						logger.logp(Level.WARNING, "HttpPostThread", "post", ex.getMessage());
 					} catch (Exception ex) {
-						logger.logp(Level.SEVERE, "HttpPostThread", "post",
-								ex.getMessage(), ex);
+						logger.logp(Level.SEVERE, "HttpPostThread", "post", ex.getMessage(), ex);
 					}
 				}
 			} else {
-				String responseMsg = ((HttpURLConnection) urlConn)
-						.getResponseMessage();
-				logger.logp(Level.WARNING, "HttpPostThread", "post",
-						"from get url: " + "responseCode[" + responseCode + "]"
-								+ "responseMsg[" + responseMsg + "]");
+				String responseMsg = ((HttpURLConnection) urlConn).getResponseMessage();
+				logger.logp(Level.WARNING, "HttpPostThread", "post", "from get url: " + "responseCode[" + responseCode + "]"
+						+ "responseMsg[" + responseMsg + "]");
 			}
 		}
 	}

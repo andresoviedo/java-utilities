@@ -31,7 +31,5 @@ public class Log4jUtilsTest {
 		System.out.println(appender);
 		AssertUtils.assertLogRegExp(appender, "hello .*!");
 	}
-	
-	
 
 }

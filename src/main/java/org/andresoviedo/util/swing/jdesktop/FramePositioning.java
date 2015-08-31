@@ -9,7 +9,6 @@ import javax.swing.JInternalFrame;
 /**
  * Frame positioning.
  * 
-
  */
 class FramePositioning {
 
@@ -32,7 +31,7 @@ class FramePositioning {
 	 * Constructs a new frame positioning object.
 	 * 
 	 * @param desktop
-	 *          the associated desktop pane.
+	 *            the associated desktop pane.
 	 */
 	public FramePositioning(BasicDesktopPane desktop) {
 		this.desktop = desktop;
@@ -42,9 +41,9 @@ class FramePositioning {
 	 * Iconifies or restores all frames in the specified layer.
 	 * 
 	 * @param layer
-	 *          the layer.
+	 *            the layer.
 	 * @param iconify
-	 *          <code>true</code> iconifies all frames, <code>false</code> restores them.
+	 *            <code>true</code> iconifies all frames, <code>false</code> restores them.
 	 */
 	public void iconifyFrames(int layer, boolean iconify) {
 		JInternalFrame[] frames = desktop.getAllFramesInLayer(layer);
@@ -65,7 +64,7 @@ class FramePositioning {
 	 * Cascades all frames in the specified layer. Notice that frames are not resized, only their location are changed.
 	 * 
 	 * @param layer
-	 *          the layer.
+	 *            the layer.
 	 */
 	public void cascadeFrames(int layer) {
 		JInternalFrame[] frames = desktop.getAllFramesInLayer(layer);
@@ -108,7 +107,7 @@ class FramePositioning {
 	 * Tiles all frames in the specified layer horizontally.
 	 * 
 	 * @param layer
-	 *          the layer.
+	 *            the layer.
 	 */
 	public void tileFramesHorizontally(int layer) {
 		tileFrames(layer, true);
@@ -118,7 +117,7 @@ class FramePositioning {
 	 * Tiles all frames in the specified layer vertically.
 	 * 
 	 * @param layer
-	 *          the layer.
+	 *            the layer.
 	 */
 	public void tileFramesVertically(int layer) {
 		tileFrames(layer, false);
@@ -145,7 +144,8 @@ class FramePositioning {
 					// Find the next visible frame.
 					i++;
 				}
-				frames[i].setBounds(horizontally ? 0 : (curCol * frameWidth), horizontally ? (curCol * frameHeight) : 0, frameWidth, frameHeight);
+				frames[i].setBounds(horizontally ? 0 : (curCol * frameWidth), horizontally ? (curCol * frameHeight) : 0, frameWidth,
+						frameHeight);
 				i++;
 			}
 		}

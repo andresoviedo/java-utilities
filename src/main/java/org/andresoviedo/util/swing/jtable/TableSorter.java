@@ -29,13 +29,16 @@ import javax.swing.table.TableModel;
  * TableSorter is a decorator for TableModels; adding sorting functionality to a supplied TableModel. TableSorter does not store or copy the
  * data in its TableModel; instead it maintains a map from the row indexes of the view to the row indexes of the model. As requests are made
  * of the sorter (like getValueAt(row, col)) they are passed to the underlying model after the row numbers have been translated via the
- * internal mapping array. This way, the TableSorter appears to hold another copy of the table with the rows in a different order. <p/>
+ * internal mapping array. This way, the TableSorter appears to hold another copy of the table with the rows in a different order.
+ * <p/>
  * TableSorter registers itself as a listener to the underlying model, just as the JTable itself would. Events recieved from the model are
  * examined, sometimes manipulated (typically widened), and then passed on to the TableSorter's listeners (typically the JTable). If a
  * change to the model has invalidated the order of TableSorter's rows, a note of this is made and the sorter will resort the rows the next
- * time a value is requested. <p/> When the tableHeader property is set, either by using the setTableHeader() method or the two argument
- * constructor, the table header may be used as a complete UI for TableSorter. The default renderer of the tableHeader is decorated with a
- * renderer that indicates the sorting status of each column. In addition, a mouse listener is installed with the following behavior:
+ * time a value is requested.
+ * <p/>
+ * When the tableHeader property is set, either by using the setTableHeader() method or the two argument constructor, the table header may
+ * be used as a complete UI for TableSorter. The default renderer of the tableHeader is decorated with a renderer that indicates the sorting
+ * status of each column. In addition, a mouse listener is installed with the following behavior:
  * <ul>
  * <li>Mouse-click: Clears the sorting status of all other columns and advances the sorting status of that column through three values:
  * {NOT_SORTED, ASCENDING, DESCENDING} (then back to NOT_SORTED again).
@@ -44,7 +47,8 @@ import javax.swing.table.TableModel;
  * <li>CONTROL-mouse-click and CONTROL-SHIFT-mouse-click: as above except that the changes to the column do not cancel the statuses of
  * columns that are already sorting - giving a way to initiate a compound sort.
  * </ul>
- * <p/> This is a long overdue rewrite of a class of the same name that first appeared in the swing table demos in 1997.
+ * <p/>
+ * This is a long overdue rewrite of a class of the same name that first appeared in the swing table demos in 1997.
  * 
  * @author Philip Milne
  * @author Brendon McLean
@@ -120,7 +124,7 @@ public class TableSorter extends AbstractTableModel {
 
 	/**
 	 * @param editable
-	 *          The bEditable to set.
+	 *            The bEditable to set.
 	 */
 	public void setEditable(boolean editable) {
 		this.editable = editable;
@@ -343,8 +347,8 @@ public class TableSorter extends AbstractTableModel {
 
 				int comparison = 0;
 				/*
-				 * // Define null less than everything, except null. if (o1 == null && o2 == null) { comparison = 0; } else if (o1 == null) {
-				 * comparison = -1; } else if (o2 == null) { comparison = 1;
+				 * // Define null less than everything, except null. if (o1 == null && o2 == null) { comparison = 0; } else if (o1 == null)
+				 * { comparison = -1; } else if (o2 == null) { comparison = 1;
 				 */
 				// Define null greater than everything, except null.
 				if (o1 == null && o2 == null) {

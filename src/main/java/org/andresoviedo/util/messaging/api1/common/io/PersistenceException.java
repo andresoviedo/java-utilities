@@ -3,7 +3,7 @@ package org.andresoviedo.util.messaging.api1.common.io;
 /**
  * The exception used by the persistence mechanism.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class PersistenceException extends Exception {
 

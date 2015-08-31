@@ -30,7 +30,6 @@ import javax.swing.table.TableModel;
  * By default, all columns are visible and none is dynamically selectable.
  * </p>
  * 
-
  */
 public class JDynamicColumnsTable extends JTable implements ActionListener {
 
@@ -58,7 +57,7 @@ public class JDynamicColumnsTable extends JTable implements ActionListener {
 	 * Creates a new JDynamicColumnsTable component with the specified model.
 	 * 
 	 * @param dm
-	 *          the table model.
+	 *            the table model.
 	 */
 	public JDynamicColumnsTable(TableModel dm) {
 		super(dm);
@@ -119,7 +118,7 @@ public class JDynamicColumnsTable extends JTable implements ActionListener {
 	 * Sets the visible columns.
 	 * 
 	 * @param col
-	 *          Array with indexes of the columns to show.
+	 *            Array with indexes of the columns to show.
 	 */
 	public void setVisibleColumns(int[] col) {
 		int totalColumns = this.getModel().getColumnCount();
@@ -140,9 +139,9 @@ public class JDynamicColumnsTable extends JTable implements ActionListener {
 	 * Sets the visibility of the column at the specified index.
 	 * 
 	 * @param column
-	 *          Column index
+	 *            Column index
 	 * @param visible
-	 *          True to show the column. False to hide the column.
+	 *            True to show the column. False to hide the column.
 	 */
 	public void setVisibleColumn(int column, boolean visible) {
 		int totalColumns = this.getModel().getColumnCount();
@@ -187,9 +186,9 @@ public class JDynamicColumnsTable extends JTable implements ActionListener {
 	 * Toggles the visibility of the column at the specified index.
 	 * 
 	 * @param col
-	 *          the column index.
-	 * @return <code>true</code> if the status of the column has been changed, <code>false</code> if no change could be done (because the last
-	 *         visible column can't be hidden).
+	 *            the column index.
+	 * @return <code>true</code> if the status of the column has been changed, <code>false</code> if no change could be done (because the
+	 *         last visible column can't be hidden).
 	 */
 	private boolean toggleVisibleColumn(int col) {
 		if (columnVisibleTrack[col]) {
@@ -209,7 +208,7 @@ public class JDynamicColumnsTable extends JTable implements ActionListener {
 	 * Specifies a group of columns that could change its visibility by the user at runtime.
 	 * 
 	 * @param cols
-	 *          the array of column indexes.
+	 *            the array of column indexes.
 	 */
 	public void setDynamicColumns(int[] cols) {
 		for (int i = 0; i < cols.length; i++) {
@@ -221,10 +220,10 @@ public class JDynamicColumnsTable extends JTable implements ActionListener {
 	 * Allows or forbids a column to change its visibility at runtime by the user.
 	 * 
 	 * @param column
-	 *          the column index.
+	 *            the column index.
 	 * @param selectable
-	 *          <code>true</code> to allow the column to be selectable by the user, <code>false</code> to avoid the user from changing its
-	 *          visibility.
+	 *            <code>true</code> to allow the column to be selectable by the user, <code>false</code> to avoid the user from changing its
+	 *            visibility.
 	 */
 	public void setDynamicColumn(int column, boolean selectable) {
 		int totalColumns = this.getModel().getColumnCount();

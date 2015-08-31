@@ -10,19 +10,17 @@ import java.util.logging.Logger;
 
 import org.andresoviedo.util.messaging.api1.MessengerProperties;
 
-
 /**
  * A basic configuration object.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class BasicConfiguration {
 
 	/**
 	 * A static reference to the logger object.
 	 */
-	private static Logger logger = Logger
-			.getLogger(MessengerProperties.LOGGER_NAME);
+	private static Logger logger = Logger.getLogger(MessengerProperties.LOGGER_NAME);
 
 	/**
 	 * The properties map.
@@ -38,16 +36,13 @@ public class BasicConfiguration {
 
 	/**
 	 * <p>
-	 * Gets the value of the property stored with the specified key. This method
-	 * does the following:
+	 * Gets the value of the property stored with the specified key. This method does the following:
 	 * </p>
 	 * <ol>
-	 * <li>If a system property stored with that key is found, returns its
-	 * value.</li>
-	 * <li>If a system property stored with that key is NOT found, then it looks
-	 * inside our own <code>properties</code> object.
-	 * <li>If the property is not found in the system properties nor in our
-	 * <code>properties</code> object, returns the passed in default value.
+	 * <li>If a system property stored with that key is found, returns its value.</li>
+	 * <li>If a system property stored with that key is NOT found, then it looks inside our own <code>properties</code> object.
+	 * <li>If the property is not found in the system properties nor in our <code>properties</code> object, returns the passed in default
+	 * value.
 	 * </ol>
 	 * 
 	 * @param key
@@ -62,9 +57,8 @@ public class BasicConfiguration {
 	}
 
 	/**
-	 * Performs exactly as <code>getProperty(String, String)</code> but allows
-	 * to specify a different property name when looking inside system
-	 * properties map.
+	 * Performs exactly as <code>getProperty(String, String)</code> but allows to specify a different property name when looking inside
+	 * system properties map.
 	 * 
 	 * @param key
 	 *            the property key.
@@ -89,8 +83,7 @@ public class BasicConfiguration {
 	}
 
 	/**
-	 * Loads the properties from a file which name is read from a system
-	 * property.
+	 * Loads the properties from a file which name is read from a system property.
 	 * 
 	 * @param key
 	 *            the system property name of the filename.
@@ -120,10 +113,8 @@ public class BasicConfiguration {
 		} catch (IOException e) {
 		}
 
-		logger.warning("File " + file
-				+ " not found. Trying to load resource...");
-		InputStream resourceAsStream = BasicConfiguration.class
-				.getResourceAsStream("/" + file.getName());
+		logger.warning("File " + file + " not found. Trying to load resource...");
+		InputStream resourceAsStream = BasicConfiguration.class.getResourceAsStream("/" + file.getName());
 		if (resourceAsStream == null) {
 			logger.severe("Resource not found: " + file.getName());
 			return;

@@ -42,7 +42,8 @@ public class JProgressPanel extends JPanel {
 
 	private void installComponents() {
 		setLayout(new GridLayout(0, 1, 5, 5));
-		setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.black), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.black),
+				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
 		lblMessage = new JLabel("");
 

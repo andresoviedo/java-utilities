@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * The abstract class for a message.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public abstract class Message implements Command {
 
@@ -110,7 +110,7 @@ public abstract class Message implements Command {
 	 * Sets the client id.
 	 * 
 	 * @param clientId
-	 *          the new client id.
+	 *            the new client id.
 	 */
 	void setClientId(String clientId) {
 		this.clientId = clientId;
@@ -129,7 +129,7 @@ public abstract class Message implements Command {
 	 * Sets whether the body of this message has to be compressed.
 	 * 
 	 * @param compressed
-	 *          <code>true</code> if the body of this message has to be compressed, <code>false</code> otherwise.
+	 *            <code>true</code> if the body of this message has to be compressed, <code>false</code> otherwise.
 	 */
 	public void setCompressed(boolean compressed) {
 		this.compressed = compressed;
@@ -148,7 +148,7 @@ public abstract class Message implements Command {
 	 * Sets the id of the client that originated this message response.
 	 * 
 	 * @param correlationClientId
-	 *          the new id of the client that originated this message response.
+	 *            the new id of the client that originated this message response.
 	 */
 	void setCorrelationClientId(String correlationClientId) {
 		this.correlationClientId = correlationClientId;
@@ -167,7 +167,7 @@ public abstract class Message implements Command {
 	 * Sets the id of the message that originated this message response.
 	 * 
 	 * @param correlationMessageId
-	 *          the new id of the message that originated this message response.
+	 *            the new id of the message that originated this message response.
 	 */
 	void setCorrelationMessageId(String correlationMessageId) {
 		this.correlationMessageId = correlationMessageId;
@@ -186,7 +186,7 @@ public abstract class Message implements Command {
 	 * Sets the id of the message.
 	 * 
 	 * @param messageId
-	 *          the new id of the message.
+	 *            the new id of the message.
 	 */
 	void setMessageId(String messageId) {
 		this.messageId = messageId;
@@ -205,7 +205,7 @@ public abstract class Message implements Command {
 	 * Sets additional non-standard properties.
 	 * 
 	 * @param properties
-	 *          the new additional non-standard properties.
+	 *            the new additional non-standard properties.
 	 */
 	public void setProperties(Hashtable<String, ? extends Serializable> properties) {
 		this.properties.clear();
@@ -227,7 +227,7 @@ public abstract class Message implements Command {
 	 * Sets the service id of the message.
 	 * 
 	 * @param serviceId
-	 *          the new service id of the message.
+	 *            the new service id of the message.
 	 */
 	void setServiceId(String serviceId) {
 		this.serviceId = serviceId;
@@ -246,7 +246,7 @@ public abstract class Message implements Command {
 	 * Sets the id of the client this message is addressed to.
 	 * 
 	 * @param targetClientId
-	 *          the new id of the client this message is addressed to.
+	 *            the new id of the client this message is addressed to.
 	 */
 	public void setTargetClientId(String targetClientId) {
 		this.targetClientId = targetClientId;
@@ -265,7 +265,7 @@ public abstract class Message implements Command {
 	 * Sets the id of the service this message is addressed to.
 	 * 
 	 * @param targetServiceId
-	 *          the new id of the service this message is addressed to.
+	 *            the new id of the service this message is addressed to.
 	 */
 	void setTargetServiceId(String targetServiceId) {
 		this.targetServiceId = targetServiceId;
@@ -284,7 +284,7 @@ public abstract class Message implements Command {
 	 * Sets the timestamp this message was created.
 	 * 
 	 * @param timeCreated
-	 *          the new timestamp this message was created.
+	 *            the new timestamp this message was created.
 	 */
 	void setTimeCreated(Date timeCreated) {
 		this.timeCreated = timeCreated;
@@ -303,7 +303,7 @@ public abstract class Message implements Command {
 	 * Sets the timeout of the message (in milliseconds). 0 means infinite timeout, and a negative number means immediate expiration.
 	 * 
 	 * @param timeout
-	 *          the new timeout of the message.
+	 *            the new timeout of the message.
 	 */
 	public void setTimeout(long timeout) {
 		this.timeout = timeout;
@@ -322,7 +322,7 @@ public abstract class Message implements Command {
 	 * Sets the timestamp this message was received.
 	 * 
 	 * @param timeReceived
-	 *          the new timestamp this message was received.
+	 *            the new timestamp this message was received.
 	 */
 	public void setTimeReceived(Date timeReceived) {
 		this.timeReceived = timeReceived;
@@ -341,7 +341,7 @@ public abstract class Message implements Command {
 	 * Sets the timestamp this message was sent.
 	 * 
 	 * @param timeSent
-	 *          the new timestamp this message was sent.
+	 *            the new timestamp this message was sent.
 	 */
 	public void setTimeSent(Date timeSent) {
 		this.timeSent = timeSent;
@@ -351,9 +351,9 @@ public abstract class Message implements Command {
 	 * Stores the specified serializable property in the properties map.
 	 * 
 	 * @param key
-	 *          the property's key (<code>null</code> permitted).
+	 *            the property's key (<code>null</code> permitted).
 	 * @param value
-	 *          the property's value (<code>null</code> permitted).
+	 *            the property's value (<code>null</code> permitted).
 	 */
 	public void putProperty(String key, Serializable value) {
 		properties.put(key, value);
@@ -363,7 +363,7 @@ public abstract class Message implements Command {
 	 * Returns the object value of the property stored with the specified key. Note that the object is serializable.
 	 * 
 	 * @param key
-	 *          the property's key (<code>null</code> permitted).
+	 *            the property's key (<code>null</code> permitted).
 	 * @return the object value of the property stored with the specified key.
 	 */
 	public Object getProperty(String key) {
@@ -374,9 +374,9 @@ public abstract class Message implements Command {
 	 * Stores the specified string property in the properties map.
 	 * 
 	 * @param key
-	 *          the property's key (<code>null</code> permitted).
+	 *            the property's key (<code>null</code> permitted).
 	 * @param value
-	 *          the property's value (<code>null</code> permitted).
+	 *            the property's value (<code>null</code> permitted).
 	 */
 	public void putStringProperty(String key, String value) {
 		putProperty(key, (Serializable) value);
@@ -386,7 +386,7 @@ public abstract class Message implements Command {
 	 * Returns the string value of the property stored with the specified key.
 	 * 
 	 * @param key
-	 *          the property's key (<code>null</code> permitted).
+	 *            the property's key (<code>null</code> permitted).
 	 * @return the string value of the property stored with the specified key.
 	 */
 	public String getStringProperty(String key) {
@@ -406,7 +406,7 @@ public abstract class Message implements Command {
 	 * Sets whether the receiver has to acknowledge the message on reception or not.
 	 * 
 	 * @param needsAck
-	 *          <code>true</code> if this message has to be acknowledged, <code>false</code> otherwise.
+	 *            <code>true</code> if this message has to be acknowledged, <code>false</code> otherwise.
 	 */
 	public void setNeedsAck(boolean needsAck) {
 		this.needsAck = needsAck;

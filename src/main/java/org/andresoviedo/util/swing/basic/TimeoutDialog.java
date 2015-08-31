@@ -7,14 +7,13 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-
 /**
- * A TimeoutDialog it's a normal Dialog, but implements a mechanism for returning a default response after a specified amount of time. If the
- * user sets a response before the specified amount of time, the dialog response it's the user response, otherwise the response it's the
+ * A TimeoutDialog it's a normal Dialog, but implements a mechanism for returning a default response after a specified amount of time. If
+ * the user sets a response before the specified amount of time, the dialog response it's the user response, otherwise the response it's the
  * default response. When the dialog is shown, a thread will be started and it will wait for the specified amount of time before setting the
  * dialog the default response.
  * 
- * @author aoviedo
+ * @author andresoviedo
  */
 public class TimeoutDialog implements Runnable {
 	String _msg = null;
@@ -30,25 +29,26 @@ public class TimeoutDialog implements Runnable {
 
 	/**
 	 * Creates and brings a modal dialog where the number of choices is determined by the <code>optionType</code> parameter, where the
-	 * <code>messageType</code> parameter determines the icon to display. The <code>messageType</code> parameter is primarily used to supply a
-	 * default icon from the Look and Feel.
+	 * <code>messageType</code> parameter determines the icon to display. The <code>messageType</code> parameter is primarily used to supply
+	 * a default icon from the Look and Feel.
 	 * 
 	 * @param parentComponent
-	 *          determines the <code>Frame</code> in which the dialog is displayed; if <code>null</code>, or if the
-	 *          <code>parentComponent</code> has no <code>Frame</code>, a default <code>Frame</code> is used.
+	 *            determines the <code>Frame</code> in which the dialog is displayed; if <code>null</code>, or if the
+	 *            <code>parentComponent</code> has no <code>Frame</code>, a default <code>Frame</code> is used.
 	 * @param message
-	 *          the <code>Object</code> to display
+	 *            the <code>Object</code> to display
 	 * @param title
-	 *          the title string for the dialog
+	 *            the title string for the dialog
 	 * @param optionType
-	 *          an integer designating the options available on the dialog: <code>YES_NO_OPTION</code>, or <code>YES_NO_CANCEL_OPTION</code>
+	 *            an integer designating the options available on the dialog: <code>YES_NO_OPTION</code>, or
+	 *            <code>YES_NO_CANCEL_OPTION</code>
 	 * @param messageType
-	 *          an integer designating the kind of message this is; primarily used to determine the icon from the pluggable Look and Feel:
-	 *          <code>ERROR_MESSAGE</code>, <code>INFORMATION_MESSAGE</code>, <code>WARNING_MESSAGE</code>, <code>QUESTION_MESSAGE</code>, or
-	 *          <code>PLAIN_MESSAGE</code>
+	 *            an integer designating the kind of message this is; primarily used to determine the icon from the pluggable Look and Feel:
+	 *            <code>ERROR_MESSAGE</code>, <code>INFORMATION_MESSAGE</code>, <code>WARNING_MESSAGE</code>, <code>QUESTION_MESSAGE</code>,
+	 *            or <code>PLAIN_MESSAGE</code>
 	 * @return an integer indicating the option selected by the user
 	 * @exception HeadlessException
-	 *              if <code>GraphicsEnvironment.isHeadless</code> returns <code>true</code>
+	 *                if <code>GraphicsEnvironment.isHeadless</code> returns <code>true</code>
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public static int showConfirmDialog(Component parentComponent, String message, String title, int optionType, int messageType,
@@ -60,25 +60,26 @@ public class TimeoutDialog implements Runnable {
 
 	/**
 	 * Creates a modal dialog where the number of choices is determined by the <code>optionType</code> parameter, where the
-	 * <code>messageType</code> parameter determines the icon to display. The <code>messageType</code> parameter is primarily used to supply a
-	 * default icon from the Look and Feel.
+	 * <code>messageType</code> parameter determines the icon to display. The <code>messageType</code> parameter is primarily used to supply
+	 * a default icon from the Look and Feel.
 	 * 
 	 * @param parentComponent
-	 *          determines the <code>Frame</code> in which the dialog is displayed; if <code>null</code>, or if the
-	 *          <code>parentComponent</code> has no <code>Frame</code>, a default <code>Frame</code> is used.
+	 *            determines the <code>Frame</code> in which the dialog is displayed; if <code>null</code>, or if the
+	 *            <code>parentComponent</code> has no <code>Frame</code>, a default <code>Frame</code> is used.
 	 * @param message
-	 *          the <code>Object</code> to display
+	 *            the <code>Object</code> to display
 	 * @param title
-	 *          the title string for the dialog
+	 *            the title string for the dialog
 	 * @param optionType
-	 *          an integer designating the options available on the dialog: <code>YES_NO_OPTION</code>, or <code>YES_NO_CANCEL_OPTION</code>
+	 *            an integer designating the options available on the dialog: <code>YES_NO_OPTION</code>, or
+	 *            <code>YES_NO_CANCEL_OPTION</code>
 	 * @param messageType
-	 *          an integer designating the kind of message this is; primarily used to determine the icon from the pluggable Look and Feel:
-	 *          <code>ERROR_MESSAGE</code>, <code>INFORMATION_MESSAGE</code>, <code>WARNING_MESSAGE</code>, <code>QUESTION_MESSAGE</code>, or
-	 *          <code>PLAIN_MESSAGE</code>
+	 *            an integer designating the kind of message this is; primarily used to determine the icon from the pluggable Look and Feel:
+	 *            <code>ERROR_MESSAGE</code>, <code>INFORMATION_MESSAGE</code>, <code>WARNING_MESSAGE</code>, <code>QUESTION_MESSAGE</code>,
+	 *            or <code>PLAIN_MESSAGE</code>
 	 * @return an integer indicating the option selected by the user
 	 * @exception HeadlessException
-	 *              if <code>GraphicsEnvironment.isHeadless</code> returns <code>true</code>
+	 *                if <code>GraphicsEnvironment.isHeadless</code> returns <code>true</code>
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @see JOptionPane#showConfirmDialog(Component, Object, String, int, int)
 	 */

@@ -8,10 +8,8 @@ import org.apache.commons.io.IOUtils;
 
 public class ResourceUtils {
 
-	public static final String getResourceAsString(String path)
-			throws IOException {
-		InputStream resourceAsStream = ResourceUtils.class
-				.getResourceAsStream(path);
+	public static final String getResourceAsString(String path) throws IOException {
+		InputStream resourceAsStream = ResourceUtils.class.getResourceAsStream(path);
 		if (resourceAsStream == null) {
 			return null;
 		}

@@ -10,7 +10,7 @@ import org.andresoviedo.util.serialization.api2.StringField;
 /**
  * This class represents a request for service
  * 
- * @author aoviedo
+ * @author andresoviedo
  *
  */
 public final class EntityExample1 implements Serializable {
@@ -72,7 +72,7 @@ public final class EntityExample1 implements Serializable {
 	/**
 	 * Registro de cabecera de transmisión de petición.
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	public static final class TransmissionHeader implements Serializable {
@@ -132,7 +132,7 @@ public final class EntityExample1 implements Serializable {
 	/**
 	 * This class represents the financial entity querying for report
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	public static final class ReportingEntity implements Serializable {
@@ -179,7 +179,7 @@ public final class EntityExample1 implements Serializable {
 	/**
 	 * This class represents the financial entity requesting for report
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	public static final class RequestingEntity implements Serializable {
@@ -226,7 +226,7 @@ public final class EntityExample1 implements Serializable {
 	/**
 	 * This class represents a single request, that is a request for 1 customer
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	public static final class InformationRequestRecord implements Serializable {
@@ -293,7 +293,7 @@ public final class EntityExample1 implements Serializable {
 	/**
 	 * This class represents one of the summary records of the request with respect to the requesting entity.
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	public static final class RequestingEntityTotal implements Serializable {
@@ -356,7 +356,7 @@ public final class EntityExample1 implements Serializable {
 	/**
 	 * This class represents one of the summary records of the request with respect to the reporting entity,
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	public static final class ReportingEntityTotal implements Serializable {

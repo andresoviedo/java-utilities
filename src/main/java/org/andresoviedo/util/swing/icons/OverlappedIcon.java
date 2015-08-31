@@ -11,7 +11,6 @@ import javax.swing.SwingConstants;
  * the secondary icon can be specified. Obviously, the secondary icon should be smaller than the main icon in order to let the latest one
  * being displayed.
  * 
-
  */
 public class OverlappedIcon implements Icon, SwingConstants {
 
@@ -34,9 +33,9 @@ public class OverlappedIcon implements Icon, SwingConstants {
 	 * Creates a new overlapped icon.
 	 * 
 	 * @param mainIcon
-	 *          the main icon (<code>null</code> permitted).
+	 *            the main icon (<code>null</code> permitted).
 	 * @param secondaryIcon
-	 *          the secondary icon (<code>null</code> permitted).
+	 *            the secondary icon (<code>null</code> permitted).
 	 */
 	public OverlappedIcon(Icon mainIcon, Icon secondaryIcon) {
 		this(mainIcon, secondaryIcon, SOUTH_WEST);
@@ -46,13 +45,13 @@ public class OverlappedIcon implements Icon, SwingConstants {
 	 * Creates a new overlapped icon.
 	 * 
 	 * @param mainIcon
-	 *          the main icon (<code>null</code> permitted).
+	 *            the main icon (<code>null</code> permitted).
 	 * @param secondaryIcon
-	 *          the secondary icon (<code>null</code> permitted).
+	 *            the secondary icon (<code>null</code> permitted).
 	 * @param secondaryIconRelativePosition
-	 *          the position where to paint the secondary icon in relation to the main icon (should be one of <code>CENTER</code>,
-	 *          <code>NORTH</code>, <code>NORTH_EAST</code>, <code>NORTH_WEST</code>, <code>SOUTH</code>, <code>SOUTH_EAST</code>,
-	 *          <code>SOUTH_WEST</code>, <code>EAST</code> or <code>WEST</code>).
+	 *            the position where to paint the secondary icon in relation to the main icon (should be one of <code>CENTER</code>,
+	 *            <code>NORTH</code>, <code>NORTH_EAST</code>, <code>NORTH_WEST</code>, <code>SOUTH</code>, <code>SOUTH_EAST</code>,
+	 *            <code>SOUTH_WEST</code>, <code>EAST</code> or <code>WEST</code>).
 	 */
 	public OverlappedIcon(Icon mainIcon, Icon secondaryIcon, int secondaryIconRelativePosition) {
 		this.mainIcon = mainIcon;
@@ -73,7 +72,7 @@ public class OverlappedIcon implements Icon, SwingConstants {
 	 * Sets the main icon.
 	 * 
 	 * @param mainIcon
-	 *          the main icon.
+	 *            the main icon.
 	 */
 	public void setMainIcon(Icon mainIcon) {
 		this.mainIcon = mainIcon;
@@ -92,8 +91,9 @@ public class OverlappedIcon implements Icon, SwingConstants {
 	 * Sets the position where to paint the secondary icon in relation to the main icon.
 	 * 
 	 * @param position
-	 *          the new position (should be one of <code>CENTER</code>, <code>NORTH</code>, <code>NORTH_EAST</code>, <code>NORTH_WEST</code>,
-	 *          <code>SOUTH</code>, <code>SOUTH_EAST</code>, <code>SOUTH_WEST</code>, <code>EAST</code> or <code>WEST</code>).
+	 *            the new position (should be one of <code>CENTER</code>, <code>NORTH</code>, <code>NORTH_EAST</code>,
+	 *            <code>NORTH_WEST</code>, <code>SOUTH</code>, <code>SOUTH_EAST</code>, <code>SOUTH_WEST</code>, <code>EAST</code> or
+	 *            <code>WEST</code>).
 	 */
 	public void setSecondaryIconRelativePosition(int position) {
 		this.secondaryIconRelativePosition = position;
@@ -112,7 +112,7 @@ public class OverlappedIcon implements Icon, SwingConstants {
 	 * Sets the secondary icon. May be set to <code>null</code> to display only the main icon.
 	 * 
 	 * @param secondaryIcon
-	 *          the secondary icon.
+	 *            the secondary icon.
 	 */
 	public void setSecondaryIcon(Icon secondaryIcon) {
 		this.secondaryIcon = secondaryIcon;

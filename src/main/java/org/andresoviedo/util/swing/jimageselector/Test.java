@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 
 import org.andresoviedo.util.swing.jimageselector.resources.Resources;
 
-
 public class Test extends JFrame {
 	public Test() {
 		super("Image selector tester");

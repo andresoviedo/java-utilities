@@ -21,7 +21,6 @@ import javax.swing.JPanel;
  * A desktop pane with an scroll pane as the parent (optional), a button pane containing a toggle button for each internal frame (optional)
  * and the ability to position all frames (tile, cascade, etc.).
  * 
-
  */
 public class BasicDesktopPane extends JDesktopPane {
 
@@ -161,7 +160,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Adds the internal frame's button to the panel.
 	 * 
 	 * @param f
-	 *          the internal frame which button has to be added.
+	 *            the internal frame which button has to be added.
 	 */
 	void addButton(BasicInternalFrame f) {
 		if ((f != null) && f.getUseDesktopToggleButton() && (pnlButtons != null)) {
@@ -178,7 +177,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Removes the internal frame's button from the panel.
 	 * 
 	 * @param f
-	 *          the internal frame which button has to be removed.
+	 *            the internal frame which button has to be removed.
 	 */
 	void removeButton(BasicInternalFrame f) {
 		if (f != null && pnlButtons != null) {
@@ -194,7 +193,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Gets the selected frame in the specified layer.
 	 * 
 	 * @param layer
-	 *          the layer in which the selected frame has to be retrieved.
+	 *            the layer in which the selected frame has to be retrieved.
 	 */
 	protected JInternalFrame getSelectedFrameInLayer(int layer) {
 		return hshSelectedFrames.get(layer);
@@ -204,7 +203,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Sets the frame as the selected frame in its layer.
 	 * 
 	 * @param f
-	 *          the internal frame.
+	 *            the internal frame.
 	 */
 	protected void setSelectedFrameInLayer(JInternalFrame f) {
 		if (f == null) {
@@ -217,7 +216,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Removes the selected frame in the specified layer from the hashtable.
 	 * 
 	 * @param layer
-	 *          the layer in which the selected frame has to be retrieved.
+	 *            the layer in which the selected frame has to be retrieved.
 	 */
 	protected void removeSelectedFrameInLayer(int layer) {
 		hshSelectedFrames.remove(layer);
@@ -227,7 +226,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Activate the next frame in the specified layer. This method is invoked when a frame is closed or iconified.
 	 * 
 	 * @param layer
-	 *          the layer where the next frame has to be activated.
+	 *            the layer where the next frame has to be activated.
 	 */
 	public void activateNextFrameInLayer(int layer) {
 		JInternalFrame f = getNextFrameInLayer(layer);
@@ -243,7 +242,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Gets the internal frame that should be selected (the first visible one that is not selected nor iconified).
 	 * 
 	 * @param layer
-	 *          the layer where to look for the next frame.
+	 *            the layer where to look for the next frame.
 	 * @return the internal frame that should be selected.
 	 */
 	public JInternalFrame getNextFrameInLayer(int layer) {
@@ -261,7 +260,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Centers the frame in the desktop pane.
 	 * 
 	 * @param f
-	 *          the frame to center.
+	 *            the frame to center.
 	 */
 	public void centerFrame(JInternalFrame f) {
 		if (f.getParent() != this) {
@@ -284,7 +283,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Sets the background image.
 	 * 
 	 * @param backgroundImage
-	 *          the bakcground image to set.
+	 *            the bakcground image to set.
 	 */
 	public void setBackgroundImage(ImageIcon backgroundImage) {
 		this.backgroundImage = backgroundImage;
@@ -323,7 +322,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Returns an action that cascades internal frames.
 	 * 
 	 * @param layer
-	 *          the layer where frames have to be arranged.
+	 *            the layer where frames have to be arranged.
 	 * @return an action that cascades internal frames.
 	 */
 	public Action createCascadeAction(int layer) {
@@ -334,7 +333,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Returns an action that minimizes internal frames.
 	 * 
 	 * @param layer
-	 *          the layer where frames have to be minimized.
+	 *            the layer where frames have to be minimized.
 	 * @return an action that minimizes all internal frames.
 	 */
 	public Action createIconifyAction(int layer) {
@@ -345,7 +344,7 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Returns an action that restores internal frames.
 	 * 
 	 * @param layer
-	 *          the layer where frames have to be minimized.
+	 *            the layer where frames have to be minimized.
 	 * @return an action that restores all internal frames.
 	 */
 	public Action createRestoreAction(int layer) {
@@ -356,9 +355,9 @@ public class BasicDesktopPane extends JDesktopPane {
 	 * Returns an action that tiles internal frames.
 	 * 
 	 * @param layer
-	 *          the layer where frames have to be minimized.
+	 *            the layer where frames have to be minimized.
 	 * @param horizontally
-	 *          <code>true</code> if frames have to be tiled horizontally.
+	 *            <code>true</code> if frames have to be tiled horizontally.
 	 * @return an action that tiles internal frames.
 	 */
 	public Action createTileAction(int layer, boolean horizontally) {

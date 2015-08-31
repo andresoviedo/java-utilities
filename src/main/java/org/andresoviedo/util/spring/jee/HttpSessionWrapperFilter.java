@@ -1,6 +1,4 @@
-package org.andresoviedo.util.jee;
-
-
+package org.andresoviedo.util.spring.jee;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -23,11 +21,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.util.WebUtils;
 
 /**
- * HttpSessionWrapper que wrappea la request. Se implementa debido a un "bug?" de la implementación de la HttpSession
- * del Weblogic.
+ * HttpSessionWrapper que wrappea la request. Se implementa debido a un "bug?" de la implementación de la HttpSession del Weblogic.
  * <p>
- * Requiere (idealmente) que el listener de Spring HttpSessionMutexListener este registrado en la aplicación para
- * garantizar que se puede sincronizar la sesión de usuario.
+ * Requiere (idealmente) que el listener de Spring HttpSessionMutexListener este registrado en la aplicación para garantizar que se puede
+ * sincronizar la sesión de usuario.
  * </p>
  * 
  * @author andresoviedo
@@ -40,8 +37,7 @@ public class HttpSessionWrapperFilter implements Filter {
 		logger.debug("HttpSessionWrapperFilter initialized");
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException,
-			ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 		filterChain.doFilter(new HttpRequestWrapper((HttpServletRequest) request), response);
 	}
 
@@ -215,8 +211,7 @@ public class HttpSessionWrapperFilter implements Filter {
 		}
 
 		/**
-		 * Finds the next element in the delegate enumeration which passes <code>accept</code> and puts it in
-		 * <code>next</code>.
+		 * Finds the next element in the delegate enumeration which passes <code>accept</code> and puts it in <code>next</code>.
 		 */
 
 		private void findNext() {

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The interface a command has to implement. Notice that all commands are serializable.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public interface Command extends Serializable {
 

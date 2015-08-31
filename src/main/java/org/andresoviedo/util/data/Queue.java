@@ -5,7 +5,6 @@ import java.util.Vector;
 /**
  * A generic FIFO (First In - First Out) queue.
  * 
-
  */
 public class Queue extends Vector {
 
@@ -20,7 +19,7 @@ public class Queue extends Vector {
 	 * Constructs a new queue with the specified initial capacity.
 	 * 
 	 * @param initialCapacity
-	 *          the initial capacity of the queue.
+	 *            the initial capacity of the queue.
 	 */
 	public Queue(int initialCapacity) {
 		super(initialCapacity);
@@ -31,7 +30,7 @@ public class Queue extends Vector {
 	 * 
 	 * @return the first object in the queue.
 	 * @exception EmptyQueueException
-	 *              if the queue is empty.
+	 *                if the queue is empty.
 	 */
 	public synchronized Object get() {
 		if (size() == 0) {
@@ -45,7 +44,7 @@ public class Queue extends Vector {
 	 * 
 	 * @return the first object in the queue.
 	 * @exception EmptyQueueException
-	 *              if the queue is empty.
+	 *                if the queue is empty.
 	 */
 	public synchronized Object peek() {
 		if (size() == 0) {

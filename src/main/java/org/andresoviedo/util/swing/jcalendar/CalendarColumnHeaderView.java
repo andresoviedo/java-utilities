@@ -16,7 +16,6 @@ import javax.swing.UIManager;
  * holding a <code>CalendarTable</code> instead of its table header. Since resizing and reordering is not allowed, not using the table
  * header as the column header view is not a problem.
  * 
-
  */
 public class CalendarColumnHeaderView extends JComponent {
 
@@ -34,7 +33,7 @@ public class CalendarColumnHeaderView extends JComponent {
 	 * Creates a new calendar row header view.
 	 * 
 	 * @param table
-	 *          the associated calendar table component.
+	 *            the associated calendar table component.
 	 */
 	public CalendarColumnHeaderView(JCalendarTable table) {
 		this.table = table;
@@ -62,7 +61,7 @@ public class CalendarColumnHeaderView extends JComponent {
 	 * Sets the preferred height of the component.
 	 * 
 	 * @param preferredHeight
-	 *          the preferred height.
+	 *            the preferred height.
 	 */
 	public void setPreferredHeight(int preferredHeight) {
 		if (preferredHeight < 0) {

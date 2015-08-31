@@ -8,11 +8,10 @@ import java.util.Vector;
 import org.andresoviedo.util.messaging.api1.MessengerProperties;
 import org.andresoviedo.util.messaging.api1.common.configuration.BasicConfiguration;
 
-
 /**
  * Server messenger configuration.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class ServerMessengerConfiguration extends BasicConfiguration {
 
@@ -79,8 +78,7 @@ public class ServerMessengerConfiguration extends BasicConfiguration {
 	/**
 	 * The default persistence directory.
 	 */
-	private static final String DEFAULT_PERSISTENCE_DIRECTORY = "."
-			+ File.separator + "messages-server";
+	private static final String DEFAULT_PERSISTENCE_DIRECTORY = "." + File.separator + "messages-server";
 
 	/**
 	 * The address to bind the server socket to.
@@ -101,7 +99,7 @@ public class ServerMessengerConfiguration extends BasicConfiguration {
 	 * The list of services to be instantiated.
 	 */
 	private List<String> serviceList;
-	
+
 	private String serverId;
 
 	/**
@@ -109,32 +107,27 @@ public class ServerMessengerConfiguration extends BasicConfiguration {
 	 */
 	public ServerMessengerConfiguration() {
 		// Try to load properties from a file.
-		super.load(SYSTEM_PROPERTY_CONFIGURATION_FILE,
-				DEFAULT_CONFIGURATION_FILE);
-		
+		super.load(SYSTEM_PROPERTY_CONFIGURATION_FILE, DEFAULT_CONFIGURATION_FILE);
+
 		this.serverId = getProperty(MessengerProperties.SYSTEM_PROPERTY_NODE_ID, UUID.randomUUID().toString());
 
 		// Set the host.
 		host = getProperty(PROPERTY_HOST, SYSTEM_PROPERTY_HOST, DEFAULT_HOST);
 		// Set the port.
 		try {
-			port = Integer.parseInt(getProperty(PROPERTY_PORT,
-					SYSTEM_PROPERTY_PORT, String.valueOf(DEFAULT_PORT)));
+			port = Integer.parseInt(getProperty(PROPERTY_PORT, SYSTEM_PROPERTY_PORT, String.valueOf(DEFAULT_PORT)));
 		} catch (NumberFormatException e) {
 			port = DEFAULT_PORT;
 		}
 		// Set the persistence direetory.
-		persistenceDirectory = new File(getProperty(
-				PROPERTY_PERSISTENCE_DIRECTORY,
-				SYSTEM_PROPERTY_PERSISTENCE_DIRECTORY,
+		persistenceDirectory = new File(getProperty(PROPERTY_PERSISTENCE_DIRECTORY, SYSTEM_PROPERTY_PERSISTENCE_DIRECTORY,
 				DEFAULT_PERSISTENCE_DIRECTORY));
 		// Set the list of services. Check for properties named "service1",
 		// "service2", [...] ,"serviceN".
 		this.serviceList = new Vector<String>();
 		int i = 1;
 		String classname = null;
-		while ((classname = getProperty(PROPERTY_PREFIX_SERVICE + i,
-				SYSTEM_PROPERTY_PREFIX_SERVICE + i, null)) != null) {
+		while ((classname = getProperty(PROPERTY_PREFIX_SERVICE + i, SYSTEM_PROPERTY_PREFIX_SERVICE + i, null)) != null) {
 			if (classname.length() > 0) {
 				serviceList.add(classname);
 			}
@@ -143,8 +136,7 @@ public class ServerMessengerConfiguration extends BasicConfiguration {
 	}
 
 	/**
-	 * Returns the IP address to bind the server socket to (unsused for the
-	 * moment).
+	 * Returns the IP address to bind the server socket to (unsused for the moment).
 	 * 
 	 * @return the IP address to bind the server socket to.
 	 */
@@ -153,8 +145,7 @@ public class ServerMessengerConfiguration extends BasicConfiguration {
 	}
 
 	/**
-	 * Sets the IP address to bind the server socket to (unsused for the
-	 * moment).
+	 * Sets the IP address to bind the server socket to (unsused for the moment).
 	 * 
 	 * @param host
 	 *            the new IP address to bind the server socket to.

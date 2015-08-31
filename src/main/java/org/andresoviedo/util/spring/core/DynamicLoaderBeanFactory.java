@@ -1,4 +1,4 @@
-package org.andresoviedo.util.classloader;
+package org.andresoviedo.util.spring.core;
 
 import java.io.ByteArrayInputStream;
 import java.lang.reflect.Constructor;
@@ -6,13 +6,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.andresoviedo.util.classloader.BinaryClassLoader;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
 /**
- * Implementación de una BeanFactory que instancia beans a partir de un mapa que contiene su definición en forma
- * binaria.
+ * Implementación de una BeanFactory que instancia beans a partir de un mapa que contiene su definición en forma binaria.
  * 
  * @author andresoviedo
  */
@@ -73,8 +73,8 @@ public class DynamicLoaderBeanFactory implements BeanFactory {
 			return (T) loadClass(name).newInstance();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			throw new RuntimeException("No se ha podido instanciar el bean '" + name + "' para la clase requerida '"
-					+ requiredType + "'", ex);
+			throw new RuntimeException("No se ha podido instanciar el bean '" + name + "' para la clase requerida '" + requiredType + "'",
+					ex);
 		}
 	}
 
@@ -83,8 +83,8 @@ public class DynamicLoaderBeanFactory implements BeanFactory {
 			return loadClass(name).newInstance();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			throw new RuntimeException("No se ha podido instanciar el bean '" + name + "' con los argumentos '"
-					+ Arrays.toString(args) + "'", ex);
+			throw new RuntimeException("No se ha podido instanciar el bean '" + name + "' con los argumentos '" + Arrays.toString(args)
+					+ "'", ex);
 		}
 	}
 

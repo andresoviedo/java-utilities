@@ -113,17 +113,17 @@ public class ConstantFlowDispatcher<T> extends ObjectDispatcher<T> implements Ru
 	/**
 	 * Agrega un objecto al dispatcher tal que su tiempo de entrega sea preferiblemente <code>preferredDelay</code> milisegundos después del
 	 * siguiente objeto a entregar. <br>
-	 * Si el tiempo total que tomará entregar los objetos que hay actualmente en el buffer no supera o no es igual al tiempo especificado como
-	 * preferido, <br>
+	 * Si el tiempo total que tomará entregar los objetos que hay actualmente en el buffer no supera o no es igual al tiempo especificado
+	 * como preferido, <br>
 	 * el objeto se entrega al final de los que hay actualmente en el buffer
 	 * 
 	 * @param obj
-	 *          Objeto para agregar
+	 *            Objeto para agregar
 	 * @param preferredDelay
-	 *          Tiempo preferido de entrega en milisegundos
+	 *            Tiempo preferido de entrega en milisegundos
 	 * @return Siempre devuelve true
 	 * @throws IllegalStateException
-	 *           si el tiempo especificado es menor que 0
+	 *             si el tiempo especificado es menor que 0
 	 */
 	public int addObject(T obj, long preferredDelay) {
 		if (preferredDelay < 0) {

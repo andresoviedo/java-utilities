@@ -12,7 +12,7 @@ import java.util.zip.InflaterInputStream;
 /**
  * A message holding a serializable object as its body.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class ObjectMessage extends Message {
 
@@ -33,7 +33,7 @@ public class ObjectMessage extends Message {
 	 * Creates a new <code>ObjectMessage</code> with no associated object.
 	 * 
 	 * @param object
-	 *          the associated serializable object.
+	 *            the associated serializable object.
 	 */
 	ObjectMessage(Serializable object) {
 		setObject(object);
@@ -52,7 +52,7 @@ public class ObjectMessage extends Message {
 	 * Sets the associated object (<code>null</code> permitted).
 	 * 
 	 * @param object
-	 *          the new associated object.
+	 *            the new associated object.
 	 */
 	public void setObject(Serializable object) {
 		this.object = object;

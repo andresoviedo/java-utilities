@@ -17,7 +17,7 @@ import java.util.Vector;
  * Company:
  * </p>
  * 
- * @author not attributable
+ * @author andresoviedo attributable
  * @version 1.0
  */
 
@@ -95,7 +95,7 @@ public class SimpleConstantFlowDispatcher<T> extends ObjectDispatcher<T> impleme
 	 * ATTENTION !! It is dangerous to return an int... Only method for adding objects
 	 * 
 	 * @param obj
-	 *          Object
+	 *            Object
 	 * @return int
 	 */
 	@Override

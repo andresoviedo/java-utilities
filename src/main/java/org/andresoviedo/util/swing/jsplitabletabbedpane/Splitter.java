@@ -24,11 +24,9 @@ import javax.swing.event.MouseInputAdapter;
 
 import org.andresoviedo.util.swing.jsplitabletabbedpane.resources.Resources;
 
-
 /**
  * Splitter.
  * 
-
  */
 class Splitter extends MouseInputAdapter implements ContainerListener, ActionListener {
 
@@ -100,7 +98,7 @@ class Splitter extends MouseInputAdapter implements ContainerListener, ActionLis
 	 * Constructs a new tabbed pane splitter.
 	 * 
 	 * @param tabbedPane
-	 *          the original tabbed pane.
+	 *            the original tabbed pane.
 	 */
 	public Splitter(JSplitableTabbedPane topPanel) {
 		this.topPanel = topPanel;
@@ -145,18 +143,19 @@ class Splitter extends MouseInputAdapter implements ContainerListener, ActionLis
 	 * Creates a custom cursor using an image.
 	 * 
 	 * @param filename
-	 *          the image to display when the cursor is actived
+	 *            the image to display when the cursor is actived
 	 * @param hotSpot
-	 *          the X and Y of the large cursor's hot spot.
+	 *            the X and Y of the large cursor's hot spot.
 	 * @param name
-	 *          a localized description of the cursor, for Java Accessibility use.
+	 *            a localized description of the cursor, for Java Accessibility use.
 	 * 
 	 * @return the newly created cursor.
 	 */
 	private Cursor createCustomCursor(String filename, Point hotSpot, String name) {
 		Cursor cursor = null;
 		try {
-			cursor = Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(getClass().getResource(filename)).getImage(), hotSpot, name);
+			cursor = Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(getClass().getResource(filename)).getImage(), hotSpot,
+					name);
 		} catch (Exception e) {
 		}
 
@@ -167,7 +166,7 @@ class Splitter extends MouseInputAdapter implements ContainerListener, ActionLis
 	 * Attempt to show the popup menu.
 	 * 
 	 * @param e
-	 *          the mouse event.
+	 *            the mouse event.
 	 */
 	private void attemptShowPopupMenu(MouseEvent e) {
 		if (topPanel.isShowTabPopupMenu() && e.isPopupTrigger()) {
@@ -194,7 +193,8 @@ class Splitter extends MouseInputAdapter implements ContainerListener, ActionLis
 	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
 	 */
 	public void mousePressed(MouseEvent e) {
-		// Set the origin tabbed pane. The source component is always a tabbed pane, since they are the only components which have this mouse
+		// Set the origin tabbed pane. The source component is always a tabbed pane, since they are the only components which have this
+		// mouse
 		// listener installed.
 		tpSource = (JTabbedPane) e.getComponent();
 
@@ -446,7 +446,8 @@ class Splitter extends MouseInputAdapter implements ContainerListener, ActionLis
 				for (int i = 0; i < popupTabIndex; i++) {
 					popupTabbedPane.removeTabAt(0);
 				}
-				// Remove tabs ABOVE the selected one. Remember that when a tab is rmeoved, the other tabs are shifted. The tab we want to keep is
+				// Remove tabs ABOVE the selected one. Remember that when a tab is rmeoved, the other tabs are shifted. The tab we want to
+				// keep is
 				// now at index 0.
 				for (int i = 0; i < tabCount - popupTabIndex - 1; i++) {
 					popupTabbedPane.removeTabAt(1);
@@ -462,7 +463,7 @@ class Splitter extends MouseInputAdapter implements ContainerListener, ActionLis
 	 * Sets the destination tabbed pane, using the coordinates of the mouse event.
 	 * 
 	 * @param e
-	 *          the mouse event.
+	 *            the mouse event.
 	 */
 	private void setDestinationTabbedPane(MouseEvent e) {
 		// The source component. This is always a JTabbedPane.
@@ -484,9 +485,9 @@ class Splitter extends MouseInputAdapter implements ContainerListener, ActionLis
 	 * Gets the tabbed pane which contains the given point.
 	 * 
 	 * @param c
-	 *          the component.
+	 *            the component.
 	 * @param p
-	 *          the point.
+	 *            the point.
 	 * 
 	 * @return the tabbed pane which contains the given point.
 	 */

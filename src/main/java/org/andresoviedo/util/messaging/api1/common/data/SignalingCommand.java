@@ -4,7 +4,7 @@ package org.andresoviedo.util.messaging.api1.common.data;
  * The base class for commands used internally for signaling. Signaling commands are transparent to users, and of course should not be
  * persisted.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public abstract class SignalingCommand implements Command {
 
@@ -21,7 +21,7 @@ public abstract class SignalingCommand implements Command {
 	 * Constructs a new signalling command.
 	 * 
 	 * @param clientId
-	 *          the client id.
+	 *            the client id.
 	 */
 	public SignalingCommand(String clientId) {
 		if (clientId == null) {

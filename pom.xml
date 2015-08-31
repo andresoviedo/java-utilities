@@ -115,6 +115,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${org.springframework.version}</version>
+			<optional>true</optional>
 		</dependency>
 		<!-- Bean Factory and JavaBeans utilities (depends on spring-core) Define 
 			this if you use Spring Bean APIs (org.springframework.beans.*) -->
@@ -122,11 +123,13 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 			<version>${org.springframework.version}</version>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframework.version}</version>
+			<optional>true</optional>
 		</dependency>
 		<!-- JDBC Data Access Library (depends on spring-core, spring-beans, spring-context, 
 			spring-tx) Define this if you use Spring's JdbcTemplate API (org.springframework.jdbc.*) -->
@@ -170,6 +173,15 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- jgroups -->
+		<dependency>
+			<groupId>org.jgroups</groupId>
+			<artifactId>jgroups</artifactId>
+			<version>3.6.4.Final</version>
+			<scope>compile</scope>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -190,8 +202,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<!-- <plugin> <groupId>org.jibx</groupId> <artifactId>jibx-maven-plugin</artifactId> 

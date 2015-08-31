@@ -1,6 +1,4 @@
-package org.andresoviedo.util.classloader;
-
-
+package org.andresoviedo.util.spring.core;
 
 import java.util.HashMap;
 import java.util.Map;

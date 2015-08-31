@@ -12,19 +12,17 @@ import org.andresoviedo.util.messaging.api1.common.io.Persistence;
 import org.andresoviedo.util.messaging.api1.common.net.SocketSession;
 import org.andresoviedo.util.messaging.api1.common.service.Service;
 
-
 /**
  * The server messenger.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class ServerMessenger extends Messenger {
 
 	/**
 	 * A static reference to the logger object.
 	 */
-	private static Logger logger = Logger
-			.getLogger(MessengerProperties.LOGGER_NAME);
+	private static Logger logger = Logger.getLogger(MessengerProperties.LOGGER_NAME);
 
 	/**
 	 * The single instance of this class.
@@ -32,8 +30,7 @@ public class ServerMessenger extends Messenger {
 	private static ServerMessenger instance;
 
 	/**
-	 * The server session managing the server socket and the incoming
-	 * connections.
+	 * The server session managing the server socket and the incoming connections.
 	 */
 	private ServerSession session;
 
@@ -75,11 +72,9 @@ public class ServerMessenger extends Messenger {
 		// Create the server session.
 		this.session = new ServerSession(this);
 		// Create the persistence object.
-		this.persistence = new Persistence(
-				this.configuration.getPersistenceDirectory());
+		this.persistence = new Persistence(this.configuration.getPersistenceDirectory());
 
-		logger.info("Persistence directory: "
-				+ this.configuration.getPersistenceDirectory());
+		logger.info("Persistence directory: " + this.configuration.getPersistenceDirectory());
 
 		// Initialize services.
 		this.initialize();
@@ -101,20 +96,17 @@ public class ServerMessenger extends Messenger {
 
 		Service service = null;
 		String serviceClassName = null;
-		for (Iterator<?> it = configuration.getServiceList().iterator(); it
-				.hasNext();) {
+		for (Iterator<?> it = configuration.getServiceList().iterator(); it.hasNext();) {
 			serviceClassName = it.next().toString();
 			try {
 				// Try to get the class.
 				clazz = Class.forName(serviceClassName);
 				// Try to instantiate the service.
-				service = (Service) clazz.getConstructor(types).newInstance(
-						args);
+				service = (Service) clazz.getConstructor(types).newInstance(args);
 				// Add it to the listener list.
 				setServiceListener(service.getServiceId(), service);
 			} catch (Exception e) {
-				logger.warning("Exception caught instantiating the service: "
-						+ serviceClassName);
+				logger.warning("Exception caught instantiating the service: " + serviceClassName);
 			}
 		}
 	}
@@ -138,8 +130,7 @@ public class ServerMessenger extends Messenger {
 	}
 
 	/**
-	 * Returns the session authenticator used to authenticate sessions. May be
-	 * <code>null</code>.
+	 * Returns the session authenticator used to authenticate sessions. May be <code>null</code>.
 	 * 
 	 * @return the session authenticator used to authenticate sessions.
 	 */
@@ -148,14 +139,12 @@ public class ServerMessenger extends Messenger {
 	}
 
 	/**
-	 * Sets the session authenticator used to authenticate sessions. Can be
-	 * <code>null</code>.
+	 * Sets the session authenticator used to authenticate sessions. Can be <code>null</code>.
 	 * 
 	 * @param sessionAuthenticator
 	 *            the session authenticator.
 	 */
-	public void setSessionAuthenticator(
-			SessionAuthenticator sessionAuthenticator) {
+	public void setSessionAuthenticator(SessionAuthenticator sessionAuthenticator) {
 		this.sessionAuthenticator = sessionAuthenticator;
 	}
 
@@ -168,8 +157,7 @@ public class ServerMessenger extends Messenger {
 			session.open();
 			logger.info("Server messenger started.");
 		} catch (ServerSessionException e) {
-			logger.warning("Exception caught while starting server messenger: "
-					+ e.getMessage());
+			logger.warning("Exception caught while starting server messenger: " + e.getMessage());
 		}
 	}
 
@@ -184,47 +172,37 @@ public class ServerMessenger extends Messenger {
 	}
 
 	@Override
-	protected void forwardMessage(Message message, String serviceId)
-			throws MessengerException {
-		if (message.getTargetClientId() == null
-				|| message.getTargetClientId().equals(clientId)) {
+	protected void forwardMessage(Message message, String serviceId) throws MessengerException {
+		if (message.getTargetClientId() == null || message.getTargetClientId().equals(clientId)) {
 			super.forwardMessage(message, serviceId);
 			return;
 		}
-		
+
 		sendImpl(message);
 	}
 
 	/*
-	 * @see
-	 * org.andresoviedo.util.messaging.api1.Messenger#sendImpl(org.andresoviedo.util.messaging.api1.common
-	 * .data.Message)
+	 * @see org.andresoviedo.util.messaging.api1.Messenger#sendImpl(org.andresoviedo.util.messaging.api1.common .data.Message)
 	 */
 	protected void sendImpl(Message message) throws MessengerException {
-		SocketSession clientSession = session.getSession(message
-				.getTargetClientId());
+		SocketSession clientSession = session.getSession(message.getTargetClientId());
 		if (clientSession != null) {
 			super.send(message, clientSession);
 		} else {
-			throw new MessengerException("No client available: "
-					+ message.getTargetClientId());
+			throw new MessengerException("No client available: " + message.getTargetClientId());
 		}
 	}
 
 	/*
-	 * @see
-	 * org.andresoviedo.util.messaging.api1.Messenger#sendAndReceiveImpl(org.andresoviedo.util.messaging.api1
-	 * .common.data.Message, long)
+	 * @see org.andresoviedo.util.messaging.api1.Messenger#sendAndReceiveImpl(org.andresoviedo.util.messaging.api1 .common.data.Message,
+	 * long)
 	 */
-	protected Message sendAndReceiveImpl(Message message, long timeout)
-			throws MessengerException, InterruptedException {
-		SocketSession clientSession = session.getSession(message
-				.getTargetClientId());
+	protected Message sendAndReceiveImpl(Message message, long timeout) throws MessengerException, InterruptedException {
+		SocketSession clientSession = session.getSession(message.getTargetClientId());
 		if (clientSession != null) {
 			return super.sendAndReceive(message, clientSession, timeout);
 		} else {
-			throw new MessengerException("Client not available: "
-					+ message.getTargetClientId());
+			throw new MessengerException("Client not available: " + message.getTargetClientId());
 		}
 	}
 
@@ -239,8 +217,7 @@ public class ServerMessenger extends Messenger {
 		// messages are not removed from persistence.
 		try {
 			Message message = null;
-			for (Iterator<?> it = persistence.iterator(clientId, false); it
-					.hasNext();) {
+			for (Iterator<?> it = persistence.iterator(clientId, false); it.hasNext();) {
 				message = (Message) it.next();
 				if (message != null) {
 					// Send the message. This method will remove this message
@@ -254,8 +231,7 @@ public class ServerMessenger extends Messenger {
 	}
 
 	/**
-	 * Invoked once an ACK has been received, remove the corresponding message
-	 * from persistence to prevent resending.
+	 * Invoked once an ACK has been received, remove the corresponding message from persistence to prevent resending.
 	 * 
 	 * @param clientId
 	 *            the client id.
@@ -263,11 +239,9 @@ public class ServerMessenger extends Messenger {
 	 *            the message id.
 	 */
 	void removePersistedMessage(String clientId, String messageId) {
-		logger.fine("Removing message '" + messageId + "' with client id '"
-				+ clientId + "' from persistence...");
+		logger.fine("Removing message '" + messageId + "' with client id '" + clientId + "' from persistence...");
 		if (!persistence.delete(clientId, messageId)) {
-			logger.warning("Message '" + messageId + "' with client id '"
-					+ clientId + "' could not be deleted from persistence.");
+			logger.warning("Message '" + messageId + "' with client id '" + clientId + "' could not be deleted from persistence.");
 		}
 	}
 

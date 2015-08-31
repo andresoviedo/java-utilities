@@ -29,7 +29,6 @@ import org.andresoviedo.util.swing.SwingUtils;
 import org.andresoviedo.util.swing.jnotepad.resources.Resources;
 import org.andresoviedo.util.swing.jnotepad.utils.NotepadUtils;
 
-
 public class NotepadGlyphGutter extends JComponent implements DocumentListener, PropertyChangeListener, ItemListener, MouseListener {
 
 	/**
@@ -101,7 +100,7 @@ public class NotepadGlyphGutter extends JComponent implements DocumentListener, 
 	 * Creates a new notepad glyph gutter.
 	 * 
 	 * @param notepad
-	 *          the associated notepad.
+	 *            the associated notepad.
 	 */
 	public NotepadGlyphGutter(JNotepad notepad) {
 		this.component = notepad.getEditor();
@@ -150,7 +149,7 @@ public class NotepadGlyphGutter extends JComponent implements DocumentListener, 
 	 * Set whether line numbers have to be shown or not.
 	 * 
 	 * @param showLineNumbers
-	 *          <code>true</code> if line numbers have to be shown, <code>false</code> otherwise.
+	 *            <code>true</code> if line numbers have to be shown, <code>false</code> otherwise.
 	 */
 	public void setShowLineNumbers(boolean showLineNumbers) {
 		if (this.showLineNumbers != showLineNumbers) {
@@ -264,11 +263,11 @@ public class NotepadGlyphGutter extends JComponent implements DocumentListener, 
 	 * Paints the specified line number.
 	 * 
 	 * @param g
-	 *          the graphics object.
+	 *            the graphics object.
 	 * @param line
-	 *          the line number to paint (0-based).
+	 *            the line number to paint (0-based).
 	 * @param viewRect
-	 *          the rectangle of the view of the corresponding line.
+	 *            the rectangle of the view of the corresponding line.
 	 */
 	private void paintLineNumber(Graphics g, int line, Rectangle viewRect) {
 		String s = String.valueOf(line + 1);
@@ -284,9 +283,9 @@ public class NotepadGlyphGutter extends JComponent implements DocumentListener, 
 	 * Invoked when a new document has been set in the editor component.
 	 * 
 	 * @param oldDoc
-	 *          the old document.
+	 *            the old document.
 	 * @param newDoc
-	 *          the new document.
+	 *            the new document.
 	 */
 	private void documentChanged(Document oldDoc, Document newDoc) {
 		if (oldDoc != null) {
@@ -303,7 +302,7 @@ public class NotepadGlyphGutter extends JComponent implements DocumentListener, 
 	 * Invoked when the current document has changed.
 	 * 
 	 * @param doc
-	 *          the document.
+	 *            the document.
 	 */
 	private void documentChanged(Document doc) {
 		int lineCount = NotepadUtils.getLineCount(doc);

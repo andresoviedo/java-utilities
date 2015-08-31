@@ -7,7 +7,6 @@ import java.io.FileFilter;
  * A file filter that accepts only the specified file. It can be used, for instance, to check whether a specified file exists in a given
  * directory. Notice that the file name comparison is case-insensitive.
  * 
-
  */
 public class SingleFileFilter implements FileFilter {
 
@@ -20,9 +19,9 @@ public class SingleFileFilter implements FileFilter {
 	 * Creates a new single file filter.
 	 * 
 	 * @param filename
-	 *          the filename to check.
+	 *            the filename to check.
 	 * @throws IllegalArgumentException
-	 *           if <code>filename</code> is <code>null</code>.
+	 *             if <code>filename</code> is <code>null</code>.
 	 */
 	public SingleFileFilter(String filename) {
 		if (filename == null) {

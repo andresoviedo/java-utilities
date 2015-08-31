@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 /**
  * The resource class for <code>JNotepad</code>.
  * 
-
  */
 public class Resources {
 
@@ -36,7 +35,7 @@ public class Resources {
 	 * if the image is not found.
 	 * 
 	 * @param filename
-	 *          the filename.
+	 *            the filename.
 	 * @return the image icon.
 	 */
 	public static ImageIcon getIcon(String filename) {
@@ -51,7 +50,7 @@ public class Resources {
 	 * Gets a char for the given key.
 	 * 
 	 * @param key
-	 *          the key for the desired char.
+	 *            the key for the desired char.
 	 * @return the char for the given key.
 	 */
 	public static char getChar(String key) {
@@ -62,7 +61,7 @@ public class Resources {
 	 * Gets a string for the given key.
 	 * 
 	 * @param key
-	 *          the key for the desired string.
+	 *            the key for the desired string.
 	 * @return the string for the given key.
 	 */
 	public static String getString(String key) {
@@ -77,9 +76,9 @@ public class Resources {
 	 * Gets a message for the given key, using a MessageFormat with the specified argument.
 	 * 
 	 * @param key
-	 *          the key for the desired string.
+	 *            the key for the desired string.
 	 * @param arg
-	 *          the argument to be passed to MessageFormat.
+	 *            the argument to be passed to MessageFormat.
 	 * 
 	 * @return the message for the given key.
 	 */
@@ -91,9 +90,9 @@ public class Resources {
 	 * Gets a message for the given key, using a MessageFormat with the specified arguments.
 	 * 
 	 * @param key
-	 *          the key for the desired string.
+	 *            the key for the desired string.
 	 * @param args
-	 *          the arguments to be passed to MessageFormat.
+	 *            the arguments to be passed to MessageFormat.
 	 * 
 	 * @return the message for the given key.
 	 */

@@ -16,7 +16,7 @@ public class HexUtils {
 	 * Returns the dump representation of a byte buffer in hexadecimal bytes 00 to FF.
 	 * 
 	 * @param buffer
-	 *          the buffer.
+	 *            the buffer.
 	 * @return the dump representation of a byte buffer in hexadecimal bytes 00 to FF.
 	 */
 	public static String getHexDump(byte[] buffer) {
@@ -37,7 +37,7 @@ public class HexUtils {
 	 * representation.
 	 * 
 	 * @param buffer
-	 *          the buffer.
+	 *            the buffer.
 	 * @return the dump representation of a byte buffer in hexadecimal bytes 00 to FF.
 	 */
 	public static String getHexDump(byte[] buffer, String extraChars) {
@@ -58,7 +58,7 @@ public class HexUtils {
 	 * Encodes a positive int as an unsigned byte.
 	 * 
 	 * @param positive
-	 *          the positive int.
+	 *            the positive int.
 	 * @return a positive int encoded as an unsigned byte.
 	 */
 	public static byte encodeUnsigned(int positive) {

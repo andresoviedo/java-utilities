@@ -10,11 +10,9 @@ import javax.swing.text.JTextComponent;
 
 import org.andresoviedo.util.swing.jnotepad.resources.Resources;
 
-
 /**
  * An action that can be used to bring up a find/replace dialog.
  * 
-
  */
 class FindReplaceAction extends AbstractAction {
 
@@ -32,7 +30,7 @@ class FindReplaceAction extends AbstractAction {
 	 * Creates a new action with the associated editor.
 	 * 
 	 * @param editor
-	 *          the associated editor.
+	 *            the associated editor.
 	 */
 	public FindReplaceAction(JTextComponent editor) {
 		super(Resources.getString(Resources.ACTION_FIND_REPLACE));

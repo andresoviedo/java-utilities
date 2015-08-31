@@ -3,7 +3,6 @@ package org.andresoviedo.util.swing.jsplitabletabbedpane;
 /**
  * Splitter constants.
  * 
-
  */
 interface SplitterConstants {
 

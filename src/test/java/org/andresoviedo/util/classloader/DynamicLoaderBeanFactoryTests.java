@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.andresoviedo.util.encoding.Base64;
+import org.andresoviedo.util.spring.core.DynamicLoaderBeanFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -62,8 +63,7 @@ public class DynamicLoaderBeanFactoryTests {
 		Map<String, byte[]> source = new HashMap<String, byte[]>();
 		source.put("org.andresoviedo.util.classloader.SomeRunnable", Base64.decodeFast(claseBinariaOriginal));
 		dlfb.setSource(source);
-		dlfb.getClassNames().put("org.andresoviedo.util.classloader.SomeRunnable",
-				"org.andresoviedo.util.classloader.SomeRunnable");
+		dlfb.getClassNames().put("org.andresoviedo.util.classloader.SomeRunnable", "org.andresoviedo.util.classloader.SomeRunnable");
 		Runnable bean = (Runnable) dlfb.getBean("org.andresoviedo.util.classloader.SomeRunnable");
 		bean.run();
 		Assert.assertNotNull(bean);

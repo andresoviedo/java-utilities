@@ -12,7 +12,6 @@ import org.andresoviedo.util.bean.PeriodBean;
 import org.andresoviedo.util.bean.PeriodBean.DailyPeriod;
 import org.andresoviedo.util.time.TimeUtils;
 
-
 /**
  * The <code>Scheduler</code> class extends the functionality to the {@link Timer} class allowing to schedule tasks for a specified period
  * of time.<br>
@@ -22,7 +21,7 @@ import org.andresoviedo.util.time.TimeUtils;
  * 
  * @see PeriodBean
  * 
- * @author aoviedo
+ * @author andresoviedo
  * 
  */
 public class Scheduler extends Timer {
@@ -47,9 +46,9 @@ public class Scheduler extends Timer {
 	 * Schedules a task for the specified period of time.
 	 * 
 	 * @param task
-	 *          the task to be scheduled
+	 *            the task to be scheduled
 	 * @param period
-	 *          the period to execute task
+	 *            the period to execute task
 	 * @return the next execution time for the scheduled task
 	 */
 	public Date schedule(TimerTask task, PeriodBean period) {
@@ -78,7 +77,7 @@ public class Scheduler extends Timer {
 	 * Cancel the specified <code>TimerTask</code> for execution.
 	 * 
 	 * @param task
-	 *          the task to be canceled
+	 *            the task to be canceled
 	 * @return true if the task exists and the task could be canceled
 	 * @see TimerTask#cancel();
 	 */
@@ -111,7 +110,7 @@ public class Scheduler extends Timer {
 	/**
 	 * Wrapper class of the <code>TimerTask</code> class, that is used to reschedule one time execution tasks.
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 */
 	class PeriodTask extends TimerTask {
 		TimerTask task;

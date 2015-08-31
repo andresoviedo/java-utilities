@@ -116,7 +116,7 @@ public class SMTPUtils {
 				System.out.println("message already dispatched. Spent time (miliseconds) =" + seconds);
 				return true;
 			} catch (MessagingException ex) {
-				System.out.println("Exception while dispatching email: "+ ex.getMessage());
+				System.out.println("Exception while dispatching email: " + ex.getMessage());
 				// SystemLog.logException(ex);
 				Exception nex = null;
 				if ((nex = ex.getNextException()) != null) {

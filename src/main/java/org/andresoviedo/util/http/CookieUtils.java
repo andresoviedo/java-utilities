@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * @author andresoviedo
  * 
- *         TODO Las constantes de esta classe deberia moverse a un sitio más apropiado (otra clase y teniendo en cuenta
- *         si son constantes multicanal o específicas de canal oficina) ya que esta clase deberia ser genérica.
+ *         TODO Las constantes de esta classe deberia moverse a un sitio más apropiado (otra clase y teniendo en cuenta si son constantes
+ *         multicanal o específicas de canal oficina) ya que esta clase deberia ser genérica.
  */
 
 public class CookieUtils {
@@ -67,9 +67,8 @@ public class CookieUtils {
 	}
 
 	/**
-	 * Método para el establecimiento de una cookie con un nombre y un valor determinado. Para los otros atributos de la
-	 * cookie se establecen los siguientes valores: Expiración: -1. No persistencia. Path: default path. Dominio: valor
-	 * por defecto, dominio actual.
+	 * Método para el establecimiento de una cookie con un nombre y un valor determinado. Para los otros atributos de la cookie se
+	 * establecen los siguientes valores: Expiración: -1. No persistencia. Path: default path. Dominio: valor por defecto, dominio actual.
 	 * 
 	 * @param cookieName
 	 *            Nombre de la cookie.
@@ -86,11 +85,10 @@ public class CookieUtils {
 	}
 
 	/**
-	 * Método para el establecimiento de una cookie con un nombre, valor y dominio determinado. Deberia usarse para
-	 * aquellas cookies cross entre diferentes dominios.
+	 * Método para el establecimiento de una cookie con un nombre, valor y dominio determinado. Deberia usarse para aquellas cookies cross
+	 * entre diferentes dominios.
 	 * 
-	 * Para los otros atributos de la cookie se establecen los siguientes valores: Expiración: -1. No persistencia.
-	 * Path: default path.
+	 * Para los otros atributos de la cookie se establecen los siguientes valores: Expiración: -1. No persistencia. Path: default path.
 	 * 
 	 * @param cookieName
 	 *            Nombre de la cookie.
@@ -101,8 +99,7 @@ public class CookieUtils {
 	 * @param response
 	 *            HTTP response en curso.
 	 */
-	public static void setCookie(HttpServletResponse response, String cookieName, String cookieValue,
-			String cookieDomain) {
+	public static void setCookie(HttpServletResponse response, String cookieName, String cookieValue, String cookieDomain) {
 		Cookie cookie = new Cookie(cookieName, cookieValue);
 		cookie.setMaxAge(-1);
 		cookie.setDomain(cookieDomain);
@@ -111,8 +108,8 @@ public class CookieUtils {
 	}
 
 	/**
-	 * Método para el borrado de una cookie de un dominio concreto. Sólo se borrar la cookie si esta existe. Para los
-	 * otros atributos de la cookie se establecen los siguientes valores: Expiración: 0. Eliminación Path: default path.
+	 * Método para el borrado de una cookie de un dominio concreto. Sólo se borrar la cookie si esta existe. Para los otros atributos de la
+	 * cookie se establecen los siguientes valores: Expiración: 0. Eliminación Path: default path.
 	 * 
 	 * @param cookieName
 	 *            Nombre de la cookie.
@@ -123,8 +120,7 @@ public class CookieUtils {
 	 * @param response
 	 *            HTTP response en curso.
 	 */
-	public static void removeDomainCookie(String cookieName, String domain, HttpServletRequest request,
-			HttpServletResponse response) {
+	public static void removeDomainCookie(String cookieName, String domain, HttpServletRequest request, HttpServletResponse response) {
 		Cookie cookie = getCookie(cookieName, request);
 		if (cookie != null) {
 			cookie.setMaxAge(0);
@@ -135,8 +131,8 @@ public class CookieUtils {
 	}
 
 	/**
-	 * Método para el borrado de una cookie en el dominio de la petición Para los otros atributos de la cookie se
-	 * establecen los siguientes valores: Expiración: 0. Eliminación Path: default path.
+	 * Método para el borrado de una cookie en el dominio de la petición Para los otros atributos de la cookie se establecen los siguientes
+	 * valores: Expiración: 0. Eliminación Path: default path.
 	 * 
 	 * @param cookieName
 	 *            Nombre de la cookie.

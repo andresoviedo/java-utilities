@@ -37,11 +37,9 @@ import javax.swing.event.MouseInputListener;
 import org.andresoviedo.util.swing.SwingUtils;
 import org.andresoviedo.util.swing.jimageselector.resources.Resources;
 
-
 /**
  * A component used to load an image and capture a portion of it.
  * 
-
  */
 public class JImageSelector extends JPanel implements ActionListener, ChangeListener, ItemListener, MouseInputListener {
 
@@ -97,7 +95,7 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Constructs a new <code>JImageSelector</code> with the specified image.
 	 * 
 	 * @param image
-	 *          an image.
+	 *            an image.
 	 */
 	public JImageSelector(Image image) {
 		this(image, 0, 0, 100, 100);
@@ -107,15 +105,15 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Constructs a new <code>JImageSelector</code>.
 	 * 
 	 * @param image
-	 *          the image to display.
+	 *            the image to display.
 	 * @param initialX
-	 *          the initial X of the selection area.
+	 *            the initial X of the selection area.
 	 * @param initialY
-	 *          the initial Y of the selection area.
+	 *            the initial Y of the selection area.
 	 * @param initialWidth
-	 *          the initial width of the selection area.
+	 *            the initial width of the selection area.
 	 * @param initialHeight
-	 *          the initial height of the selection area.
+	 *            the initial height of the selection area.
 	 */
 	public JImageSelector(Image image, int initialX, int initialY, int initialWidth, int initialHeight) {
 		this.image = image;
@@ -175,7 +173,7 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Adds an action listener to the 'Cancel' button.
 	 * 
 	 * @param l
-	 *          the action listener to add.
+	 *            the action listener to add.
 	 */
 	public void addCancelListener(ActionListener l) {
 		btnCancel.addActionListener(l);
@@ -185,7 +183,7 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Adds an action listener to the 'Capture' button.
 	 * 
 	 * @param l
-	 *          the action listener to add.
+	 *            the action listener to add.
 	 */
 	public void addCaptureListener(ActionListener l) {
 		btnCapture.addActionListener(l);
@@ -272,7 +270,7 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Removes an action listener from the 'Cancel' button.
 	 * 
 	 * @param l
-	 *          the action listener to add.
+	 *            the action listener to add.
 	 */
 	public void removeCancelListener(ActionListener l) {
 		btnCancel.removeActionListener(l);
@@ -282,7 +280,7 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Removes an action listener from the 'Capture' button.
 	 * 
 	 * @param l
-	 *          the action listener to add.
+	 *            the action listener to add.
 	 */
 	public void removeCaptureListener(ActionListener l) {
 		btnCapture.removeActionListener(l);
@@ -292,7 +290,7 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Sets the image to display.
 	 * 
 	 * @param image
-	 *          the image to display.
+	 *            the image to display.
 	 */
 	public void setImage(Image image) {
 		this.image = image;
@@ -307,9 +305,9 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Sets the opacity.
 	 * 
 	 * @param opacity
-	 *          the new opacity.
+	 *            the new opacity.
 	 * @throws IllegalArgumentException
-	 *           if <code>opacity</code> is out of range.
+	 *             if <code>opacity</code> is out of range.
 	 */
 	public void setOpacity(int opacity) {
 		if ((opacity < 0) || (opacity > 100)) {
@@ -327,7 +325,7 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Sets the opacity color to use. If the supplied color is null, this method does nothing.
 	 * 
 	 * @param opacityColor
-	 *          the new color.
+	 *            the new color.
 	 */
 	public void setOpacityColor(Color opacityColor) {
 		if ((opacityColor != null) && !opacityColor.equals(this.opacityColor)) {
@@ -341,9 +339,9 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Sets the scale factor.
 	 * 
 	 * @param scaleFactor
-	 *          the new scale factor.
+	 *            the new scale factor.
 	 * @throws IllegalArgumentException
-	 *           if <code>scaleFactor</code> is out of range.
+	 *             if <code>scaleFactor</code> is out of range.
 	 */
 	public void setScaleFactor(int scaleFactor) {
 		if ((scaleFactor < SCALE_FACTOR_MIN) || (scaleFactor > SCALE_FACTOR_MAX)) {
@@ -366,9 +364,9 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Sets the zoom level.
 	 * 
 	 * @param zoomLevel
-	 *          the new zoom level.
+	 *            the new zoom level.
 	 * @throws IllegalArgumentException
-	 *           if <code>zoomLevel</code> is out of range.
+	 *             if <code>zoomLevel</code> is out of range.
 	 */
 	public void setZoomLevel(int zoomLevel) {
 		if ((zoomLevel < 1) || (zoomLevel > 4)) {
@@ -389,15 +387,19 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 			try {
 				setScaleFactor(Integer.parseInt(tfScalingValue.getText()));
 			} catch (Exception ex) {
-				SwingUtils.showErrorDialog(this, Resources.getMessage(Resources.PATTERN_INVALID_SCALE_FACTOR, new Object[] {
-						String.valueOf(SCALE_FACTOR_MIN), String.valueOf(SCALE_FACTOR_MAX) }));
+				SwingUtils.showErrorDialog(
+						this,
+						Resources.getMessage(Resources.PATTERN_INVALID_SCALE_FACTOR, new Object[] { String.valueOf(SCALE_FACTOR_MIN),
+								String.valueOf(SCALE_FACTOR_MAX) }));
 			}
 		} else if (e.getSource() == tfOpacityValue) {
 			try {
 				setOpacity(Integer.parseInt(tfOpacityValue.getText()));
 			} catch (Exception ex) {
-				SwingUtils.showErrorDialog(this, Resources.getMessage(Resources.PATTERN_INVALID_OPACITY, new Object[] {
-						String.valueOf(OPACITY_MIN), String.valueOf(OPACITY_MAX) }));
+				SwingUtils.showErrorDialog(
+						this,
+						Resources.getMessage(Resources.PATTERN_INVALID_OPACITY,
+								new Object[] { String.valueOf(OPACITY_MIN), String.valueOf(OPACITY_MAX) }));
 			}
 		} else if (e.getSource() == btnOpacityColor) {
 			attemptSelectOpacityColor();
@@ -505,9 +507,9 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 	 * Centers the selection area on the specified point.
 	 * 
 	 * @param x
-	 *          the X coordinate.
+	 *            the X coordinate.
 	 * @param y
-	 *          the Y coordinate.
+	 *            the Y coordinate.
 	 */
 	private void centerAreaOnPoint(int x, int y) {
 		targetX = x * 100 / scaleFactor;
@@ -761,7 +763,8 @@ public class JImageSelector extends JPanel implements ActionListener, ChangeList
 				Graphics2D g2d = (Graphics2D) g;
 				g2d.drawImage(image, 0, 0, getWidth(), getHeight(), 0, 0, imageWidth, imageHeight, null);
 
-				Color opColor = new Color(opacityColor.getRed(), opacityColor.getGreen(), opacityColor.getBlue(), (100 - opacity) * 255 / 100);
+				Color opColor = new Color(opacityColor.getRed(), opacityColor.getGreen(), opacityColor.getBlue(),
+						(100 - opacity) * 255 / 100);
 
 				g2d.setColor(opColor);
 				if (areaX > 0) {

@@ -72,7 +72,6 @@ import org.andresoviedo.util.swing.jnotepad.utils.AskOverwriteFileChooser;
 /**
  * A notepad component to load, save, and edit text files.
  * 
-
  */
 public class JNotepad extends JPanel implements NotepadActions, MouseListener, UndoableEditListener, FocusListener {
 
@@ -176,7 +175,7 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 	 * Creates a new notepad with the specified action set.
 	 * 
 	 * @param actionSet
-	 *          the action set.
+	 *            the action set.
 	 */
 	public JNotepad(NotepadActionSet actionSet) {
 		this(actionSet, true, true);
@@ -186,9 +185,9 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 	 * Creates a new notepad, indicating whether to show the toolbar and the popup menu.
 	 * 
 	 * @param showToolbar
-	 *          <code>true</code> if the toolbar has to be shown.
+	 *            <code>true</code> if the toolbar has to be shown.
 	 * @param showPopup
-	 *          <code>true</code> if the popup menu has to be shown.
+	 *            <code>true</code> if the popup menu has to be shown.
 	 */
 	public JNotepad(boolean showToolbar, boolean showPopup) {
 		this(new NotepadActionSet(), showToolbar, showPopup);
@@ -562,7 +561,7 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 	 * Adds a notepad listener to the listener list.
 	 * 
 	 * @param l
-	 *          the listener to add.
+	 *            the listener to add.
 	 */
 	public void addNotepadListener(NotepadListener l) {
 		listenerList.add(NotepadListener.class, l);
@@ -572,7 +571,7 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 	 * Removes a notepad listener from the listener list.
 	 * 
 	 * @param l
-	 *          the listener to remove.
+	 *            the listener to remove.
 	 */
 	public void removeNotepadListener(NotepadListener l) {
 		listenerList.remove(NotepadListener.class, l);
@@ -613,7 +612,7 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 	 * Returns the action with the specified code, as specified in the <code>NotepadActions</code> interface.
 	 * 
 	 * @param code
-	 *          the action code, as specified in the <code>NotepadActions</code> interface.
+	 *            the action code, as specified in the <code>NotepadActions</code> interface.
 	 * @return the action with the specified code, or <code>null</code> if no action with that code is found.
 	 */
 	public Action getAction(short code) {
@@ -658,7 +657,7 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 	 * Sets whether the notepad has to set the title of its window ancestor automatically.
 	 * 
 	 * @param autoTitleWindow
-	 *          <code>true</code> if the notepad has to set the title of its window ancestor automatically, <code>false</code> otherwise.
+	 *            <code>true</code> if the notepad has to set the title of its window ancestor automatically, <code>false</code> otherwise.
 	 */
 	public void setAutoTitleWindow(boolean autoTitleWindow) {
 		this.autoTitleWindow = autoTitleWindow;
@@ -678,7 +677,7 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 	 * <code>getEditor().setEditable(boolean)</code>.
 	 * 
 	 * @param editable
-	 *          <code>true</code> if notepad's editor has to be editable, <code>false</code> otherwise.
+	 *            <code>true</code> if notepad's editor has to be editable, <code>false</code> otherwise.
 	 */
 	public void setEditable(boolean editable) {
 		getEditor().setEditable(editable);
@@ -726,7 +725,7 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 	 * Opens the specified file.
 	 * 
 	 * @param file
-	 *          the file to be opened.
+	 *            the file to be opened.
 	 */
 	public void openFile(File file) {
 		if (file == null) {
@@ -810,7 +809,8 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 		while (error) {
 			// Reset the line.
 			line = 0;
-			String result = JOptionPane.showInputDialog(Resources.getMessage(Resources.PATTERN_TYPE_LINE_NUMBER, String.valueOf(lineCount)));
+			String result = JOptionPane
+					.showInputDialog(Resources.getMessage(Resources.PATTERN_TYPE_LINE_NUMBER, String.valueOf(lineCount)));
 			// User cancelled the operation.
 			if (result == null) {
 				return;
@@ -871,7 +871,7 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 	 * Shows an error message.
 	 * 
 	 * @param message
-	 *          the message to show.
+	 *            the message to show.
 	 */
 	private void showErrorMessage(String message) {
 		SwingUtils.showErrorDialog(getWindow(), message);
@@ -881,7 +881,7 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 	 * Sets a title depending on panel's window ancestor (either a dialog or a frame).
 	 * 
 	 * @param title
-	 *          the title to set.
+	 *            the title to set.
 	 */
 	private void setWindowTitle(String title) {
 		Window window = getWindow();
@@ -961,11 +961,14 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 			if (ignoreNextFocusEvent) {
 				ignoreNextFocusEvent = false;
 			} else {
-				if (JOptionPane.showConfirmDialog(getWindow(), "El archivo ha sido modificado desde su última apertura. ¿Desea actualizarlo?") == JOptionPane.YES_OPTION) {
+				if (JOptionPane.showConfirmDialog(getWindow(),
+						"El archivo ha sido modificado desde su última apertura. ¿Desea actualizarlo?") == JOptionPane.YES_OPTION) {
 					openFile(lastOpenedFile);
 				} else {
-					// User said 'No' or cancelled, so the editor will regain the focus. We must prevent the option pane to keep being showed again
-					// and again, because a new focus gained event will be generated. I don't like this mechanism too much, but it works, however...
+					// User said 'No' or cancelled, so the editor will regain the focus. We must prevent the option pane to keep being
+					// showed again
+					// and again, because a new focus gained event will be generated. I don't like this mechanism too much, but it works,
+					// however...
 					ignoreNextFocusEvent = true;
 				}
 			}
@@ -1199,7 +1202,8 @@ public class JNotepad extends JPanel implements NotepadActions, MouseListener, U
 				final String msg = e.getMessage();
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						showErrorMessage(Resources.getMessage(Resources.PATTERN_ERROR_COULDNT_OPEN_FILE, new String[] { file.getAbsolutePath(), msg }));
+						showErrorMessage(Resources.getMessage(Resources.PATTERN_ERROR_COULDNT_OPEN_FILE,
+								new String[] { file.getAbsolutePath(), msg }));
 					}
 				});
 			} catch (BadLocationException e) {

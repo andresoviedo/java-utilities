@@ -21,7 +21,7 @@ import java.util.Vector;
  * Description:
  * </p>
  * 
- * @author unascribed
+ * @author andresoviedo
  * @version 1.0
  */
 public class FixedDelayDispatcher<T> extends ObjectDispatcher<T> implements Runnable {

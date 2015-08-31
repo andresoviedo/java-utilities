@@ -3,7 +3,6 @@ package org.andresoviedo.util.data;
 /**
  * Exception thrown when a queue is empty and someone's trying to get or peek an object from it.
  * 
-
  */
 public class EmptyQueueException extends RuntimeException {
 

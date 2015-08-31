@@ -12,7 +12,6 @@ import org.andresoviedo.util.date.DateUtils;
 /**
  * Calendar table model.
  * 
-
  */
 public class CalendarTableModel extends AbstractTableModel {
 
@@ -82,14 +81,14 @@ public class CalendarTableModel extends AbstractTableModel {
 	}
 
 	/**
-	 * Indicates whether the entire month has to be displayed or not. If <code>false</code>, the first displayed week of the month will be the
-	 * one specified by the reference date.
+	 * Indicates whether the entire month has to be displayed or not. If <code>false</code>, the first displayed week of the month will be
+	 * the one specified by the reference date.
 	 */
 	private boolean displayEntireMonth = true;
 
 	/**
-	 * Indicates whether the entire year has to be displayed or not. This flag applies only when the <code>DISPLAY_YEAR</code> display mode is
-	 * set. If <code>false</code>, the first month displayed will be the one specified by the reference date.
+	 * Indicates whether the entire year has to be displayed or not. This flag applies only when the <code>DISPLAY_YEAR</code> display mode
+	 * is set. If <code>false</code>, the first month displayed will be the one specified by the reference date.
 	 */
 	private boolean displayEntireYear = false;
 
@@ -134,9 +133,9 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * Constructs a new calendar table model, with the specified date as the reference date. The display mode is <code>DISPLAY_YEAR</code>.
 	 * 
 	 * @param referenceDate
-	 *          the reference date.
+	 *            the reference date.
 	 * @throws IllegalArgumentException
-	 *           if the reference date is <code>null</code>.
+	 *             if the reference date is <code>null</code>.
 	 */
 	public CalendarTableModel(Date referenceDate) {
 		this(referenceDate, DISPLAY_YEAR);
@@ -146,11 +145,11 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * Constructs a new calendar table model, with the specified date and display mode.
 	 * 
 	 * @param referenceDate
-	 *          the reference date.
+	 *            the reference date.
 	 * @param displayMode
-	 *          the display mode.
+	 *            the display mode.
 	 * @throws IllegalArgumentException
-	 *           if the reference date is <code>null</code> or an invalid display mode is specified.
+	 *             if the reference date is <code>null</code> or an invalid display mode is specified.
 	 */
 	public CalendarTableModel(Date referenceDate, int displayMode) {
 		if (referenceDate == null) {
@@ -176,9 +175,9 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * Returns the date at the specified row and column.
 	 * 
 	 * @param rowIndex
-	 *          the row index.
+	 *            the row index.
 	 * @param columnIndex
-	 *          the column index.
+	 *            the column index.
 	 * @return the date at the specified row and column.
 	 */
 	public Date getDateValueAt(int rowIndex, int columnIndex) {
@@ -273,7 +272,7 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * Sets whether the entire month is displayed or not. This only makes sense when using the <code>DISPLAY_MONTH</code> display mode.
 	 * 
 	 * @param displayEntireMonth
-	 *          <code>true</code> if the entire month has to be displayed, <code>false</code> otherwise.
+	 *            <code>true</code> if the entire month has to be displayed, <code>false</code> otherwise.
 	 */
 	public void setDisplayEntireMonth(boolean displayEntireMonth) {
 		if (this.displayEntireMonth != displayEntireMonth) {
@@ -284,11 +283,11 @@ public class CalendarTableModel extends AbstractTableModel {
 	}
 
 	/**
-	 * Sets whether the entire year is displayed or not. This flag applies only when the <code>DISPLAY_YEAR</code> display mode is set. Notice
-	 * that this method does not switch to the <code>DISPLAY_YEAR</code> display mode.
+	 * Sets whether the entire year is displayed or not. This flag applies only when the <code>DISPLAY_YEAR</code> display mode is set.
+	 * Notice that this method does not switch to the <code>DISPLAY_YEAR</code> display mode.
 	 * 
 	 * @param displayEntireYear
-	 *          <code>true</code> if the entire year has to be displayed, <code>false</code> otherwise.
+	 *            <code>true</code> if the entire year has to be displayed, <code>false</code> otherwise.
 	 */
 	public void setDisplayEntireYear(boolean displayEntireYear) {
 		if (this.displayEntireYear != displayEntireYear) {
@@ -304,9 +303,9 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * Sets the display mode.
 	 * 
 	 * @param displayMode
-	 *          the new display mode.
+	 *            the new display mode.
 	 * @throws IllegalArgumentException
-	 *           if the display mode is not valid.
+	 *             if the display mode is not valid.
 	 */
 	public void setDisplayMode(int displayMode) {
 		if (this.displayMode == displayMode) {
@@ -319,13 +318,13 @@ public class CalendarTableModel extends AbstractTableModel {
 	}
 
 	/**
-	 * Sets the number of months that have to be displayed when the display mode is set to <code>DISPLAY_CUSTOM_MONTHS</code>. If the current
-	 * display mode is <code>DISPLAY_CUSTOM_MONTHS</code>, the data is reloaded.
+	 * Sets the number of months that have to be displayed when the display mode is set to <code>DISPLAY_CUSTOM_MONTHS</code>. If the
+	 * current display mode is <code>DISPLAY_CUSTOM_MONTHS</code>, the data is reloaded.
 	 * 
 	 * @param numberOfMonths
-	 *          the number of months to be displayed.
+	 *            the number of months to be displayed.
 	 * @throws IllegalArgumentException
-	 *           if the number of months is less than 1.
+	 *             if the number of months is less than 1.
 	 */
 	public void setNumberOfMonths(int numberOfMonths) {
 		if (numberOfMonths < 1) {
@@ -345,9 +344,9 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * display mode is <code>DISPLAY_CUSTOM_WEEKS</code>, the data is reloaded.
 	 * 
 	 * @param numberOfWeeks
-	 *          the number of weeks to be displayed.
+	 *            the number of weeks to be displayed.
 	 * @throws IllegalArgumentException
-	 *           if the number of weeks is less than 1.
+	 *             if the number of weeks is less than 1.
 	 */
 	public void setNumberOfWeeks(int numberOfWeeks) {
 		if (this.numberOfWeeks != numberOfWeeks) {
@@ -363,9 +362,9 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * Sets a new reference date. The data will be reloaded based on current settings.
 	 * 
 	 * @param date
-	 *          a new reference date.
+	 *            a new reference date.
 	 * @throws IllegalArgumentException
-	 *           if the specified date is <code>null</code>.
+	 *             if the specified date is <code>null</code>.
 	 */
 	public void setReferenceDate(Date date) {
 		if (date == null) {
@@ -380,7 +379,7 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * Returns the date location associated to the specified date. May return <code>null</code> if the date is not in the model.
 	 * 
 	 * @param date
-	 *          the date.
+	 *            the date.
 	 * @return the date location associated to the specified date.
 	 */
 	DateLocation getDateLocation(Date date) {
@@ -402,7 +401,7 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * Returns the first date of month location associated to the specified date.
 	 * 
 	 * @param date
-	 *          the date.
+	 *            the date.
 	 * @return the first date of month location associated to the specified date.
 	 */
 	DateLocation getFirstDayOfMonthLocation(Date date) {
@@ -428,9 +427,9 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * Checks whether the specified display mode is a valid display mode.
 	 * 
 	 * @param displayMode
-	 *          the display mode to check.
+	 *            the display mode to check.
 	 * @throws IllegalArgumentException
-	 *           if the display mode is not valid.
+	 *             if the display mode is not valid.
 	 */
 	private void checkDisplayMode(int displayMode) {
 		if ((displayMode != DISPLAY_MONTH) && (displayMode != DISPLAY_YEAR) && (displayMode != DISPLAY_CUSTOM_WEEKS)
@@ -443,9 +442,9 @@ public class CalendarTableModel extends AbstractTableModel {
 	 * Computes the number of weeks to display to ensure that both dates will be displayed.
 	 * 
 	 * @param d1
-	 *          the first date.
+	 *            the first date.
 	 * @param d2
-	 *          the second date.
+	 *            the second date.
 	 * @return the number of weeks to display to ensure that both dates will be displayed.
 	 */
 	private int getNumberOfWeeksToDisplay(Date d1, Date d2) {

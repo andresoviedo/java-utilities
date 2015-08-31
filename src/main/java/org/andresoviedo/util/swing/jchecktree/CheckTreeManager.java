@@ -12,7 +12,6 @@ import javax.swing.tree.TreePath;
 /**
  * This class allows turning a <code>JTree</code> into a tree which items can be check or unchecked by means of checkboxes.
  * 
-
  */
 public class CheckTreeManager extends MouseAdapter implements TreeSelectionListener {
 
@@ -40,7 +39,7 @@ public class CheckTreeManager extends MouseAdapter implements TreeSelectionListe
 	 * Creates a new tree manager with the associated tree. The user will be able to select or deselect checkboxes.
 	 * 
 	 * @param tree
-	 *          the associated tree.
+	 *            the associated tree.
 	 */
 	public CheckTreeManager(JTree tree) {
 		this(tree, true);
@@ -50,9 +49,9 @@ public class CheckTreeManager extends MouseAdapter implements TreeSelectionListe
 	 * Creates a new tree manager with the associated tree.
 	 * 
 	 * @param tree
-	 *          the associated tree.
+	 *            the associated tree.
 	 * @param editable
-	 *          <code>true</code> if the user can select or deselect checkboxes, <code>false</code> otherwise.
+	 *            <code>true</code> if the user can select or deselect checkboxes, <code>false</code> otherwise.
 	 */
 	public CheckTreeManager(JTree tree, boolean editable) {
 		this.tree = tree;
@@ -79,7 +78,7 @@ public class CheckTreeManager extends MouseAdapter implements TreeSelectionListe
 	 * Sets whether the user can select or deselect checkboxes.
 	 * 
 	 * @param editable
-	 *          <code>true</code> if the user can select or deselect checkboxes, <code>false</code> otherwise.
+	 *            <code>true</code> if the user can select or deselect checkboxes, <code>false</code> otherwise.
 	 */
 	public void setEditable(boolean editable) {
 		this.editable = editable;

@@ -203,11 +203,11 @@ public class DiagramComponentGroup {
 	 * Computes a clipped version of the specified text depending on the font metrics and the available width.
 	 * 
 	 * @param fm
-	 *          the font metrics.
+	 *            the font metrics.
 	 * @param text
-	 *          the text.
+	 *            the text.
 	 * @param availableWidth
-	 *          the available width.
+	 *            the available width.
 	 * @return a clipped version of the text.
 	 */
 	private String getClippedText(FontMetrics fm, String text, int availableWidth) {

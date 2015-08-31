@@ -23,11 +23,9 @@ import org.andresoviedo.util.swing.SwingUtils;
 import org.andresoviedo.util.swing.jchecklist.CheckListModel.CheckMode;
 import org.andresoviedo.util.swing.jchecklist.resources.Resources;
 
-
 /**
  * A <code>JList</code> which items can be checked or unchecked using checkboxes.
  * 
-
  */
 public class JCheckList extends JList {
 
@@ -198,9 +196,9 @@ public class JCheckList extends JList {
 	 * <code>ListModel</code> constructor.
 	 * 
 	 * @param state
-	 *          state of the checkboxes
+	 *            state of the checkboxes
 	 * @param listData
-	 *          the array of Objects to be loaded into the data model
+	 *            the array of Objects to be loaded into the data model
 	 */
 	public JCheckList(boolean[] state, Object[] listData) {
 		this(new DefaultCheckListModel(state, listData));
@@ -211,11 +209,11 @@ public class JCheckList extends JList {
 	 * <code>ListModel</code> constructor.
 	 * 
 	 * @param state
-	 *          state of the checkboxes
+	 *            state of the checkboxes
 	 * @param listData
-	 *          the array of Objects to be loaded into the data model
+	 *            the array of Objects to be loaded into the data model
 	 * @param checkMode
-	 *          the check mode.
+	 *            the check mode.
 	 */
 	public JCheckList(boolean[] state, Object[] listData, CheckMode checkMode) {
 		this(new DefaultCheckListModel(state, listData, checkMode));
@@ -225,7 +223,7 @@ public class JCheckList extends JList {
 	 * Constructs a <code>JCheckList</code> with the specified model.
 	 * 
 	 * @param dataModel
-	 *          the data model.
+	 *            the data model.
 	 */
 	public JCheckList(CheckListModel dataModel) {
 		this(dataModel, false);
@@ -236,11 +234,11 @@ public class JCheckList extends JList {
 	 * <code>CheckList</code> constructors delegate to this one.
 	 * 
 	 * @param dataModel
-	 *          the data model for this list
+	 *            the data model for this list
 	 * @param itemsMovingAllowed
-	 *          <code>true</code> to indicate that items can be moved up and down, <code>false</code> otherwise.
+	 *            <code>true</code> to indicate that items can be moved up and down, <code>false</code> otherwise.
 	 * @exception IllegalArgumentException
-	 *              if <code>dataModel</code> is <code>null</code>
+	 *                if <code>dataModel</code> is <code>null</code>
 	 */
 	public JCheckList(CheckListModel dataModel, boolean itemsMovingAllowed) {
 		super(dataModel);
@@ -447,7 +445,7 @@ public class JCheckList extends JList {
 	 * Sets a new model.
 	 * 
 	 * @param model
-	 *          the model (<code>null</code> not permitted).
+	 *            the model (<code>null</code> not permitted).
 	 */
 	public void setModel(CheckListModel model) {
 		if (getModel() != null) {
@@ -456,7 +454,8 @@ public class JCheckList extends JList {
 		super.setModel(model);
 		model.addListDataListener(modelListener);
 		getSelectionModel().setSelectionMode(
-				model.getCheckMode() == CheckMode.SINGLE ? ListSelectionModel.SINGLE_SELECTION : ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+				model.getCheckMode() == CheckMode.SINGLE ? ListSelectionModel.SINGLE_SELECTION
+						: ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		checkActionsState();
 	}
 

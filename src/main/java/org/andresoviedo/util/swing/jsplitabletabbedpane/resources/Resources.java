@@ -19,7 +19,7 @@ public class Resources {
 	 * Gets a string for the given key.
 	 * 
 	 * @param key
-	 *          the key for the desired string.
+	 *            the key for the desired string.
 	 * @return the string for the given key.
 	 */
 	public static String getString(String key) {

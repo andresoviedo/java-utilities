@@ -1,7 +1,5 @@
 package org.andresoviedo.util.jibx;
 
-
-
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -27,9 +25,9 @@ import org.jibx.runtime.impl.MarshallingContext;
 import org.jibx.runtime.impl.UnmarshallingContext;
 
 /**
- * Custom handler de JIBX para serializar mapas. Las entradas del mapa se espera que sean de tipo String y los valores
- * puedes ser IMarshallable o Strings. Se soporta el atributo xsi:nil. Esta implementación escribe el xsi:type, lo cual
- * permite deserializar con el tipo que toque.
+ * Custom handler de JIBX para serializar mapas. Las entradas del mapa se espera que sean de tipo String y los valores puedes ser
+ * IMarshallable o Strings. Se soporta el atributo xsi:nil. Esta implementación escribe el xsi:type, lo cual permite deserializar con el
+ * tipo que toque.
  * 
  * @author andresoviedo
  */
@@ -69,10 +67,8 @@ public class HashMapperWithTypeSupport implements IMarshaller, IUnmarshaller, IA
 			javaToXsdTypeMapping.put(Locale.class, "xsd:locale");
 
 			// Serializers (standard types)
-			javaToXsdTypeSerializationMapping.put(Boolean.class,
-					Utility.class.getMethod("serializeBoolean", boolean.class));
-			javaToXsdTypeSerializationMapping.put(Double.class,
-					Utility.class.getMethod("serializeDouble", double.class));
+			javaToXsdTypeSerializationMapping.put(Boolean.class, Utility.class.getMethod("serializeBoolean", boolean.class));
+			javaToXsdTypeSerializationMapping.put(Double.class, Utility.class.getMethod("serializeDouble", double.class));
 			javaToXsdTypeSerializationMapping.put(Float.class, Utility.class.getMethod("serializeFloat", float.class));
 			javaToXsdTypeSerializationMapping.put(Integer.class, Utility.class.getMethod("serializeInt", int.class));
 			javaToXsdTypeSerializationMapping.put(Long.class, Utility.class.getMethod("serializeLong", long.class));
@@ -85,23 +81,19 @@ public class HashMapperWithTypeSupport implements IMarshaller, IUnmarshaller, IA
 			javaToXsdTypeSerializationMapping.put(Locale.class, Locale.class.getMethod("toString"));
 
 			// Deserialization (integer, decimal y string se deserializan de forma custom)
-			xsdToJavaTypeDeserializationMapping.put("xsd:boolean",
-					Utility.class.getMethod("parseBoolean", String.class));
+			xsdToJavaTypeDeserializationMapping.put("xsd:boolean", Utility.class.getMethod("parseBoolean", String.class));
 			xsdToJavaTypeDeserializationMapping.put("xsd:double", Utility.class.getMethod("parseDouble", String.class));
 			xsdToJavaTypeDeserializationMapping.put("xsd:float", Utility.class.getMethod("parseFloat", String.class));
 			xsdToJavaTypeDeserializationMapping.put("xsd:int", Utility.class.getMethod("parseInt", String.class));
 			xsdToJavaTypeDeserializationMapping.put("xsd:long", Utility.class.getMethod("parseLong", String.class));
 			xsdToJavaTypeDeserializationMapping.put("xsd:short", Utility.class.getMethod("parseShort", String.class));
-			xsdToJavaTypeDeserializationMapping.put("xsd:dateTime",
-					Utility.class.getMethod("deserializeDateTime", String.class));
+			xsdToJavaTypeDeserializationMapping.put("xsd:dateTime", Utility.class.getMethod("deserializeDateTime", String.class));
 			xsdToJavaTypeDeserializationMapping.put("xsd:decimal",
 					CustomSerialization.class.getMethod("deserializeBigDecimal", String.class));
 			xsdToJavaTypeDeserializationMapping.put("xsd:integer",
 					CustomSerialization.class.getMethod("deserializeBigInteger", String.class));
-			xsdToJavaTypeDeserializationMapping.put("xsd:string",
-					CustomSerialization.class.getMethod("deserializeString", String.class));
-			xsdToJavaTypeDeserializationMapping.put("xsd:locale",
-					CustomSerialization.class.getMethod("deserializeLocale", String.class));
+			xsdToJavaTypeDeserializationMapping.put("xsd:string", CustomSerialization.class.getMethod("deserializeString", String.class));
+			xsdToJavaTypeDeserializationMapping.put("xsd:locale", CustomSerialization.class.getMethod("deserializeLocale", String.class));
 		} catch (Exception ex) {
 			throw new ExceptionInInitializerError(ex);
 		}
@@ -164,9 +156,9 @@ public class HashMapperWithTypeSupport implements IMarshaller, IUnmarshaller, IA
 						mctx.setXmlWriter(ctx.getXmlWriter());
 						((IMarshallable) value).marshal(mctx);
 					} catch (Exception ex) {
-						logger.error("Exception while marshaling map '" + m_name + "'. Affected entry has key '"
-								+ entry.getKey() + "' and value '" + entry.getValue() + "'"
-								+ (valueClass != null ? " (" + valueClass.getName() + ")" : "") + "", ex);
+						logger.error("Exception while marshaling map '" + m_name + "'. Affected entry has key '" + entry.getKey()
+								+ "' and value '" + entry.getValue() + "'" + (valueClass != null ? " (" + valueClass.getName() + ")" : "")
+								+ "", ex);
 					} finally {
 						ctx.endTag(m_index, String.valueOf(entry.getKey()));
 					}
@@ -175,24 +167,20 @@ public class HashMapperWithTypeSupport implements IMarshaller, IUnmarshaller, IA
 					ctx.attribute(0, "xsi:type", javaToXsdTypeMapping.get(valueClass));
 					if (value instanceof String || value instanceof BigDecimal || value instanceof Locale
 							|| int.class.isAssignableFrom(valueClass)) {
-						ctx.writeContent((String) ((Method) javaToXsdTypeSerializationMapping.get(valueClass))
-								.invoke(value));
+						ctx.writeContent((String) ((Method) javaToXsdTypeSerializationMapping.get(valueClass)).invoke(value));
 					} else {
-						ctx.writeContent((String) ((Method) javaToXsdTypeSerializationMapping.get(valueClass)).invoke(
-								value, value));
+						ctx.writeContent((String) ((Method) javaToXsdTypeSerializationMapping.get(valueClass)).invoke(value, value));
 					}
 					ctx.endTag(m_index, String.valueOf(entry.getKey()));
 				} else {
 					if (logger.isDebugEnabled()) {
-						logger.debug("Ignoring entry for map '" + m_name + "' with key '" + entry.getKey()
-								+ "' and value '" + entry.getValue() + " (" + valueClass.getName() + ")");
+						logger.debug("Ignoring entry for map '" + m_name + "' with key '" + entry.getKey() + "' and value '"
+								+ entry.getValue() + " (" + valueClass.getName() + ")");
 					}
 				}
 			} catch (Exception ex) {
-				logger.error(
-						"Exception while marshaling map '" + m_name + "'. Affected entry has key '" + entry.getKey()
-								+ "' and value '" + entry.getValue() + "'"
-								+ (valueClass != null ? " (" + valueClass.getName() + ")" : "") + "", ex);
+				logger.error("Exception while marshaling map '" + m_name + "'. Affected entry has key '" + entry.getKey() + "' and value '"
+						+ entry.getValue() + "'" + (valueClass != null ? " (" + valueClass.getName() + ")" : "") + "", ex);
 			}
 
 		}
@@ -245,10 +233,10 @@ public class HashMapperWithTypeSupport implements IMarshaller, IUnmarshaller, IA
 				}
 				map.put(key, value);
 			} catch (Exception ex) {
-				logger.error("Exception while unmarshaling map '" + m_name + "'. Affected entry has key '" + key
-						+ "', value '" + value + "' and type '" + xsType + "'", ex);
-				throw new JiBXException("Exception while unmarshaling map '" + m_name + "'. Affected entry has key '"
-						+ key + "', value '" + value + "' and type '" + xsType + "'", ex);
+				logger.error("Exception while unmarshaling map '" + m_name + "'. Affected entry has key '" + key + "', value '" + value
+						+ "' and type '" + xsType + "'", ex);
+				throw new JiBXException("Exception while unmarshaling map '" + m_name + "'. Affected entry has key '" + key + "', value '"
+						+ value + "' and type '" + xsType + "'", ex);
 			}
 		}
 		ctx.next();

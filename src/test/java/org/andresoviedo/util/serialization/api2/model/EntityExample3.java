@@ -11,7 +11,7 @@ import org.andresoviedo.util.serialization.api2.StringField;
 /**
  * This class represents a response from service
  * 
- * @author aoviedo
+ * @author andresoviedo
  *
  */
 public final class EntityExample3 implements Serializable {
@@ -81,16 +81,16 @@ public final class EntityExample3 implements Serializable {
 
 	@Override
 	public String toString() {
-		return "EntityExample3 [transmissionHeader=" + transmissionHeader + ", reportingEntity=" + reportingEntity
-				+ ", requestingEntity=" + requestingEntity + ", responseRecords=" + responseRecords
-				+ ", complementaryResponseRecords=" + complementaryResponseRecords + ", requestingEntityTotal="
-				+ requestingEntityTotal + ", reportingEntityTotal=" + reportingEntityTotal + "]";
+		return "EntityExample3 [transmissionHeader=" + transmissionHeader + ", reportingEntity=" + reportingEntity + ", requestingEntity="
+				+ requestingEntity + ", responseRecords=" + responseRecords + ", complementaryResponseRecords="
+				+ complementaryResponseRecords + ", requestingEntityTotal=" + requestingEntityTotal + ", reportingEntityTotal="
+				+ reportingEntityTotal + "]";
 	}
 
 	/**
 	 * Registro de cabecera de transmisión de respuesta.
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	public static final class TransmissionHeader implements Serializable {
@@ -170,8 +170,8 @@ public final class EntityExample3 implements Serializable {
 		@Override
 		public String toString() {
 			return "TransmissionHeader [requestNrForDay=" + requestNrForDay + ", fileCreationDate=" + fileCreationDate
-					+ ", fileCreationTime=" + fileCreationTime + ", financialEntityCode=" + financialEntityCode
-					+ ", reservedField=" + reservedField + "]";
+					+ ", fileCreationTime=" + fileCreationTime + ", financialEntityCode=" + financialEntityCode + ", reservedField="
+					+ reservedField + "]";
 		}
 
 	}
@@ -179,7 +179,7 @@ public final class EntityExample3 implements Serializable {
 	/**
 	 * This class represents the financial entity querying for report
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	public static final class ReportingEntity implements Serializable {
@@ -240,9 +240,8 @@ public final class EntityExample3 implements Serializable {
 
 		@Override
 		public String toString() {
-			return "ReportingEntity [financialEntityCode=" + financialEntityCode + ", responseSendingDate="
-					+ responseSendingDate + ", responseNrForDay=" + responseNrForDay + ", fileCreationDate="
-					+ fileCreationDate + "]";
+			return "ReportingEntity [financialEntityCode=" + financialEntityCode + ", responseSendingDate=" + responseSendingDate
+					+ ", responseNrForDay=" + responseNrForDay + ", fileCreationDate=" + fileCreationDate + "]";
 		}
 
 	}
@@ -250,7 +249,7 @@ public final class EntityExample3 implements Serializable {
 	/**
 	 * This class represents the financial entity requesting for report
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	public static final class RequestingEntity implements Serializable {
@@ -318,9 +317,9 @@ public final class EntityExample3 implements Serializable {
 
 		@Override
 		public String toString() {
-			return "RequestingEntity [financialEntityCode=" + financialEntityCode + ", responsetSendingDate="
-					+ responsetSendingDate + ", responseNrForDay=" + responseNrForDay + ", fileCreationDate="
-					+ fileCreationDate + ", reportingEntityCode=" + reportingEntityCode + "]";
+			return "RequestingEntity [financialEntityCode=" + financialEntityCode + ", responsetSendingDate=" + responsetSendingDate
+					+ ", responseNrForDay=" + responseNrForDay + ", fileCreationDate=" + fileCreationDate + ", reportingEntityCode="
+					+ reportingEntityCode + "]";
 		}
 
 	}
@@ -328,7 +327,7 @@ public final class EntityExample3 implements Serializable {
 	/**
 	 * This class represents a single request, that is a request for 1 customer
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	@StringField(id = "05")
@@ -554,14 +553,13 @@ public final class EntityExample3 implements Serializable {
 		@Override
 		public String toString() {
 			return "InformationResponseRecord [requestingFinancialEntityCode=" + requestingFinancialEntityCode
-					+ ", requestingFinancialOfficeCode=" + requestingFinancialOfficeCode + ", customerNif="
-					+ customerNif + ", customerSurname1=" + customerSurname1 + ", customerSurname2=" + customerSurname2
-					+ ", customerName=" + customerName + ", responseId=" + responseId + ", customerStatus="
-					+ customerStatus + ", contractType=" + contractType + ", customerJobType=" + customerJobType
-					+ ", customerContributionGroup=" + customerContributionGroup + ", employerCIF=" + employerCIF
-					+ ", employerSurname1=" + employerSurname1 + ", employerSurname2=" + employerSurname2
-					+ ", employerName=" + employerName + ", companyName=" + companyName + ", companyJobType="
-					+ companyJobType + ", infoExtractionDate=" + infoExtractionDate + "]";
+					+ ", requestingFinancialOfficeCode=" + requestingFinancialOfficeCode + ", customerNif=" + customerNif
+					+ ", customerSurname1=" + customerSurname1 + ", customerSurname2=" + customerSurname2 + ", customerName="
+					+ customerName + ", responseId=" + responseId + ", customerStatus=" + customerStatus + ", contractType=" + contractType
+					+ ", customerJobType=" + customerJobType + ", customerContributionGroup=" + customerContributionGroup
+					+ ", employerCIF=" + employerCIF + ", employerSurname1=" + employerSurname1 + ", employerSurname2=" + employerSurname2
+					+ ", employerName=" + employerName + ", companyName=" + companyName + ", companyJobType=" + companyJobType
+					+ ", infoExtractionDate=" + infoExtractionDate + "]";
 		}
 
 	}
@@ -569,7 +567,7 @@ public final class EntityExample3 implements Serializable {
 	/**
 	 * This class represents a single request, that is a request for 1 customer
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 *
 	 */
 	@StringField(id = "06")
@@ -786,16 +784,14 @@ public final class EntityExample3 implements Serializable {
 
 		@Override
 		public String toString() {
-			return "ComplementaryInformationResponseRecord [requestingFinancialEntityCode="
-					+ requestingFinancialEntityCode + ", requestingFinancialOfficeCode="
-					+ requestingFinancialOfficeCode + ", customerNif=" + customerNif + ", customerSurname1="
-					+ customerSurname1 + ", customerSurname2=" + customerSurname2 + ", customerName=" + customerName
-					+ ", responseId=" + responseId + ", customerStatus=" + customerStatus + ", contractType="
-					+ contractType + ", customerJobType=" + customerJobType + ", customerContributionGroup="
-					+ customerContributionGroup + ", employerCIF=" + employerCIF + ", employerSurname1="
-					+ employerSurname1 + ", employerSurname2=" + employerSurname2 + ", employerName=" + employerName
-					+ ", companyName=" + companyName + ", companyJobType=" + companyJobType + ", infoExtractionDate="
-					+ infoExtractionDate + "]";
+			return "ComplementaryInformationResponseRecord [requestingFinancialEntityCode=" + requestingFinancialEntityCode
+					+ ", requestingFinancialOfficeCode=" + requestingFinancialOfficeCode + ", customerNif=" + customerNif
+					+ ", customerSurname1=" + customerSurname1 + ", customerSurname2=" + customerSurname2 + ", customerName="
+					+ customerName + ", responseId=" + responseId + ", customerStatus=" + customerStatus + ", contractType=" + contractType
+					+ ", customerJobType=" + customerJobType + ", customerContributionGroup=" + customerContributionGroup
+					+ ", employerCIF=" + employerCIF + ", employerSurname1=" + employerSurname1 + ", employerSurname2=" + employerSurname2
+					+ ", employerName=" + employerName + ", companyName=" + companyName + ", companyJobType=" + companyJobType
+					+ ", infoExtractionDate=" + infoExtractionDate + "]";
 		}
 
 	}
@@ -909,11 +905,10 @@ public final class EntityExample3 implements Serializable {
 
 		@Override
 		public String toString() {
-			return "RequestingEntityTotal [requestingFinancialEntityCode=" + requestingFinancialEntityCode
-					+ ", requestSendingDate=" + requestSendingDate + ", requestNrForDay=" + requestNrForDay
-					+ ", fileCreationDate=" + fileCreationDate + ", numberOfRecords=" + numberOfRecords
-					+ ", reportingFinancialEntityCode=" + reportingFinancialEntityCode + ", numberOfAcceptedRequests="
-					+ numberOfAcceptedRequests + ", numberOfRejectedRequests=" + numberOfRejectedRequests
+			return "RequestingEntityTotal [requestingFinancialEntityCode=" + requestingFinancialEntityCode + ", requestSendingDate="
+					+ requestSendingDate + ", requestNrForDay=" + requestNrForDay + ", fileCreationDate=" + fileCreationDate
+					+ ", numberOfRecords=" + numberOfRecords + ", reportingFinancialEntityCode=" + reportingFinancialEntityCode
+					+ ", numberOfAcceptedRequests=" + numberOfAcceptedRequests + ", numberOfRejectedRequests=" + numberOfRejectedRequests
 					+ ", numberOfComplementaryRequests=" + numberOfComplementaryRequests + "]";
 		}
 
@@ -990,12 +985,11 @@ public final class EntityExample3 implements Serializable {
 
 		@Override
 		public String toString() {
-			return "ReportingEntityTotal [requestingFinancialEntityCode=" + requestingFinancialEntityCode
-					+ ", responseSendDate=" + responseSendDate + ", responseNrForDay=" + responseNrForDay
-					+ ", fileCreationDate=" + fileCreationDate + ", totalNumberOfRecords=" + totalNumberOfRecords
-					+ ", numberOfAcceptedRequests=" + numberOfAcceptedRequests + ", numberOfRejectedRequests="
-					+ numberOfRejectedRequests + ", numberOfComplementaryRequests=" + numberOfComplementaryRequests
-					+ "]";
+			return "ReportingEntityTotal [requestingFinancialEntityCode=" + requestingFinancialEntityCode + ", responseSendDate="
+					+ responseSendDate + ", responseNrForDay=" + responseNrForDay + ", fileCreationDate=" + fileCreationDate
+					+ ", totalNumberOfRecords=" + totalNumberOfRecords + ", numberOfAcceptedRequests=" + numberOfAcceptedRequests
+					+ ", numberOfRejectedRequests=" + numberOfRejectedRequests + ", numberOfComplementaryRequests="
+					+ numberOfComplementaryRequests + "]";
 		}
 
 	}

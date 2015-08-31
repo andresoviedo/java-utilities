@@ -6,7 +6,6 @@ import java.io.FileFilter;
 /**
  * A file filter that accepts only directories.
  * 
-
  */
 public class DirectoryFileFilter implements FileFilter {
 

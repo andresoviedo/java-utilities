@@ -9,7 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * This annotation encapsulates serialization metadata.
  * 
- * @author aoviedo
+ * @author andresoviedo
  *
  */
 @Retention(RetentionPolicy.RUNTIME)

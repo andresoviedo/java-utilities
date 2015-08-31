@@ -63,7 +63,7 @@ public class UnicodeInputStream extends InputStream {
 	 * Creates a new Unicode input stream with the specified input stream as the underlying stream.
 	 * 
 	 * @param in
-	 *          the underlying input stream.
+	 *            the underlying input stream.
 	 */
 	public UnicodeInputStream(InputStream in) {
 		this(in, null);
@@ -73,9 +73,9 @@ public class UnicodeInputStream extends InputStream {
 	 * Creates a new Unicode input stream with the specified input stream as the underlying stream.
 	 * 
 	 * @param in
-	 *          the underlying input stream.
+	 *            the underlying input stream.
 	 * @param defaultEncoding
-	 *          the default encoding to use just in case the BOM mark cannot be found.
+	 *            the default encoding to use just in case the BOM mark cannot be found.
 	 */
 	public UnicodeInputStream(InputStream in, String defaultEncoding) {
 		internalIn = new PushbackInputStream(in, BOM_SIZE);
@@ -99,7 +99,7 @@ public class UnicodeInputStream extends InputStream {
 	 * Sets whether BOM bytes have to be unread after the initialization or not.
 	 * 
 	 * @param skipBOM
-	 *          <code>true</code> if BOM bytes have to be unread after the initialization, <code>false</code> otherwise.
+	 *            <code>true</code> if BOM bytes have to be unread after the initialization, <code>false</code> otherwise.
 	 */
 	public void setSkipBOM(boolean skipBOM) {
 		this.skipBOM = skipBOM;

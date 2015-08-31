@@ -34,9 +34,9 @@ public class JarUtils {
 	}
 
 	/**
-	 * Will perform an initial read of all files and will build a cache for fast search. Call this method at the beginning if you plan to work
-	 * with a constant set of files and its contents won't change. To reset the cache call <code>rescan(new Files[0])</code>. Files can be
-	 * .jar files, directories, etc.
+	 * Will perform an initial read of all files and will build a cache for fast search. Call this method at the beginning if you plan to
+	 * work with a constant set of files and its contents won't change. To reset the cache call <code>rescan(new Files[0])</code>. Files can
+	 * be .jar files, directories, etc.
 	 */
 	public static void rescan(File[] files) {
 		// Clean the cache.
@@ -69,12 +69,12 @@ public class JarUtils {
 	 * Return all class names in a .jar file.
 	 * 
 	 * @param file
-	 *          the jar file.
+	 *            the jar file.
 	 * @return all class names in a .jar file.
 	 * @throws FileNotFoundException
-	 *           if the file does not exist.
+	 *             if the file does not exist.
 	 * @throws IOException
-	 *           if an error occurs while accessing the file.
+	 *             if an error occurs while accessing the file.
 	 */
 	public static HashSet<String> getClassEntries(File file) throws FileNotFoundException, IOException {
 		if (cache.containsKey(file)) {
@@ -88,12 +88,13 @@ public class JarUtils {
 	 * Returns a list of entries whose name match the given regular expresion.
 	 * 
 	 * @param file
-	 *          the file to scan.
+	 *            the file to scan.
 	 * @param regex
-	 *          the regular expression to match.
+	 *            the regular expression to match.
 	 * @return a list of entries whose name match the given regular expresion.
 	 */
-	public static HashSet<String> getClassEntries(File file, String regex) throws FileNotFoundException, IOException, PatternSyntaxException {
+	public static HashSet<String> getClassEntries(File file, String regex) throws FileNotFoundException, IOException,
+			PatternSyntaxException {
 		HashSet<String> entries = null;
 		if (cache.containsKey(file)) {
 			entries = (HashSet<String>) cache.get(file);
@@ -161,7 +162,7 @@ public class JarUtils {
 					end = true;
 				}
 			}
-		} finally{
+		} finally {
 			is.close();
 		}
 		return set;
@@ -171,9 +172,9 @@ public class JarUtils {
 	 * Will return any class entry from a group of files. Files can be paths, jar files, etc.
 	 * 
 	 * @param files
-	 *          the list of files.
+	 *            the list of files.
 	 * @param regex
-	 *          the regular expression to match.
+	 *            the regular expression to match.
 	 * @return any class entry from a group of files.
 	 */
 	public static Vector<String> getClassEntries(File[] files, String regex) {
@@ -243,8 +244,8 @@ public class JarUtils {
 	}
 
 	/**
-	 * This method retrieves the class path from the 'java.class.path' system property. When executing with -jar parameter this property will
-	 * point to the executing jar.
+	 * This method retrieves the class path from the 'java.class.path' system property. When executing with -jar parameter this property
+	 * will point to the executing jar.
 	 * 
 	 * @return File[] the list of files conforming the class-path.
 	 */

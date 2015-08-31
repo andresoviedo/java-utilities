@@ -13,7 +13,6 @@ import org.andresoviedo.util.date.DateUtils;
 /**
  * Calendar table cell renderer.
  * 
-
  */
 class CalendarTableCellRenderer extends DefaultTableCellRenderer {
 
@@ -31,7 +30,7 @@ class CalendarTableCellRenderer extends DefaultTableCellRenderer {
 	 * Creates a new calendar cell renderer.
 	 * 
 	 * @param calendarTable
-	 *          the associated calendar table.
+	 *            the associated calendar table.
 	 */
 	public CalendarTableCellRenderer(JCalendarTable calendarTable) {
 		this.calendarTable = calendarTable;

@@ -24,11 +24,9 @@ import javax.swing.KeyStroke;
 
 import org.andresoviedo.util.swing.jtaskmanager.resources.Resources;
 
-
 /**
  * The task manager dialogs lets the user know the tasks currently being performed.
  * 
-
  */
 public class TaskManagerDialog extends JDialog {
 
@@ -150,7 +148,7 @@ public class TaskManagerDialog extends JDialog {
 	 * Configures the dialog from the task.
 	 * 
 	 * @param task
-	 *          the task to be used to configure the dialog.
+	 *            the task to be used to configure the dialog.
 	 */
 	protected void configure(Task task) {
 		// The dialog cannot be made invisible by the user if the task is modal.
@@ -169,8 +167,8 @@ public class TaskManagerDialog extends JDialog {
 	}
 
 	/**
-	 * This method is invoked from the task manager when the last task has finished and there is no more tasks to run. Basically, this method
-	 * hides the dialog if the "Hide when possible" checkbox is selected.
+	 * This method is invoked from the task manager when the last task has finished and there is no more tasks to run. Basically, this
+	 * method hides the dialog if the "Hide when possible" checkbox is selected.
 	 */
 	protected void hideWhenPossible() {
 		closeAction.setEnabled(true);

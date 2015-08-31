@@ -12,7 +12,6 @@ import javax.swing.table.TableCellRenderer;
 /**
  * A class to be used a checkbox cell renderer in a <code>JTable</code>.
  * 
-
  */
 public class CheckBoxCellRenderer extends JCheckBox implements TableCellRenderer {
 
@@ -32,7 +31,7 @@ public class CheckBoxCellRenderer extends JCheckBox implements TableCellRenderer
 	 * Creates a new <code>CheckBoxRenderer</code> with the specified text elements.
 	 * 
 	 * @param textElements
-	 *          the text elements.
+	 *            the text elements.
 	 */
 	public CheckBoxCellRenderer(List<String> textElements) {
 		this(null, UIManager.getIcon("CheckBox.icon"));
@@ -43,9 +42,9 @@ public class CheckBoxCellRenderer extends JCheckBox implements TableCellRenderer
 	 * Creates a new <code>CheckBoxRenderer</code> with the specified icons.
 	 * 
 	 * @param defaultIcon
-	 *          the default icon.
+	 *            the default icon.
 	 * @param selectedIcon
-	 *          the selected icon.
+	 *            the selected icon.
 	 */
 	public CheckBoxCellRenderer(Icon defaultIcon, Icon selectedIcon) {
 		setIcon(defaultIcon);
@@ -56,7 +55,7 @@ public class CheckBoxCellRenderer extends JCheckBox implements TableCellRenderer
 	 * Set the texts to show. All elements must be instances of <code>String</code>. The <code>null</code> item is allowed.
 	 * 
 	 * @param textElements
-	 *          the texts to show.
+	 *            the texts to show.
 	 */
 	public void setTextElements(List<String> textElements) {
 		this.textElements = textElements;

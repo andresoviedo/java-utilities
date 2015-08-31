@@ -2,13 +2,11 @@ package org.andresoviedo.util.messaging.api1.common.data;
 
 import java.io.Serializable;
 
-
 /**
- * A singleton class used to create messages. Notice that messages cannot be
- * created directly since their constructors are protected. This class must
- * always be used to create messages.
+ * A singleton class used to create messages. Notice that messages cannot be created directly since their constructors are protected. This
+ * class must always be used to create messages.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class MessageFactory {
 
@@ -76,8 +74,7 @@ public class MessageFactory {
 	 *            the timeout.
 	 * @return the resulting text message.
 	 */
-	public Message createTextMessage(String serviceId, String targetServiceId,
-			String text, long timeout) {
+	public Message createTextMessage(String serviceId, String targetServiceId, String text, long timeout) {
 		TextMessage message = new TextMessage(text);
 		configureMessage(message, serviceId, targetServiceId, timeout);
 
@@ -108,14 +105,12 @@ public class MessageFactory {
 	 *            the timeout.
 	 * @return the resulting object message.
 	 */
-	public Message createObjectMessage(String serviceId, Serializable object,
-			long timeout) {
+	public Message createObjectMessage(String serviceId, Serializable object, long timeout) {
 		return createObjectMessage(serviceId, serviceId, object, timeout);
 	}
 
 	/**
-	 * Creates an object message with the specified target service id and
-	 * timeout.
+	 * Creates an object message with the specified target service id and timeout.
 	 * 
 	 * @param serviceId
 	 *            the service id.
@@ -127,8 +122,7 @@ public class MessageFactory {
 	 *            the timeout.
 	 * @return the resulting object message.
 	 */
-	public Message createObjectMessage(String serviceId,
-			String targetServiceId, Serializable object, long timeout) {
+	public Message createObjectMessage(String serviceId, String targetServiceId, Serializable object, long timeout) {
 		ObjectMessage message = new ObjectMessage(object);
 		configureMessage(message, serviceId, targetServiceId, timeout);
 
@@ -159,8 +153,7 @@ public class MessageFactory {
 	 *            the original message.
 	 * @return the resulting text message.
 	 */
-	public Message createTextMessageReply(String text, long timeout,
-			Message original) {
+	public Message createTextMessageReply(String text, long timeout, Message original) {
 		TextMessage reply = new TextMessage(text);
 		reply.setClientId(clientId);
 		reply.setMessageId(generateId());
@@ -179,8 +172,7 @@ public class MessageFactory {
 	 *            the serializable object.
 	 * @return the resulting object message.
 	 */
-	public Message createObjectMessageReply(Serializable object,
-			Message original) {
+	public Message createObjectMessageReply(Serializable object, Message original) {
 		return createObjectMessageReply(object, -1, original);
 	}
 
@@ -195,8 +187,7 @@ public class MessageFactory {
 	 *            the serializable object.
 	 * @return the resulting object message.
 	 */
-	public Message createObjectMessageReply(Serializable object, long timeout,
-			Message original) {
+	public Message createObjectMessageReply(Serializable object, long timeout, Message original) {
 		ObjectMessage reply = new ObjectMessage(object);
 		reply.setClientId(clientId);
 		reply.setMessageId(generateId());
@@ -218,8 +209,7 @@ public class MessageFactory {
 	 * @param timeout
 	 *            the timeout.
 	 */
-	private void configureMessage(Message message, String serviceId,
-			String targetServiceId, long timeout) {
+	private void configureMessage(Message message, String serviceId, String targetServiceId, long timeout) {
 		message.setClientId(clientId);
 		message.setServiceId(serviceId);
 		message.setTargetServiceId(targetServiceId);
@@ -228,8 +218,7 @@ public class MessageFactory {
 	}
 
 	/**
-	 * Configure the reply message with information contained in the original
-	 * message.
+	 * Configure the reply message with information contained in the original message.
 	 * 
 	 * @param reply
 	 *            the reply message.

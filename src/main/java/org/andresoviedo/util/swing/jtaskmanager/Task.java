@@ -7,7 +7,6 @@ import javax.swing.event.SwingPropertyChangeSupport;
  * A task is intended to perform certain actions in a dedicate thread (using TaskManager). Some propeties can be set during its execution
  * (such as the progress and the message) to let the user know what it's doing.
  * 
-
  */
 public abstract class Task implements Runnable {
 
@@ -95,7 +94,7 @@ public abstract class Task implements Runnable {
 	 * Constructs a new task.
 	 * 
 	 * @param description
-	 *          the name of the task.
+	 *            the name of the task.
 	 */
 	public Task(String description) {
 		this(description, false);
@@ -105,9 +104,9 @@ public abstract class Task implements Runnable {
 	 * Constructs a new task.
 	 * 
 	 * @param description
-	 *          the name of the task.
+	 *            the name of the task.
 	 * @param canCancel
-	 *          <code>true</code> is the task can be cancelled, <code>false</code> otherwise.
+	 *            <code>true</code> is the task can be cancelled, <code>false</code> otherwise.
 	 */
 	public Task(String description, boolean canCancel) {
 		this(description, canCancel, true);
@@ -117,11 +116,11 @@ public abstract class Task implements Runnable {
 	 * Constructs a new task.
 	 * 
 	 * @param description
-	 *          the name of the task.
+	 *            the name of the task.
 	 * @param canCancel
-	 *          <code>true</code> is the task can be cancelled, <code>false</code> otherwise.
+	 *            <code>true</code> is the task can be cancelled, <code>false</code> otherwise.
 	 * @param modal
-	 *          <code>true</code> is the task is modal, <code>false</code> otherwise.
+	 *            <code>true</code> is the task is modal, <code>false</code> otherwise.
 	 */
 	public Task(String description, boolean canCancel, boolean modal) {
 		this.description = description;
@@ -152,7 +151,7 @@ public abstract class Task implements Runnable {
 	 * Sets whether this task can be cancelled or not.
 	 * 
 	 * @param canCancel
-	 *          <code>true</code> if this task can be cancelled, <code>false</code> otherwise.
+	 *            <code>true</code> if this task can be cancelled, <code>false</code> otherwise.
 	 */
 	public void setCanCancel(boolean canCancel) {
 		if (this.canCancel != canCancel) {
@@ -175,7 +174,7 @@ public abstract class Task implements Runnable {
 	 * Sets the description of the task.
 	 * 
 	 * @param description
-	 *          the new description.
+	 *            the new description.
 	 */
 	public void setDescription(String description) {
 		if (this.description != description) {
@@ -198,7 +197,7 @@ public abstract class Task implements Runnable {
 	 * Sets the icon associated with this task.
 	 * 
 	 * @param icon
-	 *          the icon associated with this task.
+	 *            the icon associated with this task.
 	 */
 	public void setIcon(Icon icon) {
 		if (this.icon != icon) {
@@ -221,7 +220,7 @@ public abstract class Task implements Runnable {
 	 * Sets whether the progress is indeterminate or not.
 	 * 
 	 * @param indeterminate
-	 *          <code>true</code> if the progress is indeterminate, <code>false</code> otherwise.
+	 *            <code>true</code> if the progress is indeterminate, <code>false</code> otherwise.
 	 */
 	public void setIndeterminate(boolean indeterminate) {
 		if (this.indeterminate != indeterminate) {
@@ -244,7 +243,7 @@ public abstract class Task implements Runnable {
 	 * Sets the message describing the current action being performed by this task.
 	 * 
 	 * @param message
-	 *          the message of this task.
+	 *            the message of this task.
 	 */
 	public void setMessage(String message) {
 		if (this.message != message) {
@@ -255,9 +254,9 @@ public abstract class Task implements Runnable {
 	}
 
 	/**
-	 * Returns whether the task should cause the task manager to be displayed in a modal manner. This would be used to cause the user to have
-	 * to wait for a task to complete before allowing the user to use the GUI again. Set it to false if the task can be performed in the
-	 * background.
+	 * Returns whether the task should cause the task manager to be displayed in a modal manner. This would be used to cause the user to
+	 * have to wait for a task to complete before allowing the user to use the GUI again. Set it to false if the task can be performed in
+	 * the background.
 	 * 
 	 * @return <code>true</code> if the task is modal, <code>false</code> otherwise.
 	 */
@@ -269,7 +268,7 @@ public abstract class Task implements Runnable {
 	 * Sets whether the task is modal or not.
 	 * 
 	 * @param modal
-	 *          <code>true</code> if the task is modal, <code>false</code> otherwise.
+	 *            <code>true</code> if the task is modal, <code>false</code> otherwise.
 	 */
 	public void setModal(boolean modal) {
 		if (this.modal != modal) {
@@ -292,7 +291,7 @@ public abstract class Task implements Runnable {
 	 * Sets the current progress of this task.
 	 * 
 	 * @param progress
-	 *          the completion percent of this task.
+	 *            the completion percent of this task.
 	 */
 	public void setProgress(int progress) {
 		if (this.progress != progress) {

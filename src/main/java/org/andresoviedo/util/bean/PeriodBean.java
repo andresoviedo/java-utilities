@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 /**
  * The <code>PeriodBean</code> class represents a period of time.
  * 
- * @author aoviedo
+ * @author andresoviedo
  * 
  */
 public abstract class PeriodBean {
@@ -50,7 +50,7 @@ public abstract class PeriodBean {
 	 * Parses and return a <code>PeriodBean</code> implementation based on the specified definition.
 	 * 
 	 * @param periodDefinition
-	 *          the period definition
+	 *            the period definition
 	 * @return a <code>PeriodBean</code> implementation
 	 */
 	public static PeriodBean parsePeriod(String periodDefinition) {
@@ -68,7 +68,7 @@ public abstract class PeriodBean {
 	/**
 	 * The <code>DailyPeriod</code> class represents a time that is repeated during all days.
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 * 
 	 */
 	public static class DailyPeriod extends PeriodBean {
@@ -82,7 +82,7 @@ public abstract class PeriodBean {
 		 * Constructs a daily period at the specified time.
 		 * 
 		 * @param time
-		 *          the time in the day
+		 *            the time in the day
 		 */
 		public DailyPeriod(Time time) {
 			this.startTime = time;
@@ -120,7 +120,7 @@ public abstract class PeriodBean {
 	/**
 	 * The <code>WeeklyPeriod</code> class represents a time or times that are repeated each week.
 	 * 
-	 * @author aoviedo
+	 * @author andresoviedo
 	 * 
 	 */
 	public static class WeeklyPeriod extends PeriodBean {
@@ -171,9 +171,9 @@ public abstract class PeriodBean {
 		 * Constructs a <code>WeeklyPeriod</code> with the specified days at specified time.
 		 * 
 		 * @param days
-		 *          the days in the week
+		 *            the days in the week
 		 * @param time
-		 *          the time in the day
+		 *            the time in the day
 		 */
 		public WeeklyPeriod(List<Integer> days, Time time) {
 			Collections.sort(days);
@@ -183,12 +183,12 @@ public abstract class PeriodBean {
 
 		/**
 		 * Parses and return a <code>WeeklyPeriod</code> based on the period definition.<br>
-		 * PeriodBean definition should follow the syntax: <code>WEEKLY day[|day...] AT &lt;TIME&gt;</code> where <code>day</code> could be one of
-		 * <code>Sun</code>,<code>Mon</code>,<code>Tue</code>,<code>Thu</code>,<code>Fri</code>,<code>Sat</code>; and <code>TIME</code> comes in
-		 * the format <code>HH:mm:ss</code>.
+		 * PeriodBean definition should follow the syntax: <code>WEEKLY day[|day...] AT &lt;TIME&gt;</code> where <code>day</code> could be
+		 * one of <code>Sun</code>,<code>Mon</code>,<code>Tue</code>,<code>Thu</code>,<code>Fri</code>,<code>Sat</code>; and
+		 * <code>TIME</code> comes in the format <code>HH:mm:ss</code>.
 		 * 
 		 * @param periodDefinition
-		 *          the period definition
+		 *            the period definition
 		 * @return the parsed <code>WeeklyPeriod</code>
 		 */
 		public static WeeklyPeriod parse(String periodDefinition) {
@@ -221,7 +221,7 @@ public abstract class PeriodBean {
 		 * Test whether the specified day it's in the days list.
 		 * 
 		 * @param day
-		 *          the
+		 *            the
 		 * @return <code>true</true> if the specified day is contained in the days list.
 		 */
 		public boolean containsDay(int day) {
@@ -232,7 +232,7 @@ public abstract class PeriodBean {
 		 * Return the next day in the list starting from the specified reference day.
 		 * 
 		 * @param referenceDay
-		 *          the reference day
+		 *            the reference day
 		 * @return the next day in the list starting from the specified day
 		 */
 		public int nextDay(int referenceDay) {
@@ -254,7 +254,7 @@ public abstract class PeriodBean {
 		 * Return the number of days remaining until next day in the list starting from the specified reference day.
 		 * 
 		 * @param referenceDay
-		 *          the reference day
+		 *            the reference day
 		 * @return the next day in the list starting from the specified day
 		 */
 		public int countToNextDay(int referenceDay) {

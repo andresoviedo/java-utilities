@@ -5,10 +5,10 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
-import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 
 import org.andresoviedo.util.bean.ScheduleInfoBean;
 import org.andresoviedo.util.data.HashList;
-
 
 public class TasksScheduler {
 
@@ -199,8 +198,8 @@ public class TasksScheduler {
 			taskWrapper = newTaskWrapper;
 		}
 		Calendar nextRun = getNextRun(taskWrapper.taskInfo);
-		logger.logp(Level.INFO, "TasksScheduler", "scheduleTask", "Scheduling task [" + taskWrapper.taskInfo.getName() + "] at ["
-				+ nextRun.getTime() + "]...");
+		logger.logp(Level.INFO, "TasksScheduler", "scheduleTask",
+				"Scheduling task [" + taskWrapper.taskInfo.getName() + "] at [" + nextRun.getTime() + "]...");
 		timer.schedule(taskWrapper, nextRun.getTime());
 		taskWrapper.scheduled = true;
 		taskWrapper.started = true;

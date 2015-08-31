@@ -6,7 +6,6 @@ import java.util.EventObject;
 /**
  * The event fired by a file monitor.
  * 
-
  */
 public class FileEvent extends EventObject {
 
@@ -35,11 +34,11 @@ public class FileEvent extends EventObject {
 	 * Constructs a new file event object.
 	 * 
 	 * @param source
-	 *          the object that fires the event.
+	 *            the object that fires the event.
 	 * @param id
-	 *          the event id.
+	 *            the event id.
 	 * @param file
-	 *          the file (or directory) that changed.
+	 *            the file (or directory) that changed.
 	 */
 	public FileEvent(Object source, int id, File file) {
 		super(source);

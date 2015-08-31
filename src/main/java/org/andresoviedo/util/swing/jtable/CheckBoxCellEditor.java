@@ -10,7 +10,6 @@ import javax.swing.JTable;
 /**
  * A class to be used a checkbox cell editor in a <code>JTable</code>.
  * 
-
  */
 public class CheckBoxCellEditor extends DefaultCellEditor {
 
@@ -30,7 +29,7 @@ public class CheckBoxCellEditor extends DefaultCellEditor {
 	 * Construts a new <code>CheckBoxCellEditor</code> with the specified list of elements.
 	 * 
 	 * @param textElements
-	 *          the list of text elements.
+	 *            the list of text elements.
 	 */
 	public CheckBoxCellEditor(List<String> textElements) {
 		super(new JCheckBox());
@@ -45,7 +44,7 @@ public class CheckBoxCellEditor extends DefaultCellEditor {
 	 * Set the texts to show. All elements must be instances of <code>String</code>. The <code>null</code> item is allowed.
 	 * 
 	 * @param textElements
-	 *          the texts to show.
+	 *            the texts to show.
 	 */
 	public void setTextElements(List<String> textElements) {
 		this.textElements = textElements;

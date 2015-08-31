@@ -14,7 +14,6 @@ import java.util.List;
  * @see Comparator
  * @see List
  * 
-
  */
 public class SortedHashList extends HashList {
 
@@ -34,7 +33,7 @@ public class SortedHashList extends HashList {
 	 * Creates a new <code>SortedHashList</code> with the specified comparator.
 	 * 
 	 * @param comparator
-	 *          the comparator.
+	 *            the comparator.
 	 */
 	public SortedHashList(Comparator comparator) {
 		super();
@@ -70,7 +69,7 @@ public class SortedHashList extends HashList {
 	 * Sets the comparator to sort the values.
 	 * 
 	 * @param comparator
-	 *          the comparator.
+	 *            the comparator.
 	 */
 	public void setComparator(Comparator comparator) {
 		this.comparator = comparator;

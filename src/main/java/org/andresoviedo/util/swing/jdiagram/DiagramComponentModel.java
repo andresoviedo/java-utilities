@@ -103,7 +103,7 @@ public class DiagramComponentModel implements ItemSelectable {
 	 * Adds a <code>ChangeListener</code> to the diagram component.
 	 * 
 	 * @param l
-	 *          the listener to add.
+	 *            the listener to add.
 	 */
 	public void addChangeListener(ChangeListener l) {
 		listenerList.add(ChangeListener.class, l);
@@ -113,7 +113,7 @@ public class DiagramComponentModel implements ItemSelectable {
 	 * Removes a <code>ChangeListener</code> from the diagram component.
 	 * 
 	 * @param l
-	 *          the listener to remove.
+	 *            the listener to remove.
 	 */
 	public void removeChangeListener(ChangeListener l) {
 		listenerList.remove(ChangeListener.class, l);
@@ -141,7 +141,7 @@ public class DiagramComponentModel implements ItemSelectable {
 	 * Adds an <code>ItemListener</code> to the component.
 	 * 
 	 * @param l
-	 *          the listener to add.
+	 *            the listener to add.
 	 */
 	public void addItemListener(ItemListener l) {
 		listenerList.add(ItemListener.class, l);
@@ -151,7 +151,7 @@ public class DiagramComponentModel implements ItemSelectable {
 	 * Removes an <code>ItemListener</code> from the component.
 	 * 
 	 * @param l
-	 *          the listener to remove.
+	 *            the listener to remove.
 	 */
 	public void removeItemListener(ItemListener l) {
 		listenerList.remove(ItemListener.class, l);
@@ -161,7 +161,7 @@ public class DiagramComponentModel implements ItemSelectable {
 	 * Notifies all listeners that have registered interest for notification on this event type.
 	 * 
 	 * @param e
-	 *          the <code>ItemEvent</code> to deliver to listeners
+	 *            the <code>ItemEvent</code> to deliver to listeners
 	 * @see EventListenerList
 	 */
 	protected void fireItemStateChanged(ItemEvent e) {

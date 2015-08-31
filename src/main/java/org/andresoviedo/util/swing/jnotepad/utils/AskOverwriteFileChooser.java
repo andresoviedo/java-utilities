@@ -63,8 +63,8 @@ public class AskOverwriteFileChooser extends JFileChooser {
 				if (JFileChooser.APPROVE_SELECTION.equals(e.getActionCommand())) {
 					File f = getSelectedFile();
 					if (f.exists()) {
-						if (SwingUtils.showConfirmDialog(AskOverwriteFileChooser.this, Resources.getString(Resources.QUESTION_FILE_EXISTS_OVERWRITE),
-								JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+						if (SwingUtils.showConfirmDialog(AskOverwriteFileChooser.this,
+								Resources.getString(Resources.QUESTION_FILE_EXISTS_OVERWRITE), JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
 							myReturnValue = APPROVE_OPTION;
 							myDialog.setVisible(false);
 						}

@@ -28,13 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Esta clase ha sido creada para que la arquitectura no dependenda del commons-beanutils.
- * 
- * Básicamente permite hacer "set" de properties de un bean.
- * 
- * Las properties pueden ser anidadas.
- * 
- * La lectura de properties se puede hacer indizada, si se trata un Map<?,?> o una List<?>
+ * BeanUtils extension to set nested properties to a bean, a map, a list or even an enumeration.
  * 
  * @author andresoviedo
  */
@@ -43,7 +37,7 @@ public final class BeanUtils {
 	private static final Logger logger = LoggerFactory.getLogger(BeanUtils.class);
 
 	private static final Pattern INDEXED_PROPERTY_REGEXP = Pattern.compile("^(.*)\\[(.+)\\]$");
-	
+
 	public static String includedClass = "org.andresoviedo";
 	/**
 	 * Conjunto de clases wrapper de tipos primitivos de JAVA y el BigDecimal (ver clase AbsisCustomNumberEditor)
@@ -75,7 +69,8 @@ public final class BeanUtils {
 		return sb1.equals(sb2);
 	}
 
-	// Devuelve los campos de una clase de org.andresoviedo. Si esta clase hereda de una
+	// Devuelve los campos de una clase de org.andresoviedo. Si esta clase
+	// hereda de una
 	// que clase no básica de Jaba, obtiene
 	// un String con la impresión de dicha clase
 	private static List<Field> getFields(Object obj, StringBuilder classString) {
@@ -83,7 +78,8 @@ public final class BeanUtils {
 		Class<?> currentClass = obj.getClass();
 		String ObjectClassName = new Object().getClass().getName();
 		do {
-			// Si la clase deriva de una clase que no es de org.andresoviedo ni de
+			// Si la clase deriva de una clase que no es de org.andresoviedo ni
+			// de
 			// Object, entonces imprimimos la clase
 			// con el método tradicional toString
 			// JAC: Fix para WS de tipo castor
@@ -152,7 +148,8 @@ public final class BeanUtils {
 				}
 			}
 
-			// Si el tipus de la classe es de org.andresoviedo hem d'obtenir els seus
+			// Si el tipus de la classe es de org.andresoviedo hem d'obtenir els
+			// seus
 			// camps primer, abans de printar els elements
 			// que pugui heredar (collections, arrays, hashmaps, ...)
 			if (Iterable.class.isAssignableFrom(objClass)) {
@@ -221,7 +218,8 @@ public final class BeanUtils {
 		}
 
 		try {
-			// current bean is associated to each property part. Ej. "bean1.bean2.bean3.property".
+			// current bean is associated to each property part. Ej.
+			// "bean1.bean2.bean3.property".
 			Object currentBean = bean;
 			String currentProperty = null;
 			String currentPropertyIndex = null;
@@ -425,7 +423,8 @@ public final class BeanUtils {
 			for (int i = 0; i < pds.length; i++) {
 				if (pds[i].getName().equals(propertyName)) {
 					// Method writeMethod = pds[i].getWriteMethod();
-					// if (writeMethod != null && writeMethod.getName().equals(propertyName))
+					// if (writeMethod != null &&
+					// writeMethod.getName().equals(propertyName))
 					return pds[i];
 				}
 			}

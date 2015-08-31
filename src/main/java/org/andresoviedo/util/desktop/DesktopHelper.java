@@ -12,14 +12,12 @@ public class DesktopHelper {
 	public static void main(String[] args) throws MalformedURLException {
 		openWebpage(new URL(
 				"file://"
-						+ new File("src" + File.separator + "main"
-								+ File.separator + "resources" + File.separator
-								+ "ChangeLog.html").getAbsolutePath()));
+						+ new File("src" + File.separator + "main" + File.separator + "resources" + File.separator + "ChangeLog.html")
+								.getAbsolutePath()));
 	}
 
 	public static void openWebpage(URI uri) {
-		Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop()
-				: null;
+		Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
 		if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
 			try {
 				desktop.browse(uri);

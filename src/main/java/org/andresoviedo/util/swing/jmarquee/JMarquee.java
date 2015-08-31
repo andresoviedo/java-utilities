@@ -10,7 +10,6 @@ import javax.swing.SwingUtilities;
 /**
  * <code>JMarquee</code> is a label that animates the text. It displays continously the text from right to left.
  * 
-
  */
 public class JMarquee extends JLabel implements Runnable {
 

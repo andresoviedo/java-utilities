@@ -11,7 +11,6 @@ import javax.swing.JInternalFrame;
  * A custom desktop manager that keeps into account the draggable property of an internal frame. It also selects the next frame when the
  * current selected frame is iconified.
  * 
-
  */
 public class BasicDesktopManager extends DefaultDesktopManager {
 
@@ -29,7 +28,7 @@ public class BasicDesktopManager extends DefaultDesktopManager {
 	 * Constructs a new basic desktop manager.
 	 * 
 	 * @param desktop
-	 *          the associated desktop pane.
+	 *            the associated desktop pane.
 	 */
 	public BasicDesktopManager(BasicDesktopPane desktop) {
 		this.desktop = desktop;

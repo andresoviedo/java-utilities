@@ -7,7 +7,6 @@ import javax.swing.AbstractAction;
 /**
  * FramePositioningAction.
  * 
-
  */
 class FramePositioningAction extends AbstractAction {
 
@@ -31,9 +30,9 @@ class FramePositioningAction extends AbstractAction {
 	 * Constructs a new frame positioning action.
 	 * 
 	 * @param desktop
-	 *          the desktop pane.
+	 *            the desktop pane.
 	 * @param actionType
-	 *          the desired action type.
+	 *            the desired action type.
 	 */
 	public FramePositioningAction(BasicDesktopPane desktop, int actionType) {
 		this(desktop, -1, actionType);
@@ -43,11 +42,11 @@ class FramePositioningAction extends AbstractAction {
 	 * Constructs a new frame positioning action.
 	 * 
 	 * @param desktop
-	 *          the desktopPane.
+	 *            the desktopPane.
 	 * @param layer
-	 *          the layer where the action has to be applied.
+	 *            the layer where the action has to be applied.
 	 * @param actionType
-	 *          the desired action type.
+	 *            the desired action type.
 	 */
 	public FramePositioningAction(BasicDesktopPane desktop, int layer, int actionType) {
 		this.desktop = desktop;

@@ -3,7 +3,7 @@ package org.andresoviedo.util.messaging.api1.common.data;
 /**
  * A command used to test the connection.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class PingRequest extends SignalingCommand {
 
@@ -13,7 +13,7 @@ public class PingRequest extends SignalingCommand {
 	 * Creates a new ping request.
 	 * 
 	 * @param clientId
-	 *          the client id.
+	 *            the client id.
 	 */
 	public PingRequest(String clientId) {
 		super(clientId);

@@ -24,7 +24,8 @@ public class DateCellEditor extends DefaultCellEditor {
 
 		ftf = (JFormattedTextField) getComponent();
 
-		// React when the user presses Enter while the editor is active. (Tab is handled as specified by JFormattedTextField's focusLostBehavior
+		// React when the user presses Enter while the editor is active. (Tab is handled as specified by JFormattedTextField's
+		// focusLostBehavior
 		// property.)
 		ftf.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "check");
 		ftf.getActionMap().put("check", new AbstractAction() {

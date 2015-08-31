@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * This class contains a method to discover hardware addresses (usually MAC) on
- * the computer the application is running on.
+ * This class contains a method to discover hardware addresses (usually MAC) on the computer the application is running on.
  * 
  */
 public class NetUtils {
@@ -20,17 +19,15 @@ public class NetUtils {
 	}
 
 	/**
-	 * Returns a list with the hardware address (usually MAC) of each network
-	 * interface found on the computer the application is running on. May return
-	 * an empty list if no network interfaces are found or I/O errors occur.
+	 * Returns a list with the hardware address (usually MAC) of each network interface found on the computer the application is running on.
+	 * May return an empty list if no network interfaces are found or I/O errors occur.
 	 * 
 	 * @return a list of hardware addresses.
 	 */
 	public static List<String> getHardwareAddresses() {
 		List<String> result = new Vector<String>();
 		try {
-			Enumeration<NetworkInterface> nis = NetworkInterface
-					.getNetworkInterfaces();
+			Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
 			if (nis != null) {
 				while (nis.hasMoreElements()) {
 					byte[] mac = nis.nextElement().getHardwareAddress();

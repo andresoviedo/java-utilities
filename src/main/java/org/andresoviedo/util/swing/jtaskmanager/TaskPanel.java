@@ -28,11 +28,9 @@ import javax.swing.text.Document;
 
 import org.andresoviedo.util.swing.jtaskmanager.resources.Resources;
 
-
 /**
  * This class is used to display the progress of the associated task.
  * 
-
  */
 public class TaskPanel extends JPanel implements ActionListener, ItemListener, PropertyChangeListener {
 
@@ -59,7 +57,7 @@ public class TaskPanel extends JPanel implements ActionListener, ItemListener, P
 	 * Constructs a new task panel.
 	 * 
 	 * @param task
-	 *          the associated task.
+	 *            the associated task.
 	 */
 	public TaskPanel(Task task) {
 		if (task == null) {

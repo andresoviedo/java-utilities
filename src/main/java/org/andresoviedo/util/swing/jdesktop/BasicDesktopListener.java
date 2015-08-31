@@ -10,7 +10,6 @@ import javax.swing.event.InternalFrameEvent;
 /**
  * Listens for events fired by internal frames (internal frame events and component events).
  * 
-
  */
 public class BasicDesktopListener extends InternalFrameAdapter implements ComponentListener {
 
@@ -23,7 +22,7 @@ public class BasicDesktopListener extends InternalFrameAdapter implements Compon
 	 * Constructs a new basic desktop listener.
 	 * 
 	 * @param desktopPane
-	 *          the associated desktop.
+	 *            the associated desktop.
 	 */
 	public BasicDesktopListener(BasicDesktopPane desktopPane) {
 		this.desktopPane = desktopPane;

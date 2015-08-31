@@ -5,7 +5,6 @@ import java.text.DecimalFormat;
 /**
  * A set of useful methods related to strings.
  * 
-
  */
 public class StringUtils {
 
@@ -26,7 +25,7 @@ public class StringUtils {
 	 * <code>millis</code> is 3660000, the returned string will be '01:01:00' (one hour and one minute).
 	 * 
 	 * @param millis
-	 *          the amount of time.
+	 *            the amount of time.
 	 * @return a string representation of the amount of time.
 	 */
 	public static String toHHMMSS(long millis) {
@@ -58,14 +57,14 @@ public class StringUtils {
 	 * not truncating words.
 	 * 
 	 * @param text
-	 *          the text to split.
+	 *            the text to split.
 	 * @param maxChars
-	 *          the maximum number of characters of each line.
+	 *            the maximum number of characters of each line.
 	 * @param delim
-	 *          <code>null</code> or the text to add to the end of each line (i.e. "&lt;br&gt;").
+	 *            <code>null</code> or the text to add to the end of each line (i.e. "&lt;br&gt;").
 	 * @return the wrapped text.
 	 * @throws IllegalArgumentException
-	 *           if <code>maxChars</code> is less than or equal to <code>0</code>.
+	 *             if <code>maxChars</code> is less than or equal to <code>0</code>.
 	 */
 	public static String splitText(String text, int maxChars, String delim) {
 		if (maxChars <= 0) {
@@ -117,7 +116,7 @@ public class StringUtils {
 	 * Returns the specified text with all Unicode control characters removed.
 	 * 
 	 * @param text
-	 *          the text.
+	 *            the text.
 	 * @return the text with all Unicode control characters removed.
 	 */
 	public static String removeUnicodeControlChars(String text) {
@@ -142,11 +141,11 @@ public class StringUtils {
 	 * Returns the next separator index in the specified string, or the length of the string if no separator is found.
 	 * 
 	 * @param s
-	 *          an arbitrary string.
+	 *            an arbitrary string.
 	 * @param from
-	 *          the index from which to start looking for separators.
+	 *            the index from which to start looking for separators.
 	 * @param separators
-	 *          the array of separators.
+	 *            the array of separators.
 	 * @return the next separator index in the specified string, or the length of the string if no separator is found.
 	 */
 	public static int nextSeparator(String s, int from, char[] separators) {
@@ -164,9 +163,9 @@ public class StringUtils {
 	 * Returns whether the specified character is among the specified separators.
 	 * 
 	 * @param c
-	 *          an arbitrary character.
+	 *            an arbitrary character.
 	 * @param separators
-	 *          the separators array.
+	 *            the separators array.
 	 * @return <code>true</code> if the character is among the separators, <code>false</code> otherwise.
 	 */
 	private static boolean isSeparator(char c, char[] separators) {

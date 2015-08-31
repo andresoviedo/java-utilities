@@ -31,7 +31,6 @@ import org.andresoviedo.util.swing.jcalendar.CalendarTableModel.DateLocation;
 /**
  * A calendar table component.
  * 
-
  */
 public class JCalendarTable extends JTable {
 
@@ -135,7 +134,7 @@ public class JCalendarTable extends JTable {
 	 * Creates a new calendar table.
 	 * 
 	 * @param model
-	 *          a calendar table model.
+	 *            a calendar table model.
 	 */
 	public JCalendarTable(CalendarTableModel model) {
 		super(model);
@@ -166,7 +165,7 @@ public class JCalendarTable extends JTable {
 	 * Adds a specific label decorator.
 	 * 
 	 * @param decorator
-	 *          the decorator to add.
+	 *            the decorator to add.
 	 */
 	public void addDecorator(CalendarDateLabelDecorator decorator) {
 		if (decorator != null) {
@@ -221,7 +220,7 @@ public class JCalendarTable extends JTable {
 	 * Returns the decorator associated to the specified date (may be <code>null</code>).
 	 * 
 	 * @param date
-	 *          the date.
+	 *            the date.
 	 * @return the decorator associated to the specified date.
 	 */
 	public CalendarDateLabelDecorator getDecorator(Date date) {
@@ -313,7 +312,7 @@ public class JCalendarTable extends JTable {
 	 * Sets the color the cell renderer should use as the background to paint the cell representing the current date.
 	 * 
 	 * @param currentDateBackground
-	 *          the desired color.
+	 *            the desired color.
 	 */
 	public void setCurrentDateBackground(Color currentDateBackground) {
 		this.currentDateBackground = currentDateBackground;
@@ -324,7 +323,7 @@ public class JCalendarTable extends JTable {
 	 * Sets the color the cell renderer should use as the foreground to paint the cell representing the current date.
 	 * 
 	 * @param currentDateForeground
-	 *          the desired color.
+	 *            the desired color.
 	 */
 	public void setCurrentDateForeground(Color currentDateForeground) {
 		this.currentDateForeground = currentDateForeground;
@@ -336,7 +335,7 @@ public class JCalendarTable extends JTable {
 	 * method does nothing.
 	 * 
 	 * @param displayColumnHeaderView
-	 *          <code>true</code> if the column header view has to be displayed, <code>false</code> otherwise.
+	 *            <code>true</code> if the column header view has to be displayed, <code>false</code> otherwise.
 	 */
 	public void setDisplayColumnHeaderView(boolean displayColumnHeaderView) {
 		if (this.displayColumnHeaderView == displayColumnHeaderView) {
@@ -355,11 +354,11 @@ public class JCalendarTable extends JTable {
 	}
 
 	/**
-	 * Sets whether the row header view has to be displayed or not. If the table is not the main view of a scrollpane's viewport, this method
-	 * does nothing.
+	 * Sets whether the row header view has to be displayed or not. If the table is not the main view of a scrollpane's viewport, this
+	 * method does nothing.
 	 * 
 	 * @param displayRowHeaderView
-	 *          <code>true</code> if the row header view has to be displayed, <code>false</code> otherwise.
+	 *            <code>true</code> if the row header view has to be displayed, <code>false</code> otherwise.
 	 */
 	public void setDisplayRowHeaderView(boolean displayRowHeaderView) {
 		if (this.displayRowHeaderView == displayRowHeaderView) {
@@ -395,7 +394,7 @@ public class JCalendarTable extends JTable {
 	 * Sets the color used to paint month delimiters.
 	 * 
 	 * @param monthDelimiterColor
-	 *          the color used to paint month delimiters.
+	 *            the color used to paint month delimiters.
 	 */
 	public void setMonthDelimiterColor(Color monthDelimiterColor) {
 		this.monthDelimiterColor = monthDelimiterColor;
@@ -406,7 +405,7 @@ public class JCalendarTable extends JTable {
 	 * Sets the selected date. If <code>date</code> is null, this method does nothing.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 */
 	public void setSelectedDate(Date date) {
 		if (date == null) {

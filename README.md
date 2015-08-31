@@ -8,6 +8,7 @@ on Internet, or maybe because it was not available at that time... whatever. I s
 
 I would be glad if you find any of the classes useful. Here are some:
 
+* **ProvincesUtil.java**:  Enumeration with all the Spain provinces with it's respective code.
 * **MySQLPhoneCallAlert.java**: Make a select to MySQL and if it's not OK the class will make a phone call to your cell phone.
 * **BeanUtils.java**: Print any POJO into a pretty printable String (recursive). Also set (or get) nested properties (bean1.prop1.val2)
  into a Bean. Maps, Lists, Enums, etc are supported.
@@ -25,3 +26,14 @@ I would be glad if you find any of the classes useful. Here are some:
 * **TaskScheduler & TasksControlPanel.java**: Schedule tasks & manage them with a Swing GUI control panel
 * **RunHelper.java**: Run commands
 * **IOHelper.java**: Copy files (zips) and filter it's contents
+
+Compilation
+===========
+
+This project dependends on javax.comm API, but it's not available on maven repository because of legal issues.
+So, before compiling the project you have to add install that library in your local repository.
+To install it execute the following command:
+
+    mvn install:install-file -Dfile=./comm-3.0-u1.jar -DgroupId=javax.comm -DartifactId=comm -Dversion=3.0-u1 -Dpackaging=jar
+
+    

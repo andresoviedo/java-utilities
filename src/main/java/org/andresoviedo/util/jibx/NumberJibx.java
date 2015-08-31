@@ -1,22 +1,18 @@
 package org.andresoviedo.util.jibx;
 
-
-
 import java.math.BigDecimal;
 
 import org.apache.commons.lang3.StringUtils;
 
-
 /**
- * Clase que se usa para referenciar desde un custom formater de Jibx ya que
- * este no permite hacer binding sobre atributos de tipo Number.
+ * Clase que se usa para referenciar desde un custom formater de Jibx ya que este no permite hacer binding sobre atributos de tipo Number.
  * 
- * @author xpalaugu
+ * @author andresoviedo
  *
  */
 public class NumberJibx {
 	public static Number deserializeNumber(final String value) {
-		if(StringUtils.isNotBlank(value)){
+		if (StringUtils.isNotBlank(value)) {
 			BigDecimal big = new BigDecimal(value);
 			try {
 				int scale = big.scale();
@@ -41,15 +37,15 @@ public class NumberJibx {
 				// Si ens ha generat una excepció tornem un BigDecimal
 				return big;
 			}
-		}else{
+		} else {
 			return null;
 		}
 	}
 
 	public static String serializeNumber(final Number num) {
-		if(num != null){
+		if (num != null) {
 			return num.toString();
-		}else{
+		} else {
 			return null;
 		}
 	}

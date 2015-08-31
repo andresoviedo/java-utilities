@@ -1,6 +1,4 @@
-package org.andresoviedo.util.jee;
-
-
+package org.andresoviedo.util.spring.jee;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -23,8 +21,7 @@ import org.springframework.jms.support.JmsUtils;
  */
 public class JmsTemplate extends JmsTemplate102 {
 
-	public Message receiveSelected(final String destinationName, final String messageSelector, final long timeout)
-			throws JmsException {
+	public Message receiveSelected(final String destinationName, final String messageSelector, final long timeout) throws JmsException {
 		return (Message) execute(new SessionCallback() {
 			public Object doInJms(Session session) throws JMSException {
 				Destination destination = resolveDestinationName(session, destinationName);

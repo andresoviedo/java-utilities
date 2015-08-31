@@ -17,8 +17,8 @@ import javax.media.Time;
 public class MediaUtils {
 
 	/**
-	 * Returns the duration of a certain clip in seconds with double precision. IMPORTANT: The file must be introduced in url format Example:
-	 * "file:G:/directory/file.mpg" Can throw MediaUtilsException in case of internal exeptions derived from JMF
+	 * Returns the duration of a certain clip in seconds with double precision. IMPORTANT: The file must be introduced in url format
+	 * Example: "file:G:/directory/file.mpg" Can throw MediaUtilsException in case of internal exeptions derived from JMF
 	 * 
 	 * @param urlFile
 	 * @return
@@ -65,9 +65,9 @@ public class MediaUtils {
 	}
 
 	/**
-	 * IMPORTANT: Do not use it. NullPointerException in some cases!! Returns the dimension (x,y) of a certain clip. IMPORTANT: The file must
-	 * be introduced in url format Example: "file:G:/directory/file.mpg" Can throw MediaUtilsException in case of internal exeptions derived
-	 * from JMF
+	 * IMPORTANT: Do not use it. NullPointerException in some cases!! Returns the dimension (x,y) of a certain clip. IMPORTANT: The file
+	 * must be introduced in url format Example: "file:G:/directory/file.mpg" Can throw MediaUtilsException in case of internal exeptions
+	 * derived from JMF
 	 * 
 	 * @param urlFile
 	 * @return

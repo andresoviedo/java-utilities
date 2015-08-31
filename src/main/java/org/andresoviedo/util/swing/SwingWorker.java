@@ -73,8 +73,8 @@ public abstract class SwingWorker {
 	}
 
 	/**
-	 * Return the value created by the <code>construct</code> method. Returns null if either the constructing thread or the current thread was
-	 * interrupted before a value was produced.
+	 * Return the value created by the <code>construct</code> method. Returns null if either the constructing thread or the current thread
+	 * was interrupted before a value was produced.
 	 * 
 	 * @return the value created by the <code>construct</code> method
 	 */

@@ -25,7 +25,6 @@ import javax.swing.WindowConstants;
 /**
  * An enhanced internal frame.
  * 
-
  */
 public class BasicInternalFrame extends JInternalFrame {
 
@@ -84,9 +83,9 @@ public class BasicInternalFrame extends JInternalFrame {
 	 * Creates a new internal frame with the specified title and icon. The frame is closable, maximizable, iconifiable and resizable.
 	 * 
 	 * @param title
-	 *          the title.
+	 *            the title.
 	 * @param icon
-	 *          the icon.
+	 *            the icon.
 	 */
 	public BasicInternalFrame(String title, Icon icon) {
 		super(title, true, true, true, true);
@@ -102,11 +101,11 @@ public class BasicInternalFrame extends JInternalFrame {
 	 * specified component is added in the frame's content pane.
 	 * 
 	 * @param title
-	 *          the title.
+	 *            the title.
 	 * @param icon
-	 *          the icon.
+	 *            the icon.
 	 * @param component
-	 *          the component to be added to frame's content pane.
+	 *            the component to be added to frame's content pane.
 	 */
 	public BasicInternalFrame(String title, Icon icon, JComponent component) {
 		this(title, icon);
@@ -152,7 +151,7 @@ public class BasicInternalFrame extends JInternalFrame {
 	 * Sets whether the desktop toggle button has to be added to desktop's pane button panel or not.
 	 * 
 	 * @param useDesktopToggleButton
-	 *          <code>true</code> if the button has to be added, <code>false</code> otherwise.
+	 *            <code>true</code> if the button has to be added, <code>false</code> otherwise.
 	 */
 	public void setUseDesktopToggleButton(boolean useDesktopToggleButton) {
 		this.useDesktopToggleButton = useDesktopToggleButton;
@@ -162,7 +161,7 @@ public class BasicInternalFrame extends JInternalFrame {
 	 * Sets whether the internal frame has to be shown as a palette (toolbox) frame or not.
 	 * 
 	 * @param flag
-	 *          <code>true</code> the internal frame has to be shown as a palette frame, <code>false</code> otherwise.
+	 *            <code>true</code> the internal frame has to be shown as a palette frame, <code>false</code> otherwise.
 	 */
 	public void setPalette(boolean flag) {
 		putClientProperty("JInternalFrame.isPalette", Boolean.valueOf(flag));
@@ -172,7 +171,7 @@ public class BasicInternalFrame extends JInternalFrame {
 	 * Sets whether the internal frame can be dragged in the desktop pane.
 	 * 
 	 * @param flag
-	 *          <code>true</code> if we want the internal frame to be draggable, <code>false</code> otherwise.
+	 *            <code>true</code> if we want the internal frame to be draggable, <code>false</code> otherwise.
 	 */
 	public void setDraggable(boolean flag) {
 		putClientProperty("JInternalFrame.isDraggable", Boolean.valueOf(flag));
@@ -182,15 +181,15 @@ public class BasicInternalFrame extends JInternalFrame {
 	 * Sets whether the internal frame has to be always centered when shown.
 	 * 
 	 * @param alwaysCentered
-	 *          <code>true</code> if we want the internal frame to be always centered, <code>false</code> otherwise.
+	 *            <code>true</code> if we want the internal frame to be always centered, <code>false</code> otherwise.
 	 */
 	public void setAlwaysCentered(boolean alwaysCentered) {
 		this.alwaysCentered = alwaysCentered;
 	}
 
 	/**
-	 * Returns a button that makes this frame visible when the user clicks it. This is an icon-only button by default, but its properties can
-	 * be set as desired. This button can be added, for instance, to a toolbar to let the user bring up this frame.
+	 * Returns a button that makes this frame visible when the user clicks it. This is an icon-only button by default, but its properties
+	 * can be set as desired. This button can be added, for instance, to a toolbar to let the user bring up this frame.
 	 * 
 	 * @return a button that makes this frame visible when the user clicks it.
 	 */
@@ -220,8 +219,8 @@ public class BasicInternalFrame extends JInternalFrame {
 
 	/**
 	 * Returns a toggle button that shows or hides this frame when the user clicks it, depending on its selected state. This is an icon-only
-	 * button by default, but its properties can be set as desired. This button can be added, for instance, to a toolbar to let the user show
-	 * or hide this frame.
+	 * button by default, but its properties can be set as desired. This button can be added, for instance, to a toolbar to let the user
+	 * show or hide this frame.
 	 * 
 	 * @return a toggle button that shows or hides this frame when the user clicks it, depending on its selected state.
 	 */
@@ -248,8 +247,8 @@ public class BasicInternalFrame extends JInternalFrame {
 	}
 
 	/**
-	 * Returns a toggle button used to restore and select the frame when the user clicks it. This button is added to desktop's button panel if
-	 * the corresponding flag is set. This button is configured to display frame's icon and title.
+	 * Returns a toggle button used to restore and select the frame when the user clicks it. This button is added to desktop's button panel
+	 * if the corresponding flag is set. This button is configured to display frame's icon and title.
 	 * 
 	 * @return a toggle button used to show and select the frame when the user clicks it.
 	 */
@@ -326,9 +325,9 @@ public class BasicInternalFrame extends JInternalFrame {
 	}
 
 	/**
-	 * Returns the action bound to components associated to this frame (button, toggle button, menu item and checkbox menu item). This action
-	 * shows or hides the frame depending on the component triggering it (a button always shows the frame, a toggle button may show or hide
-	 * the frame depending on its selected state). This action can be bound to other components.
+	 * Returns the action bound to components associated to this frame (button, toggle button, menu item and checkbox menu item). This
+	 * action shows or hides the frame depending on the component triggering it (a button always shows the frame, a toggle button may show
+	 * or hide the frame depending on its selected state). This action can be bound to other components.
 	 * 
 	 * @return the action bound to components associated to this frame.
 	 */
@@ -356,7 +355,7 @@ public class BasicInternalFrame extends JInternalFrame {
 	 * <code>BasicDesktopListener</code> when the frame is shown or hidden.
 	 * 
 	 * @param select
-	 *          <code>true</code> if the components have to be selected, <code>false</code> otherwise.
+	 *            <code>true</code> if the components have to be selected, <code>false</code> otherwise.
 	 */
 	protected void selectAssociatedItems(boolean select) {
 		if (getToggleButton() != null) {
@@ -419,7 +418,7 @@ public class BasicInternalFrame extends JInternalFrame {
 	 * Restores internal frame settings based on the information contained on the specified preferences object.
 	 * 
 	 * @param prefs
-	 *          the preferences object from which to load internal frame settings.
+	 *            the preferences object from which to load internal frame settings.
 	 */
 	public void setFramePreferences(BasicFramePreferences prefs) {
 		if (prefs != null) {
@@ -467,11 +466,11 @@ public class BasicInternalFrame extends JInternalFrame {
 	 * Returns a scaled version of an icon.
 	 * 
 	 * @param icon
-	 *          the icon.
+	 *            the icon.
 	 * @param w
-	 *          the new width.
+	 *            the new width.
 	 * @param h
-	 *          the new height.
+	 *            the new height.
 	 * @return a scaled version of the specified icon.
 	 */
 	private static Icon getScaledIcon(Icon icon, int w, int h) {

@@ -10,11 +10,9 @@ import javax.swing.Icon;
 
 import org.andresoviedo.util.swing.SwingUtils;
 
-
 /**
  * An icon that draws a single character on top of another icon. The letter is always painted using white color.
  * 
-
  */
 public class CharIcon implements Icon {
 
@@ -42,9 +40,9 @@ public class CharIcon implements Icon {
 	 * Creates a new char icon. The default foreground is white.
 	 * 
 	 * @param baseIcon
-	 *          the base icon.
+	 *            the base icon.
 	 * @param character
-	 *          the character to draw.
+	 *            the character to draw.
 	 */
 	public CharIcon(Icon baseIcon, char character) {
 		this(baseIcon, character, Color.white);
@@ -54,11 +52,11 @@ public class CharIcon implements Icon {
 	 * Creates a new char icon.
 	 * 
 	 * @param baseIcon
-	 *          the base icon.
+	 *            the base icon.
 	 * @param character
-	 *          the character to draw.
+	 *            the character to draw.
 	 * @param foreground
-	 *          the color used to draw the character.
+	 *            the color used to draw the character.
 	 */
 	public CharIcon(Icon baseIcon, char character, Color foreground) {
 		this(baseIcon, character, foreground, null);
@@ -68,13 +66,13 @@ public class CharIcon implements Icon {
 	 * Creates a new char icon.
 	 * 
 	 * @param baseIcon
-	 *          the base icon.
+	 *            the base icon.
 	 * @param character
-	 *          the character to draw.
+	 *            the character to draw.
 	 * @param foreground
-	 *          the color used to draw the character.
+	 *            the color used to draw the character.
 	 * @param font
-	 *          the font used to draw the character.
+	 *            the font used to draw the character.
 	 */
 	public CharIcon(Icon baseIcon, char character, Color foreground, Font font) {
 		this.baseIcon = baseIcon;
@@ -96,7 +94,7 @@ public class CharIcon implements Icon {
 	 * Sets the base icon.
 	 * 
 	 * @param baseIcon
-	 *          the base icon.
+	 *            the base icon.
 	 */
 	public void setBaseIcon(Icon baseIcon) {
 		this.baseIcon = baseIcon;
@@ -115,7 +113,7 @@ public class CharIcon implements Icon {
 	 * Sets the character that will be drawn on top of the base icon.
 	 * 
 	 * @param character
-	 *          the new character.
+	 *            the new character.
 	 */
 	public void setCharacter(char character) {
 		this.character = character;
@@ -134,7 +132,7 @@ public class CharIcon implements Icon {
 	 * Sets the font used to draw the character (<code>null</code> permitted).
 	 * 
 	 * @param font
-	 *          a font object.
+	 *            a font object.
 	 */
 	public void setFont(Font font) {
 		this.font = font;
@@ -153,7 +151,7 @@ public class CharIcon implements Icon {
 	 * Sets the color used to draw the character.
 	 * 
 	 * @param foreground
-	 *          an arbitrary color.
+	 *            an arbitrary color.
 	 */
 	public void setForeground(Color foreground) {
 		this.foreground = foreground;

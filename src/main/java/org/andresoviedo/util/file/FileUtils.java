@@ -9,7 +9,6 @@ import java.nio.channels.FileChannel;
 /**
  * A set of utility methods related to files.
  * 
-
  */
 public class FileUtils {
 
@@ -17,7 +16,7 @@ public class FileUtils {
 	 * Gets the extension of a file, in lowercase. For instance, if file's name is 'test.TXT', the result is 'txt'.
 	 * 
 	 * @param file
-	 *          the file which extension has to be retrieved.
+	 *            the file which extension has to be retrieved.
 	 * @return the extension of a file, in lowercase.
 	 */
 	public static String getExtension(File file) {
@@ -34,11 +33,11 @@ public class FileUtils {
 	 * the destination, the source file will be cleared.
 	 * 
 	 * @param sourceFile
-	 *          the source file.
+	 *            the source file.
 	 * @param destinationFile
-	 *          the destination file.
+	 *            the destination file.
 	 * @throws IOException
-	 *           if an I/O exception occurs.
+	 *             if an I/O exception occurs.
 	 */
 	public static void copyFile(File sourceFile, File destinationFile) throws IOException {
 		FileChannel source = null;

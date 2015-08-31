@@ -58,12 +58,12 @@ public class DateUtils {
 	 * Parses a date using the specified date pattern.
 	 * 
 	 * @param date
-	 *          the date to parse.
+	 *            the date to parse.
 	 * @param pattern
-	 *          the date pattern to use.
+	 *            the date pattern to use.
 	 * @return the date object.
 	 * @throws ParseException
-	 *           if an exception occurs while parsing the date.
+	 *             if an exception occurs while parsing the date.
 	 */
 	public static Date parseDate(String date, String pattern) throws ParseException {
 		DateFormat df = getDateFormat(pattern);
@@ -76,10 +76,10 @@ public class DateUtils {
 	 * Parses a date using the default date/time format.
 	 * 
 	 * @param date
-	 *          the date to parse.
+	 *            the date to parse.
 	 * @return the date object.
 	 * @throws ParseException
-	 *           if an exception occurs while parsing the date.
+	 *             if an exception occurs while parsing the date.
 	 */
 	public static Date parseDateTime(String date) throws ParseException {
 		synchronized (DEFAULT_DATE_TIME_FORMAT) {
@@ -91,9 +91,9 @@ public class DateUtils {
 	 * Formats a date using the specified pattern.
 	 * 
 	 * @param date
-	 *          the date to format.
+	 *            the date to format.
 	 * @param pattern
-	 *          the pattern to use.
+	 *            the pattern to use.
 	 * @return the formatted date.
 	 */
 	public static String formatDate(Date date, String pattern) {
@@ -107,7 +107,7 @@ public class DateUtils {
 	 * Formats a date using the default date format.
 	 * 
 	 * @param date
-	 *          the date to format.
+	 *            the date to format.
 	 * @return the formatted date.
 	 */
 	public static String formatDate(Date date) {
@@ -120,7 +120,7 @@ public class DateUtils {
 	 * Formats a date using the default date/time format.
 	 * 
 	 * @param date
-	 *          the date to format.
+	 *            the date to format.
 	 * @return the formatted date.
 	 */
 	public static String formatDateTime(Date date) {
@@ -133,7 +133,7 @@ public class DateUtils {
 	 * Formats a date using the default time format.
 	 * 
 	 * @param date
-	 *          the date to format.
+	 *            the date to format.
 	 * @return the formatted date.
 	 */
 	public static String formatTime(Date date) {
@@ -146,7 +146,7 @@ public class DateUtils {
 	 * Returns the duration represented by the time part of the specified date, in milliseconds.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @return the duration represented by the time part of the specified date, in milliseconds.
 	 */
 	public static long getDuration(Date date) {
@@ -160,9 +160,9 @@ public class DateUtils {
 	 * Constructs a new date with the date part of a date and the time part of another.
 	 * 
 	 * @param d1
-	 *          the date which date part has to be used.
+	 *            the date which date part has to be used.
 	 * @param d2
-	 *          the date which time part has to be used.
+	 *            the date which time part has to be used.
 	 * 
 	 * @return a new date with the date part of a date and the time part of another.
 	 */
@@ -184,7 +184,7 @@ public class DateUtils {
 	 * Resets the time part of a date.
 	 * 
 	 * @param date
-	 *          the date which part has to be reset.
+	 *            the date which part has to be reset.
 	 * @return the date with its time portion reset.
 	 */
 	public static Date resetTimeFields(Date date) {
@@ -204,7 +204,7 @@ public class DateUtils {
 	 * Returns the specified date with time fields reset. This method is equivalent to <code>resetTimeFields(Date)</code>.
 	 * 
 	 * @param date
-	 *          the date.
+	 *            the date.
 	 * @return the same date with time fields reset.
 	 */
 	public static Date firstSecondOfDay(Date date) {
@@ -215,7 +215,7 @@ public class DateUtils {
 	 * Returns a date representing the first day of the month based on an arbitrary date.
 	 * 
 	 * @param date
-	 *          the date.
+	 *            the date.
 	 * @return a date representing the first day of the month based on an arbitrary date.
 	 */
 	public static Date firstDayOfMonth(Date date) {
@@ -230,7 +230,7 @@ public class DateUtils {
 	 * Returns the specified date with time fields set to their maximum (except <code>Calendar.MILLSECOND</code>, which is set to 0).
 	 * 
 	 * @param date
-	 *          the date.
+	 *            the date.
 	 * @return the specified date with time fields set to their maximum.
 	 */
 	public static Date lastSecondOfDay(Date date) {
@@ -250,7 +250,7 @@ public class DateUtils {
 	 * Returns a date representing the last day of the month based on an arbitrary date.
 	 * 
 	 * @param date
-	 *          the date.
+	 *            the date.
 	 * @return a date representing the last day of the month based on an arbitrary date.
 	 */
 	public static Date lastDayOfMonth(Date date) {
@@ -265,9 +265,9 @@ public class DateUtils {
 	 * Returns the days elapsed between two dates.
 	 * 
 	 * @param d1
-	 *          the first date.
+	 *            the first date.
 	 * @param d2
-	 *          the second date.
+	 *            the second date.
 	 * @return the days elapsed between two dates.
 	 */
 	public static int getElapsedDays(Date d1, Date d2) {
@@ -293,9 +293,9 @@ public class DateUtils {
 	 * Checks whether the date parts of two dates are equal or not.
 	 * 
 	 * @param d1
-	 *          the first date.
+	 *            the first date.
 	 * @param d2
-	 *          the second date.
+	 *            the second date.
 	 * @return <code>true</code> if both date parts are equal, <code>false</code> otherwise.
 	 */
 	public static boolean dateFieldsEqual(Date d1, Date d2) {
@@ -313,11 +313,11 @@ public class DateUtils {
 	 * Adds the specified (signed) amount of time to the given time field.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @param field
-	 *          the name of the field.
+	 *            the name of the field.
 	 * @param amount
-	 *          the amount of time to add.
+	 *            the amount of time to add.
 	 * @return a new date with the amount of time added.
 	 */
 	public static Date add(Date date, int field, int amount) {
@@ -332,7 +332,7 @@ public class DateUtils {
 	 * Returns the appropiate date format for the specified date pattern.
 	 * 
 	 * @param pattern
-	 *          the date pattern.
+	 *            the date pattern.
 	 * @return the appropiate date format for the specified pattern.
 	 */
 	private static DateFormat getDateFormat(String pattern) {

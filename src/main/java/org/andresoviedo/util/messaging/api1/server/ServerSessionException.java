@@ -3,7 +3,7 @@ package org.andresoviedo.util.messaging.api1.server;
 /**
  * The exception used by server session.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class ServerSessionException extends Exception {
 

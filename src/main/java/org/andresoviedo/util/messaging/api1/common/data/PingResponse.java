@@ -3,7 +3,7 @@ package org.andresoviedo.util.messaging.api1.common.data;
 /**
  * The response to a ping request command.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class PingResponse extends SignalingCommand {
 
@@ -13,7 +13,7 @@ public class PingResponse extends SignalingCommand {
 	 * Creates a new ping response.
 	 * 
 	 * @param clientId
-	 *          the client id.
+	 *            the client id.
 	 */
 	public PingResponse(String clientId) {
 		super(clientId);

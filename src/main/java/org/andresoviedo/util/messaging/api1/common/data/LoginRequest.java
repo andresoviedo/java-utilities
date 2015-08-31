@@ -3,7 +3,7 @@ package org.andresoviedo.util.messaging.api1.common.data;
 /**
  * A login request command.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class LoginRequest extends SignalingCommand {
 
@@ -13,7 +13,7 @@ public class LoginRequest extends SignalingCommand {
 	 * Creates a new login request command.
 	 * 
 	 * @param clientId
-	 *          the client id.
+	 *            the client id.
 	 */
 	public LoginRequest(String clientId) {
 		super(clientId);

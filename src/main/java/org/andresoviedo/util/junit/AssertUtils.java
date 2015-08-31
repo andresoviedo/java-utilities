@@ -152,8 +152,7 @@ public final class AssertUtils {
 
 	static class LogUtils {
 
-		public static void assertLogsRegExp(Appender mockAppender, String message, boolean exists,
-				String... expectedMessagesRegExp) {
+		public static void assertLogsRegExp(Appender mockAppender, String message, boolean exists, String... expectedMessagesRegExp) {
 			// TODO: Implementar la activación dinámica de logs (consola y
 			// memoria)
 			// if (!this.enabledLogs) {
@@ -193,8 +192,7 @@ public final class AssertUtils {
 			if (exists == true) {
 				for (int i = 0; i < messagesExist.length; i++) {
 					if (!messagesExist[i]) {
-						fail("No se ha podido encontrar el log con la regular expressión '" + expectedMessagesRegExp[i]
-								+ "'");
+						fail("No se ha podido encontrar el log con la regular expressión '" + expectedMessagesRegExp[i] + "'");
 					}
 				}
 			} else {
@@ -243,8 +241,9 @@ public final class AssertUtils {
 					sb.append(" '").append(expectedMessages[i]).append("'");
 				}
 			}
-			assertTrue((message != null ? message : "") + (exists ? "No se" : "Se")
-					+ " han encontrado los siguientes logs:" + sb.toString(), sb.length() == 0);
+			assertTrue(
+					(message != null ? message : "") + (exists ? "No se" : "Se") + " han encontrado los siguientes logs:" + sb.toString(),
+					sb.length() == 0);
 
 		}
 

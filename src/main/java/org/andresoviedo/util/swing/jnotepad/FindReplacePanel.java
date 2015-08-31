@@ -32,11 +32,9 @@ import javax.swing.text.JTextComponent;
 import org.andresoviedo.util.swing.SwingUtils;
 import org.andresoviedo.util.swing.jnotepad.resources.Resources;
 
-
 /**
  * Find/Replace panel.
  * 
-
  */
 public class FindReplacePanel extends JPanel implements FindReplaceOptions, ActionListener, ItemListener, DocumentListener {
 
@@ -173,7 +171,7 @@ public class FindReplacePanel extends JPanel implements FindReplaceOptions, Acti
 
 		p.add(cboText, gbc);
 
-		// 
+		//
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.insets = new Insets(0, 0, 0, 0);

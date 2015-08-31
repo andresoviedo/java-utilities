@@ -14,18 +14,16 @@ import org.andresoviedo.util.messaging.api1.common.net.SocketSession;
 import org.andresoviedo.util.messaging.api1.common.net.SocketSessionException;
 
 /**
- * The client messenger connects to a remote server and starts receiving and
- * sending messages.
+ * The client messenger connects to a remote server and starts receiving and sending messages.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class ClientMessenger extends Messenger {
 
 	/**
 	 * A static reference to the logger object.
 	 */
-	private static Logger logger = Logger
-			.getLogger(MessengerProperties.LOGGER_NAME);
+	private static Logger logger = Logger.getLogger(MessengerProperties.LOGGER_NAME);
 
 	/**
 	 * The single instance of this class.
@@ -77,16 +75,12 @@ public class ClientMessenger extends Messenger {
 
 		super.setClientId(configuration.getClientId());
 		// Create the socket session.
-		this.session = new SocketSession(this.configuration.getClientId(),
-				this.configuration.getAddresses(), this);
-		logger.info("Server addresses: "
-				+ Arrays.toString(this.configuration.getAddresses()));
+		this.session = new SocketSession(this.configuration.getClientId(), this.configuration.getAddresses(), this);
+		logger.info("Server addresses: " + Arrays.toString(this.configuration.getAddresses()));
 
-		this.session.setReconnectionDelay(this.configuration
-				.getReconnectionDelay());
+		this.session.setReconnectionDelay(this.configuration.getReconnectionDelay());
 		// Create the persistence object.
-		this.persistence = new Persistence(
-				this.configuration.getPersistenceDirectory());
+		this.persistence = new Persistence(this.configuration.getPersistenceDirectory());
 	}
 
 	/*
@@ -94,8 +88,7 @@ public class ClientMessenger extends Messenger {
 	 */
 	public void start() {
 		super.start();
-		logger.info("Starting client messenger ["
-				+ this.configuration.getClientId() + "] ...");
+		logger.info("Starting client messenger [" + this.configuration.getClientId() + "] ...");
 		try {
 			session.open();
 		} catch (SocketSessionException e) {
@@ -116,18 +109,14 @@ public class ClientMessenger extends Messenger {
 	}
 
 	/*
-	 * @see
-	 * org.andresoviedo.util.messaging.api1.Messenger#sendImpl(org.andresoviedo
-	 * .util.messaging.api1.common .data.Message)
+	 * @see org.andresoviedo.util.messaging.api1.Messenger#sendImpl(org.andresoviedo .util.messaging.api1.common .data.Message)
 	 */
 	protected void sendImpl(Message message) throws MessengerException {
 		super.send(message, session);
 	}
 
 	/*
-	 * @see
-	 * org.andresoviedo.util.messaging.api1.Messenger#sessionOpened(org.andresoviedo
-	 * .util.messaging.api1.common .net.SocketSession)
+	 * @see org.andresoviedo.util.messaging.api1.Messenger#sessionOpened(org.andresoviedo .util.messaging.api1.common .net.SocketSession)
 	 */
 	public void sessionOpened(SocketSession session) {
 		super.sessionOpened(session);
@@ -141,21 +130,17 @@ public class ClientMessenger extends Messenger {
 	}
 
 	/*
-	 * @see
-	 * org.andresoviedo.util.messaging.api1.Messenger#sendAndReceiveImpl(org
-	 * .andresoviedo.util.messaging.api1 .common.data.Message, long)
+	 * @see org.andresoviedo.util.messaging.api1.Messenger#sendAndReceiveImpl(org .andresoviedo.util.messaging.api1 .common.data.Message,
+	 * long)
 	 */
-	protected Message sendAndReceiveImpl(Message message, long timeout)
-			throws MessengerException, InterruptedException {
+	protected Message sendAndReceiveImpl(Message message, long timeout) throws MessengerException, InterruptedException {
 		// The message is not persisted in case of an exception since the call
 		// is synchronous.
 		return super.sendAndReceive(message, session, timeout);
 	}
 
 	/*
-	 * @see
-	 * org.andresoviedo.util.messaging.api1.Messenger#getServicePersistenceDirectory
-	 * ()
+	 * @see org.andresoviedo.util.messaging.api1.Messenger#getServicePersistenceDirectory ()
 	 */
 	protected File getServicePersistenceDirectory() {
 		return this.configuration.getPersistenceDirectory();

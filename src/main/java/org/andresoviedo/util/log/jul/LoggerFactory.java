@@ -19,10 +19,8 @@ public class LoggerFactory {
 		return new ApplicationLogger(name).getLogger();
 	}
 
-	public static Logger getLogger(String name, String fileName, Level level,
-			int numFiles, int fileSize) {
-		return new ApplicationLogger(name, fileName, level, numFiles, fileSize)
-				.getLogger();
+	public static Logger getLogger(String name, String fileName, Level level, int numFiles, int fileSize) {
+		return new ApplicationLogger(name, fileName, level, numFiles, fileSize).getLogger();
 	}
 }
 
@@ -38,12 +36,10 @@ class ApplicationLogger {
 	private static Map<String, Logger> loggers = new Hashtable<String, Logger>();
 
 	ApplicationLogger(String name) {
-		this(name, ".\\logs\\" + name + "\\" + name + ".log", Level.INFO, 1,
-				1073741824);
+		this(name, ".\\logs\\" + name + "\\" + name + ".log", Level.INFO, 1, 1073741824);
 	}
 
-	ApplicationLogger(String name, String fileName, Level level, int numFiles,
-			int fileSize) {
+	ApplicationLogger(String name, String fileName, Level level, int numFiles, int fileSize) {
 		_name = name;
 		_fileName = fileName;
 		_level = level;
@@ -54,8 +50,7 @@ class ApplicationLogger {
 
 	private void init() {
 		try {
-			_logger.logp(Level.INFO, "AppLogger.class", "init",
-					"Looking for logger [" + _name + "]...");
+			_logger.logp(Level.INFO, "AppLogger.class", "init", "Looking for logger [" + _name + "]...");
 			// _logger = LogManager.getLogManager().getLogger(_name);
 			_logger = loggers.get(_name);
 			if (_logger == null) {
@@ -68,8 +63,7 @@ class ApplicationLogger {
 				}
 
 				// Prepare file handler
-				FileHandler fh = new FileHandler(temp.getAbsolutePath(),
-						_fileSize, _numFiles, true);
+				FileHandler fh = new FileHandler(temp.getAbsolutePath(), _fileSize, _numFiles, true);
 				fh.setEncoding("UTF-8");
 				MyFormatter mf = new MyFormatter();
 				fh.setFormatter(mf);
@@ -88,14 +82,10 @@ class ApplicationLogger {
 				// lm.addLogger(_logger);
 				loggers.put(_name, _logger);
 
-				_logger.logp(Level.INFO, "AppLogger", "initializeLogger",
-						"Logger initialized..." + " name[" + _name + "]"
-								+ " fileName[" + _fileName + "]" + " level["
-								+ _level + "]" + " numFiles[" + _numFiles + "]"
-								+ " fileSize[" + _fileSize + "]...");
+				_logger.logp(Level.INFO, "AppLogger", "initializeLogger", "Logger initialized..." + " name[" + _name + "]" + " fileName["
+						+ _fileName + "]" + " level[" + _level + "]" + " numFiles[" + _numFiles + "]" + " fileSize[" + _fileSize + "]...");
 			} else {
-				_logger.logp(Level.INFO, "AppLogger.class", "init",
-						"Looking for logger [" + _name + "]... Found");
+				_logger.logp(Level.INFO, "AppLogger.class", "init", "Looking for logger [" + _name + "]... Found");
 			}
 		} catch (Exception ex) {
 			_logger.throwing("AppLogger.class", "init", ex);
@@ -115,8 +105,7 @@ class ApplicationLogger {
 
 		// Line separator string. This is the value of the line.separator
 		// property at the moment that the SimpleFormatter was created.
-		private String lineSeparator = (String) System
-				.getProperty("line.separator");
+		private String lineSeparator = (String) System.getProperty("line.separator");
 
 		/**
 		 * Format the given LogRecord.
@@ -140,8 +129,7 @@ class ApplicationLogger {
 			sb.append("]");
 
 			// andres
-			sb.append(" [Thr-"
-					+ format(String.valueOf(record.getThreadID()), 4) + "]");
+			sb.append(" [Thr-" + format(String.valueOf(record.getThreadID()), 4) + "]");
 			// andres
 
 			sb.append(" [");
@@ -158,8 +146,7 @@ class ApplicationLogger {
 			}
 
 			String message = formatMessage(record);
-			sb.append(" [" + format(record.getLevel().getLocalizedName(), 7)
-					+ "]");
+			sb.append(" [" + format(record.getLevel().getLocalizedName(), 7) + "]");
 			sb.append(" " + message);
 			if (record.getThrown() != null) {
 				try {
@@ -202,9 +189,8 @@ class ApplicationLogger {
 				String sourceClassName = record.getSourceClassName();
 				String methodName = record.getSourceMethodName();
 				String message = record.getMessage();
-				System.err.println(sourceClassName != null ? sourceClassName
-						: "" + methodName != null ? methodName
-								: "" + message != null ? message : "");
+				System.err.println(sourceClassName != null ? sourceClassName : "" + methodName != null ? methodName
+						: "" + message != null ? message : "");
 				Throwable thrown = record.getThrown();
 				if (thrown != null) {
 					thrown.printStackTrace();

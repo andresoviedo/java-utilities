@@ -34,7 +34,7 @@ public interface XMLSerializable<T extends XMLSerializable<?>> {
 	 * This method is called when an XML subordinated (or child) element is found for this XMLSerializable element.
 	 * 
 	 * @param the
-	 *          subordinate element.
+	 *            subordinate element.
 	 */
 	public void addChildNode(T child);
 
@@ -47,7 +47,7 @@ public interface XMLSerializable<T extends XMLSerializable<?>> {
 	 * Let the XMLElement know wich is it's XML parent element.
 	 * 
 	 * @param parent
-	 *          XMLSerializable
+	 *            XMLSerializable
 	 */
 	public void setParentNode(XMLSerializable<?> parent);
 

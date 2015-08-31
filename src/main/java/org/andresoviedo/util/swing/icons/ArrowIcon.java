@@ -10,7 +10,6 @@ import javax.swing.SwingConstants;
 /**
  * An arrow icon. The arrow's color, size and direction can be specified.
  * 
-
  */
 public class ArrowIcon implements Icon, SwingConstants {
 
@@ -33,9 +32,9 @@ public class ArrowIcon implements Icon, SwingConstants {
 	 * Creates a new arrow icon, with the specified size. The default direction is <code>NORTH</code>.
 	 * 
 	 * @param size
-	 *          the icon size, in pixels.
+	 *            the icon size, in pixels.
 	 * @throws IllegalArgumentException
-	 *           if <code>size</code> is less than zero.
+	 *             if <code>size</code> is less than zero.
 	 */
 	public ArrowIcon(int size) {
 		this(size, NORTH);
@@ -45,11 +44,11 @@ public class ArrowIcon implements Icon, SwingConstants {
 	 * Creates a new arrow icon, with the specified direction and size.
 	 * 
 	 * @param size
-	 *          the icon size, in pixels.
+	 *            the icon size, in pixels.
 	 * @param direction
-	 *          the arrow's direction (should be one of <code>NORTH</code>, <code>SOUTH</code>, <code>EAST</code>, <code>WEST</code>).
+	 *            the arrow's direction (should be one of <code>NORTH</code>, <code>SOUTH</code>, <code>EAST</code>, <code>WEST</code>).
 	 * @throws IllegalArgumentException
-	 *           if <code>size</code> is less than zero.
+	 *             if <code>size</code> is less than zero.
 	 */
 	public ArrowIcon(int size, int direction) {
 		this(size, direction, Color.black);
@@ -59,13 +58,13 @@ public class ArrowIcon implements Icon, SwingConstants {
 	 * Creates a new arrow icon, with the specified direction and size.
 	 * 
 	 * @param size
-	 *          the icon size, in pixels.
+	 *            the icon size, in pixels.
 	 * @param direction
-	 *          the arrow's direction (one of <code>NORTH</code>, <code>SOUTH</code>, <code>EAST</code>, <code>WEST</code>).
+	 *            the arrow's direction (one of <code>NORTH</code>, <code>SOUTH</code>, <code>EAST</code>, <code>WEST</code>).
 	 * @param background
-	 *          the color used to draw the arrow.
+	 *            the color used to draw the arrow.
 	 * @throws IllegalArgumentException
-	 *           if <code>size</code> is less than zero.
+	 *             if <code>size</code> is less than zero.
 	 */
 	public ArrowIcon(int size, int direction, Color background) {
 		if (size < 0) {
@@ -89,7 +88,7 @@ public class ArrowIcon implements Icon, SwingConstants {
 	 * Sets the color used to draw the arrow.
 	 * 
 	 * @param background
-	 *          the color used to draw the arrow.
+	 *            the color used to draw the arrow.
 	 */
 	public void setBackground(Color background) {
 		this.background = background;
@@ -108,7 +107,7 @@ public class ArrowIcon implements Icon, SwingConstants {
 	 * Sets the direction (should be one of <code>NORTH</code>, <code>SOUTH</code>, <code>EAST</code>, <code>WEST</code>).
 	 * 
 	 * @param direction
-	 *          the direction.
+	 *            the direction.
 	 */
 	public void setDirection(int direction) {
 		this.direction = direction;
@@ -127,9 +126,9 @@ public class ArrowIcon implements Icon, SwingConstants {
 	 * Sets the arrow's size.
 	 * 
 	 * @param size
-	 *          the new size.
+	 *            the new size.
 	 * @throws IllegalArgumentException
-	 *           if <code>size</code> is less than zero.
+	 *             if <code>size</code> is less than zero.
 	 */
 	public void setSize(int size) {
 		if (size < 0) {

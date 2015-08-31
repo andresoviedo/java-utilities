@@ -8,7 +8,6 @@ import org.andresoviedo.util.date.DateUtils;
 /**
  * A date range.
  * 
-
  */
 public class DateRangeBean {
 
@@ -26,11 +25,11 @@ public class DateRangeBean {
 	 * Constructs a new date range.
 	 * 
 	 * @param start
-	 *          the start date.
+	 *            the start date.
 	 * @param end
-	 *          the end date.
+	 *            the end date.
 	 * @throws IllegalArgumentException
-	 *           if either the start date or the end date are <code>null</code>, or if the start date is after the end date.
+	 *             if either the start date or the end date are <code>null</code>, or if the start date is after the end date.
 	 */
 	public DateRangeBean(Date start, Date end) {
 		if (start == null) {
@@ -95,10 +94,10 @@ public class DateRangeBean {
 	 * Returns whether the specified date is included in this date range. Lower and upper bounds are included.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @return <code>true</code> if the date is included, <code>false</code> otherwise.
 	 * @throws IllegalArgumentException
-	 *           if <code>date</code> is <code>null</code>.
+	 *             if <code>date</code> is <code>null</code>.
 	 */
 	public boolean includes(Date date) {
 		return includes(date, false, false);
@@ -108,7 +107,7 @@ public class DateRangeBean {
 	 * Returns whether the specified date is included in this date range. Lower and upper bounds are included.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @return <code>true</code> if the date is included, <code>false</code> otherwise.
 	 */
 	public boolean includes(long date) {
@@ -119,16 +118,16 @@ public class DateRangeBean {
 	 * Returns whether the specified date is included in this date range.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @param excludeLowerBound
-	 *          indicates whether to include or exclude the lower bound. Excluding the lower bound means that if the supplied date is equal to
-	 *          the lower bound, it won't be considered to be included in the date range.
+	 *            indicates whether to include or exclude the lower bound. Excluding the lower bound means that if the supplied date is
+	 *            equal to the lower bound, it won't be considered to be included in the date range.
 	 * @param excludeUpperBound
-	 *          indicates whether to include or exclude the upper bound. Excluding the upper bound means that if the supplied date is equal to
-	 *          the upper bound, it won't be considered to be included in the date range.
+	 *            indicates whether to include or exclude the upper bound. Excluding the upper bound means that if the supplied date is
+	 *            equal to the upper bound, it won't be considered to be included in the date range.
 	 * @return <code>true</code> if the date is included, <code>false</code> otherwise.
 	 * @throws IllegalArgumentException
-	 *           if <code>date</code> is <code>null</code>.
+	 *             if <code>date</code> is <code>null</code>.
 	 */
 	public boolean includes(Date date, boolean excludeLowerBound, boolean excludeUpperBound) {
 		if (date == null) {
@@ -141,13 +140,13 @@ public class DateRangeBean {
 	 * Returns whether the specified date is included in this date range.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @param excludeLowerBound
-	 *          indicates whether to include or exclude the lower bound. Excluding the lower bound means that if the supplied date is equal to
-	 *          the lower bound, it won't be considered to be included in the date range.
+	 *            indicates whether to include or exclude the lower bound. Excluding the lower bound means that if the supplied date is
+	 *            equal to the lower bound, it won't be considered to be included in the date range.
 	 * @param excludeUpperBound
-	 *          indicates whether to include or exclude the upper bound. Excluding the upper bound means that if the supplied date is equal to
-	 *          the upper bound, it won't be considered to be included in the date range.
+	 *            indicates whether to include or exclude the upper bound. Excluding the upper bound means that if the supplied date is
+	 *            equal to the upper bound, it won't be considered to be included in the date range.
 	 * @return <code>true</code> if the date is included, <code>false</code> otherwise.
 	 */
 	public boolean includes(long date, boolean excludeLowerBound, boolean excludeUpperBound) {
@@ -161,7 +160,7 @@ public class DateRangeBean {
 	 * upper bounds are included.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @return <code>true</code> if the time part of the date is included, <code>false</code> otherwise.
 	 */
 	public boolean includesTimePart(long date) {
@@ -173,10 +172,10 @@ public class DateRangeBean {
 	 * upper bounds are included.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @return <code>true</code> if the time part of the date is included, <code>false</code> otherwise.
 	 * @throws IllegalArgumentException
-	 *           if <code>date</code> is <code>null</code>.
+	 *             if <code>date</code> is <code>null</code>.
 	 */
 	public boolean includesTimePart(Date date) {
 		return includesTimePart(date, false, false);
@@ -186,13 +185,13 @@ public class DateRangeBean {
 	 * Returns whether the time part of the specified date is included in this date range (which can also be seen as a time range).
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @param excludeLowerBound
-	 *          indicates whether to include or exclude the lower bound. Excluding the lower bound means that if the supplied date is equal to
-	 *          the lower bound, it won't be considered to be included in the date range.
+	 *            indicates whether to include or exclude the lower bound. Excluding the lower bound means that if the supplied date is
+	 *            equal to the lower bound, it won't be considered to be included in the date range.
 	 * @param excludeUpperBound
-	 *          indicates whether to include or exclude the upper bound. Excluding the upper bound means that if the supplied date is equal to
-	 *          the upper bound, it won't be considered to be included in the date range.
+	 *            indicates whether to include or exclude the upper bound. Excluding the upper bound means that if the supplied date is
+	 *            equal to the upper bound, it won't be considered to be included in the date range.
 	 * @return <code>true</code> if the time part of the date is included, <code>false</code> otherwise.
 	 */
 	public boolean includesTimePart(long date, boolean excludeLowerBound, boolean excludeUpperBound) {
@@ -203,16 +202,16 @@ public class DateRangeBean {
 	 * Returns whether the time part of the specified date is included in this date range (which can also be seen as a time range).
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @param excludeLowerBound
-	 *          indicates whether to include or exclude the lower bound. Excluding the lower bound means that if the supplied date is equal to
-	 *          the lower bound, it won't be considered to be included in the date range.
+	 *            indicates whether to include or exclude the lower bound. Excluding the lower bound means that if the supplied date is
+	 *            equal to the lower bound, it won't be considered to be included in the date range.
 	 * @param excludeUpperBound
-	 *          indicates whether to include or exclude the upper bound. Excluding the upper bound means that if the supplied date is equal to
-	 *          the upper bound, it won't be considered to be included in the date range.
+	 *            indicates whether to include or exclude the upper bound. Excluding the upper bound means that if the supplied date is
+	 *            equal to the upper bound, it won't be considered to be included in the date range.
 	 * @return <code>true</code> if the time part of the date is included, <code>false</code> otherwise.
 	 * @throws IllegalArgumentException
-	 *           if <code>date</code> is <code>null</code>.
+	 *             if <code>date</code> is <code>null</code>.
 	 */
 	public boolean includesTimePart(Date date, boolean excludeLowerBound, boolean excludeUpperBound) {
 		if (date == null) {

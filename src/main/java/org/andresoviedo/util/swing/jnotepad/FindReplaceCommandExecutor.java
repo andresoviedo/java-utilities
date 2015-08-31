@@ -3,7 +3,6 @@ package org.andresoviedo.util.swing.jnotepad;
 /**
  * The interface an object able to find and replace text has to implement.
  * 
-
  */
 interface FindReplaceCommandExecutor {
 

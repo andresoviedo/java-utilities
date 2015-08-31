@@ -5,7 +5,6 @@ import javax.swing.ListModel;
 /**
  * A custom model for <code>JChecklist</code>.
  * 
-
  */
 public interface CheckListModel extends ListModel {
 
@@ -36,7 +35,7 @@ public interface CheckListModel extends ListModel {
 	 * Returns the state of the checkbox for the specified index.
 	 * 
 	 * @param index
-	 *          the requested index.
+	 *            the requested index.
 	 */
 	public boolean isChecked(int index);
 
@@ -44,9 +43,9 @@ public interface CheckListModel extends ListModel {
 	 * Changes the state of the checkbox for the specified index.
 	 * 
 	 * @param index
-	 *          index of an item.
+	 *            index of an item.
 	 * @param checked
-	 *          new state.
+	 *            new state.
 	 */
 	public void setChecked(int index, boolean checked);
 
@@ -54,11 +53,11 @@ public interface CheckListModel extends ListModel {
 	 * Checks or unchecks the specified interval of items.
 	 * 
 	 * @param fromIndex
-	 *          the index of the first item (inclusive).
+	 *            the index of the first item (inclusive).
 	 * @param toIndex
-	 *          the index of the last item (inclusive).
+	 *            the index of the last item (inclusive).
 	 * @param checked
-	 *          <code>true</code> checks the items, <code>false</code> unchecks them.
+	 *            <code>true</code> checks the items, <code>false</code> unchecks them.
 	 */
 	public void setChecked(int fromIndex, int toIndex, boolean checked);
 

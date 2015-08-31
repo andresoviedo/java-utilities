@@ -43,7 +43,6 @@ import javax.swing.tree.TreePath;
 import org.andresoviedo.util.swing.SwingUtils;
 import org.andresoviedo.util.swing.jtreetable.resources.Resources;
 
-
 /**
  * This example shows how to create a simple JTreeTable component, by using a JTree as a renderer (and editor) for the cells in a particular
  * column in the JTable.
@@ -148,7 +147,7 @@ public class JTreeTable extends JTable {
 	 * Returns the node in the specified row.
 	 * 
 	 * @param row
-	 *          the row.
+	 *            the row.
 	 * @return the node in the specified row.
 	 */
 	public Object getNodeForRow(int row) {
@@ -237,11 +236,11 @@ public class JTreeTable extends JTable {
 		 * Overridden to return false, and if the event is a mouse event it is forwarded to the tree.
 		 * <p>
 		 * The behavior for this is debatable, and should really be offered as a property. By returning false, all keyboard actions are
-		 * implemented in terms of the table. By returning true, the tree would get a chance to do something with the keyboard events. For the
-		 * most part this is ok. But for certain keys, such as left/right, the tree will expand/collapse where as the table focus should really
-		 * move to a different column. Page up/down should also be implemented in terms of the table. By returning false this also has the added
-		 * benefit that clicking outside of the bounds of the tree node, but still in the tree column will select the row, whereas if this
-		 * returned true that wouldn't be the case.
+		 * implemented in terms of the table. By returning true, the tree would get a chance to do something with the keyboard events. For
+		 * the most part this is ok. But for certain keys, such as left/right, the tree will expand/collapse where as the table focus should
+		 * really move to a different column. Page up/down should also be implemented in terms of the table. By returning false this also
+		 * has the added benefit that clicking outside of the bounds of the tree node, but still in the tree column will select the row,
+		 * whereas if this returned true that wouldn't be the case.
 		 * <p>
 		 * By returning false we are also enforcing the policy that the tree will never be editable (at least by a key sequence).
 		 */
@@ -266,8 +265,8 @@ public class JTreeTable extends JTable {
 	}
 
 	/**
-	 * ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel to listen for changes in the ListSelectionModel it maintains. Once a
-	 * change in the ListSelectionModel happens, the paths are updated in the DefaultTreeSelectionModel.
+	 * ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel to listen for changes in the ListSelectionModel it maintains. Once
+	 * a change in the ListSelectionModel happens, the paths are updated in the DefaultTreeSelectionModel.
 	 */
 	class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 		/** Set to true when we are updating the ListSelectionModel. */
@@ -279,16 +278,16 @@ public class JTreeTable extends JTable {
 		}
 
 		/**
-		 * Returns the list selection model. ListToTreeSelectionModelWrapper listens for changes to this model and updates the selected paths
-		 * accordingly.
+		 * Returns the list selection model. ListToTreeSelectionModelWrapper listens for changes to this model and updates the selected
+		 * paths accordingly.
 		 */
 		ListSelectionModel getListSelectionModel() {
 			return listSelectionModel;
 		}
 
 		/**
-		 * This is overridden to set <code>updatingListSelectionModel</code> and message super. This is the only place DefaultTreeSelectionModel
-		 * alters the ListSelectionModel.
+		 * This is overridden to set <code>updatingListSelectionModel</code> and message super. This is the only place
+		 * DefaultTreeSelectionModel alters the ListSelectionModel.
 		 */
 		public void resetRowSelection() {
 			if (!updatingListSelectionModel) {
@@ -314,8 +313,8 @@ public class JTreeTable extends JTable {
 		}
 
 		/**
-		 * If <code>updatingListSelectionModel</code> is false, this will reset the selected paths from the selected rows in the list selection
-		 * model.
+		 * If <code>updatingListSelectionModel</code> is false, this will reset the selected paths from the selected rows in the list
+		 * selection model.
 		 */
 		protected void updateSelectedPathsFromSelectedRows() {
 			if (!updatingListSelectionModel) {
@@ -357,7 +356,6 @@ public class JTreeTable extends JTable {
 	/**
 	 * An action to bind to a <code>JTreeTable</code> to expand all nodes.
 	 * 
-	
 	 */
 	public static class ExpandAllAction extends AbstractAction {
 

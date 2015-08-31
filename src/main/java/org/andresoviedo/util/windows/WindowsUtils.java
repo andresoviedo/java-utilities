@@ -18,14 +18,11 @@ public class WindowsUtils {
 	public static final String SOURCE_CREATE_START_MENU_FUNCTION = "/org/andresoviedo/util/windows/createStartMenuItem.vbs";
 	public static final String SOURCE_REMOVE_START_MENU_FUNCTION = "/org/andresoviedo/util/windows/removeStartMenuItem.vbs";
 
-	public static void uninstallStartMenuItem(String specialFolder,
-			String startMenuItem) throws Exception {
+	public static void uninstallStartMenuItem(String specialFolder, String startMenuItem) throws Exception {
 		logger.info("Uninstalling StartMenu item '" + startMenuItem + "'...");
-		File tempFile = IOHelper
-				.copyResourceToTempFile(SOURCE_REMOVE_START_MENU_FUNCTION);
+		File tempFile = IOHelper.copyResourceToTempFile(SOURCE_REMOVE_START_MENU_FUNCTION);
 		try {
-			if (RunHelper.exec("cscript.exe", null, tempFile.getAbsolutePath(),
-					startMenuItem, specialFolder) != 0) {
+			if (RunHelper.exec("cscript.exe", null, tempFile.getAbsolutePath(), startMenuItem, specialFolder) != 0) {
 				throw new RuntimeException("error");
 			}
 
@@ -35,15 +32,12 @@ public class WindowsUtils {
 		}
 	}
 
-	public static void installStartMenuItem(String specialFolder,
-			String startMenuItem, String command, String args,
-			String description) throws Exception {
+	public static void installStartMenuItem(String specialFolder, String startMenuItem, String command, String args, String description)
+			throws Exception {
 		logger.info("Installing StartMenu item '" + description + "'...");
-		File tempFile = IOHelper
-				.copyResourceToTempFile(SOURCE_CREATE_START_MENU_FUNCTION);
+		File tempFile = IOHelper.copyResourceToTempFile(SOURCE_CREATE_START_MENU_FUNCTION);
 		try {
-			if (RunHelper.exec("cscript.exe", null, tempFile.getAbsolutePath(),
-					startMenuItem, command, args, description, specialFolder) != 0) {
+			if (RunHelper.exec("cscript.exe", null, tempFile.getAbsolutePath(), startMenuItem, command, args, description, specialFolder) != 0) {
 				throw new RuntimeException("error");
 			}
 

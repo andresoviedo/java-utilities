@@ -25,11 +25,9 @@ import javax.swing.event.ChangeListener;
 
 import org.andresoviedo.util.swing.jcalendar.resources.Resources;
 
-
 /**
  * <code>JCalendar</code> is a component that lets the user pick up a date.
  * 
-
  */
 public class JCalendar extends JPanel implements ItemListener, ChangeListener {
 
@@ -74,8 +72,8 @@ public class JCalendar extends JPanel implements ItemListener, ChangeListener {
 	 * Creates a new calendar component initialized with the current date.
 	 * 
 	 * @param timeEditionAllowed
-	 *          indicates whether the user can edit the time part of the date or not. When <code>false</code>, the time editor won't be
-	 *          visible.
+	 *            indicates whether the user can edit the time part of the date or not. When <code>false</code>, the time editor won't be
+	 *            visible.
 	 */
 	public JCalendar(boolean timeEditionAllowed) {
 		this(new Date(), timeEditionAllowed);
@@ -85,10 +83,10 @@ public class JCalendar extends JPanel implements ItemListener, ChangeListener {
 	 * Creates a new calendar component initialized with the specified date.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 * @param timeEditionAllowed
-	 *          indicates whether the user can edit the time part of the date or not. When <code>false</code>, the time editor won't be
-	 *          visible.
+	 *            indicates whether the user can edit the time part of the date or not. When <code>false</code>, the time editor won't be
+	 *            visible.
 	 */
 	public JCalendar(Date date, boolean timeEditionAllowed) {
 		this.timeEditionAllowed = timeEditionAllowed;
@@ -237,7 +235,7 @@ public class JCalendar extends JPanel implements ItemListener, ChangeListener {
 	 * Sets the selected date. If the specified date is <code>null</code>, this method does nothing.
 	 * 
 	 * @param date
-	 *          an arbitrary date.
+	 *            an arbitrary date.
 	 */
 	public void setDate(Date date) {
 		if (date == null) {
@@ -314,11 +312,11 @@ public class JCalendar extends JPanel implements ItemListener, ChangeListener {
 	 * <code>JOptionPane</code> component with the <code>JOptionPane.OK_CANCEL</code> option. The time part will be editable.
 	 * 
 	 * @param parentComponent
-	 *          determines the <code>Frame</code> in which the dialog is displayed.
+	 *            determines the <code>Frame</code> in which the dialog is displayed.
 	 * @param title
-	 *          the title string for the dialog.
+	 *            the title string for the dialog.
 	 * @param date
-	 *          the date to initialize the calendar.
+	 *            the date to initialize the calendar.
 	 * @return user's selected date. May return <code>null</code> if the user cancelled the selection.
 	 */
 	public static Date showDialog(Component parentComponent, String title, Date date) {
@@ -330,14 +328,14 @@ public class JCalendar extends JPanel implements ItemListener, ChangeListener {
 	 * <code>JOptionPane</code> component with the <code>JOptionPane.OK_CANCEL</code> option.
 	 * 
 	 * @param parentComponent
-	 *          determines the <code>Frame</code> in which the dialog is displayed.
+	 *            determines the <code>Frame</code> in which the dialog is displayed.
 	 * @param title
-	 *          the title string for the dialog.
+	 *            the title string for the dialog.
 	 * @param date
-	 *          the date to initialize the calendar.
+	 *            the date to initialize the calendar.
 	 * @param timeEditionAllowed
-	 *          indicates whether the user can edit the time part of the date or not. When <code>false</code>, the time editor won't be
-	 *          visible.
+	 *            indicates whether the user can edit the time part of the date or not. When <code>false</code>, the time editor won't be
+	 *            visible.
 	 * @return user's selected date. May return <code>null</code> if the user cancelled the selection.
 	 */
 	public static Date showDialog(Component parentComponent, String title, Date date, boolean timeEditionAllowed) {

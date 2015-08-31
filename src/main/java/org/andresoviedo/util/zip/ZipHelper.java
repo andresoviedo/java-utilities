@@ -31,13 +31,11 @@ public final class ZipHelper {
 
 	public static Log logger = LogFactory.getLog(ZipHelper.class);
 
-	public static void zipFiles(File sourceDir, File targetFile)
-			throws IOException {
+	public static void zipFiles(File sourceDir, File targetFile) throws IOException {
 
 		// out put file
 
-		logger.debug("Zipping directory files '" + sourceDir + "' to file '"
-				+ targetFile + "'...");
+		logger.debug("Zipping directory files '" + sourceDir + "' to file '" + targetFile + "'...");
 		ZipOutputStream out = null;
 
 		try {
@@ -69,8 +67,7 @@ public final class ZipHelper {
 		int fileNumber = 1;
 		File filePart = null;
 		while (true) {
-			filePart = new File(sourceFile.getAbsolutePath() + "."
-					+ String.format("%03d", fileNumber++));
+			filePart = new File(sourceFile.getAbsolutePath() + "." + String.format("%03d", fileNumber++));
 			if (!filePart.exists()) {
 				break;
 			}
@@ -96,8 +93,7 @@ public final class ZipHelper {
 	// }
 
 	/**
-	 * Copia el fichero al filesystem local en un directorio temporal y lo
-	 * descomprime en el mismo directorio.
+	 * Copia el fichero al filesystem local en un directorio temporal y lo descomprime en el mismo directorio.
 	 * 
 	 * @param sourceFile
 	 *            el fichero a descomprimir
@@ -107,8 +103,7 @@ public final class ZipHelper {
 	public static File getFileThenUnzip(File sourceFile) throws IOException {
 
 		File tempDir = File.createTempFile("arq-sdk-", null);
-		logger.debug("Creado directorio temporal '" + tempDir.getAbsolutePath()
-				+ "'");
+		logger.debug("Creado directorio temporal '" + tempDir.getAbsolutePath() + "'");
 		FileUtils.forceDelete(tempDir);
 
 		getFileThenUnzip(sourceFile, tempDir);
@@ -133,8 +128,7 @@ public final class ZipHelper {
 	// }
 
 	/**
-	 * Copia el fichero al filesystem local y luego lo descomprime en el
-	 * directorio especificado.
+	 * Copia el fichero al filesystem local y luego lo descomprime en el directorio especificado.
 	 * 
 	 * @param sourceFile
 	 *            el fichero a descomprimir
@@ -142,12 +136,10 @@ public final class ZipHelper {
 	 *            de descompresión
 	 * @throws Exception
 	 */
-	public static void getFileThenUnzip(File sourceFile, File destinationDir)
-			throws IOException {
+	public static void getFileThenUnzip(File sourceFile, File destinationDir) throws IOException {
 		logger.info("Instalando '" + sourceFile.getName() + "'...");
 
-		logger.debug("Copiando fichero '" + sourceFile.getName()
-				+ "' en filesystem local...");
+		logger.debug("Copiando fichero '" + sourceFile.getName() + "' en filesystem local...");
 		File sourceFileCopy = new File(destinationDir, sourceFile.getName());
 		FileUtils.copyFile(sourceFile, sourceFileCopy);
 
@@ -155,8 +147,7 @@ public final class ZipHelper {
 		unzipFile(sourceFileCopy, destinationDir);
 		FileUtils.deleteQuietly(sourceFileCopy);
 
-		logger.info("Descompresión de '" + sourceFile.getName()
-				+ "' completada");
+		logger.info("Descompresión de '" + sourceFile.getName() + "' completada");
 	}
 
 	// IMPLEMENTACIÓN X FILTROS
@@ -175,12 +166,10 @@ public final class ZipHelper {
 	// return fileParts;
 	// }
 
-	public static File getMultipartZipThenUnzip(File sourceFile)
-			throws IOException {
+	public static File getMultipartZipThenUnzip(File sourceFile) throws IOException {
 
 		File tempDir = File.createTempFile("arq-sdk-", null);
-		logger.debug("Creado directorio temporal '" + tempDir.getAbsolutePath()
-				+ "'");
+		logger.debug("Creado directorio temporal '" + tempDir.getAbsolutePath() + "'");
 		FileUtils.forceDelete(tempDir);
 
 		getMultipartZipThenUnzip(sourceFile, tempDir);
@@ -189,8 +178,7 @@ public final class ZipHelper {
 	}
 
 	/**
-	 * Copia el fichero al filesystem local y luego lo descomprime en el
-	 * directorio especificado.
+	 * Copia el fichero al filesystem local y luego lo descomprime en el directorio especificado.
 	 * 
 	 * @param sourceFile
 	 *            el fichero a descomprimir
@@ -198,8 +186,7 @@ public final class ZipHelper {
 	 *            de descompresión
 	 * @throws Exception
 	 */
-	public static void getMultipartZipThenUnzip(final File sourceFile,
-			final File destinationDir) throws IOException {
+	public static void getMultipartZipThenUnzip(final File sourceFile, final File destinationDir) throws IOException {
 
 		logger.info("Descargando '" + sourceFile.getName() + ".XXX' ...");
 
@@ -212,15 +199,13 @@ public final class ZipHelper {
 		logger.debug("Eliminando cache '" + localCopy + ".XXX'...");
 		deleteFileParts(localCopy);
 
-		logger.info("Descompresión de '" + sourceFile.getName()
-				+ "' en Filesystem local completada");
+		logger.info("Descompresión de '" + sourceFile.getName() + "' en Filesystem local completada");
 	}
 
 	public static File unzipFile(File sourceFile) throws IOException {
 
 		File tempDir = File.createTempFile("arq-sdk-", null);
-		logger.debug("Creado directorio temporal '" + tempDir.getAbsolutePath()
-				+ "'");
+		logger.debug("Creado directorio temporal '" + tempDir.getAbsolutePath() + "'");
 		FileUtils.forceDelete(tempDir);
 
 		unzipFile(sourceFile, tempDir);
@@ -228,8 +213,7 @@ public final class ZipHelper {
 		return tempDir;
 	}
 
-	public static void unzipFile(File sourceFile, File targetDir)
-			throws IOException {
+	public static void unzipFile(File sourceFile, File targetDir) throws IOException {
 		ZipFile zipFile = new ZipFile(sourceFile);
 		targetDir.mkdirs();
 		try {
@@ -257,8 +241,7 @@ public final class ZipHelper {
 
 	public static File unzipMultipartZip(File sourceFile) throws IOException {
 		File tempDir = File.createTempFile("arq-sdk-", null);
-		logger.debug("Creado directorio temporal '" + tempDir.getAbsolutePath()
-				+ "'");
+		logger.debug("Creado directorio temporal '" + tempDir.getAbsolutePath() + "'");
 		FileUtils.forceDelete(tempDir);
 
 		unzipMultipartZip(sourceFile, tempDir);
@@ -266,20 +249,16 @@ public final class ZipHelper {
 		return tempDir;
 	}
 
-	public static void unzipMultipartZip(File sourceFile, File targetDir)
-			throws IOException {
+	public static void unzipMultipartZip(File sourceFile, File targetDir) throws IOException {
 
 		List<File> filePartsList = getFilePartsList(sourceFile);
 		if (filePartsList.isEmpty()) {
-			throw new IllegalArgumentException("No file parts found for '"
-					+ sourceFile.getAbsolutePath() + "'");
+			throw new IllegalArgumentException("No file parts found for '" + sourceFile.getAbsolutePath() + "'");
 		}
 
 		List<FileInputStream> sourceFileParts = getFileInputStreamParts(filePartsList);
 
-		ZipInputStream zipInputStream = new ZipInputStream(
-				new SequenceInputStream(
-						Collections.enumeration(sourceFileParts)));
+		ZipInputStream zipInputStream = new ZipInputStream(new SequenceInputStream(Collections.enumeration(sourceFileParts)));
 
 		targetDir.mkdirs();
 		ZipEntry entry = null;
@@ -318,38 +297,30 @@ public final class ZipHelper {
 	// return fileParts;
 	// }
 
-	private static void getMultipartFileMultithread(final File sourceFile,
-			final File destinationDir) {
+	private static void getMultipartFileMultithread(final File sourceFile, final File destinationDir) {
 		ExecutorService executor = null;
 		try {
 			List<File> filePartsList = getFilePartsList(sourceFile);
 			if (filePartsList.isEmpty()) {
-				throw new IllegalArgumentException("No file parts found for '"
-						+ sourceFile.getAbsolutePath() + "'");
+				throw new IllegalArgumentException("No file parts found for '" + sourceFile.getAbsolutePath() + "'");
 			}
 
 			executor = Executors.newFixedThreadPool(4);
 
 			for (final File finalFilePart : filePartsList) {
-				FutureTask<Integer> getFilePartTask = new FutureTask<Integer>(
-						new Callable<Integer>() {
-							@Override
-							public Integer call() {
-								try {
-									logger.debug("Descargando fichero '"
-											+ finalFilePart
-											+ "' en filesystem local...");
-									File filePartCopy = new File(
-											destinationDir,
-											finalFilePart.getName());
-									FileUtils.copyFile(finalFilePart,
-											filePartCopy);
-									return filePartCopy.exists() ? 0 : -1;
-								} catch (IOException ex) {
-									return -1;
-								}
-							}
-						});
+				FutureTask<Integer> getFilePartTask = new FutureTask<Integer>(new Callable<Integer>() {
+					@Override
+					public Integer call() {
+						try {
+							logger.debug("Descargando fichero '" + finalFilePart + "' en filesystem local...");
+							File filePartCopy = new File(destinationDir, finalFilePart.getName());
+							FileUtils.copyFile(finalFilePart, filePartCopy);
+							return filePartCopy.exists() ? 0 : -1;
+						} catch (IOException ex) {
+							return -1;
+						}
+					}
+				});
 				executor.submit(getFilePartTask);
 			}
 			executor.shutdown();
@@ -360,8 +331,7 @@ public final class ZipHelper {
 		}
 	}
 
-	private static List<FileInputStream> getFileInputStreamParts(
-			List<File> sourceFiles) throws FileNotFoundException {
+	private static List<FileInputStream> getFileInputStreamParts(List<File> sourceFiles) throws FileNotFoundException {
 		List<FileInputStream> sourceFileParts = new ArrayList<FileInputStream>();
 		for (File file : sourceFiles) {
 			sourceFileParts.add(new FileInputStream(file));

@@ -3,7 +3,7 @@ package org.andresoviedo.util.messaging.api1.common.data;
 /**
  * A message acknowledgement command.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class MessageAck extends SignalingCommand {
 
@@ -18,7 +18,7 @@ public class MessageAck extends SignalingCommand {
 	 * Constructs a new message acknowledgement command.
 	 * 
 	 * @param messageId
-	 *          the id of the acknowledged message.
+	 *            the id of the acknowledged message.
 	 */
 	public MessageAck(String clientId, String messageId) {
 		super(clientId);

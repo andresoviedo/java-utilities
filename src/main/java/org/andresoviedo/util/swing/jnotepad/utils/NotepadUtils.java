@@ -5,7 +5,6 @@ import javax.swing.text.Document;
 /**
  * Useful methods for <code>JNotepad</code>.
  * 
-
  */
 public class NotepadUtils {
 
@@ -19,7 +18,7 @@ public class NotepadUtils {
 	 * Returns the number of digits of the specified number.
 	 * 
 	 * @param number
-	 *          the number which digits have to be counted.
+	 *            the number which digits have to be counted.
 	 * @return the number of digits of the specified number.
 	 */
 	public static int getDigitCount(int number) {
@@ -30,7 +29,7 @@ public class NotepadUtils {
 	 * Returns the number of lines in a document.
 	 * 
 	 * @param doc
-	 *          the document.
+	 *            the document.
 	 * @return the number of lines in a document.
 	 */
 	public static int getLineCount(Document doc) {

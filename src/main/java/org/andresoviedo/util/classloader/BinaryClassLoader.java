@@ -1,7 +1,5 @@
 package org.andresoviedo.util.classloader;
 
-
-
 import java.io.ByteArrayInputStream;
 
 /**

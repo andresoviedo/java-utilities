@@ -27,7 +27,6 @@ import org.andresoviedo.util.swing.jcalendar.CalendarTableModel.DateLocation;
  * The calendar row header view component is a component intended to be used as a row header view for a <code>JScrollPane</code> holding a
  * <code>CalendarTable</code>.
  * 
-
  */
 public class CalendarRowHeaderView extends JComponent implements ListSelectionListener {
 
@@ -70,7 +69,7 @@ public class CalendarRowHeaderView extends JComponent implements ListSelectionLi
 	 * Creates a new calendar row header view.
 	 * 
 	 * @param table
-	 *          the associated calendar table component.
+	 *            the associated calendar table component.
 	 */
 	public CalendarRowHeaderView(JCalendarTable table) {
 		this.table = table;
@@ -104,7 +103,7 @@ public class CalendarRowHeaderView extends JComponent implements ListSelectionLi
 	 * Sets the date pattern.
 	 * 
 	 * @param datePattern
-	 *          the new date pattern.
+	 *            the new date pattern.
 	 */
 	public void setDatePattern(String datePattern) {
 		this.datePattern = datePattern;
@@ -123,7 +122,7 @@ public class CalendarRowHeaderView extends JComponent implements ListSelectionLi
 	 * Sets the tab selection background.
 	 * 
 	 * @param selectionBackground
-	 *          the new selection background.
+	 *            the new selection background.
 	 */
 	public void setSelectionBackground(Color selectionBackground) {
 		if (selectionBackground != null) {
@@ -145,7 +144,7 @@ public class CalendarRowHeaderView extends JComponent implements ListSelectionLi
 	 * Sets the tab selection foreground.
 	 * 
 	 * @param selectionForeground
-	 *          the new selection foreground.
+	 *            the new selection foreground.
 	 */
 	public void setSelectionForeground(Color selectionForeground) {
 		if (selectionForeground != null) {
@@ -167,7 +166,7 @@ public class CalendarRowHeaderView extends JComponent implements ListSelectionLi
 	 * Sets the preferred width of the component.
 	 * 
 	 * @param preferredWidth
-	 *          the preferred width.
+	 *            the preferred width.
 	 */
 	public void setPreferredWidth(int preferredWidth) {
 		if (preferredWidth < 0) {

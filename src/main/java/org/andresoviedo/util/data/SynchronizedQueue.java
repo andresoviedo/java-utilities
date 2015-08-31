@@ -3,7 +3,6 @@ package org.andresoviedo.util.data;
 /**
  * A class implementing a synchronized queue.
  * 
-
  */
 public class SynchronizedQueue extends Queue {
 
@@ -22,7 +21,7 @@ public class SynchronizedQueue extends Queue {
 	 * Constructs a new synchronized queue with the specified initial capacity.
 	 * 
 	 * @param initialCapacity
-	 *          the initial capacity of the queue.
+	 *            the initial capacity of the queue.
 	 */
 	public SynchronizedQueue(int initialCapacity) {
 		super(initialCapacity);
@@ -65,7 +64,7 @@ public class SynchronizedQueue extends Queue {
 	 * before returning.
 	 * 
 	 * @param milliseconds
-	 *          the maximum time to wait.
+	 *            the maximum time to wait.
 	 * @return the first object in the queue.
 	 */
 	public Object get(long milliseconds) {

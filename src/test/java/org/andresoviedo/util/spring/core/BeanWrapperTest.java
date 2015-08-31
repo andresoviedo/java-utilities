@@ -1,4 +1,4 @@
-package org.andresoviedo.util.bean;
+package org.andresoviedo.util.spring.core;
 
 import org.junit.Assert;
 import org.junit.Test;

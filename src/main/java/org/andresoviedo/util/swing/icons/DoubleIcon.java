@@ -9,7 +9,6 @@ import javax.swing.Icon;
  * An icon that draws a couple of icons (one after the other), separated by a specified amount of pixels. This icon can be seen as a
  * compound icon.
  * 
-
  */
 public class DoubleIcon implements Icon {
 
@@ -32,9 +31,9 @@ public class DoubleIcon implements Icon {
 	 * Creates a new double icon with a default gap of 5 pixels.
 	 * 
 	 * @param firstIcon
-	 *          the first icon.
+	 *            the first icon.
 	 * @param secondIcon
-	 *          the second icon.
+	 *            the second icon.
 	 */
 	public DoubleIcon(Icon firstIcon, Icon secondIcon) {
 		this(firstIcon, secondIcon, 5);
@@ -44,13 +43,13 @@ public class DoubleIcon implements Icon {
 	 * Creates a new double icon.
 	 * 
 	 * @param firstIcon
-	 *          the first icon.
+	 *            the first icon.
 	 * @param secondIcon
-	 *          the second icon.
+	 *            the second icon.
 	 * @param gap
-	 *          the distance between both icons.
+	 *            the distance between both icons.
 	 * @throws IllegalArgumentException
-	 *           if <code>gap</code> is less than zero.
+	 *             if <code>gap</code> is less than zero.
 	 */
 	public DoubleIcon(Icon firstIcon, Icon secondIcon, int gap) {
 		if (gap < 0) {
@@ -74,7 +73,7 @@ public class DoubleIcon implements Icon {
 	 * Sets the first icon (<code>null</code> permitted).
 	 * 
 	 * @param firstIcon
-	 *          the first icon.
+	 *            the first icon.
 	 */
 	public void setFirstIcon(Icon firstIcon) {
 		this.firstIcon = firstIcon;
@@ -93,9 +92,9 @@ public class DoubleIcon implements Icon {
 	 * Sets the distance between both icons.
 	 * 
 	 * @param gap
-	 *          the distance between both icons.
+	 *            the distance between both icons.
 	 * @throws IllegalArgumentException
-	 *           if <code>gap</code> is less than zero.
+	 *             if <code>gap</code> is less than zero.
 	 */
 	public void setGap(int gap) {
 		if (gap < 0) {
@@ -117,7 +116,7 @@ public class DoubleIcon implements Icon {
 	 * Sets the second icon (<code>null</code> permitted).
 	 * 
 	 * @param secondIcon
-	 *          the second icon.
+	 *            the second icon.
 	 */
 	public void setSecondIcon(Icon secondIcon) {
 		this.secondIcon = secondIcon;

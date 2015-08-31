@@ -22,10 +22,9 @@ import javax.mail.internet.MimeMultipart;
 import org.andresoviedo.util.bean.MailInfoBean;
 
 /**
- * EMailSender can send an e-mail with file attachments to many recipients
- * through a host needed authentication.
+ * EMailSender can send an e-mail with file attachments to many recipients through a host needed authentication.
  * 
- * @author aoviedo
+ * @author andresoviedo
  * @version 1.0
  */
 
@@ -33,10 +32,8 @@ public class EMailSender {
 
 	public static void send(MailInfoBean mailInfo) throws MessagingException {
 
-		assert (mailInfo.getHost() != null && mailInfo.getUser() != null && mailInfo
-				.getPass() != null);
-		assert (mailInfo.getFrom() != null && mailInfo.getTo() != null
-				&& mailInfo.getSubject() != null && mailInfo.getMessage() != null);
+		assert (mailInfo.getHost() != null && mailInfo.getUser() != null && mailInfo.getPass() != null);
+		assert (mailInfo.getFrom() != null && mailInfo.getTo() != null && mailInfo.getSubject() != null && mailInfo.getMessage() != null);
 
 		// parse mail address
 		String[] to = mailInfo.getTo().split(";");
@@ -68,10 +65,8 @@ public class EMailSender {
 		p.put("mail.smtp.port", String.valueOf(mailInfo.getPort()));
 		if (mailInfo.isUseTLS()) {
 			p.put("mail.smtp.starttls.enable", "true");
-			p.put("mail.smtp.socketFactory.port",
-					String.valueOf(mailInfo.getPort()));
-			p.put("mail.smtp.socketFactory.class",
-					"javax.net.ssl.SSLSocketFactory");
+			p.put("mail.smtp.socketFactory.port", String.valueOf(mailInfo.getPort()));
+			p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 			p.put("mail.smtp.socketFactory.fallback", "false");
 		}
 
@@ -106,8 +101,7 @@ public class EMailSender {
 		if (mailInfo.getMessageEncoding() == null) {
 			textPart.setText(mailInfo.getMessage());
 		} else {
-			textPart.setText(mailInfo.getMessage(),
-					mailInfo.getMessageEncoding());
+			textPart.setText(mailInfo.getMessage(), mailInfo.getMessageEncoding());
 		}
 		mp.addBodyPart(textPart);
 		if (mailInfo.isHTMLMessage()) {
@@ -151,21 +145,14 @@ public class EMailSender {
 		// e.printStackTrace();
 		// }
 		/*
-		 * MailInfoBean mailInfo = new MailInfoBean("smtp.gmail.com", 465,
-		 * "user@gmail.com", "pass", "\"source\" <user@gmail.com>",
+		 * MailInfoBean mailInfo = new MailInfoBean("smtp.gmail.com", 465, "user@gmail.com", "pass", "\"source\" <user@gmail.com>",
 		 * "\"Andres Oviedo\" <aoviedo@gmail.com>", "Hola test", //
 		 * "<html><h1>Que tal amigo?</h1><ul><li>punto 1</li><li>punto 2</li></ul>jajaja <b>negrita</b></p><img src=\"cid:file0\"><img src=\"cid:file1\"><p>texto después de la imagen</p></html>"
-		 * // );
-		 * "<html><body><h3>Exceptions encountered while loading business logs</h3></body></html>"
-		 * );
+		 * // ); "<html><body><h3>Exceptions encountered while loading business logs</h3></body></html>" );
 		 */
 
-		MailInfoBean mailInfo = new MailInfoBean("smtp.google.com", 25,
-				"user@gmail.com",
-				"pass",
-				"\"Andres Oviedo\" <aoviedo@gmail.com>",
-				"\"Andres Oviedo\" <aoviedo@gmail.com>",
-				"Hola test",
+		MailInfoBean mailInfo = new MailInfoBean("smtp.google.com", 25, "user@gmail.com", "pass", "\"Andres Oviedo\" <aoviedo@gmail.com>",
+				"\"Andres Oviedo\" <aoviedo@gmail.com>", "Hola test",
 				// "<html><h1>Que tal amigo?</h1><ul><li>punto 1</li><li>punto 2</li></ul>jajaja <b>negrita</b></p><img src=\"cid:file0\"><img src=\"cid:file1\"><p>texto después de la imagen</p></html>"
 				// );
 				"<html><body><h3>Exceptions encountered while loading business logs (169)</h3></body></html>");

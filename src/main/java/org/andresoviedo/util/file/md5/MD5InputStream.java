@@ -41,7 +41,7 @@ public class MD5InputStream extends FilterInputStream {
 	 * Creates a MD5InputStream
 	 * 
 	 * @param in
-	 *          The input stream
+	 *            The input stream
 	 */
 	public MD5InputStream(InputStream in) {
 		super(in);

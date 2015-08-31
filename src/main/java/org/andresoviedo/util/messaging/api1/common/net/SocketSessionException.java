@@ -3,7 +3,7 @@ package org.andresoviedo.util.messaging.api1.common.net;
 /**
  * The exception thrown by socket session.
  * 
- * @author andres
+ * @author andresoviedo
  */
 public class SocketSessionException extends Exception {
 
