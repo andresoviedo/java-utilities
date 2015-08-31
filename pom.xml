@@ -172,6 +172,15 @@
 			<version>1.0.6</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- jgroups -->
+		<dependency>
+			<groupId>org.jgroups</groupId>
+			<artifactId>jgroups</artifactId>
+			<version>3.6.4.Final</version>
+			<scope>compile</scope>
+			<optional>true</optional>
+		</dependency>
 
 		<!-- jgroups -->
 		<dependency>
