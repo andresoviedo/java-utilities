@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
 import org.apache.log4j.Logger;
+import org.jgroups.Address;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
 import org.jgroups.PhysicalAddress;
@@ -184,15 +185,16 @@ public final class JGroupsCluster {
 			lock.unlock();
 
 			// I dont wanna be notified. I already know
-			List<InetSocketAddress> listenersOrdered = new ArrayList<InetSocketAddress>(cluster_members);
+			List<Address> listenersOrdered = new ArrayList<Address>(ch.getView().getMembers());
 			listenersOrdered.remove(JGroupsCluster.this.bind_address);
 
 			// Lets notify the others
-			for (InetSocketAddress address : listenersOrdered) {
+			for (Address address : listenersOrdered) {
 				try {
-					ch.send(new IpAddress(address), Action.Reboot);
-					
-					
+					ch.send(address, Action.Reboot);
+
+					ch.getState(address, 3000);
+
 					// check he is alive again?
 				} catch (Exception ex) {
 					throw new RuntimeException(ex);
