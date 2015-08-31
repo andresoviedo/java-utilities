@@ -10,7 +10,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
-import org.jgroups.Address;
+import org.apache.log4j.Logger;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
 import org.jgroups.PhysicalAddress;
@@ -18,8 +18,8 @@ import org.jgroups.ReceiverAdapter;
 import org.jgroups.View;
 import org.jgroups.blocks.locking.LockService;
 import org.jgroups.protocols.CENTRAL_LOCK;
-import org.jgroups.protocols.TCP;
 import org.jgroups.protocols.TCPPING;
+import org.jgroups.protocols.UDP;
 import org.jgroups.protocols.UFC;
 import org.jgroups.protocols.UNICAST3;
 import org.jgroups.protocols.VERIFY_SUSPECT;
@@ -38,8 +38,10 @@ import org.jgroups.stack.ProtocolStack;
  */
 public final class JGroupsCluster {
 
+	private static final Logger LOG = Logger.getLogger(JGroupsCluster.class);
+
 	private enum Action {
-		Reboot_periodically
+		Reboot
 	}
 
 	private final InetSocketAddress bind_address;
@@ -56,6 +58,8 @@ public final class JGroupsCluster {
 
 	public void init() {
 		try {
+			LOG.debug("Initializing JGroupsCluster...");
+
 			ch = new JChannel(false);
 			ProtocolStack stack = new ProtocolStack();
 			ch.setProtocolStack(stack);
@@ -64,19 +68,21 @@ public final class JGroupsCluster {
 			for (InetSocketAddress address : cluster_members) {
 				initial_hosts.add(new IpAddress(address));
 			}
-			TCPPING tcpping = new TCPPING();
-			tcpping.setTimeout(5000);
-			tcpping.setInitialHosts(initial_hosts);
+			TCPPING ping = new TCPPING();
+			ping.setTimeout(5000);
+			ping.setInitialHosts(initial_hosts);
 
 			VERIFY_SUSPECT verify_SUSPECT = new VERIFY_SUSPECT();
 
-			TCP tcp = new TCP();
-			tcp.setBindAddress(bind_address.getAddress());
-			tcp.setBindPort(bind_address.getPort());
+			UDP udp = new UDP();
+			// UDP udp = new UnicastUDP();
+			udp.setBindAddress(bind_address.getAddress());
+			udp.setBindPort(bind_address.getPort());
+			udp.setValue("ip_mcast", false);
 
 			// @formatter:off
-			stack.addProtocol(tcp)
-			.addProtocol(tcpping)
+			stack.addProtocol(udp)
+			.addProtocol(ping)
 			.addProtocol(verify_SUSPECT)
 			.addProtocol(new CENTRAL_LOCK())
 			.addProtocol(new NAKACK2())
@@ -94,15 +100,17 @@ public final class JGroupsCluster {
 
 			ch.setReceiver(new ReceiverAdapter() {
 				public void viewAccepted(View new_view) {
-					// System.out.println("view: " + new_view);
+					LOG.debug("Member joined cluster '" + new_view + "'");
 				}
 
 				public void receive(Message msg) {
-					Address sender = msg.getSrc();
-					System.out.println(msg.getObject() + " [" + sender + "]");
-					if ("reboot".equals(msg.getObject())) {
-						System.exit(0);
+					if (Action.Reboot.equals(msg.getObject())) {
+						LOG.info("Received reboot from '" + msg.getSrc() + "'");
+						// System.exit(0);
+						return;
 					}
+
+					LOG.debug("Received message from '" + msg.getSrc() + "' '" + msg.getObject() + "'");
 				}
 			});
 
@@ -114,26 +122,45 @@ public final class JGroupsCluster {
 		}
 	}
 
-	// reboot periodically in an ordered manner to have still availability
-	public void reboot_peridically_ordered(final Calendar when) {
+	public void close() {
+		ch.close();
+	}
+
+	public void broadcast(String message) {
+		try {
+			ch.send(null, message);
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+
+	/**
+	 * Reboot periodically (each day) in an ordered manner to have availability.
+	 * 
+	 * @param when
+	 *            the future first time to reboot
+	 */
+	public void reboot_periodically(final Calendar when) {
 
 		// we restart 1 / day
 		Date now = new Date();
 
 		// is not time to restart yet?
-		if (when.before(now)) {
+		long delay = when.getTimeInMillis() - now.getTime();
+		if (delay > 0) {
+			LOG.info("Executing reboot in '" + delay + "' millis...");
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
-					reboot_peridically_ordered(when);
+					reboot_periodically(when);
 				}
-			}, when.getTimeInMillis() - now.getTime());
+			}, delay);
 			return;
 		}
 
 		// Get access to distributed lock service for this Reboot_periodically action...
 		LockService lock_service = new LockService(ch);
-		Lock lock = lock_service.getLock(Action.Reboot_periodically.name());
+		Lock lock = lock_service.getLock(Action.Reboot.name());
 
 		// Lets try to coordinate restart...
 		try {
@@ -142,48 +169,41 @@ public final class JGroupsCluster {
 			if (!lock.tryLock(10000, TimeUnit.MILLISECONDS)) {
 
 				// Let's recheck in 30 minutes if that another member actually did it's job
+				LOG.info("I'm not the Master node. Anyway I'am will do a sanity check in 30 minutes...");
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						reboot_peridically_ordered(when);
+						LOG.debug("Executing sanity check for last reboot....");
+						reboot_periodically(when);
 					}
 				}, TimeUnit.MINUTES.toMillis(30));
+				return;
 			}
 
 			// Ok, we are the coordinator. Lets restart cluster!
 			lock.unlock();
-		} catch (Exception e) {
+
+			// I dont wanna be notified. I already know
+			List<InetSocketAddress> listenersOrdered = new ArrayList<InetSocketAddress>(cluster_members);
+			listenersOrdered.remove(JGroupsCluster.this.bind_address);
+
+			// Lets notify the others
+			for (InetSocketAddress address : listenersOrdered) {
+				try {
+					ch.send(new IpAddress(address), Action.Reboot);
+					
+					
+					// check he is alive again?
+				} catch (Exception ex) {
+					throw new RuntimeException(ex);
+				}
+			}
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
 		} finally {
 
 		}
 
-	}
-
-	public void aaa() throws Exception {
-		// Scanner scanner = new Scanner(System.in);
-		// for (int i = 0; i < 10; i++) {
-		// ch.send(null, scanner.next());
-		// }
-		// scanner.close();
-
-		for (int i = 0; i < 5; i++) {
-			Thread.sleep((long) (1000d * Math.random()));
-			LockService lock_service = new LockService(ch);
-			Lock lock = lock_service.getLock("mylock");
-			if (lock.tryLock(3000, TimeUnit.MILLISECONDS)) {
-				try {
-					Thread.sleep(1000);
-					ch.send(null,
-							"" + System.currentTimeMillis() + " - "
-									+ String.valueOf("Lock acquired by: " + bind_address.getPort()));
-					Thread.sleep(1000);
-				} finally {
-					lock.unlock();
-				}
-			}
-		}
-
-		ch.close();
 	}
 
 }
