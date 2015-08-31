@@ -169,6 +169,15 @@
 			<version>1.0.6</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- jgroups -->
+		<dependency>
+			<groupId>org.jgroups</groupId>
+			<artifactId>jgroups</artifactId>
+			<version>3.6.4.Final</version>
+			<scope>compile</scope>
+			<optional>true</optional>
+		</dependency>
 
 	</dependencies>
 
@@ -190,8 +199,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<!-- <plugin> <groupId>org.jibx</groupId> <artifactId>jibx-maven-plugin</artifactId> 
