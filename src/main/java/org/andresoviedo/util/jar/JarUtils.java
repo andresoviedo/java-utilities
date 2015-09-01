@@ -5,9 +5,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
+import java.security.CodeSource;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
@@ -34,9 +37,62 @@ public class JarUtils {
 	}
 
 	/**
-	 * Will perform an initial read of all files and will build a cache for fast search. Call this method at the beginning if you plan to
-	 * work with a constant set of files and its contents won't change. To reset the cache call <code>rescan(new Files[0])</code>. Files can
-	 * be .jar files, directories, etc.
+	 * @return the MANIFEST.MF main attributes. <code>null</code> if running not inside jar.
+	 */
+	public static Attributes getManifestAttributes() {
+		final CodeSource codeSource = JarUtils.class.getProtectionDomain().getCodeSource();
+		if (codeSource == null) {
+			return null;
+		}
+
+		JarFile jar = null;
+		try {
+			URL url = codeSource.getLocation();
+			if (url == null) {
+				return null;
+			}
+
+			final String filename = url.getFile();
+			File file = new File(filename);
+			if (!file.exists() || !filename.endsWith("jar")) {
+				return null;
+			}
+
+			jar = new JarFile(filename);
+			Manifest manifest = jar.getManifest();
+			return manifest.getMainAttributes();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				if (jar != null) {
+					jar.close();
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	public static void printManifestAttributesToString() {
+		try {
+			Attributes attrs = getManifestAttributes();
+			if (attrs == null) {
+				return;
+			}
+			for (Map.Entry<Object, Object> entry : attrs.entrySet()) {
+				System.out.println(entry.getKey() + ":" + entry.getValue());
+			}
+		} catch (Exception ex) {
+			System.err.println("Error reading MANIFEST.MF: " + ex.getMessage());
+		}
+	}
+
+	/**
+	 * Will perform an initial read of all files and will build a cache for fast search. Call this method at the
+	 * beginning if you plan to work with a constant set of files and its contents won't change. To reset the cache call
+	 * <code>rescan(new Files[0])</code>. Files can be .jar files, directories, etc.
 	 */
 	public static void rescan(File[] files) {
 		// Clean the cache.
