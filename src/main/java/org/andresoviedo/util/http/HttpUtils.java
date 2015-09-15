@@ -13,14 +13,18 @@ public final class HttpUtils {
 
 	private static final Logger LOG = Logger.getLogger(HttpProxy.class);
 
+	public static String GET(URL url, int timeout) {
+		return GET(url, null, timeout);
+	}
+
 	public static String GET(URL url, InetSocketAddress proxyAddress, int timeout) {
 
 		final StringBuffer response = new StringBuffer();
 		int responseCode = -1;
 		try {
 
-			Proxy proxy = new Proxy(Proxy.Type.HTTP, proxyAddress);
-			LOG.debug("Connecting to '" + url + "'...");
+			Proxy proxy = proxyAddress != null ? new Proxy(Proxy.Type.HTTP, proxyAddress) : Proxy.NO_PROXY;
+			LOG.debug("Connecting to '" + url + "'... using proxy '" + proxy + "'...");
 
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection(proxy);
 			conn.setConnectTimeout(timeout);
