@@ -1545,7 +1545,7 @@ public abstract class NanoHTTPD {
      * Pseudo-Parameter to use to store the actual query string in the
      * parameters map for later re-processing.
      */
-    private static final String QUERY_STRING_PARAMETER = "NanoHttpd.QUERY_STRING";
+    protected static final String QUERY_STRING_PARAMETER = "NanoHttpd.QUERY_STRING";
 
     /**
      * logger to log to.
@@ -1809,14 +1809,14 @@ public abstract class NanoHTTPD {
     /**
      * Create a response with known length.
      */
-    public Response newFixedLengthResponse(IStatus status, String mimeType, InputStream data, long totalBytes) {
+    public static Response newFixedLengthResponse(IStatus status, String mimeType, InputStream data, long totalBytes) {
         return new Response(status, mimeType, data, totalBytes);
     }
 
     /**
      * Create a text response with known length.
      */
-    public Response newFixedLengthResponse(IStatus status, String mimeType, String txt) {
+    public static Response newFixedLengthResponse(IStatus status, String mimeType, String txt) {
         if (txt == null) {
             return newFixedLengthResponse(status, mimeType, new ByteArrayInputStream(new byte[0]), 0);
         } else {
