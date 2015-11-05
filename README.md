@@ -8,6 +8,7 @@ on Internet, or maybe because it was not available at that time... whatever. I s
 
 I would be glad if you find any of the classes useful. Here are some:
 
+* **JSonUtils.java**:  Compare org.json.JSONObject & org.json.JSONArray no matter which is the order of the inner elements
 * **ProvincesUtil.java**:  Enumeration with all the Spain provinces with it's respective code.
 * **MySQLPhoneCallAlert.java**: Make a select to MySQL and if it's not OK the class will make a phone call to your cell phone.
 * **BeanUtils.java**: Print any POJO into a pretty printable String (recursive). Also set (or get) nested properties (bean1.prop1.val2)

@@ -1,0 +1,22 @@
+[
+{
+   "field_1" : "hola",
+   "field_2" : "que tal"
+}
+,
+{
+   "array1" : [
+   	{"field_1" : "hola", "field_2" : "que tal" },
+   	{"field_3" : "buenas", "field_4" : "como estamos" }
+   ]
+}
+,
+{
+   "field_4" : "buenas tardes",
+   "field_5" : "good afternoon",
+   "field_6" : "bon soir",
+   "field_7" : true,
+   "field_8" : 1982,
+   "field_9" : { "good bye" : "see ya!" }
+}
+]
