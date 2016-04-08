@@ -8,6 +8,8 @@ on Internet, or maybe because it was not available at that time... whatever. I s
 
 I would be glad if you find any of the classes useful. Here are some:
 
+* **ExpressionEngine**: Expression engine to evaluate javascript expressions
+* **RequestsPerSecondController**: Dont exceed number of requests per second in your program
 * **JSonUtils.java**:  Compare org.json.JSONObject & org.json.JSONArray no matter which is the order of the inner elements
 * **ProvincesUtil.java**:  Enumeration with all the Spain provinces with it's respective code.
 * **MySQLPhoneCallAlert.java**: Make a select to MySQL and if it's not OK the class will make a phone call to your cell phone.

@@ -101,11 +101,11 @@ public class HttpScript {
 		for (TreeNode<Step> step : steps) {
 			try {
 				Map<String, Object> execute_impl = execute_impl(step, null);
-				System.out.println("Putting " + step.getObject().getName() + ", value: " + execute_impl);
-				results.put(step.getObject().getName(), execute_impl);
+				System.out.println("Putting " + step.getData().getName() + ", value: " + execute_impl);
+				results.put(step.getData().getName(), execute_impl);
 			} catch (Exception ex) {
 				LOG.error(ex.getMessage(), ex);
-				results.put(step.getObject().getName(), ex);
+				results.put(step.getData().getName(), ex);
 				break;
 			}
 		}
@@ -124,46 +124,46 @@ public class HttpScript {
 	private Map<String, Object> execute_impl(TreeNode<Step> stepNode, Map<String, Object> parentResults) {
 
 		Map<String, Object> results = new HashMap<String, Object>();
-		if (stepNode.getObject() instanceof ForEach) {
+		if (stepNode.getData() instanceof ForEach) {
 			try {
-				while (stepNode.getObject().execute(parentResults) != null) {
+				while (stepNode.getData().execute(parentResults) != null) {
 					for (TreeNode<Step> child : stepNode.getChildren()) {
-						results.put(child.getObject().getName(), execute_impl(child, parentResults));
+						results.put(child.getData().getName(), execute_impl(child, parentResults));
 					}
 				}
 			} catch (Exception ex) {
-				throw new RuntimeException("Exeption executing for '" + stepNode.getObject().getName() + "'", ex);
+				throw new RuntimeException("Exeption executing for '" + stepNode.getData().getName() + "'", ex);
 			}
 			return results;
-		} else if (stepNode.getObject() instanceof While) {
+		} else if (stepNode.getData() instanceof While) {
 			try {
-				while ((Boolean) stepNode.getObject().execute(parentResults).get("result")) {
+				while ((Boolean) stepNode.getData().execute(parentResults).get("result")) {
 					for (TreeNode<Step> child : stepNode.getChildren()) {
-						results.put(child.getObject().getName(), execute_impl(child, parentResults));
+						results.put(child.getData().getName(), execute_impl(child, parentResults));
 					}
 				}
 			} catch (Exception ex) {
-				throw new RuntimeException("Exeption executing while '" + stepNode.getObject().getName() + "'. " + ex.getMessage(), ex);
+				throw new RuntimeException("Exeption executing while '" + stepNode.getData().getName() + "'. " + ex.getMessage(), ex);
 			}
 			return results;
 		}
 
 		Map<String, Object> result;
 		try {
-			result = stepNode.getObject().execute(parentResults);
+			result = stepNode.getData().execute(parentResults);
 		} catch (Exception ex) {
-			LOG.fatal("Exception executing '" + stepNode.getObject().getName() + "'", ex);
-			throw new RuntimeException("Exeption executing '" + stepNode.getObject().getName() + "'", ex);
+			LOG.fatal("Exception executing '" + stepNode.getData().getName() + "'", ex);
+			throw new RuntimeException("Exeption executing '" + stepNode.getData().getName() + "'", ex);
 		}
 
-		result.put("class", stepNode.getObject().getClass().getSimpleName());
+		result.put("class", stepNode.getData().getClass().getSimpleName());
 		if (stepNode.isLeaf()) {
 			return result;
 		}
 
 		results.put(null, result);
 		for (TreeNode<Step> child : stepNode.getChildren()) {
-			results.put(child.getObject().getName(), execute_impl(child, result));
+			results.put(child.getData().getName(), execute_impl(child, result));
 		}
 
 		return results;

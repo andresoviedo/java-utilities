@@ -49,8 +49,10 @@ public class BeanUtilsTest {
 
 	@Test
 	public void testReflectionToStringObject() {
-		// System.out.println(ToStringBuilder.reflectionToString(new SomeBeanWithAllKindOfAttributes()));
-		// System.out.println(ReflectionToStringBuilder.toString(new SomeBeanWithAllKindOfAttributes(),
+		// System.out.println(ToStringBuilder.reflectionToString(new
+		// SomeBeanWithAllKindOfAttributes()));
+		// System.out.println(ReflectionToStringBuilder.toString(new
+		// SomeBeanWithAllKindOfAttributes(),
 		// new RecursiveToStringStyle(5)));
 		// Date var_Date = new Date(0);
 		final String reflectionToString = BeanUtils.reflectionToString(new SomeBeanWithAllKindOfAttributes(), false);
@@ -87,8 +89,6 @@ public class BeanUtilsTest {
 
 	@Test
 	public void testBeanHeredableDeHash() {
-		// Test para comprobar el log de un TransferObject que tiene un campo cuyo tipo es de LaCaixa y hereda de una
-		// clase de Java
 		GenericHashMapBean map = new GenericHashMapBean();
 		Assert.assertEquals(
 				"org.andresoviedo.util.bean.GenericHashMapBean [HMB [<parent>=[{prueba2=10, prueba=10}], field1=value_field1,],SB [var_Parent=1,var_Parent2=2,],]",
@@ -175,8 +175,10 @@ class SomeAnotherBean {
 // private static final int INFINITE_DEPTH = -1;
 //
 // /**
-// * Setting {@link #maxDepth} to 0 will have the same effect as using original {@link #ToStringStyle}: it will print
-// * all 1st level values without traversing into them. Setting to 1 will traverse up to 2nd level and so on.
+// * Setting {@link #maxDepth} to 0 will have the same effect as using original
+// {@link #ToStringStyle}: it will print
+// * all 1st level values without traversing into them. Setting to 1 will
+// traverse up to 2nd level and so on.
 // */
 // private int maxDepth;
 //
@@ -194,8 +196,10 @@ class SomeAnotherBean {
 // }
 //
 // @Override
-// protected void appendDetail(StringBuffer buffer, String fieldName, Object value) {
-// if (value.getClass().getName().startsWith("java.lang.") || (maxDepth != INFINITE_DEPTH && depth >= maxDepth)) {
+// protected void appendDetail(StringBuffer buffer, String fieldName, Object
+// value) {
+// if (value.getClass().getName().startsWith("java.lang.") || (maxDepth !=
+// INFINITE_DEPTH && depth >= maxDepth)) {
 // buffer.append(value);
 // } else {
 // depth++;

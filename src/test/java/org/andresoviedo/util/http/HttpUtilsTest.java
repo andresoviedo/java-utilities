@@ -43,8 +43,8 @@ public class HttpUtilsTest {
 	}
 
 	@Test
-	public void test_get_https_insecure() throws IOException, InterruptedException, KeyStoreException, NoSuchAlgorithmException,
-			CertificateException {
+	public void test_get_https_insecure() throws IOException, InterruptedException, KeyStoreException,
+			NoSuchAlgorithmException, CertificateException {
 		int port = freePort();
 		HttpService httpService = new HttpServiceImpl(port);
 		httpService.addHandler(new RequestHandler() {
@@ -60,10 +60,10 @@ public class HttpUtilsTest {
 			}
 		});
 		httpService.makeSecure(NanoHTTPD.makeSSLSocketFactory("/server.jks", "password".toCharArray()));
-		System.out.println("Starting https server at port '"+port+"'...");
+		System.out.println("Starting https server at port '" + port + "'...");
 		httpService.start();
-		
-//		Thread.sleep(30000);
+
+		// Thread.sleep(30000);
 
 		KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
 		keyStore.load(HttpProxyTest.class.getResourceAsStream("/client.jks"), "password".toCharArray());
@@ -74,15 +74,5 @@ public class HttpUtilsTest {
 
 		httpService.stop();
 	}
-
-	// @Test
-	// public void test_get_https_insecure() throws IOException {
-	// String response = HttpUtils.GET(new URL("https://2.and.prod.deenero.com/5018/ping"), new Proxy(Type.SOCKS, new
-	// InetSocketAddress(
-	// "localhost", 8888)), 5000);
-	// System.out.println(response);
-	// Assert.assertNotNull(response);
-	//
-	// }
 
 }

@@ -3,30 +3,59 @@ package org.andresoviedo.util.tree;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents a TreeNode in a generic data tree structure. Each
+ * TreeNode has basically a parent, may have children and some data associated.
+ * 
+ * @author andresoviedo
+ * 
+ * @param <T>
+ *            the type of the associated data
+ */
 public class TreeNode<T> {
 
-	private final T obj;
-	private final List<TreeNode<T>> children;
 	private TreeNode<T> parent;
+	private List<TreeNode<T>> children;
+	private T data;
 
-	public TreeNode(T obj) {
-		this(obj, new ArrayList<TreeNode<T>>());
+	public TreeNode(T data) {
+		this(null, data, null);
 	}
 
-	public TreeNode(T obj, List<TreeNode<T>> children) {
-		this.obj = obj;
+	public TreeNode(T data, TreeNode<T> parent) {
+		this(parent, data, null);
+	}
+
+	public TreeNode(TreeNode<T> parent, T obj, List<TreeNode<T>> children) {
+		this.parent = parent;
+		this.data = obj;
 		this.children = children;
 	}
 
-	public T getObject() {
-		return obj;
+	public TreeNode<T> getParent() {
+		return parent;
+	}
+
+	public T getData() {
+		return data;
 	}
 
 	public List<TreeNode<T>> getChildren() {
 		return children;
 	}
 
-	public TreeNode<T> addChildren(T name) {
+	public boolean isRoot() {
+		return (this.parent == null);
+	}
+
+	public boolean isLeaf() {
+		return this.children == null;
+	}
+
+	public TreeNode<T> addChild(T name) {
+		if (children == null) {
+			children = new ArrayList<TreeNode<T>>();
+		}
 		TreeNode<T> child = new TreeNode<T>(name);
 		child.parent = this;
 		this.children.add(child);
@@ -41,7 +70,10 @@ public class TreeNode<T> {
 	}
 
 	private void print(String prefix, boolean isTail, StringBuilder sbuilder) {
-		sbuilder.append(prefix).append((isTail ? "└── " : "├── ")).append(obj).append("\n");
+		sbuilder.append(prefix).append((isTail ? "└── " : "├── ")).append(data).append("\n");
+		if (children == null) {
+			return;
+		}
 		for (int i = 0; i < children.size() - 1; i++) {
 			children.get(i).print(prefix + (isTail ? "    " : "│   "), false, sbuilder);
 		}
@@ -50,23 +82,4 @@ public class TreeNode<T> {
 		}
 	}
 
-	public static void main(String[] args) {
-		TreeNode<String> root = new TreeNode<String>("abuelo");
-		TreeNode<String> son1 = root.addChildren("hijo 1");
-		son1.addChildren("nieto 1").addChildren("biznieto 1");
-		son1.addChildren("nieto 2").addChildren("biznieto 2");
-		root.addChildren("hijo 2").addChildren("nieto 3");
-		System.out.println(root);
-	}
-
-	public boolean isRoot() {
-		return (this.parent == null);
-	}
-
-	public boolean isLeaf() {
-		if (this.children.size() == 0)
-			return true;
-		else
-			return false;
-	}
 }

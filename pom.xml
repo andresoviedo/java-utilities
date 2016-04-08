@@ -7,7 +7,7 @@
 	<name>Java Common Utilities</name>
 
 	<properties>
-		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.springframework.version>3.2.8.RELEASE</org.springframework.version>
 		<jibx.version>1.1.6a</jibx.version>
 		<!-- <binding_test_file>binding-test.xml</binding_test_file> -->
