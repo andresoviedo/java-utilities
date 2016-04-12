@@ -188,6 +188,21 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- mongo -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.0.4</version>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+			<version>1.50.2</version>
+			<optional>true</optional>
+		</dependency>
+
 		<!-- jgroups -->
 		<dependency>
 			<groupId>org.jgroups</groupId>

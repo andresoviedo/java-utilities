@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.ServerSocket;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -18,6 +19,18 @@ import org.apache.commons.logging.LogFactory;
 public final class IOHelper {
 
 	public static Log logger = LogFactory.getLog(IOHelper.class);
+
+	/**
+	 * @return a free socks port in the local machine
+	 * @throws IOException
+	 *             if an I/O error occurs when opening the socket
+	 */
+	public static int freePort() throws IOException {
+		ServerSocket socket = new ServerSocket(0);
+		int port = socket.getLocalPort();
+		socket.close();
+		return port;
+	}
 
 	@SuppressWarnings("unchecked")
 	public static void copyAndFilter(File sourceFile, File targetFile, String pattern, String replacement) throws IOException {
@@ -83,7 +96,7 @@ public final class IOHelper {
 		return tempFile;
 	}
 
-	// IMPLEMENTACIÓN X FILTROS
+	// IMPLEMENTACIï¿½N X FILTROS
 	//
 	// private static List<File> getFileParts2(final File sourceFile)
 	// throws FileNotFoundException {

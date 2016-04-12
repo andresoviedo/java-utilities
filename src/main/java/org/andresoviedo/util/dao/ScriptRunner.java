@@ -103,6 +103,7 @@ public class ScriptRunner {
 	 *             if there is an error reading from the Reader
 	 */
 	private void runScript(Connection conn, Reader reader) throws IOException, SQLException {
+		int commandsExecuted = 0;
 		StringBuffer command = null;
 		try {
 			LineNumberReader lineReader = new LineNumberReader(reader);
@@ -141,6 +142,7 @@ public class ScriptRunner {
 							printlnError(e);
 						}
 					}
+					commandsExecuted++;
 
 					if (autoCommit && !conn.getAutoCommit()) {
 						conn.commit();
@@ -178,6 +180,10 @@ public class ScriptRunner {
 			}
 			if (!autoCommit) {
 				conn.commit();
+			}
+			if (command != null && command.length() > 0 && commandsExecuted == 0){
+				printlnError("Found commands but nothing was executed. Did you add the delimiter '" + delimiter
+						+ "' to the end of the command?");
 			}
 		} catch (SQLException e) {
 			e.fillInStackTrace();

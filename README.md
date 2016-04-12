@@ -8,6 +8,7 @@ on Internet, or maybe because it was not available at that time... whatever. I s
 
 I would be glad if you find any of the classes useful. Here are some:
 
+* **EmbeddedMongo**: Embedded mongo to use in any junit
 * **ExpressionEngine**: Expression engine to evaluate javascript expressions
 * **RequestsPerSecondController**: Dont exceed number of requests per second in your program
 * **JSonUtils.java**:  Compare org.json.JSONObject & org.json.JSONArray no matter which is the order of the inner elements
