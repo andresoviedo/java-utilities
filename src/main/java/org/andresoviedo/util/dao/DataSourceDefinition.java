@@ -30,7 +30,10 @@ public final class DataSourceDefinition {
 	public DataSourceDefinition(Properties prop, String propertyPrefix) {
 		this.databaseDriver = prop.getProperty(propertyPrefix + "database.driver");
 		this.url = prop.getProperty(propertyPrefix + "database.url");
-
+		if (StringUtils.isBlank(databaseDriver) || StringUtils.isBlank(url)) {
+			throw new IllegalArgumentException("database.driver or database.url not specified. Prefix '"
+					+ propertyPrefix + "'");
+		}
 		this.datasource = setupDataSource(url);
 		this.databaseScripts = prop.getProperty(propertyPrefix + "database.scripts");
 
