@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileLock;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -21,6 +23,31 @@ import org.apache.commons.logging.LogFactory;
 public final class ProgramUtils {
 
 	private static final Log LOG = LogFactory.getLog(ProgramUtils.class);
+
+	public static boolean lockInstance(final String lockFile) {
+		try {
+			final File file = new File(lockFile);
+			final RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+			final FileLock fileLock = randomAccessFile.getChannel().tryLock();
+			if (fileLock != null) {
+				Runtime.getRuntime().addShutdownHook(new Thread() {
+					public void run() {
+						try {
+							fileLock.release();
+							randomAccessFile.close();
+							file.delete();
+						} catch (Exception e) {
+							LOG.error("Unable to remove lock file: " + lockFile, e);
+						}
+					}
+				});
+				return true;
+			}
+		} catch (Exception e) {
+			LOG.error("Unable to create and/or lock file: " + lockFile, e);
+		}
+		return false;
+	}
 
 	public static Map<String, Object> getSystemAndEnvPropertiesMap() {
 		Map<String, Object> systemProps = new HashMap<String, Object>();
