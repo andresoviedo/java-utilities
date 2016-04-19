@@ -8,6 +8,7 @@ on Internet, or maybe because it was not available at that time... whatever. I s
 
 I would be glad if you find any of the classes useful. Here are some:
 
+* **Make windows executable zip**: Windows script to make executable zips with 7zip. 
 * **ProgramUtils**: Only 1 process running. Save program status. 
 * **EmbeddedMongo**: Embedded mongo to use in any junit
 * **ExpressionEngine**: Expression engine to evaluate javascript expressions

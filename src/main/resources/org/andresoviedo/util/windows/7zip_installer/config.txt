@@ -1,0 +1,5 @@
+;!@Install@!UTF-8!
+Title="MyInstaller"
+ExecuteFile="hola.bat"
+ExecuteParameters="param1 param2"
+;!@InstallEnd@!
