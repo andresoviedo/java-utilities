@@ -118,5 +118,23 @@ public class ResourcePoolTest {
 		Assert.assertNotNull(user2);
 		Assert.assertEquals(user, user2);
 	}
+	
+	@Test
+	public void test_poolOrder(){
+		ResourcePool<Integer> testUserPool = new ResourcePool<Integer>(Arrays.asList(1,2,3,4,5));
+		Assert.assertEquals(1, testUserPool.get().intValue());
+		testUserPool.putBack(1);
+		Assert.assertEquals(2, testUserPool.get().intValue());
+		testUserPool.putBack(2);
+		Assert.assertEquals(3, testUserPool.get().intValue());
+		testUserPool.putBack(3);
+		Assert.assertEquals(4, testUserPool.get().intValue());
+		testUserPool.putBack(4);
+		Assert.assertEquals(5, testUserPool.get().intValue());
+		testUserPool.putBack(5);
+		Assert.assertEquals(1, testUserPool.get().intValue());
+		testUserPool.putBack(1);
+		
+	}
 
 }

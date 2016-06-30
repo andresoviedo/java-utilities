@@ -9,7 +9,8 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 
 /**
- * This class represents a pool of resources.
+ * This class represents a pool of resources. It can be used to implement a round-robin queue using {@link #get()} 
+ * then {@link #putBack(Object)}
  * 
  * @author aoviedo
  * 
