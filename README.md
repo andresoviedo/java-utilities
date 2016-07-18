@@ -38,7 +38,7 @@ I would be glad if you find any of the classes useful. Here are some:
 * [WindowsUtils.java](src/main/java/org/andresoviedo/util/windows/WindowsUtils.java): Create & delete start menu items in Windows XP & Windows 7
 * [DependantTasksExecutor.java](src/main/java/org/andresoviedo/util/tasks/DependantTasksExecutor.java): Execute multiple tasks in parallel even when any task depended on the result of another tasks(s).
 * [StructuredStringSerializer.java](src/main/java/org/andresoviedo/util/serialization/api2/StructuredStringSerializer.java): Write/read any POJO to(from) a String with an annotated structured format
-* [TasksScheduler.java](src/main/java/org/andresoviedo/util/schedule/TasksScheduler.java): Schedule tasks & manage them with a Swing GUI control panel
+* [TasksScheduler.java](src/main/java/org/andresoviedo/util/schedule/api1/TasksScheduler.java): Schedule tasks & manage them with a Swing GUI control panel
 * [RunHelper.java](src/main/java/org/andresoviedo/util/run/RunHelper.java): Run external programs
 * [IOHelper.java](src/main/java/org/andresoviedo/util/io/IOHelper.java): Copy files (zips) and filter it's contents
 
