@@ -1,6 +1,8 @@
 Java-1-Class-Utilities
 ======================
 
+![codeship badge](https://codeship.com/projects/84b26ce0-646d-0134-7bcf-46895dbeddb7/status?branch=master)
+
 Description
 ===========
 
