@@ -69,12 +69,13 @@
 		</dependency>
 
 		<!-- ModemUtils -->
-		<dependency>
+		<!-- uncomment to compile ModemManager -->
+		<!-- <dependency>
 			<groupId>javax.comm</groupId>
 			<artifactId>comm</artifactId>
 			<version>3.0-u1</version>
 			<optional>true</optional>
-		</dependency>
+		</dependency> -->
 
 		<!-- JEE API -->
 		<dependency>

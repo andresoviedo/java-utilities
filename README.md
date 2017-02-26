@@ -48,11 +48,13 @@ Series of scripts useful to any app:
 * [Windows executable zip](src/main/resources/org/andresoviedo/util/windows/7zip_installer/make.bat): Windows script to make executable zips with 7zip.
 
 
-Compilation
-===========
+ModemManager
+============
 
-This project dependends on javax.comm API, but it's not available on maven repository because of legal issues.
-So, before compiling the project you have to add install that library in your local repository.
-To install it execute the following command:
+This utility depends on the javax.comm API, but that's not available on maven repository because of legal issues.
+So, if you want to use the ModemManager utility, download the javax.comm library and install it into your local maven repository.
+Then, uncomment the ModemManager class, uncomment the maven dependency from the pom.xml and recompile the project. 
+
+To install the javax.comm library execute the following command:
 
     mvn install:install-file -Dfile=./comm-3.0-u1.jar -DgroupId=javax.comm -DartifactId=comm -Dversion=3.0-u1 -Dpackaging=jar

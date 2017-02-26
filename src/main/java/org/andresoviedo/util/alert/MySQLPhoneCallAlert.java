@@ -24,7 +24,6 @@ import org.andresoviedo.util.bean.CallInfoBean;
 import org.andresoviedo.util.bean.MailInfoBean;
 import org.andresoviedo.util.log.jul.DefaultFileFormat;
 import org.andresoviedo.util.log.jul.MailHandler;
-import org.andresoviedo.util.modem.ModemManager;
 
 public class MySQLPhoneCallAlert {
 
@@ -158,7 +157,8 @@ public class MySQLPhoneCallAlert {
 				callInfo.setWaitSecs(60);
 				try {
 					logger.logp(Level.INFO, "AlertApp", "alert", "Alerting [" + callInfo.getTelephoneNr() + "]...");
-					ModemManager.call(callInfo);
+					// TODO: uncomment MomdemManager
+//					ModemManager.call(callInfo);
 				} catch (Exception ex) {
 					logger.logp(Level.INFO, "AlertApp", "alert", ex.getMessage());
 				}
