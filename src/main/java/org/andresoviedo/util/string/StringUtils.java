@@ -177,4 +177,26 @@ public class StringUtils {
 		return false;
 	}
 
+	/**
+	 * Remove the lines matching the pattern from the specified text
+	 * 
+	 * @param text
+	 *            input text
+	 * @param pattern
+	 *            line pattern to remove
+	 * @return the string without the lines matching the pattern
+	 */
+	public static String removeLines(String text, String pattern) {
+		StringBuilder ret = new StringBuilder();
+		System.out.println("Removing lines from: " + text);
+		for (String line : text.split(System.getProperty("line.separator"))) {
+			if (line.matches(pattern)) {
+				continue;
+			}
+			System.out.println("no: " + line);
+			ret.append(line).append(System.getProperty("line.separator"));
+		}
+		return ret.toString();
+	}
+
 }
