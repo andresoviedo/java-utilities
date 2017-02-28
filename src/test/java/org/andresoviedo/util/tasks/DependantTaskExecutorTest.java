@@ -1,11 +1,20 @@
 package org.andresoviedo.util.tasks;
 
 import java.util.Arrays;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+/**
+ * Ignored because it's too long to run on the ci
+ * 
+ * @author andresoviedo
+ *
+ */
+@Ignore
 public class DependantTaskExecutorTest {
 
 	@Test

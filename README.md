@@ -12,7 +12,7 @@ You can copy freely the class you need into your project.
 Each utility was built along the time, and it was implemented because I didn't find any similar
 on Internet, or maybe because it was not available at that time... whatever. I still keep adding new utilities.
 
-**Last update**: (18/07/2016)
+**Last update**: (28/02/2017)
 
 Utilities
 ========= 
@@ -58,3 +58,14 @@ Then, uncomment the ModemManager class, uncomment the maven dependency from the 
 To install the javax.comm library execute the following command:
 
     mvn install:install-file -Dfile=./comm-3.0-u1.jar -DgroupId=javax.comm -DartifactId=comm -Dversion=3.0-u1 -Dpackaging=jar
+    
+
+Tests
+=====
+
+There are some junits implemented. Somes are @ignored to speed up compilation. These:
+* [ProgramUtilsTest.java](src/test/java/org/andresoviedo/util/program/ProgramUtilsTest.java)
+* [MessengerTest.java](src/test/java/org/andresoviedo/util/messaging/api1/MessengerTest.java)
+* [JGroupsClusterTest.java](src/test/java/org/andresoviedo/util/jgroups/JGroupsClusterTest.java)
+* [DependantTaskExecutorTest.java](src/test/java/org/andresoviedo/util/tasks/DependantTaksExecutorTest.java)
+

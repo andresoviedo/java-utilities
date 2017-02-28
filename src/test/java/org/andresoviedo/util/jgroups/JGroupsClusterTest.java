@@ -12,8 +12,16 @@ import org.andresoviedo.util.http.NanoHTTPD;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+/**
+ * Ignored because it's too long to run on the ci
+ * 
+ * @author andresoviedo
+ *
+ */
+@Ignore
 public class JGroupsClusterTest {
 
 	JGroupsCluster instance1;
@@ -21,8 +29,10 @@ public class JGroupsClusterTest {
 
 	@Before
 	public void setUp() {
-		instance1 = new JGroupsCluster(new InetSocketAddress("127.0.0.1", 18000), Arrays.asList(new InetSocketAddress("127.0.0.1", 18001)));
-		instance2 = new JGroupsCluster(new InetSocketAddress("127.0.0.1", 18001), Arrays.asList(new InetSocketAddress("127.0.0.1", 18000)));
+		instance1 = new JGroupsCluster(new InetSocketAddress("127.0.0.1", 18000),
+				Arrays.asList(new InetSocketAddress("127.0.0.1", 18001)));
+		instance2 = new JGroupsCluster(new InetSocketAddress("127.0.0.1", 18001),
+				Arrays.asList(new InetSocketAddress("127.0.0.1", 18000)));
 
 		instance1.init();
 		instance2.init();
@@ -48,7 +58,7 @@ public class JGroupsClusterTest {
 		instance1.broadcast("" + System.currentTimeMillis() + " - hola de 1 para 2");
 		instance2.broadcast("" + System.currentTimeMillis() + " - hola de 2 para 1");
 
-//		Thread.sleep(2000);
+		// Thread.sleep(2000);
 		System.out.println("...sleep ended");
 	}
 
@@ -137,7 +147,8 @@ public class JGroupsClusterTest {
 	// if (lock.tryLock(3000, TimeUnit.MILLISECONDS)) {
 	// try {
 	// Thread.sleep(1000);
-	// ch.send(null, "" + System.currentTimeMillis() + " - " + String.valueOf("Lock acquired by: " + bind_address.getPort()));
+	// ch.send(null, "" + System.currentTimeMillis() + " - " +
+	// String.valueOf("Lock acquired by: " + bind_address.getPort()));
 	// Thread.sleep(1000);
 	// } finally {
 	// lock.unlock();

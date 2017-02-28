@@ -13,8 +13,16 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
+/**
+ * Ignored because it's too long to run on the ci
+ * 
+ * @author andresoviedo
+ *
+ */
+@Ignore
 public class MessengerTest {
 
 	private ServerMessenger serverMessenger;

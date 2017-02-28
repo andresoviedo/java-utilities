@@ -2,8 +2,16 @@ package org.andresoviedo.util.program;
 
 import org.andresoviedo.util.program.ProgramUtils.RequestsPerSecondController;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
+/**
+ * Ignored because it's too long to run on the ci
+ * 
+ * @author andresoviedo
+ *
+ */
+@Ignore
 public class ProgramUtilsTest {
 
 	@Test
