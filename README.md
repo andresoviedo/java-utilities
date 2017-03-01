@@ -3,6 +3,9 @@ Java-1-Class-Utilities
 
 ![codeship badge](https://codeship.com/projects/84b26ce0-646d-0134-7bcf-46895dbeddb7/status?branch=master)
 
+**Last update** 01/03/2017
+
+
 Description
 ===========
 
@@ -12,13 +15,14 @@ You can copy freely the class you need into your project.
 Each utility was built along the time, and it was implemented because I didn't find any similar
 on Internet, or maybe because it was not available at that time... whatever. I still keep adding new utilities.
 
-**Last update**: (28/02/2017)
 
 Utilities
 ========= 
 
 I would be glad if you find any of the classes useful. Here are some:
 
+* [SpringTTLCache.java](src/main/java/org/andresoviedo/util/cache/SpringTTLCache.java): Spring/JDK Cache with TTL + Junit
+* [TilesWithPropertiesView.java](src/main/java/org/andresoviedo/util/spring/mvc/TilesWithPropertiesView.java): TilesView with exposed attributes
 * [ConfigurationUtils.java](src/main/java/org/andresoviedo/util/configuration/ConfigurationUtils.java): Bind *.properties file to Pojo
 * [ProgramUtils.java](src/main/java/org/andresoviedo/util/program/ProgramUtils.java): Only 1 process running. Save program status 
 * [EmbeddedMongo.java](src/main/java/org/andresoviedo/util/mongo/EmbeddedMongo.java): Embedded mongo to use in any junit
