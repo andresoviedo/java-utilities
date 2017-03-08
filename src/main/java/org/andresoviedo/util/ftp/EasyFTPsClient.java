@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.net.ftp.FTPSClient;
-import org.apache.log4j.Logger;
 
 /**
  * FTP client to put files and receive files based on a regexp.
@@ -22,7 +23,7 @@ import org.apache.log4j.Logger;
  */
 public class EasyFTPsClient {
 
-	private static final Logger LOG = Logger.getLogger(EasyFTPsClient.class);
+	private static final Logger LOG = Logger.getLogger(EasyFTPsClient.class.getName());
 
 	private final String user;
 	private final String pass;
@@ -63,7 +64,7 @@ public class EasyFTPsClient {
 			LOG.info("[PUT] File succesfully uploaded.");
 
 		} catch (Exception ex) {
-			LOG.error("[PUT] Error: " + ex.getMessage(), ex);
+			LOG.log(Level.SEVERE, "[PUT] Error: " + ex.getMessage(), ex);
 			throw new RuntimeException("[PUT] Problem putting file to ftp server", ex);
 		} finally {
 			try {
@@ -157,7 +158,7 @@ public class EasyFTPsClient {
 			Collections.sort(ret);
 			return ret.toArray(new File[ret.size()]);
 		} catch (Exception ex) {
-			LOG.error("[GET] Error: " + ex.getMessage(), ex);
+			LOG.log(Level.SEVERE, "[GET] Error: " + ex.getMessage(), ex);
 			throw new RuntimeException("[GET] Problem putting file to ftp server", ex);
 		} finally {
 			try {

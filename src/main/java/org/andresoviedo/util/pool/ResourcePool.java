@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class represents a pool of resources. It can be used to implement a round-robin queue using {@link #get()} 
@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
  */
 public class ResourcePool<T> {
 
-	private static final Logger LOG = Logger.getLogger(ResourcePool.class);
+	private static final Logger LOG = Logger.getLogger(ResourcePool.class.getName());
 	/**
 	 * Timeout constant to get or return users to the pool (it can be hacked from JUnit)
 	 */
@@ -40,7 +40,7 @@ public class ResourcePool<T> {
 			throw new RuntimeException("Empty resources");
 		}
 		this.poolOfResources = new ArrayBlockingQueue<T>(resources.size(), true, resources);
-		LOG.debug("Resource pool created with this list of resources '" + Arrays.asList(resources) + "'");
+		LOG.fine("Resource pool created with this list of resources '" + Arrays.asList(resources) + "'");
 	}
 
 	/**
@@ -77,8 +77,8 @@ public class ResourcePool<T> {
 	 *             if operation times out waiting for an available resource
 	 */
 	public T get() throws TimeoutException {
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("Getting resource from the pool...");
+		if (LOG.isLoggable(Level.FINEST)) {
+			LOG.finest("Getting resource from the pool...");
 		}
 		T resource;
 		try {
@@ -89,8 +89,8 @@ public class ResourcePool<T> {
 		if (resource == null) {
 			throw new TimeoutException("Couldn't get a resource after waiting '" + timeout + "' millis");
 		}
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("Returned resource '" + resource + "' from the pool.");
+		if (LOG.isLoggable(Level.FINEST)) {
+			LOG.finest("Returned resource '" + resource + "' from the pool.");
 		}
 		return resource;
 	}
@@ -104,8 +104,8 @@ public class ResourcePool<T> {
 	 *             if thread is interrupted
 	 */
 	public void putBack(T previouslyGottenResource) {
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("Putting back resource '" + previouslyGottenResource + "'...");
+		if (LOG.isLoggable(Level.FINEST)) {
+			LOG.finest("Putting back resource '" + previouslyGottenResource + "'...");
 		}
 		try {
 			if (!poolOfResources.offer(previouslyGottenResource, timeout, TimeUnit.MILLISECONDS)) {
@@ -117,8 +117,8 @@ public class ResourcePool<T> {
 			throw new RuntimeException("Thread interrupted while waiting to return the resource " + previouslyGottenResource
 					+ " to the pool");
 		}
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("Resource '" + previouslyGottenResource + "' returned to the pool.");
+		if (LOG.isLoggable(Level.FINEST)) {
+			LOG.finest("Resource '" + previouslyGottenResource + "' returned to the pool.");
 		}
 	}
 

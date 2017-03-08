@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.andresoviedo.util.http.NanoHTTPD;
 import org.andresoviedo.util.http.server.HttpService;
 import org.andresoviedo.util.http.server.RequestHandler;
-import org.apache.log4j.Logger;
 
 /**
  * Http service implementation using nanohttpd as the http server. This class adds support for registering handlers (or
@@ -20,7 +21,7 @@ import org.apache.log4j.Logger;
  */
 public final class HttpServiceImpl extends NanoHTTPD implements HttpService {
 
-	private Logger LOG = Logger.getLogger(HttpServiceImpl.class);
+	private Logger LOG = Logger.getLogger(HttpServiceImpl.class.getName());
 
 	private final List<RequestHandler> handlers = new ArrayList<RequestHandler>();
 	private final List<RequestHandler> supportHandlers = new ArrayList<RequestHandler>();
@@ -62,7 +63,7 @@ public final class HttpServiceImpl extends NanoHTTPD implements HttpService {
 			for (RequestHandler handler : supportHandlers) {
 				if (handler.canHandle(session.getUri())) {
 					Response handlerResponse = handler.handle(session);
-					LOG.debug("Support response '" + handlerResponse + "'");
+					LOG.fine("Support response '" + handlerResponse + "'");
 					return handlerResponse;
 				}
 			}
@@ -75,19 +76,19 @@ public final class HttpServiceImpl extends NanoHTTPD implements HttpService {
 						continue;
 
 					Response handlerResponse = handler.handle(session);
-					LOG.debug("Response '" + handlerResponse + "'");
+					LOG.fine("Response '" + handlerResponse + "'");
 					return handlerResponse;
 				}
 			}
 
 			// INFO: We don't have a handler for this request. Return error!
 			String msg = "No handler can server request";
-			LOG.warn(msg);
+			LOG.warning(msg);
 			return newFixedLengthResponse(Response.Status.BAD_REQUEST, "text/plain", msg);
 
 		} catch (Exception ex) {
 			// INFO: handle error to return error description to client
-			LOG.error(ex.getMessage(), ex);
+			LOG.log(Level.SEVERE, ex.getMessage(), ex);
 			return newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", ex.getMessage());
 		} finally {
 			// TODO: allow settings headers

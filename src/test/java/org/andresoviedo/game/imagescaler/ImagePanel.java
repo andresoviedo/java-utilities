@@ -1,9 +1,16 @@
 package org.andresoviedo.game.imagescaler;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.MemoryImageSource;
 import java.util.Arrays;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 public class ImagePanel extends JComponent{
 

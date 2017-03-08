@@ -9,8 +9,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
 import org.jgroups.Address;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
@@ -39,7 +39,7 @@ import org.jgroups.stack.ProtocolStack;
  */
 public final class JGroupsCluster {
 
-	private static final Logger LOG = Logger.getLogger(JGroupsCluster.class);
+	private static final Logger LOG = Logger.getLogger(JGroupsCluster.class.getName());
 
 	private enum Action {
 		Reboot
@@ -59,7 +59,7 @@ public final class JGroupsCluster {
 
 	public void init() {
 		try {
-			LOG.debug("Initializing JGroupsCluster...");
+			LOG.fine("Initializing JGroupsCluster...");
 
 			ch = new JChannel(false);
 			ProtocolStack stack = new ProtocolStack();
@@ -101,7 +101,7 @@ public final class JGroupsCluster {
 
 			ch.setReceiver(new ReceiverAdapter() {
 				public void viewAccepted(View new_view) {
-					LOG.debug("Member joined cluster '" + new_view + "'");
+					LOG.fine("Member joined cluster '" + new_view + "'");
 				}
 
 				public void receive(Message msg) {
@@ -111,7 +111,7 @@ public final class JGroupsCluster {
 						return;
 					}
 
-					LOG.debug("Received message from '" + msg.getSrc() + "' '" + msg.getObject() + "'");
+					LOG.fine("Received message from '" + msg.getSrc() + "' '" + msg.getObject() + "'");
 				}
 			});
 
@@ -174,7 +174,7 @@ public final class JGroupsCluster {
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						LOG.debug("Executing sanity check for last reboot....");
+						LOG.fine("Executing sanity check for last reboot....");
 						reboot_periodically(when);
 					}
 				}, TimeUnit.MINUTES.toMillis(30));

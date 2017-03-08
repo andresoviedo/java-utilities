@@ -7,14 +7,13 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.log4j.Logger;
-
 public class PrimitiveExpressionEngine {
 
-	private static final Logger LOG = Logger.getLogger(PrimitiveExpressionEngine.class);
+	private static final Logger LOG = Logger.getLogger(PrimitiveExpressionEngine.class.getName());
 
 	public static final Pattern VARIABLE_REGEX = Pattern.compile("\\$\\{([^\\$]+?)\\}");
 
@@ -53,7 +52,7 @@ public class PrimitiveExpressionEngine {
 	}
 
 	public static String replaceVariables(String expression, Map<String, Object>... vars) {
-		LOG.trace("Replacing variables for '" + expression + "'.... variables '" + Arrays.toString(vars) + "'");
+		LOG.finest("Replacing variables for '" + expression + "'.... variables '" + Arrays.toString(vars) + "'");
 		if (expression == null) {
 			return null;
 		}
@@ -69,7 +68,7 @@ public class PrimitiveExpressionEngine {
 
 			if ("__func(SECONDS_FROM_EPOCH)".equals(varName)) {
 				String secondsFromEpoch = String.valueOf(System.currentTimeMillis() / 1000);
-				LOG.trace("Replacing '" + match + "' with seconds from epoch '" + secondsFromEpoch + "'...");
+				LOG.finest("Replacing '" + match + "' with seconds from epoch '" + secondsFromEpoch + "'...");
 				// ret = ret.replaceFirst(varName,
 				// String.valueOf(System.currentTimeMillis() / 1000));
 				ret = ret.replaceFirst(Pattern.quote(match), secondsFromEpoch);
@@ -78,7 +77,7 @@ public class PrimitiveExpressionEngine {
 
 			if ("__func(MILLIS_FROM_EPOCH)".equals(varName)) {
 				String secondsFromEpoch = String.valueOf(System.currentTimeMillis());
-				LOG.trace("Replacing '" + match + "' with millis from epoch '" + secondsFromEpoch + "'...");
+				LOG.finest("Replacing '" + match + "' with millis from epoch '" + secondsFromEpoch + "'...");
 				// ret = ret.replaceFirst(varName,
 				// String.valueOf(System.currentTimeMillis() / 1000));
 				ret = ret.replaceFirst(Pattern.quote(match), secondsFromEpoch);
@@ -87,7 +86,7 @@ public class PrimitiveExpressionEngine {
 
 			if ("__func(RANDOM(7))".equals(varName)) {
 				String randomString = UUID.randomUUID().toString().substring(0, 7);
-				LOG.trace("Replacing '" + match + "' with random string '" + randomString + "'...");
+				LOG.finest("Replacing '" + match + "' with random string '" + randomString + "'...");
 				// ret = ret.replaceFirst(varName,
 				// String.valueOf(System.currentTimeMillis() / 1000));
 				ret = ret.replaceFirst(Pattern.quote(match), randomString);
@@ -96,7 +95,7 @@ public class PrimitiveExpressionEngine {
 
 			Matcher m3 = STRING_FUNCTION_2_ARGS.matcher(varName);
 			if (m3.find()) {
-				LOG.trace("Replacing '" + match + "' with function (2 args) '" + varName + "'...");
+				LOG.finest("Replacing '" + match + "' with function (2 args) '" + varName + "'...");
 				String funcValue = m3.group(1);
 				String function = m3.group(2);
 				Object[] functionArgs = new Integer[] { new Integer(m3.group(3)), new Integer(m3.group(4)) };
@@ -111,7 +110,7 @@ public class PrimitiveExpressionEngine {
 
 			Matcher m1 = STRING_FUNCTION_1_ARGS.matcher(varName);
 			if (m1.find()) {
-				LOG.trace("Replacing '" + match + "' with function (1 args) '" + varName + "'...");
+				LOG.finest("Replacing '" + match + "' with function (1 args) '" + varName + "'...");
 				String funcValue = m1.group(1);
 				String function = m1.group(2);
 				String arg = m1.group(3);
@@ -132,7 +131,7 @@ public class PrimitiveExpressionEngine {
 
 			Matcher f0 = STRING_FUNCTION_0_ARGS.matcher(varName);
 			if (f0.find()) {
-				LOG.trace("Replacing '" + match + "' with function (0 args) '" + varName + "'...");
+				LOG.finest("Replacing '" + match + "' with function (0 args) '" + varName + "'...");
 				String funcValue = f0.group(1);
 				String function = f0.group(2);
 				if ("decode".equals(function)) {
@@ -153,7 +152,7 @@ public class PrimitiveExpressionEngine {
 
 			Matcher mMath = MATH_REGEX.matcher(varName);
 			if (mMath.find()) {
-				LOG.trace("Replacing '" + match + "' with math function (2 args) '" + varName + "'...");
+				LOG.finest("Replacing '" + match + "' with math function (2 args) '" + varName + "'...");
 				String arg1 = mMath.group(1);
 				String operation = mMath.group(2);
 				String arg2 = mMath.group(3);
@@ -171,7 +170,7 @@ public class PrimitiveExpressionEngine {
 			String replacement = null;
 			for (Map<String, Object> variableMap : vars) {
 				if (variableMap.containsKey(varName)) {
-					LOG.trace("Replacing '" + match + "' with '" + variableMap.get(varName) + "'...");
+					LOG.finest("Replacing '" + match + "' with '" + variableMap.get(varName) + "'...");
 					replacement = Matcher.quoteReplacement(variableMap.get(varName).toString());
 					ret = ret.replaceFirst(Pattern.quote(match), replacement);
 					didMatch = true;

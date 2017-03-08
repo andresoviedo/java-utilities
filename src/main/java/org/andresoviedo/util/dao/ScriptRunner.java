@@ -29,8 +29,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Tool to run database scripts
@@ -44,8 +44,8 @@ public class ScriptRunner {
 	private boolean stopOnError;
 	private boolean autoCommit;
 
-	private Logger logWriter = Logger.getLogger(ScriptRunner.class);
-	private Logger errorLogWriter = Logger.getLogger(ScriptRunner.class);
+	private Logger logWriter = Logger.getLogger(ScriptRunner.class.getName());
+	private Logger errorLogWriter = Logger.getLogger(ScriptRunner.class.getName());
 
 	private String delimiter = DEFAULT_DELIMITER;
 	private boolean fullLineDelimiter = false;
@@ -128,7 +128,7 @@ public class ScriptRunner {
 					command.append(" ");
 					Statement statement = conn.createStatement();
 
-					println(command);
+					println(command.toString());
 
 					boolean hasResults = false;
 					if (stopOnError) {
@@ -205,21 +205,27 @@ public class ScriptRunner {
 		return delimiter;
 	}
 
-	private void print(Object o) {
+	private void print(String o) {
 		if (logWriter != null) {
-			logWriter.debug(o);
+			logWriter.fine(o);
 		}
 	}
 
-	private void println(Object o) {
+	private void println(String o) {
 		if (logWriter != null) {
-			logWriter.trace(o);
+			logWriter.finest(o);
 		}
 	}
-
-	private void printlnError(Object o) {
+	
+	private void printlnError(String ex) {
 		if (errorLogWriter != null) {
-			errorLogWriter.error(o);
+			errorLogWriter.log(Level.SEVERE, ex);
+		}
+	}
+
+	private void printlnError(Exception ex) {
+		if (errorLogWriter != null) {
+			errorLogWriter.log(Level.SEVERE, ex.getMessage(), ex);
 		}
 	}
 }

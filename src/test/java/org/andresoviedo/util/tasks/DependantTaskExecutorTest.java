@@ -1,7 +1,6 @@
 package org.andresoviedo.util.tasks;
 
 import java.util.Arrays;
-
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 

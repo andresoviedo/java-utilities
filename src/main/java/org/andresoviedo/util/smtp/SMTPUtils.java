@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -20,9 +22,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
-
-import org.apache.log4j.Logger;
-import org.apache.log4j.spi.ErrorCode;
 
 /**
  * SMTP utils is an optional delegated class that is capable of getting a file or a message and send it like an e-mail
@@ -41,7 +40,7 @@ import org.apache.log4j.spi.ErrorCode;
 
 public final class SMTPUtils {
 
-	private static final Logger LOG = Logger.getLogger(SMTPUtils.class);
+	private static final Logger LOG = Logger.getLogger(SMTPUtils.class.getName());
 
 	private SMTPUtils() {
 
@@ -85,7 +84,7 @@ public final class SMTPUtils {
 				try {
 					mm.setSubject(MimeUtility.encodeText(subject, "UTF-8", null));
 				} catch (UnsupportedEncodingException ex) {
-					LOG.error("Unable to encode SMTP subject", ex);
+					LOG.log(Level.SEVERE, "Unable to encode SMTP subject", ex);
 				}
 			}
 
@@ -117,14 +116,14 @@ public final class SMTPUtils {
 
 			return true;
 		} catch (MessagingException ex) {
-			LOG.error("Exception while sending email: " + ex.getMessage(), ex);
+			LOG.log(Level.SEVERE, "Exception while sending email: " + ex.getMessage(), ex);
 			// SystemLog.logException(ex);
 			Exception nex = null;
 			if ((nex = ex.getNextException()) != null) {
-				LOG.error("Secondary exception: " + nex.getMessage());
+				LOG.log(Level.SEVERE, "Secondary exception: " + nex.getMessage());
 			}
 		} catch (Exception e) {
-			LOG.error("Unexpected exception: " + e.getMessage(), e);
+			LOG.log(Level.SEVERE, "Unexpected exception: " + e.getMessage(), e);
 		}
 		return false;
 	}
@@ -133,7 +132,7 @@ public final class SMTPUtils {
 		try {
 			return new InternetAddress(addressStr);
 		} catch (AddressException e) {
-			LOG.error("Could not parse address [" + addressStr + "]:" + ErrorCode.ADDRESS_PARSE_FAILURE, e);
+			LOG.log(Level.SEVERE, "Could not parse address [" + addressStr + "]", e);
 			return null;
 		}
 	}
@@ -142,7 +141,7 @@ public final class SMTPUtils {
 		try {
 			return InternetAddress.parse(addressStr, true);
 		} catch (AddressException e) {
-			LOG.error("Could not parse address [" + addressStr + "]: " + ErrorCode.ADDRESS_PARSE_FAILURE, e);
+			LOG.log(Level.SEVERE, "Could not parse address [" + addressStr + "]", e);
 			return null;
 		}
 	}

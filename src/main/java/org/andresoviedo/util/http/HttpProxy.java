@@ -14,8 +14,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Simple HTTP proxy
@@ -55,7 +55,7 @@ public final class HttpProxy {
 
 	static class ProxyServerThread implements Runnable {
 
-		private static final Logger LOG = Logger.getLogger(HttpProxy.class);
+		private static final Logger LOG = Logger.getLogger(HttpProxy.class.getName());
 
 		private final ServerSocket serverSocket;
 		private final List<Thread> requests = new ArrayList<Thread>();
@@ -65,10 +65,10 @@ public final class HttpProxy {
 
 		public ProxyServerThread(int port) {
 			try {
-				LOG.debug("Opening server socket at port '" + port + "'...");
+				LOG.fine("Opening server socket at port '" + port + "'...");
 				serverSocket = new ServerSocket(port);
 			} catch (IOException ex) {
-				LOG.error("Could not open port '" + port + "'", ex);
+				LOG.log(Level.SEVERE, "Could not open port '" + port + "'", ex);
 				throw new RuntimeException(ex);
 			}
 		}
@@ -83,7 +83,7 @@ public final class HttpProxy {
 					}
 					requestThread.start();
 				} catch (Exception ex) {
-					LOG.error("Oops! There was a problem processing request", ex);
+					LOG.log(Level.SEVERE, "Oops! There was a problem processing request", ex);
 				}
 			}
 			LOG.info("I have been stopped. Good bye!");
@@ -118,14 +118,14 @@ public final class HttpProxy {
 							request.interrupt();
 							request.join(5000);
 						} catch (Exception ex) {
-							LOG.error("Oops! There was a problem waiting for request to finish", ex);
+							LOG.log(Level.SEVERE, "Oops! There was a problem waiting for request to finish", ex);
 						}
 					}
 				}
 
 				return true;
 			} catch (Exception ex) {
-				LOG.error("Oops! There was a problem stopping the proxy", ex);
+				LOG.log(Level.SEVERE, "Oops! There was a problem stopping the proxy", ex);
 				return false;
 			}
 		}
@@ -161,7 +161,7 @@ public final class HttpProxy {
 							String[] tokens = inputLine.split(" ");
 							urlToCall = tokens[1];
 							// can redirect this to output log
-							LOG.debug("Request for : " + urlToCall);
+							LOG.fine("Request for : " + urlToCall);
 						}
 
 						cnt++;
@@ -185,7 +185,7 @@ public final class HttpProxy {
 						InputStream is = null;
 						HttpURLConnection huc = (HttpURLConnection) conn;
 						int responseCode = huc.getResponseCode();
-						LOG.debug("Response code '" + responseCode + "'");
+						LOG.fine("Response code '" + responseCode + "'");
 
 						if (responseCode == HttpURLConnection.HTTP_OK) {
 							String connectResponse = "HTTP/1.0 200 Connection established\n" + "Proxy-agent: HttpProxy/1.0\n" + "\r\n";
@@ -204,7 +204,7 @@ public final class HttpProxy {
 							}
 							out.close();
 						} catch (IOException ioe) {
-							LOG.error("Oops! There was a problem reading streams", ioe);
+							LOG.log(Level.SEVERE, "Oops! There was a problem reading streams", ioe);
 						}
 
 						// end send request to server, get response from server
@@ -217,7 +217,7 @@ public final class HttpProxy {
 						// /////////////////////////////////
 					} catch (Exception e) {
 						// can redirect this to error log
-						LOG.error("Oops! There was an unexpected problem", e);
+						LOG.log(Level.SEVERE, "Oops! There was an unexpected problem", e);
 						// encountered error - just send nothing back, so
 						// processing can continue
 						// out.writeBytes("");
@@ -238,7 +238,7 @@ public final class HttpProxy {
 					}
 
 				} catch (Exception ex) {
-					LOG.error("Oops! There was a problem processing request", ex);
+					LOG.log(Level.SEVERE, "Oops! There was a problem processing request", ex);
 				} finally {
 					synchronized (requests) {
 						requests.remove(this);

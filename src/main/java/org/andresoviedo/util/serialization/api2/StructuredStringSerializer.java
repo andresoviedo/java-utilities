@@ -17,15 +17,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.input.BOMInputStream;
-import org.apache.log4j.Logger;
 
 public final class StructuredStringSerializer<T> {
 
-	private static final Logger LOG = Logger.getLogger(StructuredStringSerializer.class);
+	private static final Logger LOG = Logger.getLogger(StructuredStringSerializer.class.getName());
 
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
@@ -41,7 +42,7 @@ public final class StructuredStringSerializer<T> {
 
 	public StructuredStringSerializer(Class<T> clazz) {
 		this.clazz = clazz;
-		LOG.debug("Building info for class '" + clazz + "'...");
+		LOG.fine("Building info for class '" + clazz + "'...");
 		serializableFields = SerializableField.build(clazz);
 		LOG.info("Serializable fields: " + serializableFields);
 	}
@@ -57,7 +58,7 @@ public final class StructuredStringSerializer<T> {
 	}
 
 	private void serializeImpl(StringBuilder ret, Object obj, Collection<SerializableField> sfs) {
-		LOG.debug("Serializing...");
+		LOG.fine("Serializing...");
 		for (SerializableField f : sfs) {
 			if (f.isRecord) {
 				if (!f.isList) {
@@ -77,7 +78,7 @@ public final class StructuredStringSerializer<T> {
 	}
 
 	public T deserialize(File f) {
-		LOG.debug("Deserializing file '" + f.getAbsolutePath() + "'...");
+		LOG.fine("Deserializing file '" + f.getAbsolutePath() + "'...");
 		BOMInputStream is = null;
 		try {
 			is = new BOMInputStream(new FileInputStream(f));
@@ -89,7 +90,7 @@ public final class StructuredStringSerializer<T> {
 				try {
 					is.close();
 				} catch (IOException ex) {
-					LOG.error("Couldn't close input file stream: " + ex.getMessage(), ex);
+					LOG.log(Level.SEVERE, "Couldn't close input file stream: " + ex.getMessage(), ex);
 				}
 			}
 		}
@@ -100,7 +101,7 @@ public final class StructuredStringSerializer<T> {
 	}
 
 	public T deserialize(String objectSerialized) {
-		LOG.debug("Deserializing... '" + objectSerialized + "'");
+		LOG.fine("Deserializing... '" + objectSerialized + "'");
 		T ret = null;
 
 		try {
@@ -199,7 +200,7 @@ public final class StructuredStringSerializer<T> {
 			} catch (Exception ex) {
 				String errorMsg = "Exception deserializing field '" + currentObj.getClass().getSimpleName() + "#" + f.field.getName()
 						+ "' at pos '" + pos + "' in '" + sb + "'";
-				LOG.fatal(errorMsg, ex);
+				LOG.log(Level.SEVERE, errorMsg, ex);
 				throw new RuntimeException(errorMsg, ex);
 			}
 		}
@@ -224,7 +225,7 @@ public final class StructuredStringSerializer<T> {
 		final Map<String, SerializableField> childsWithoutOrder;
 
 		private static Collection<SerializableField> build(Class<?> clazz) {
-			LOG.debug("Building serialization info for class '" + clazz + "'...");
+			LOG.fine("Building serialization info for class '" + clazz + "'...");
 			// Set<SerializableField> recordFields = new TreeSet<SerializableField>(recordComparator);
 			List<SerializableField> recordFields = new ArrayList<SerializableField>();
 			for (Field field : clazz.getDeclaredFields()) {
@@ -245,13 +246,13 @@ public final class StructuredStringSerializer<T> {
 			this.isRecord = annotation.order() != -1 || (annotation.order() == -1 && annotation.offset() == -1);
 			this.isField = !isRecord;
 
-			LOG.debug("-Building field '" + field.getName() + "'" + (isRecord ? " (Record)" : "") + "...");
+			LOG.fine("-Building field '" + field.getName() + "'" + (isRecord ? " (Record)" : "") + "...");
 
 			if (isList) {
 				listType = (Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
 				this.classAnnotation = listType.getAnnotation(StringField.class);
 				if (classAnnotation == null || "".equals(classAnnotation.id())) {
-					LOG.warn("The class is an item list '" + listType + "' but the @'" + StringField.class.getSimpleName()
+					LOG.warning("The class is an item list '" + listType + "' but the @'" + StringField.class.getSimpleName()
 							+ "' annotation is missing or the attribute #id was not set. "
 							+ "You won't be able to deserialize this type of variable length records");
 					listItemId = null;
@@ -296,7 +297,7 @@ public final class StructuredStringSerializer<T> {
 						|| Integer.TYPE == field.getType()) {
 					try {
 						value = formatValue(field.get(null));
-						LOG.debug("Found constant value for '" + field.getName() + "'='" + value + "'");
+						LOG.fine("Found constant value for '" + field.getName() + "'='" + value + "'");
 					} catch (Exception ex) {
 						throw new IllegalStateException("Couldn't get constant value from '" + field.getName() + "'", ex);
 					}
@@ -334,14 +335,14 @@ public final class StructuredStringSerializer<T> {
 			// String errorMsg = "A list was found to deserialize, but the item type '"
 			// + genericType.getName() + "' is missing the @" + StringField.class.getSimpleName()
 			// + " or #id attribute was not set.";
-			// LOG.fatal(errorMsg);
+			// LOG.log(Level.SEVERE, errorMsg);
 			// throw new RuntimeException(errorMsg);
 			// }
 		}
 
 		Object getValue(Object runtimeObj) {
 			if (isConstant) {
-				LOG.debug("Returning constant value '" + value + "'...");
+				LOG.fine("Returning constant value '" + value + "'...");
 				return value;
 			}
 
@@ -351,7 +352,7 @@ public final class StructuredStringSerializer<T> {
 					return rawValue;
 				}
 
-				LOG.debug("Formatting field '" + field.getName() + "'...");
+				LOG.fine("Formatting field '" + field.getName() + "'...");
 				return formatValue(field.get(runtimeObj));
 
 			} catch (Exception ex) {
@@ -363,12 +364,12 @@ public final class StructuredStringSerializer<T> {
 			try {
 
 				if (runtimeValue == null) {
-					LOG.debug("Returning <null>...");
+					LOG.fine("Returning <null>...");
 					return null;
 				}
 
 				if ("".equals(annotation.format())) {
-					LOG.debug("Returning unformatted value '" + runtimeValue + "'");
+					LOG.fine("Returning unformatted value '" + runtimeValue + "'");
 					return runtimeValue;
 				}
 
@@ -378,13 +379,13 @@ public final class StructuredStringSerializer<T> {
 
 				if (runtimeValue instanceof Integer || Integer.TYPE.isInstance(runtimeValue)) {
 					String ret = String.format(annotation.format(), runtimeValue);
-					LOG.debug("Formated integer value '" + runtimeValue + "' with '" + annotation.format() + "'='" + ret + "'");
+					LOG.fine("Formated integer value '" + runtimeValue + "' with '" + annotation.format() + "'='" + ret + "'");
 					return ret;
 				}
 
 				if (runtimeValue instanceof Date) {
 					String ret = dateFormat.format(runtimeValue);
-					LOG.debug("Formated value '" + runtimeValue + "' with '" + annotation.format() + "'='" + ret + "'");
+					LOG.fine("Formated value '" + runtimeValue + "' with '" + annotation.format() + "'='" + ret + "'");
 					return ret;
 				}
 
@@ -444,10 +445,10 @@ public final class StructuredStringSerializer<T> {
 				char padChar = m.group(2).charAt(1);
 				StringBuilder newFormat = new StringBuilder(format);
 				newFormat.delete(m.start(2), m.end(2));
-				LOG.debug("Formatting '" + runtimeValue + "' with new format '" + newFormat + "' with pad char '" + padChar + "'...");
+				LOG.fine("Formatting '" + runtimeValue + "' with new format '" + newFormat + "' with pad char '" + padChar + "'...");
 				String newValue = String.format(newFormat.toString(), runtimeValue);
 				StringBuilder tempRet = new StringBuilder(newValue);
-				LOG.debug("Replacing pad char for '" + tempRet + "'");
+				LOG.fine("Replacing pad char for '" + tempRet + "'");
 				int idx = tempRet.indexOf(runtimeValue);
 				for (int i = 0; i < idx; i++) {
 					tempRet.replace(i, i + 1, String.valueOf(padChar));
@@ -457,11 +458,11 @@ public final class StructuredStringSerializer<T> {
 				}
 				ret = tempRet.toString();
 			} else {
-				LOG.debug("Formatting '" + runtimeValue + "' with format '" + format + "'...");
+				LOG.fine("Formatting '" + runtimeValue + "' with format '" + format + "'...");
 				ret = String.format(format, runtimeValue);
 			}
 
-			LOG.debug("Formated string value '" + runtimeValue + "' with '" + format + "'='" + ret + "'");
+			LOG.fine("Formated string value '" + runtimeValue + "' with '" + format + "'='" + ret + "'");
 			return ret;
 		}
 

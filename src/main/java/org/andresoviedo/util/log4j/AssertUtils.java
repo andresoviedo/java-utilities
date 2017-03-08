@@ -1,7 +1,6 @@
-package org.andresoviedo.util.junit;
+package org.andresoviedo.util.log4j;
 
 import org.andresoviedo.util.bean.BeanUtils;
-import org.andresoviedo.util.log4j.MemoryAppender;
 import org.apache.log4j.Appender;
 
 public final class AssertUtils {
@@ -153,7 +152,7 @@ public final class AssertUtils {
 	static class LogUtils {
 
 		public static void assertLogsRegExp(Appender mockAppender, String message, boolean exists, String... expectedMessagesRegExp) {
-			// TODO: Implementar la activación dinámica de logs (consola y
+			// TODO: Implementar la activaciï¿½n dinï¿½mica de logs (consola y
 			// memoria)
 			// if (!this.enabledLogs) {
 			// throw new
@@ -188,11 +187,11 @@ public final class AssertUtils {
 
 			// con exists == true el usuario pide que existan todos los
 			// mensajes
-			// con exists == false ningún mensaje debe existir
+			// con exists == false ningï¿½n mensaje debe existir
 			if (exists == true) {
 				for (int i = 0; i < messagesExist.length; i++) {
 					if (!messagesExist[i]) {
-						fail("No se ha podido encontrar el log con la regular expressión '" + expectedMessagesRegExp[i] + "'");
+						fail("No se ha podido encontrar el log con la regular expressiï¿½n '" + expectedMessagesRegExp[i] + "'");
 					}
 				}
 			} else {
@@ -207,7 +206,7 @@ public final class AssertUtils {
 
 		public static void assertLogs(Appender mockAppender, String message, boolean exists, String... expectedMessages) {
 
-			// TODO: Implementar la activación dinámica de logs (consola y
+			// TODO: Implementar la activaciï¿½n dinï¿½mica de logs (consola y
 			// memoria)
 			// if (!this.enabledLogs) {
 			// throw new
@@ -234,7 +233,7 @@ public final class AssertUtils {
 
 			// con exists == true el usuario pide que existan todos los
 			// mensajes
-			// con exists == false ningún mensaje debe existir
+			// con exists == false ningï¿½n mensaje debe existir
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < messagesExist.length; i++) {
 				if (exists ^ messagesExist[i]) {

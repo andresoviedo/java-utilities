@@ -2,9 +2,9 @@ package org.andresoviedo.util.jibx;
 
 import java.math.BigDecimal;
 
-import junit.framework.TestCase;
-
 import org.junit.Test;
+
+import junit.framework.TestCase;
 
 public class NumberJibxTest extends TestCase {
 	@Test

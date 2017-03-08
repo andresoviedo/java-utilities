@@ -8,16 +8,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 
 public final class DataSourceDefinition {
 
-	private static Logger LOG = Logger.getLogger(DataSourceDefinition.class);
+	private static Logger LOG = Logger.getLogger(DataSourceDefinition.class.getName());
 
 	private final String databaseDriver;
 
@@ -46,7 +47,7 @@ public final class DataSourceDefinition {
 	}
 
 	private void testConnection() {
-		LOG.debug("Testing datasource connection '" + url + "'...");
+		LOG.fine("Testing datasource connection '" + url + "'...");
 		Connection conn = null;
 		try {
 			conn = getDataSource().getConnection();
@@ -58,16 +59,16 @@ public final class DataSourceDefinition {
 			}
 			result.close();
 			statement.close();
-			LOG.debug("Datasource connection OK!");
+			LOG.fine("Datasource connection OK!");
 		} catch (SQLException ex) {
-			LOG.fatal(ex);
+			LOG.log(Level.SEVERE, ex.getMessage(), ex);
 		} finally {
 			try {
 				if (conn != null) {
 					conn.close();
 				}
 			} catch (SQLException ex2) {
-				LOG.fatal(ex2);
+				LOG.log(Level.SEVERE, ex2.getMessage(), ex2);
 			}
 		}
 	}
@@ -85,20 +86,20 @@ public final class DataSourceDefinition {
 			conn = getDataSource().getConnection();
 			ScriptRunner runner = new ScriptRunner(conn, false, true);
 			for (String script : scripts) {
-				LOG.debug("Executing script '" + script + "'...");
+				LOG.fine("Executing script '" + script + "'...");
 				InputStream scriptAsStream = this.getClass().getResourceAsStream(script);
 				runner.runScript(new InputStreamReader(scriptAsStream, "UTF-8"));
 			}
 			LOG.info("Database initialized!");
 		} catch (Exception ex) {
-			LOG.fatal(ex);
+			LOG.log(Level.SEVERE, ex.getMessage(), ex);
 		} finally {
 			try {
 				if (conn != null) {
 					conn.close();
 				}
 			} catch (SQLException ex2) {
-				LOG.fatal(ex2);
+				LOG.log(Level.SEVERE, ex2.getMessage(), ex2);
 			}
 		}
 	}
@@ -122,7 +123,7 @@ public final class DataSourceDefinition {
 			// connection = null;
 		} catch (SQLException ex) {
 			String msg = "Exception closing connection";
-			LOG.error(msg, ex);
+			LOG.log(Level.SEVERE, msg, ex);
 			throw new RuntimeException(msg, ex);
 		}
 	}

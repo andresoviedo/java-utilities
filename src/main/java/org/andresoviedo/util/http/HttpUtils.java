@@ -9,6 +9,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.security.KeyStore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,11 +19,10 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManagerFactory;
 
-import org.apache.log4j.Logger;
 
 public final class HttpUtils {
 
-	private static final Logger LOG = Logger.getLogger(HttpUtils.class);
+	private static final Logger LOG = Logger.getLogger(HttpUtils.class.getName());
 
 	public static String GET(URL url, int timeout) {
 		return GET(url, null, Proxy.NO_PROXY, timeout);
@@ -33,7 +34,7 @@ public final class HttpUtils {
 		int responseCode = -1;
 		try {
 
-			LOG.debug("Connecting to '" + url + "'... using proxy '" + proxy + "'...");
+			LOG.fine("Connecting to '" + url + "'... using proxy '" + proxy + "'...");
 
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection(proxy);
 			conn.setConnectTimeout(timeout);
@@ -51,7 +52,7 @@ public final class HttpUtils {
 			conn.connect();
 
 			responseCode = conn.getResponseCode();
-			LOG.debug("Response code '" + responseCode + "'");
+			LOG.fine("Response code '" + responseCode + "'");
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String inputLine;
@@ -61,9 +62,9 @@ public final class HttpUtils {
 			in.close();
 			conn.disconnect();
 
-			LOG.debug("Response msg '" + response.toString() + "'");
+			LOG.fine("Response msg '" + response.toString() + "'");
 		} catch (Exception ex) {
-			LOG.error("Oops! There was a problem executing request", ex);
+			LOG.log(Level.SEVERE, "Oops! There was a problem executing request", ex);
 			return null;
 		}
 

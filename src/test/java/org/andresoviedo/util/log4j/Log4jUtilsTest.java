@@ -1,6 +1,5 @@
 package org.andresoviedo.util.log4j;
 
-import org.andresoviedo.util.junit.AssertUtils;
 import org.apache.log4j.Appender;
 import org.apache.log4j.Logger;
 import org.junit.After;

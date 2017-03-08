@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,11 +15,9 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.script.SimpleScriptContext;
 
-import org.apache.log4j.Logger;
-
 public class ExpressionEngine {
 
-	private static final Logger LOG = Logger.getLogger(ExpressionEngine.class);
+	private static final Logger LOG = Logger.getLogger(ExpressionEngine.class.getName());
 
 	private final ScriptEngineManager scriptEngineManager;
 	private final ScriptEngine scriptEngine;
@@ -53,7 +52,7 @@ public class ExpressionEngine {
 
 	public String evaluate(String expression, Map<String, Object>... vars) {
 
-		LOG.trace("Evaluating value for '" + expression + "'.... variables '" + Arrays.toString(vars) + "'");
+		LOG.finest("Evaluating value for '" + expression + "'.... variables '" + Arrays.toString(vars) + "'");
 		if (expression == null) {
 			return null;
 		}
@@ -84,7 +83,7 @@ public class ExpressionEngine {
 			} catch (ScriptException ex) {
 				throw new RuntimeException("Problem evaluating expression '" + expression + "'.", ex);
 			}
-			LOG.debug("Evaluation result: class '" + eval.getClass() + "', value '" + eval + "'");
+			LOG.fine("Evaluation result: class '" + eval.getClass() + "', value '" + eval + "'");
 			ret = ret.replaceFirst(Pattern.quote(match), Matcher.quoteReplacement(String.valueOf(eval)));
 		}
 

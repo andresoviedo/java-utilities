@@ -1,8 +1,8 @@
 package org.andresoviedo.util.properties;
 
 import java.util.Properties;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
 
 /**
  * <p>
@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
  */
 public class MultiProperties extends Properties {
 
-	private static final Logger LOG = Logger.getLogger(MultiProperties.class);
+	private static final Logger LOG = Logger.getLogger(MultiProperties.class.getName());
 
 	private final String environment;
 	private final String cluster;
